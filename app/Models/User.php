@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -18,10 +22,18 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'is_verified',
         'email',
         'password',
+        'profile_photo_url',
     ];
-
+    public function scopeFilter($query, array $filters)
+    {
+        if($filters['search'] ?? false)
+        {
+            $query->where('email','like','%'.request('search').'%')->orWhere('name','like','%'.request('search').'%');
+        }
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -30,18 +42,32 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array<int, string>
+     */
+
+    public function sendEmailVerificationNotification()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        $this->notify(new VerifyEmailWithOTP($this->otp));
     }
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+    
 }
