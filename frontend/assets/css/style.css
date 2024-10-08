@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+html,body{
+    overflow-x: hidden;
+}
+
+.box-shadow-i{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.box-shadow-ii{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.slider-wrapper {
+    width: 100%; 
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card {
+    min-width: calc(100% / 4 - 16px);
+}
+
+@media (max-width: 1024px) {
+    .card {
+        flex: 0 0 calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 640px) { 
+    .card {
+        flex: 0 0 calc(100% - 1rem); 
+    }
+}
