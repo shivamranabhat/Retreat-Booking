@@ -67,7 +67,6 @@ class BlogController extends Controller
                 $formFields['main_image'] = $image->storeAs('blogs/main_image', $imageName, 'public');
             }
     
-    
             // Generate slug from title
             $slug = Str::slug($formFields['title']);
             

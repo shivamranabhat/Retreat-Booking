@@ -5,71 +5,18 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OpenGraphController;
 use App\Http\Controllers\AdminAuthController;
-use App\Http\Controllers\ColorController;
 use App\Http\Controllers\FaqController;
-use App\Http\Controllers\MtbFaqController;
-use App\Http\Controllers\ActivityFaqController;
-use App\Http\Controllers\TrekFaqController;
-use App\Http\Controllers\BikeTourFaqController;
 use App\Http\Controllers\TwitterCardController;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\TrekBookingController;
-use App\Http\Controllers\ActivityBookingController;
-use App\Http\Controllers\MtbTourBookingController;
-use App\Http\Controllers\ProductOrderController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\BodyContentController;
 use App\Http\Controllers\FooterContentController;
 use App\Http\Controllers\MessageController;
-use App\Http\Controllers\CollaborationRequestController;
 use App\Http\Controllers\ScriptController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\MtbCycleController;
-use App\Http\Controllers\CyclingDestinationCategoryController;
-use App\Http\Controllers\CyclingDestinationController;
-use App\Http\Controllers\BikeTourCategoryController;
-use App\Http\Controllers\BikeTourController;
-use App\Http\Controllers\BikeTourBookingController;
-use App\Http\Controllers\RouteTypeController;
-use App\Http\Controllers\BikeTourRouteController;
-use App\Http\Controllers\BikeTourFeatureController;
-use App\Http\Controllers\TrekkingController;
-use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\ActivityTypeController;
-use App\Http\Controllers\ActivityCategoryController;
-use App\Http\Controllers\TrekCategoryController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\AttributeController;
-use App\Http\Controllers\TrendingBikeController;
-use App\Http\Controllers\AchievementController;
-use App\Http\Controllers\PartnerController;
-use App\Http\Controllers\RepairRequestController;
-use App\Http\Controllers\AboutDetailController;
 use App\Http\Controllers\CurrencyController;
-use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\VoiceController;
-use App\Http\Controllers\Auth\VerifyController;
-use App\Http\Controllers\RentController;
-use App\Http\Controllers\LocationController;
-use App\Http\Controllers\SubscriberController;
-use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\AdminPasswordResetController;
-use App\Http\Controllers\ChecklistController;
-use App\Http\Controllers\TeamController;
-use App\Http\Controllers\RepairContentController;
-use App\Http\Controllers\B2bContentController;
-use App\Http\Controllers\ExtrapageController;
-use App\Http\Controllers\ActivityFeatureController;
-use App\Http\Controllers\ActivityDepartureController;
-use App\Http\Controllers\MtbDepartureController;
-use App\Http\Controllers\TrekDepartureController;
-use App\Http\Controllers\BikeTourDepartureController;
-use App\Http\Controllers\MtbFeatureController;
-use App\Http\Controllers\TrekFeatureController;
-use App\Http\Controllers\PdfController;
-use App\Http\Controllers\YoutubeLinkController;
-use App\Http\Controllers\YoutubeLinkCategoryController;
-use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\LocationController;
 use App\Http\Middleware\AdminAuth;
 
 /*
@@ -139,8 +86,6 @@ Route::prefix('/dashboard')->group(function () {
         Route::put('/update/{slug}','update')->name('page.update');
         Route::delete('/delete/{slug}','destroy')->name('page.destroy');
     });
-  
-  
     //Routes for blog
      Route::prefix('/blogs')->controller(BlogController::class)->group(function(){
         Route::get('/','index')->name('blogs');
@@ -206,11 +151,6 @@ Route::prefix('/dashboard')->group(function () {
         Route::get('/{slug}','edit')->name('faq.edit');
         Route::put('/update/{slug}','update')->name('faq.update');
         Route::delete('/destroy/{slug}','destroy')->name('faq.destroy');
-    });
-    //Route for subscribers
-    Route::prefix('/subscribers')->controller(SubscriberController::class)->group(function(){
-        Route::get('/','index')->name('subscribers');
-        Route::delete('/delete/{slug}','destroy')->name('subscriber.destroy');
     });
    
      //Route for currency

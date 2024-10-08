@@ -9,7 +9,7 @@ class Location extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'name','slug'
+        'name','image','image_alt','slug'
     ];
     public function scopeFilter($query, array $filters)
     {

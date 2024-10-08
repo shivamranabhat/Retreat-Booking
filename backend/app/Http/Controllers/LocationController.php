@@ -32,8 +32,16 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'name'=>'required|unique:locations,name'
+            'name'=>'required|unique:locations,name',
+            'image'=>'required|image|mimes:jpeg,png,jpg,webp',
+            'image_alt'=>'required'
         ],['name.unique'=>'This location is already exists']);
+         // Handle main image upload
+         if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '-' . $image->getClientOriginalName();
+            $formFields['image'] = $image->storeAs('location', $imageName, 'public');
+        }
         $slug = Str::slug($formFields['name']);
         Location::create($formFields+['slug'=>$slug]);
         return redirect()->route('locations')->with('message','Location added successfully');
@@ -57,8 +65,23 @@ class LocationController extends Controller
     {
         $location = Location::whereSlug($slug)->first();
         $formFields = $request->validate([
-            'name'=>'required|unique:locations,name,'.$location->id
+            'name'=>'required|unique:locations,name,'.$location->id,
+            'image'=>'nullable|image|mimes:jpeg,png,jpg,webp',
+            'image_alt'=>'required'
         ],['name.unique'=>'This location is already exists']);
+         // Handle main image upload
+         if ($request->hasFile('image')) {
+            if (!empty($location->image)) {
+                $oldImagePath = public_path('storage/' . $location->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+            $uploadedFile = $request->file('image');
+            $fileName = time() . '-' . $uploadedFile->getClientOriginalName();
+            $mainImagePath = $uploadedFile->storeAs('location', $fileName, 'public');
+            $formFields['image'] = $mainImagePath;
+        }
         $slug = Str::slug($formFields['name']);
         $location->update($formFields+['slug'=>$slug]);
         return redirect()->route('locations')->with('message','Location updated successfully');
@@ -70,6 +93,14 @@ class LocationController extends Controller
     public function destroy(string $slug)
     {
         $location = Location::whereSlug($slug)->first();
+        if(!empty($location->image))
+        {
+            $image_path = public_path('storage/'.$location->image);
+            if(file_exists($image_path))
+            {
+                unlink($image_path);
+            }
+        }
         $location->delete();
         return redirect()->route('locations')->with('message','Location deleted successfully');
     }

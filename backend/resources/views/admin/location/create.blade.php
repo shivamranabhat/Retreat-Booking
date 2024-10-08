@@ -17,22 +17,40 @@
                             </div>
                         </div>
                         <div class="card-body mt-2">
-                            <form  method="POST" action="{{ route('location.update',$location->slug) }}">
+                            <form  method="POST" action="{{ route('location.store') }}" enctype="multipart/form-data">
                                 @csrf
-                                @method('PUT')
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="name">Name</label>
                                     <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror {{ $errors->has('name') ? 'error' : '' }}"
-                                        value="{{ $location->name }}" />
+                                        value="{{ old('name') }}" />
                                     @error('name')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-block rounded-pill mb-4">Update</button>
+                                <div class="row align-items-end">
+                                    <div class="image-area"><img id="imageResult" src="" width="150"></div>
+                                    <div class="col-6 form-outline mb-3">
+                                        <label class="form-label" for="image">Image</label>
+                                        <input class="form-control" type="file" id="image" name="image" />
+                                    </div>
+                                    <div class="col-6 form-outline mb-3">
+                                        <label class="form-label" for="image_alt">Image Alt</label>
+                                        <input type="text" name="image_alt" id="image_alt"
+                                            class="form-control @error('image_alt') is-invalid @enderror {{ $errors->has('image_alt') ? 'error' : '' }}"
+                                            value="{{ old('image_alt') }}" />
+                                        @error('image_alt')
+                                        <span class="text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block rounded-pill mb-4">Create</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        @push('scripts')
+           <script src="{{ asset('assets/js/imagePreview.js?v=').time() }}"></script>
+        @endpush
 </x-app-layout>
