@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Blogs</title>
     <link rel="stylesheet" href="./assets/css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
@@ -51,7 +51,7 @@
                     <li><a href="#"
                             class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-300 transition-all duration-200 ease-in-out">FAQs</a>
                     </li>
-                    <li><a href="blogs.html"
+                    <li><a href="#"
                             class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-300 transition-all duration-200 ease-in-out">Blogs</a>
                     </li>
                     <li><a href="#"
@@ -88,233 +88,19 @@
         </div>
     </section>
     <!-- nav section -->
-    <!-- hero section -->
-    <section class="hero-section flex flex-col gap-y-16 items-center mt-16 px-6 md:px-28 lg:px-48 xl:px-56">
-        <div class="container pt-20 mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
-            <div class="left-container flex flex-col gap-y-4 justify-center md:pr-0 lg:pr-4">
-                <h1
-                    class="text-4xl md:text-[2rem] lg:text-hero-title text-center font-bold lg:font-extrabold leading-tight lg:leading-normal">
-                    Discover the best
-                    handpicked retreats
-                    and trainings on the
-                    planet
-                </h1>
-                <h3 class="text-lg md:text-xl text-center text-[#0F172A]">Unplug. De-stress. Recharge.</h3>
-            </div>
-            <div class="right-container grid grid-cols-10 lg:grid-cols-5 grid-rows-2 gap-4">
-                <img class="rounded-xl col-span-5 lg:col-span-2 row-span-2 w-full h-full object-cover"
-                    src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/images/home/hero-first.jpg"
-                    alt="">
-                <img class="rounded-xl col-span-5 lg:col-span-3 w-full h-full object-cover"
-                    src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/images/home/hero-second.jpg"
-                    alt="">
-                <img class="rounded-xl col-span-5 lg:col-span-3 w-full h-full object-cover"
-                    src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/images/home/hero-second.jpg"
-                    alt="">
-            </div>
-        </div>
-        <div class="search-bar grid grid-cols-1 md:grid-cols-2 gap-y-2 md:gap-0 w-full box-shadow-i rounded-xl mx-auto">
-            <div class="location cursor-pointer flex gap-2 col-span-1 p-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
-                    <path
-                        d="M15.7497 15.0749L12.0371 18.7875C11.8747 18.95 11.6819 19.0789 11.4697 19.1669C11.2575 19.2549 11.03 19.3002 10.8002 19.3002C10.5705 19.3002 10.343 19.2549 10.1308 19.1669C9.9186 19.0789 9.7258 18.95 9.56343 18.7875L5.84993 15.0749C4.871 14.0959 4.20435 12.8486 3.93428 11.4907C3.66422 10.1329 3.80286 8.72544 4.33269 7.44638C4.86251 6.16732 5.75972 5.07409 6.91085 4.30493C8.06199 3.53578 9.41535 3.12524 10.7998 3.12524C12.1843 3.12524 13.5376 3.53578 14.6888 4.30493C15.8399 5.07409 16.7371 6.16732 17.2669 7.44638C17.7968 8.72544 17.9354 10.1329 17.6653 11.4907C17.3953 12.8486 16.7286 14.0959 15.7497 15.0749Z"
-                        stroke="#00B67A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-                    <path
-                        d="M13.4248 10.125C13.4248 10.8212 13.1482 11.4889 12.656 11.9812C12.1637 12.4734 11.496 12.75 10.7998 12.75C10.1036 12.75 9.43593 12.4734 8.94365 11.9812C8.45137 11.4889 8.1748 10.8212 8.1748 10.125C8.1748 9.42881 8.45137 8.76113 8.94365 8.26884C9.43593 7.77656 10.1036 7.5 10.7998 7.5C11.496 7.5 12.1637 7.77656 12.656 8.26884C13.1482 8.76113 13.4248 9.42881 13.4248 10.125Z"
-                        stroke="#00B67A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <div class="content flex flex-col gap-y-1">
-                    <p class="font-lead-bold text-gray-600">Locations</p>
-                    <span class="text-gray-400">Where you want to go?</span>
-                </div>
-            </div>
-            <div class="bg-gray-200 h-px w-full flex md:hidden"></div>
-            <div class="end flex justify-between p-4">
-                <div class="date flex gap-2 col-span-1 justify-end">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
-                        <path d="M3.5957 8.72873H19.1917" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M15.2764 12.146H15.2844" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M11.3936 12.146H11.4017" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M7.50293 12.146H7.51103" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M15.2764 15.5467H15.2844" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M11.3936 15.5467H11.4017" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M7.50293 15.5467H7.51103" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M14.9277 2.25V5.12943" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M7.85938 2.25V5.12943" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M15.0982 3.63181H7.68924C5.11963 3.63181 3.51465 5.06325 3.51465 7.69446V15.6129C3.51465 18.2854 5.11963 19.75 7.68924 19.75H15.09C17.6678 19.75 19.2646 18.3103 19.2646 15.6791V7.69446C19.2727 5.06325 17.6758 3.63181 15.0982 3.63181Z"
-                            stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <div class="content flex flex-col gap-y-1">
-                        <p class="font-lead-bold text-gray-600">Dates</p>
-                        <span class="text-gray-400">When you want to go?</span>
-                    </div>
-                </div>
-                <button
-                    class="bg-main hidden md:flex items-center justify-center hover:bg-gray-300 hover:ease-in-out duration-200 py-2 px-4 group rounded-full">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                        stroke="currentColor"
-                        class="stroke-white size-5 transition-all duration-200 ease-in-out group-hover:stroke-gray-600">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                    </svg>
-                </button>
-            </div>
+    <!-- banner section -->
+    <section class="banner-section flex flex-col gap-y-16 items-center mt-28 px-6 md:px-28 lg:px-44">
+        <div class="container relative py-10 flex flex-col items-center justify-end w-full h-80 rounded-xl bg-cover bg-center"
+            style="background-image: url(https://bookretreats.com/blog/wp-content/uploads/2024/01/couples-therapy-france-2.jpg);">
+            <h3 class="text-lg md:text-4xl text-white font-bold">Unplug. De-stress. Recharge</h3>
+            <h5 class="text-lg text-white font-semibold">Discover the best handpicked yoga retreats and yoga teacher
+                trainings on the planet
+            </h5>
         </div>
     </section>
-    <!-- hero section -->
-    <!-- section locations -->
-    <section class="location-section py-20 px-6 md:px-28 lg:px-48 xl:px-56">
-        <div class="container flex flex-col items-center gap-12 mx-auto">
-            <h3 class="text-2xl font-bold">We've retreats in more than 10 places in Nepal. See for yourself:</h3>
-
-            <div class="slider-wrapper overflow-hidden">
-                <div class="slider mb-2 flex gap-4 transition-transform duration-300 ease-in-out">
-                    <!-- Make each card the group to apply hover effect -->
-                    <a href="#" class="card flex flex-col box-shadow-iii rounded-xl">
-                        <img src="https://photos.tpn.to/os/fp/nq/tk/458x344.webp"
-                            class="rounded-tl-lg rounded-tr-lg w-full h-56 lg:h-48 object-cover" alt="">
-                        <div
-                            class="details p-4 rounded-lg group-hover:shadow-lg transition-all duration-200 hover:ease-in-out flex flex-col">
-                            <h5 class="text-gray-800 text-lg font-lead-bold">Eastern Region</h5>
-                            <span class="text-gray-400 text-sm">The capital city and cultural place of Nepal</span>
-                        </div>
-                    </a>
-                    <a href="#" class="card flex flex-col box-shadow-iii rounded-xl">
-                        <img src="https://photos.tpn.to/ih/mt/tl/rh/458x344.webp"
-                            class="rounded-tl-lg rounded-tr-lg w-full h-56 lg:h-48 object-cover" alt="">
-                        <div
-                            class="details p-4 rounded-lg group-hover:shadow-lg transition-all duration-200 hover:ease-in-out flex flex-col">
-                            <h5 class="text-gray-800 text-lg font-lead-bold">Gandaki</h5>
-                            <span class="text-gray-400 text-sm">The capital city and cultural place of Nepal</span>
-                        </div>
-                    </a>
-                    <a href="#" class="card flex flex-col box-shadow-iii rounded-xl">
-                        <img src="https://photos.tpn.to/pm/sk/jj/so/458x344.webp"
-                            class="rounded-tl-lg rounded-tr-lg w-full h-56 lg:h-48 object-cover" alt="">
-                        <div
-                            class="details p-4 rounded-lg group-hover:shadow-lg transition-all duration-200 hover:ease-in-out flex flex-col">
-                            <h5 class="text-gray-800 text-lg font-lead-bold">Kaski</h5>
-                            <span class="text-gray-400 text-sm">The capital city and cultural place of Nepal</span>
-                        </div>
-                    </a>
-                    <a href="#" class="card flex flex-col box-shadow-iii rounded-xl">
-                        <img src="https://photos.tpn.to/hs/ip/pg/ki/458x344.webp"
-                            class="rounded-tl-lg rounded-tr-lg w-full h-56 lg:h-48 object-cover" alt="">
-                        <div
-                            class="details p-4 rounded-lg group-hover:shadow-lg transition-all duration-200 hover:ease-in-out flex flex-col">
-                            <h5 class="text-gray-800 text-lg font-lead-bold">Western Region</h5>
-                            <span class="text-gray-400 text-sm">The capital city and cultural place of Nepal</span>
-                        </div>
-                    </a>
-                    <a href="#" class="card flex flex-col box-shadow-iii rounded-xl">
-                        <img src="https://photos.tpn.to/hi/se/he/re/458x344.webp"
-                            class="rounded-tl-lg rounded-tr-lg w-full h-56 lg:h-48 object-cover" alt="">
-                        <div
-                            class="details p-4 rounded-lg group-hover:shadow-lg transition-all duration-200 hover:ease-in-out flex flex-col">
-                            <h5 class="text-gray-800 text-lg font-lead-bold">Kathmandu</h5>
-                            <span class="text-gray-400 text-sm">The capital city and cultural place of Nepal</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="slider-buttons flex items-center gap-4">
-                <div
-                    class="prev cursor-pointer bg-main hover:bg-gray-300 hover:ease-in duration-200 rounded-full p-2 flex items-center justify-center group">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                        stroke="currentColor"
-                        class="stroke-white size-5 transition-all duration-200 ease-in-out group-hover:stroke-gray-600">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                    </svg>
-                </div>
-                <div
-                    class="next cursor-pointer bg-main hover:bg-gray-300 hover:ease-in duration-200 rounded-full p-2 flex items-center justify-center group">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                        stroke="currentColor"
-                        class="stroke-white size-5 transition-all duration-200 ease-in-out group-hover:stroke-gray-600">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- section locations -->
-    <!-- section why us -->
-    <section class="whyus-section py-20 px-6 md:px-28 lg:px-48 xl:px-56 bg-gray-50">
-        <div class="container flex flex-col items-center gap-12 mx-auto">
-            <div class="title relative">
-                <h3 class="text-2xl lg:text-[31.25px] font-extrabold">Why Use <span class="text-main">Pokhara
-                        Retreat?</span></h3>
-                <div class="absolute right-[-2rem] md:right-[-2.5rem] top-[-1.5rem]">
-                    <img src="./assets/images/decorator.svg" class="w-3/4 lg:w-full" alt="decorator">
-                </div>
-            </div>
-            <div class="group-cards grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                <div class="card cursor-pointer bg-white flex gap-2 p-4 box-shadow-iii rounded-xl">
-                    <div class="logo">
-                        <svg class="size-6 mt-1" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M16.5069 5.4533C16.8892 5.58717 17.1447 5.94767 17.1447 6.3528V12.2792C17.1447 13.9355 16.5428 15.5167 15.4796 16.7417C14.945 17.3585 14.2686 17.8389 13.5503 18.2274L10.437 19.9092L7.3185 18.2265C6.59925 17.838 5.922 17.3585 5.3865 16.7408C4.3225 15.5158 3.71875 13.9338 3.71875 12.2757V6.3528C3.71875 5.94767 3.97425 5.58717 4.35663 5.4533L10.1159 3.42942C10.3206 3.35767 10.5437 3.35767 10.7476 3.42942L16.5069 5.4533Z"
-                                stroke="#02BF9B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M8.15723 11.3979L9.81272 13.0543L13.2235 9.64355" stroke="#02BF9B"
-                                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <div class="content flex flex-col gap-y-1">
-                        <h5 class="font-semibold text-lg">Best price guarantee</h5>
-                        <p class="text-gray-500 text-[15px]">Hosts are required to give you the
-                            lowest prices to be on our site.</p>
-                    </div>
-                </div>
-                <div class="card cursor-pointer bg-white flex gap-2 p-4 box-shadow-iii rounded-xl">
-                    <div class="logo">
-                        <svg class="size-6 mt-1" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M16.5069 5.4533C16.8892 5.58717 17.1447 5.94767 17.1447 6.3528V12.2792C17.1447 13.9355 16.5428 15.5167 15.4796 16.7417C14.945 17.3585 14.2686 17.8389 13.5503 18.2274L10.437 19.9092L7.3185 18.2265C6.59925 17.838 5.922 17.3585 5.3865 16.7408C4.3225 15.5158 3.71875 13.9338 3.71875 12.2757V6.3528C3.71875 5.94767 3.97425 5.58717 4.35663 5.4533L10.1159 3.42942C10.3206 3.35767 10.5437 3.35767 10.7476 3.42942L16.5069 5.4533Z"
-                                stroke="#02BF9B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M8.15723 11.3979L9.81272 13.0543L13.2235 9.64355" stroke="#02BF9B"
-                                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <div class="content flex flex-col gap-y-1">
-                        <h5 class="font-semibold text-lg">Best price guarantee</h5>
-                        <p class="text-gray-500 text-[15px]">Hosts are required to give you the
-                            lowest prices to be on our site.</p>
-                    </div>
-                </div>
-                <div class="card cursor-pointer bg-white flex gap-2 p-4 box-shadow-iii rounded-xl">
-                    <div class="logo">
-                        <svg class="size-6 mt-1" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M16.5069 5.4533C16.8892 5.58717 17.1447 5.94767 17.1447 6.3528V12.2792C17.1447 13.9355 16.5428 15.5167 15.4796 16.7417C14.945 17.3585 14.2686 17.8389 13.5503 18.2274L10.437 19.9092L7.3185 18.2265C6.59925 17.838 5.922 17.3585 5.3865 16.7408C4.3225 15.5158 3.71875 13.9338 3.71875 12.2757V6.3528C3.71875 5.94767 3.97425 5.58717 4.35663 5.4533L10.1159 3.42942C10.3206 3.35767 10.5437 3.35767 10.7476 3.42942L16.5069 5.4533Z"
-                                stroke="#02BF9B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M8.15723 11.3979L9.81272 13.0543L13.2235 9.64355" stroke="#02BF9B"
-                                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <div class="content flex flex-col gap-y-1">
-                        <h5 class="font-semibold text-lg">Best price guarantee</h5>
-                        <p class="text-gray-500 text-[15px]">Hosts are required to give you the
-                            lowest prices to be on our site.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- section why us -->
-    <!-- section blogs -->
-    <section class="blog-section py-20 px-6 md:px-28 lg:px-48 xl:px-56">
+    <!-- banner section -->
+    <!-- blog section -->
+    <section class="blogs py-20 px-6 md:px-28 lg:px-48 xl:px-56">
         <div class="container flex flex-col items-center gap-12 mx-auto">
             <div class="title relative">
                 <h3 class="text-2xl lg:text-[31.25px] font-extrabold">Latest from <span class="text-main">Our
@@ -323,87 +109,142 @@
                     <img src="./assets/images/decorator.svg" class="w-3/4 lg:w-full" alt="decorator">
                 </div>
             </div>
-            <div class="group-cards grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                <div class="card hover:scale-105 hover:ease-in-out transition-all cursor-pointer bg-white flex flex-col gap-4 p-4 rounded-xl box-shadow-iii">
-                    <img class="w-full h-56 object-cover rounded-xl"
-                        src="https://bookretreats.com/cdn-cgi/image/width=640,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/10/swimmers-Menorca.jpg"
-                        alt="">
-                    <div class="content flex flex-col gap-4">
-                        <h5 class="font-semibold text-base">10 Reasons to Book a Sacred Healing
-                            Retreat on Menorca [Spain’s Serene
-                            Balearic Island] 2024</h5>
-                        <div class="flex gap-2">
-                            <img class="w-10 rounded-full"
-                                src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/01/dave-anderson.jpeg"
-                                alt="">
-                            <div class="flex flex-col">
-                                <p class="text-main">Dave Anderson</p>
-                                <span class="text-sm text-gray-400">28th Sept,2024</span>
+            <div class="main flex flex-col gap-y-6">
+                <div class="group-cards grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <div class="card hover:scale-105 hover:ease-in-out transition-all duration-200 cursor-pointer bg-white flex flex-col gap-4 p-4 rounded-xl box-shadow-iii">
+                        <img class="w-full h-56 object-cover rounded-xl"
+                            src="https://bookretreats.com/cdn-cgi/image/width=640,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/10/swimmers-Menorca.jpg"
+                            alt="">
+                        <div class="content flex flex-col gap-4">
+                            <h5 class="font-semibold text-base">10 Reasons to Book a Sacred Healing
+                                Retreat on Menorca [Spain’s Serene
+                                Balearic Island] 2024</h5>
+                            <div class="flex gap-2">
+                                <img class="w-10 rounded-full"
+                                    src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/01/dave-anderson.jpeg"
+                                    alt="">
+                                <div class="flex flex-col">
+                                    <p class="text-main">Dave Anderson</p>
+                                    <span class="text-sm text-gray-400">28th Sept,2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card hover:scale-105 hover:ease-in-out transition-all cursor-pointer bg-white flex flex-col gap-4 p-4 rounded-xl box-shadow-iii">
+                        <img class="w-full h-56 object-cover rounded-xl"
+                            src="https://bookretreats.com/cdn-cgi/image/width=640,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/09/IMG_0526.jpeg"
+                            alt="">
+                        <div class="content flex flex-col gap-4">
+                            <h5 class="font-semibold text-base">10 Reasons to Book a Sacred Healing
+                                Retreat on Menorca [Spain’s Serene
+                                Balearic Island] 2024</h5>
+                            <div class="flex gap-2">
+                                <img class="w-10 rounded-full"
+                                    src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/01/dave-anderson.jpeg"
+                                    alt="">
+                                <div class="flex flex-col">
+                                    <p class="text-main">Dave Anderson</p>
+                                    <span class="text-sm text-gray-400">28th Sept,2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card hover:scale-105 hover:ease-in-out transition-all cursor-pointer bg-white flex flex-col gap-4 p-4 rounded-xl box-shadow-iii">
+                        <img class="w-full h-56 object-cover rounded-xl"
+                            src="https://bookretreats.com/cdn-cgi/image/width=640,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/08/Artboard-129.jpg"
+                            alt="">
+                        <div class="content flex flex-col gap-4">
+                            <h5 class="font-semibold text-base">10 Reasons to Book a Sacred Healing
+                                Retreat on Menorca [Spain’s Serene
+                                Balearic Island] 2024</h5>
+                            <div class="flex gap-2">
+                                <img class="w-10 rounded-full"
+                                    src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/01/dave-anderson.jpeg"
+                                    alt="">
+                                <div class="flex flex-col">
+                                    <p class="text-main">Dave Anderson</p>
+                                    <span class="text-sm text-gray-400">28th Sept,2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card hover:scale-105 hover:ease-in-out transition-all cursor-pointer bg-white flex flex-col gap-4 p-4 rounded-xl box-shadow-iii">
+                        <img class="w-full h-56 object-cover rounded-xl"
+                            src="https://bookretreats.com/cdn-cgi/image/width=640,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/08/Artboard-129.jpg"
+                            alt="">
+                        <div class="content flex flex-col gap-4">
+                            <h5 class="font-semibold text-base">10 Reasons to Book a Sacred Healing
+                                Retreat on Menorca [Spain’s Serene
+                                Balearic Island] 2024</h5>
+                            <div class="flex gap-2">
+                                <img class="w-10 rounded-full"
+                                    src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/01/dave-anderson.jpeg"
+                                    alt="">
+                                <div class="flex flex-col">
+                                    <p class="text-main">Dave Anderson</p>
+                                    <span class="text-sm text-gray-400">28th Sept,2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card hover:scale-105 hover:ease-in-out transition-all cursor-pointer bg-white flex flex-col gap-4 p-4 rounded-xl box-shadow-iii">
+                        <img class="w-full h-56 object-cover rounded-xl"
+                            src="https://bookretreats.com/cdn-cgi/image/width=640,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/08/Artboard-129.jpg"
+                            alt="">
+                        <div class="content flex flex-col gap-4">
+                            <h5 class="font-semibold text-base">10 Reasons to Book a Sacred Healing
+                                Retreat on Menorca [Spain’s Serene
+                                Balearic Island] 2024</h5>
+                            <div class="flex gap-2">
+                                <img class="w-10 rounded-full"
+                                    src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/01/dave-anderson.jpeg"
+                                    alt="">
+                                <div class="flex flex-col">
+                                    <p class="text-main">Dave Anderson</p>
+                                    <span class="text-sm text-gray-400">28th Sept,2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card hover:scale-105 hover:ease-in-out transition-all cursor-pointer bg-white flex flex-col gap-4 p-4 rounded-xl box-shadow-iii">
+                        <img class="w-full h-56 object-cover rounded-xl"
+                            src="https://bookretreats.com/cdn-cgi/image/width=640,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/08/Artboard-129.jpg"
+                            alt="">
+                        <div class="content flex flex-col gap-4">
+                            <h5 class="font-semibold text-base">10 Reasons to Book a Sacred Healing
+                                Retreat on Menorca [Spain’s Serene
+                                Balearic Island] 2024</h5>
+                            <div class="flex gap-2">
+                                <img class="w-10 rounded-full"
+                                    src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/01/dave-anderson.jpeg"
+                                    alt="">
+                                <div class="flex flex-col">
+                                    <p class="text-main">Dave Anderson</p>
+                                    <span class="text-sm text-gray-400">28th Sept,2024</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card hover:scale-105 hover:ease-in-out transition-all cursor-pointer bg-white flex flex-col gap-4 p-4 rounded-xl box-shadow-iii">
-                    <img class="w-full h-56 object-cover rounded-xl"
-                        src="https://bookretreats.com/cdn-cgi/image/width=640,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/09/IMG_0526.jpeg"
-                        alt="">
-                    <div class="content flex flex-col gap-4">
-                        <h5 class="font-semibold text-base">10 Reasons to Book a Sacred Healing
-                            Retreat on Menorca [Spain’s Serene
-                            Balearic Island] 2024</h5>
-                        <div class="flex gap-2">
-                            <img class="w-10 rounded-full"
-                                src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/01/dave-anderson.jpeg"
-                                alt="">
-                            <div class="flex flex-col">
-                                <p class="text-main">Dave Anderson</p>
-                                <span class="text-sm text-gray-400">28th Sept,2024</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card hover:scale-105 hover:ease-in-out transition-all cursor-pointer bg-white flex flex-col gap-4 p-4 rounded-xl box-shadow-iii">
-                    <img class="w-full h-56 object-cover rounded-xl"
-                        src="https://bookretreats.com/cdn-cgi/image/width=640,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/08/Artboard-129.jpg"
-                        alt="">
-                    <div class="content flex flex-col gap-4">
-                        <h5 class="font-semibold text-base">10 Reasons to Book a Sacred Healing
-                            Retreat on Menorca [Spain’s Serene
-                            Balearic Island] 2024</h5>
-                        <div class="flex gap-2">
-                            <img class="w-10 rounded-full"
-                                src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/blog/wp-content/uploads/2024/01/dave-anderson.jpeg"
-                                alt="">
-                            <div class="flex flex-col">
-                                <p class="text-main">Dave Anderson</p>
-                                <span class="text-sm text-gray-400">28th Sept,2024</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="pagination flex justify-center mt-10">
+                    <ul class="flex gap-4 items-center">
+                        <li class="border border-2 border-main bg-main rounded-full py-2 px-4 text-white"><a
+                                href="#">1</a></li>
+                        <li class="border border-2 border-main rounded-full py-2 px-4 text-main"><a href="#">2</a></li>
+                        <button class="flex gap-2 bg-main text-white items-center px-2 rounded-xl h-full">Next
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor" class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                            </svg>
 
-            </div>
-            <div class="slider-buttons flex items-center gap-4">
-                <div
-                    class="prev cursor-pointer bg-main hover:bg-gray-300 hover:ease-in duration-200 rounded-full p-2 flex items-center justify-center group">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                        stroke="currentColor"
-                        class="stroke-white size-5 transition-all duration-200 ease-in-out group-hover:stroke-gray-600">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                    </svg>
-                </div>
-                <div
-                    class="next cursor-pointer bg-main hover:bg-gray-300 hover:ease-in duration-200 rounded-full p-2 flex items-center justify-center group">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                        stroke="currentColor"
-                        class="stroke-white size-5 transition-all duration-200 ease-in-out group-hover:stroke-gray-600">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                    </svg>
+                        </button>
+                    </ul>
                 </div>
             </div>
+
         </div>
     </section>
-    <!-- section blogs -->
+    <!-- blog section -->
     <!-- section testimonials -->
     <section class="testimonial-section py-20 px-6 md:px-28 lg:px-48 xl:px-56">
         <div class="container flex flex-col items-center gap-12 mx-auto">

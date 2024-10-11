@@ -36,6 +36,7 @@ html,body{
 }
 
 
+
 @media (max-width: 1024px) {
      .card {
         flex: 0 0 calc(50% - 1rem);
