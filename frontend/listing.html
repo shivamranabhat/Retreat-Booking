@@ -99,7 +99,60 @@
     </section>
     <!-- banner section -->
     <!-- listing section -->
-    <section class="listing py-20 px-6 md:px-28 lg:px-48 xl:px-56">
+    <section class="listing py-14 md:py-20 px-6 md:px-28 lg:px-48 xl:px-56 flex flex-col gap-y-4">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-10">
+            <div class=""></div>
+            <div class="col-span-4 lg:col-span-3 flex justify-between items-center">
+                <div class="bread-crumb flex items-center gap-1">
+                    <p class="text-sm text-gray-500">
+                        Home
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                    <p class="text-sm text-gray-500">
+                        Retreat
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                    <p class="text-sm text-gray-500">
+                        Pokhara
+                    </p>
+                </div>
+                <div class="relative inline-block text-left group">
+                    <div>
+                        <button type="button"
+                            class="inline-flex w-full justify-center gap-x-1.5 rounded-xl bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                            id="menu-button" aria-expanded="true" aria-haspopup="true">
+                            Options
+                            <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd"
+                                    d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div
+                        class="absolute right-0 z-10 w-56 origin-top-right rounded-xl bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden group-hover:block"
+                        role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                        <div class="py-2" role="none">
+                            <a class="cursor-pointer block px-4 py-2 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200" role="menuitem" tabindex="-1"
+                                id="menu-item-0">Price Low to High</a>
+                            <a class="cursor-pointer block px-4 py-2 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200" role="menuitem" tabindex="-1"
+                                id="menu-item-1">Price High to Low</a>
+                            <a class="cursor-pointer block px-4 py-2 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200" role="menuitem" tabindex="-1"
+                                id="menu-item-2">Latest</a>
+                            <a class="cursor-pointer block px-4 py-2 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200" role="menuitem" tabindex="-1"
+                                id="menu-item-2">Oldest</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-10">
             <div class="filter-options hidden lg:flex flex-col gap-y-6">
                 <div class="option flex flex-col gap-y-2">
@@ -345,9 +398,9 @@
                             </div>
                             <div class="btns flex flex-col gap-y-2">
                                 <button
-                                    class="border border-2 text-sm text-gray-500 text-main font-semibold rounded-2xl p-2 border-main hover:bg-main hover:text-white hover:ease-in-out duration-300 transition-all">Details</button>
+                                    class="border border-2 text-sm text-gray-500 text-main font-semibold rounded-3xl p-2 border-main hover:bg-main hover:text-white hover:ease-in-out duration-300 transition-all">Details</button>
                                 <button
-                                    class="bg-main text-sm text-white p-2 rounded-2xl hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all">Book
+                                    class="bg-main text-sm text-white p-2 rounded-3xl hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all">Book
                                     Now</button>
                             </div>
                         </div>
@@ -403,9 +456,9 @@
                             </div>
                             <div class="btns flex flex-col gap-y-2">
                                 <button
-                                    class="border border-2 text-sm text-gray-500 text-main font-semibold rounded-2xl p-2 border-main hover:bg-main hover:text-white hover:ease-in-out duration-300 transition-all">Details</button>
+                                    class="border border-2 text-sm text-gray-500 text-main font-semibold rounded-3xl p-2 border-main hover:bg-main hover:text-white hover:ease-in-out duration-300 transition-all">Details</button>
                                 <button
-                                    class="bg-main text-sm text-white p-2 rounded-2xl hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all">Book
+                                    class="bg-main text-sm text-white p-2 rounded-3xl hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all">Book
                                     Now</button>
                             </div>
                         </div>
@@ -461,9 +514,9 @@
                             </div>
                             <div class="btns flex flex-col gap-y-2">
                                 <button
-                                    class="border border-2 text-sm text-gray-500 text-main font-semibold rounded-2xl p-2 border-main hover:bg-main hover:text-white hover:ease-in-out duration-300 transition-all">Details</button>
+                                    class="border border-2 text-sm text-gray-500 text-main font-semibold rounded-3xl p-2 border-main hover:bg-main hover:text-white hover:ease-in-out duration-300 transition-all">Details</button>
                                 <button
-                                    class="bg-main text-sm text-white p-2 rounded-2xl hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all">Book
+                                    class="bg-main text-sm text-white p-2 rounded-3xl hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all">Book
                                     Now</button>
                             </div>
                         </div>
@@ -519,9 +572,9 @@
                             </div>
                             <div class="btns flex flex-col gap-y-2">
                                 <button
-                                    class="border border-2 text-sm text-gray-500 text-main font-semibold rounded-2xl p-2 border-main hover:bg-main hover:text-white hover:ease-in-out duration-300 transition-all">Details</button>
+                                    class="border border-2 text-sm text-gray-500 text-main font-semibold rounded-3xl p-2 border-main hover:bg-main hover:text-white hover:ease-in-out duration-300 transition-all">Details</button>
                                 <button
-                                    class="bg-main text-sm text-white p-2 rounded-2xl hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all">Book
+                                    class="bg-main text-sm text-white p-2 rounded-3xl hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all">Book
                                     Now</button>
                             </div>
                         </div>
@@ -577,9 +630,9 @@
                             </div>
                             <div class="btns flex flex-col gap-y-2">
                                 <button
-                                    class="border border-2 text-sm text-gray-500 text-main font-semibold rounded-2xl p-2 border-main hover:bg-main hover:text-white hover:ease-in-out duration-300 transition-all">Details</button>
+                                    class="border border-2 text-sm text-gray-500 text-main font-semibold rounded-3xl p-2 border-main hover:bg-main hover:text-white hover:ease-in-out duration-300 transition-all">Details</button>
                                 <button
-                                    class="bg-main text-sm text-white p-2 rounded-2xl hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all">Book
+                                    class="bg-main text-sm text-white p-2 rounded-3xl hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all">Book
                                     Now</button>
                             </div>
                         </div>
@@ -587,9 +640,10 @@
                 </div>
                 <div class="pagination flex justify-center mt-10">
                     <ul class="flex gap-4 items-center">
-                        <li class="border border-2 border-main bg-main rounded-full py-2 px-4 text-white"><a href="#">1</a></li>
-                        <li class="border border-2 border-main rounded-full py-2 px-4 text-main"><a href="#">2</a></li>
-                        <button class="flex gap-2 bg-main text-white items-center px-2 rounded-xl h-full">Next
+                        <li class="border border-2 border-main bg-main rounded-full py-2 px-4 text-white hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all cursor-pointer"><a
+                                href="#">1</a></li>
+                        <li class="border border-2 cursor-pointer border-main rounded-full py-2 px-4 text-main hover:bg-main hover:text-white hover:ease-in-out duration-300 transition-all"><a href="#">2</a></li>
+                        <button class="flex gap-2 bg-main text-white items-center px-2 rounded-3xl h-full hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all">Next
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                                 stroke="currentColor" class="size-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
@@ -603,7 +657,7 @@
     </section>
     <!-- listing section -->
     <!-- section testimonials -->
-    <section class="testimonial-section py-20 px-6 md:px-28 lg:px-48 xl:px-56">
+    <section class="testimonial-section py-14 md:py-20 px-6 md:px-28 lg:px-48 xl:px-56">
         <div class="container flex flex-col items-center gap-12 mx-auto">
             <div class="title relative">
                 <div class="absolute left-[-2.7rem] top-[-1rem]">
@@ -796,6 +850,12 @@
                             class="instagram bg-main px-3 py-2 rounded-full group cursor-pointer hover:bg-gray-300 hover:ease-in-out transition-all duration-400">
                             <a href="#">
                                 <i class="fa-brands fa-instagram text-white text-xl group-hover:text-gray-600"></i>
+                            </a>
+                        </div>
+                        <div
+                            class="whatsapp bg-main px-3 py-2 rounded-full group cursor-pointer hover:bg-gray-300 hover:ease-in-out transition-all duration-400">
+                            <a href="#">
+                                <i class="fa-brands fa-whatsapp text-white text-xl group-hover:text-gray-600"></i>
                             </a>
                         </div>
                     </div>
