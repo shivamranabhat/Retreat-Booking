@@ -58,20 +58,20 @@
             <a class="navbar-brand d-flex align-items-center gap-1">
                 {{-- <div class="logo-main">
                     <img src="{{asset('main/images/logo-2.jpg')}}" class="rounded-circle" width="40" alt="logo">
-                </div> --}}
-                <!--logo End-->
-                <h4 class="logo-title m-0">Retreat</h4>
-            </a>
-            <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
-                <i class="icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4.25 12.2744L19.25 12.2744" stroke="currentColor" stroke-width="1.5"
-                            stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path d="M10.2998 18.2988L4.2498 12.2748L10.2998 6.24976" stroke="currentColor"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </i>
-            </div>
+        </div> --}}
+        <!--logo End-->
+        <h4 class="logo-title m-0">Retreat</h4>
+        </a>
+        <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
+            <i class="icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.25 12.2744L19.25 12.2744" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M10.2998 18.2988L4.2498 12.2748L10.2998 6.24976" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </i>
+        </div>
         </div>
         <div class="sidebar-body pt-0 data-scrollbar">
             <div class="sidebar-list">
@@ -142,7 +142,7 @@
                                     <span class="item-name">Main Body</span>
                                 </a>
                             </li>
-                          
+
                             <li class="nav-item">
                                 <a class="nav-link {{request()->segment(2) == 'content' && request()->segment(3) == 'footer' ? 'text-primary' : ''}}"
                                     href="">
@@ -160,8 +160,8 @@
                             </li>
                         </ul>
                     </li>
-                  
-                   
+
+
 
                     <li class="nav-item">
                         <a class="nav-link {{request()->segment(2) == 'blogs'? 'active' : ''}}"
@@ -183,6 +183,24 @@
                             <span class="item-name">Blogs</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{request()->segment(2) == 'instructors' ? 'active' : ''}}"
+                            aria-current="page" href="{{route('instructors')}}">
+                            <i class="icon">
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                    class="icon-20">
+                                    <path opacity="0.4"
+                                        d="M16.0756 2H19.4616C20.8639 2 22.0001 3.14585 22.0001 4.55996V7.97452C22.0001 9.38864 20.8639 10.5345 19.4616 10.5345H16.0756C14.6734 10.5345 13.5371 9.38864 13.5371 7.97452V4.55996C13.5371 3.14585 14.6734 2 16.0756 2Z"
+                                        fill="currentColor"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M4.53852 2H7.92449C9.32676 2 10.463 3.14585 10.463 4.55996V7.97452C10.463 9.38864 9.32676 10.5345 7.92449 10.5345H4.53852C3.13626 10.5345 2 9.38864 2 7.97452V4.55996C2 3.14585 3.13626 2 4.53852 2ZM4.53852 13.4655H7.92449C9.32676 13.4655 10.463 14.6114 10.463 16.0255V19.44C10.463 20.8532 9.32676 22 7.92449 22H4.53852C3.13626 22 2 20.8532 2 19.44V16.0255C2 14.6114 3.13626 13.4655 4.53852 13.4655ZM19.4615 13.4655H16.0755C14.6732 13.4655 13.537 14.6114 13.537 16.0255V19.44C13.537 20.8532 14.6732 22 16.0755 22H19.4615C20.8637 22 22 20.8532 22 19.44V16.0255C22 14.6114 20.8637 13.4655 19.4615 13.4655Z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </i>
+                            <span class="item-name">Instructors</span>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link {{request()->segment(2) == 'location'? 'active' : ''}}"
                             href="{{route('locations')}}">
@@ -297,7 +315,7 @@
                             <span class="item-name">Pages</span>
                         </a>
                     </li>
-                   
+
                     <li class="nav-item">
                         <a class="nav-link {{request()->segment(2) == 'about' ? 'active' : ''}}"
                             data-bs-toggle="collapse" href="#sidebar-about" role="button" aria-expanded="false"
@@ -366,7 +384,7 @@
                                     <span class="item-name">Team</span>
                                 </a>
                             </li>
-                           
+
                             <li class="nav-item">
                                 <a class="nav-link {{request()->segment(3) == 'partner' ? 'text-primary' : ''}}"
                                     href="">
@@ -384,7 +402,7 @@
                             </li>
                         </ul>
                     </li>
-                 
+
                     <li class="nav-item">
                         <a class="nav-link {{request()->segment(2) == 'subscribers' ? 'active' : ''}}"
                             href="">
@@ -425,8 +443,8 @@
                         <a class="nav-link {{request()->segment(2) == 'currency' ? 'active' : ''}}"
                             href="{{route('currencies')}}">
                             <i class="icon">
-                               
-                                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="icon-20" width="20" >
+
+                                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="icon-20" width="20">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                     <g id="SVGRepo_iconCarrier">
@@ -701,11 +719,11 @@
                                             viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M8.5 5L15.5 12L8.5 19" stroke="currentColor" stroke-width="1.5"
                                                 stroke-linecap="round" stroke-linejoin="round"></path>
-                                        </svg> 
+                                        </svg>
                                         @if (request()->segment(3)
                                         != '')
-                                        {{str_replace('-',' ',request()->segment(2))}} 
-                                        @else 
+                                        {{str_replace('-',' ',request()->segment(2))}}
+                                        @else
                                         Main
                                         @endif
                                         @if (request()->segment(3)

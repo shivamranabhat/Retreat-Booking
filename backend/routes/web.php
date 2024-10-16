@@ -18,7 +18,7 @@ use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\AdminPasswordResetController;
 use App\Http\Controllers\LocationController;
 use App\Http\Middleware\AdminAuth;
-
+use App\Http\Controllers\InstructorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -96,6 +96,14 @@ Route::prefix('/dashboard')->group(function () {
         Route::put('/update/{slug}','update')->name('blog.update');
         Route::delete('/delete/{slug}','destroy')->name('blog.destroy');
     });
+    // Routes for instructors
+    Route::prefix('/instructors')->controller(InstructorController::class)->group(function(){
+        Route::get('/', 'index')->name('instructors.index');           
+        Route::get('/create', 'create')->name('instructor.create');   
+        Route::put('/update/{id}', 'update')->name('instructor.update'); 
+        Route::delete('/delete/{id}', 'destroy')->name('instructor.destroy'); 
+    });
+
     Route::prefix('/seo')->group(function(){
         //Routes for tags
         Route::prefix('/tags')->controller(TagController::class)->group(function(){

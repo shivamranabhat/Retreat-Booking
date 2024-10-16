@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('instructors', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('image')->nullable();
+            $table->integer('experience'); // assuming experience is in years
+            $table->text('description')->nullable();
+            $table->string('address');
+            $table->string('phone_number');
             $table->timestamps();
         });
     }
