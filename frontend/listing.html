@@ -12,6 +12,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
+         <!-- Owl Carousel CSS -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Owl Carousel JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -91,7 +99,7 @@
     <!-- banner section -->
     <section class="banner-section flex flex-col gap-y-16 items-center mt-28 px-6 md:px-28 lg:px-44">
         <div class="container relative py-10 flex flex-col items-center justify-end w-full h-80 rounded-xl bg-cover"
-            style="background-image: url(https://bookretreats.com/cdn-cgi/image/width=640,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/28k/28541/p_975942/1000_1677037725.jpg);">
+            style="background-image: url(https://www.dabur.com/Blogs/Doshas/Importance%20and%20Benefits%20of%20Yoga%201020x450.jpg);">
             <h3 class="text-lg md:text-4xl text-white font-bold">Yoga Retreat in Pokhara.</h3>
             <h5 class="text-lg text-white font-semibold">Eat. Pray. Love...in the stunning rice green fields of Pokhara
             </h5>
@@ -125,7 +133,7 @@
                 <div class="relative inline-block text-left group">
                     <div>
                         <button type="button"
-                            class="inline-flex w-full justify-center gap-x-1.5 rounded-xl bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                            class="inline-flex w-full justify-center gap-x-1.5 rounded-xl bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm border-2 border-gray-200 box-shadow-iii hover:bg-gray-50"
                             id="menu-button" aria-expanded="true" aria-haspopup="true">
                             Options
                             <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"
@@ -137,16 +145,16 @@
                         </button>
                     </div>
                     <div
-                        class="absolute right-0 z-10 w-56 origin-top-right rounded-xl bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden group-hover:block"
+                        class="absolute right-0 z-10 w-56 origin-top-right border border-200 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden group-hover:block"
                         role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-                        <div class="py-2" role="none">
-                            <a class="cursor-pointer block px-4 py-2 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200" role="menuitem" tabindex="-1"
+                        <div role="none">
+                            <a class="cursor-pointer block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200" role="menuitem" tabindex="-1"
                                 id="menu-item-0">Price Low to High</a>
-                            <a class="cursor-pointer block px-4 py-2 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200" role="menuitem" tabindex="-1"
+                            <a class="cursor-pointer block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200" role="menuitem" tabindex="-1"
                                 id="menu-item-1">Price High to Low</a>
-                            <a class="cursor-pointer block px-4 py-2 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200" role="menuitem" tabindex="-1"
+                            <a class="cursor-pointer block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200" role="menuitem" tabindex="-1"
                                 id="menu-item-2">Latest</a>
-                            <a class="cursor-pointer block px-4 py-2 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200" role="menuitem" tabindex="-1"
+                            <a class="cursor-pointer block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200" role="menuitem" tabindex="-1"
                                 id="menu-item-2">Oldest</a>
                         </div>
                     </div>
@@ -348,7 +356,7 @@
                 </div>
             </div>
             <div class="card-group col-span-4 lg:col-span-3 grid gap-y-6">
-                <div class="card grid grid-cols-2 lg:grid-cols-3 gap-4 rounded-xl box-shadow-iii p-3">
+                <div class="card grid grid-cols-2 lg:grid-cols-3 gap-4 rounded-xl border border-gray-200 box-shadow-iii p-3">
                     <img class="w-full lg:w-80 col-span-2 lg:col-span-1 h-44 md:h-80 lg:h-full object-cover rounded-xl"
                         src="https://bookretreats.com/cdn-cgi/image/width=640,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/40k/40041/p_1383511/1000_1704605468.jpg"
                         alt="">
@@ -406,7 +414,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card grid grid-cols-2 lg:grid-cols-3 gap-4 rounded-xl box-shadow-iii p-3">
+                <div class="card grid grid-cols-2 lg:grid-cols-3 gap-4 rounded-xl border border-gray-200 box-shadow-iii p-3">
                     <img class="w-full lg:w-80 col-span-2 lg:col-span-1 h-44 md:h-80 lg:h-full object-cover rounded-xl"
                         src="https://bookretreats.com/cdn-cgi/image/width=640,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/19k/19114/p_525477/1000_1602129442.jpg"
                         alt="">
@@ -464,7 +472,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card grid grid-cols-2 lg:grid-cols-3 gap-4 rounded-xl box-shadow-iii p-3">
+                <div class="card grid grid-cols-2 lg:grid-cols-3 gap-4 rounded-xl border border-gray-200 box-shadow-iii p-3">
                     <img class="w-full lg:w-80 col-span-2 lg:col-span-1 h-44 md:h-80 lg:h-full object-cover rounded-xl"
                         src="https://bookretreats.com/cdn-cgi/image/width=640,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/24k/24415/p_729264/1000_1615272249.jpg"
                         alt="">
@@ -522,7 +530,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card grid grid-cols-2 lg:grid-cols-3 gap-4 rounded-xl box-shadow-iii p-3">
+                <div class="card grid grid-cols-2 lg:grid-cols-3 gap-4 rounded-xl border border-gray-200 box-shadow-iii p-3">
                     <img class="w-full lg:w-80 col-span-2 lg:col-span-1 h-44 md:h-80 lg:h-full object-cover rounded-xl"
                         src="https://bookretreats.com/cdn-cgi/image/width=640,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/43k/43735/p_1551630/1000_1693205958.jpg"
                         alt="">
@@ -580,7 +588,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card grid grid-cols-2 lg:grid-cols-3 gap-4 rounded-xl box-shadow-iii p-3">
+                <div class="card grid grid-cols-2 lg:grid-cols-3 gap-4 rounded-xl border border-gray-200 box-shadow-iii p-3">
                     <img class="w-full lg:w-80 col-span-2 lg:col-span-1 h-44 md:h-80 lg:h-full object-cover rounded-xl"
                         src="https://bookretreats.com/cdn-cgi/image/width=640,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/26k/26229/p_1339571/1000_1707624267.jpg"
                         alt="">
@@ -643,7 +651,7 @@
                         <li class="border border-2 border-main bg-main rounded-full py-2 px-4 text-white hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all cursor-pointer"><a
                                 href="#">1</a></li>
                         <li class="border border-2 cursor-pointer border-main rounded-full py-2 px-4 text-main hover:bg-main hover:text-white hover:ease-in-out duration-300 transition-all"><a href="#">2</a></li>
-                        <button class="flex gap-2 bg-main text-white items-center px-2 rounded-3xl h-full hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all">Next
+                        <button class="flex gap-1 bg-main text-white items-center px-4 rounded-3xl h-full hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all">Next
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                                 stroke="currentColor" class="size-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
@@ -670,111 +678,182 @@
                 </div>
             </div>
 
-            <div class="group-cards grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                <div class="card cursor-pointer bg-white p-4 flex flex-col gap-y-4 rounded-xl box-shadow-iii">
+            <div class="owl-carousel group-cards testimonial-carousel">
+                <div
+                    class="card cursor-pointer bg-white my-2 p-4 flex flex-col gap-y-4 rounded-xl box-shadow-iii border border-gray-200">
                     <p class="text-sm font-semibold">Don't just take our word for it. Hundreds of guests have shared how
                         much they love booking with us.</p>
                     <div class="flex justify-between items-center">
                         <div class="stars flex">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6 fill-main">
+                                class="size-5 fill-main">
                                 <path fill-rule="evenodd"
                                     d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                     clip-rule="evenodd" />
                             </svg>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6 fill-main">
+                                class="size-5 fill-main">
                                 <path fill-rule="evenodd"
                                     d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                     clip-rule="evenodd" />
                             </svg>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6 fill-main">
+                                class="size-5 fill-main">
                                 <path fill-rule="evenodd"
                                     d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                     clip-rule="evenodd" />
                             </svg>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6 fill-main">
+                                class="size-5 fill-main">
                                 <path fill-rule="evenodd"
                                     d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                     clip-rule="evenodd" />
                             </svg>
                         </div>
-                        <p class="text-sm text-gray-500">-Shivam Ranabhat</p>
+                        <p class="text-sm text-gray-500">-Shivam Ranabhat A</p>
                     </div>
                 </div>
-                <div class="card cursor-pointer bg-white p-4 flex flex-col gap-y-4 rounded-xl box-shadow-iii">
+                <div
+                    class="card cursor-pointer bg-white my-2 p-4 flex flex-col gap-y-4 rounded-xl box-shadow-iii border border-gray-200">
                     <p class="text-sm font-semibold">Don't just take our word for it. Hundreds of guests have shared how
                         much they love booking with us.</p>
                     <div class="flex justify-between items-center">
                         <div class="stars flex">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6 fill-main">
+                                class="size-5 fill-main">
                                 <path fill-rule="evenodd"
                                     d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                     clip-rule="evenodd" />
                             </svg>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6 fill-main">
+                                class="size-5 fill-main">
                                 <path fill-rule="evenodd"
                                     d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                     clip-rule="evenodd" />
                             </svg>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6 fill-main">
+                                class="size-5 fill-main">
                                 <path fill-rule="evenodd"
                                     d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                     clip-rule="evenodd" />
                             </svg>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6 fill-main">
+                                class="size-5 fill-main">
                                 <path fill-rule="evenodd"
                                     d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                     clip-rule="evenodd" />
                             </svg>
                         </div>
-                        <p class="text-sm text-gray-500">-Shivam Ranabhat</p>
+                        <p class="text-sm text-gray-500">-Shivam Ranabhat B</p>
                     </div>
                 </div>
-                <div class="card cursor-pointer bg-white p-4 flex flex-col gap-y-4 rounded-xl box-shadow-iii">
+                <div
+                    class="card cursor-pointer bg-white my-2 p-4 flex flex-col gap-y-4 rounded-xl box-shadow-iii border border-gray-200">
                     <p class="text-sm font-semibold">Don't just take our word for it. Hundreds of guests have shared how
                         much they love booking with us.</p>
                     <div class="flex justify-between items-center">
                         <div class="stars flex">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6 fill-main">
+                                class="size-5 fill-main">
                                 <path fill-rule="evenodd"
                                     d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                     clip-rule="evenodd" />
                             </svg>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6 fill-main">
+                                class="size-5 fill-main">
                                 <path fill-rule="evenodd"
                                     d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                     clip-rule="evenodd" />
                             </svg>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6 fill-main">
+                                class="size-5 fill-main">
                                 <path fill-rule="evenodd"
                                     d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                     clip-rule="evenodd" />
                             </svg>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6 fill-main">
+                                class="size-5 fill-main">
                                 <path fill-rule="evenodd"
                                     d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                     clip-rule="evenodd" />
                             </svg>
                         </div>
-                        <p class="text-sm text-gray-500">-Shivam Ranabhat</p>
+                        <p class="text-sm text-gray-500">-Shivam Ranabhat C</p>
+                    </div>
+                </div>
+                <div
+                    class="card cursor-pointer bg-white my-2 p-4 flex flex-col gap-y-4 rounded-xl box-shadow-iii border border-gray-200">
+                    <p class="text-sm font-semibold">Don't just take our word for it. Hundreds of guests have shared how
+                        much they love booking with us.</p>
+                    <div class="flex justify-between items-center">
+                        <div class="stars flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-5 fill-main">
+                                <path fill-rule="evenodd"
+                                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-5 fill-main">
+                                <path fill-rule="evenodd"
+                                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-5 fill-main">
+                                <path fill-rule="evenodd"
+                                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-5 fill-main">
+                                <path fill-rule="evenodd"
+                                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <p class="text-sm text-gray-500">-Shivam Ranabhat D</p>
+                    </div>
+                </div>
+                <div
+                    class="card cursor-pointer bg-white my-2 p-4 flex flex-col gap-y-4 rounded-xl box-shadow-iii border border-gray-200">
+                    <p class="text-sm font-semibold">Don't just take our word for it. Hundreds of guests have shared how
+                        much they love booking with us.</p>
+                    <div class="flex justify-between items-center">
+                        <div class="stars flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-5 fill-main">
+                                <path fill-rule="evenodd"
+                                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-5 fill-main">
+                                <path fill-rule="evenodd"
+                                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-5 fill-main">
+                                <path fill-rule="evenodd"
+                                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-5 fill-main">
+                                <path fill-rule="evenodd"
+                                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <p class="text-sm text-gray-500">-Shivam Ranabhat E</p>
                     </div>
                 </div>
 
             </div>
             <div class="slider-buttons flex items-center gap-4">
                 <div
-                    class="prev cursor-pointer bg-main hover:bg-gray-300 hover:ease-in duration-200 rounded-full p-2 flex items-center justify-center group">
+                    class="prev-btn cursor-pointer bg-main hover:bg-gray-300 hover:ease-in duration-200 rounded-full p-2 flex items-center justify-center group">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
                         stroke="currentColor"
                         class="stroke-white size-5 transition-all duration-200 ease-in-out group-hover:stroke-gray-600">
@@ -782,7 +861,7 @@
                     </svg>
                 </div>
                 <div
-                    class="next cursor-pointer bg-main hover:bg-gray-300 hover:ease-in duration-200 rounded-full p-2 flex items-center justify-center group">
+                    class="next-btn cursor-pointer bg-main hover:bg-gray-300 hover:ease-in duration-200 rounded-full p-2 flex items-center justify-center group">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
                         stroke="currentColor"
                         class="stroke-white size-5 transition-all duration-200 ease-in-out group-hover:stroke-gray-600">

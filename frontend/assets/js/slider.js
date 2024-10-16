@@ -1,30 +1,47 @@
-const slider = document.querySelector('.slider');
-const prevButton = document.querySelector('.prev');
-const nextButton = document.querySelector('.next');
-const cards = document.querySelectorAll('.card');
-const cardCount = cards.length;
-const visibleCards = 4; // Number of cards to show at a time
+$(document).ready(function(){
+    // Initialize location carousel
+    var locationCarousel = $('.location-carousel').owlCarousel({
+        loop: true,
+        margin: 20,
+        nav: false, // Disable default navigation
+        autoplay: false,
+        responsive: {
+            0: { items: 1 },
+            600: { items: 2 },
+            1000: { items: 4 }
+        }
+    });
 
-let currentIndex = 0;
+    // Initialize testimonial carousel
+    var testimonialCarousel = $('.testimonial-carousel').owlCarousel({
+        loop: true,
+        margin: 20,
+        nav: false, // Disable default navigation
+        autoplay: true,
+        autoplayTimeout: 3000,
+        responsive: {
+            0: { items: 1 },
+            600: { items: 1 },
+            1000: { items: 3 }
+        }
+    });
 
-function updateSlider() {
-    // Calculate the new transform value for sliding the cards
-    const transformValue = -(currentIndex * (slider.offsetWidth / visibleCards));
-    slider.style.transform = `translateX(${transformValue}px)`;
-}
+    // Previous button functionality for location carousel
+    $('.prev').click(function() {
+        locationCarousel.trigger('prev.owl.carousel');
+    });
 
-// Handle "next" button click
-nextButton.addEventListener('click', () => {
-    if (currentIndex < cardCount - visibleCards) {
-        currentIndex++;
-        updateSlider();
-    }
-});
+    // Next button functionality for location carousel
+    $('.next').click(function() {
+        locationCarousel.trigger('next.owl.carousel');
+    });
+    $('.prev-btn').click(function() {
+        testimonialCarousel.trigger('prev.owl.carousel');
+    });
 
-// Handle "prev" button click
-prevButton.addEventListener('click', () => {
-    if (currentIndex > 0) {
-        currentIndex--;
-        updateSlider();
-    }
+    // Next button functionality for location carousel
+    $('.next-btn').click(function() {
+        testimonialCarousel.trigger('next.owl.carousel');
+    });
+
 });
