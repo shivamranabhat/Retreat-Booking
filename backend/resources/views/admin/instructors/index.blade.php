@@ -1,60 +1,119 @@
 <x-app-layout>
-@section('content')
-<div class="container">
-    <h1>Instructors</h1>
+    <div class="container-fluid content-inner mt-n5 py-0">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Instructors</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap5">
+                                <div class="row align-items-center">
+                                    <x-search />
+                                    <div class="col-12 col-md-6 col-lg-6 px-0">
+                                        <div class="dataTables_length d-flex justify-content-end mt-3 mt-lg-0 mt-xl-0">
+                                            <a href="{{ route('instructor.create') }}" class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
+                                                <i class="btn-inner">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                                    </svg>
+                                                </i>
+                                                <span>Create</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
 
-    <!-- Filter Form -->
-    <form method="GET" action="{{ route('instructors.index') }}" class="mb-3">
-        <div class="input-group">
-            <input type="text" class="form-control" name="search" placeholder="Search by name, address, or phone" value="{{ request('search') }}">
-            <button class="btn btn-outline-secondary" type="submit">Search</button>
+                                <div class="table-responsive my-3">
+                                    <table class="table dataTable" aria-describedby="datatable_info">
+                                        <thead>
+                                            <tr class="light">
+                                                <th>S.N.</th>
+                                                <th>Name</th>
+                                                <th>Image</th> <!-- New column for Image -->
+                                                <th>Address</th>
+                                                <th>Phone</th>
+                                                <th style="min-width: 100px">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse($instructors as $instructor)
+                                                <tr>
+                                                    <th scope="row">{{ $loop->iteration }}</th>
+                                                    <td>{{ $instructor->name }}</td>
+                                                    <td>
+                                                        @if ($instructor->image)
+                                                            <img src="{{ asset('storage/' . $instructor->image) }}" alt="Instructor Image" width="80" height="80" class="img-thumbnail"> <!-- Adjust width/height as needed -->
+                                                        @else
+                                                            <p>No image</p>
+                                                        @endif
+                                                    </td> <!-- Image column -->
+                                                    <td>{{ $instructor->address }}</td>
+                                                    <td>{{ $instructor->phone_number }}</td>
+                                                    <td>
+                                                        <div class="flex align-items-center list-user-action">
+                                                            <a class="btn btn-sm btn-icon btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" href="{{ route('instructor.edit', $instructor->id) }}">
+                                                                <span class="btn-inner">
+                                                                    <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M11.4925 2.78906H7.75349C4.67849 2.78906 2.75049 4.96606 2.75049 8.04806V16.3621C2.75049 19.4441 4.66949 21.6211 7.75349 21.6211H16.5775C19.6625 21.6211 21.5815 19.4441 21.5815 16.3621V12.3341" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.82812 10.921L16.3011 3.44799C17.2321 2.51799 18.7411 2.51799 19.6721 3.44799L20.8891 4.66499C21.8201 5.59599 21.8201 7.10599 20.8891 8.03599L13.3801 15.545C12.9731 15.952 12.4211 16.181 11.8451 16.181H8.09912L8.19312 12.401C8.20712 11.845 8.43412 11.315 8.82812 10.921Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                        <path d="M15.1655 4.60254L19.7315 9.16854" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                    </svg>
+                                                                </span>
+                                                            </a>
+
+                                                            <button type="button" class="btn btn-sm btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#delete_{{ $instructor->slug }}" title="Delete">
+                                                                <span class="btn-inner">
+                                                                    <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
+                                                                        <path d="M19.3248 9.46826C19.3248 9.46826 18.7818 16.2033 18.4668 19.0403C18.3168 20.3953 17.4798 21.1893 16.1088 21.2143C13.4998 21.2613 10.8878 21.2643 8.27979 21.2093C6.96079 21.1823 6.13779 20.3783 5.99079 19.0473C5.67379 16.1853 5.13379 9.46826 5.13379 9.46826" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                        <path d="M20.708 6.23975H3.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                        <path d="M17.4406 6.23973C16.6556 6.23973 15.9796 5.68473 15.8256 4.91573L15.5826 3.69973C15.4326 3.13873 14.9246 2.75073 14.3456 2.75073H10.1126C9.53358 2.75073 9.02558 3.13873 8.87558 3.69973L8.63258 4.91573C8.47858 5.68473 7.80258 6.23973 7.01758 6.23973" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                    </svg>
+                                                                </span>
+                                                            </button>
+
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="delete_{{ $instructor->slug }}" tabindex="-1" role="dialog" aria-labelledby="deleteTitle" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body text-center">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#D21312" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+                                                                                <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm.126 4.067c-.059.06-.132.132-.196.196-.164.163-.361.48-.478.878-.117.399-.158.92-.152 1.46h1.049c.006-.541-.034-1.061-.153-1.46-.117-.399-.314-.715-.478-.878zm-.097 6.483a1.062 1.062 0 0 0 1.126-1.059 1.063 1.063 0 0 0-1.126-1.059 1.063 1.063 0 0 0-1.126 1.059 1.062 1.062 0 0 0 1.126 1.059z" />
+                                                                            </svg>
+                                                                            <h5 class="my-2">Are you sure?</h5>
+                                                                            <p>Do you really want to delete this instructor?</p>
+                                                                            <form action="{{ route('instructor.destroy', $instructor->id) }}" method="POST">
+                                                                                @csrf
+                                                                                @method('DELETE')
+                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="6" class="text-center">No instructors found.</td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                    <div class="d-flex justify-content-center">
+                                        {{ $instructors->links() }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </form>
-
-    <!-- Add New Instructor Button -->
-    <a href="{{ route('instructors.create') }}" class="btn btn-primary mb-3">Add New Instructor</a>
-
-    <!-- Instructors Table -->
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Image</th>
-                <th>Experience</th>
-                <th>Description</th>
-                <th>Address</th>
-                <th>Phone Number</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($instructors as $instructor)
-                <tr>
-                    <td>{{ $instructor->name }}</td>
-                    <td>
-                        @if ($instructor->image)
-                            <img src="{{ $instructor->image }}" alt="{{ $instructor->name }}" style="width: 50px; height: 50px;">
-                        @endif
-                    </td>
-                    <td>{{ $instructor->experience }}</td>
-                    <td>{{ $instructor->description }}</td>
-                    <td>{{ $instructor->address }}</td>
-                    <td>{{ $instructor->phone_number }}</td>
-                    <td>
-                        <a href="{{ route('instructors.edit', $instructor->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('instructors.destroy', $instructor->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    <!-- Optional: Pagination -->
-    {{-- $instructors->links() --}}
-</div>
-@endsection
+    </div>
 </x-app-layout>

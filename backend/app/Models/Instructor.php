@@ -10,7 +10,7 @@ class Instructor extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'image', 'experience', 'description', 'address', 'phone_number', 'created_at', 'updated_at'
+       'id', 'name', 'image', 'experience', 'description', 'address', 'phone_number', 'created_at', 'updated_at'
     ];
 
     protected $table = 'instructors';

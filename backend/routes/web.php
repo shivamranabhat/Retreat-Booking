@@ -29,147 +29,138 @@ use App\Http\Controllers\InstructorController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::fallback(function () {
     abort(404);
 });
-Route::prefix('/dashboard')->controller(AdminAuthController::class)->group(function(){
-    Route::get('/login','login')->name('admin.login');
-    Route::post('/auth','authenticate')->name('admin.authenticate');
-    Route::post('/logout','logout')->name('admin.logout');
+Route::prefix('/dashboard')->controller(AdminAuthController::class)->group(function () {
+    Route::get('/login', 'login')->name('admin.login');
+    Route::post('/auth', 'authenticate')->name('admin.authenticate');
+    Route::post('/logout', 'logout')->name('admin.logout');
 });
 
-Route::prefix('/dashboard')->controller(AdminPasswordResetController::class)->group(function(){
-    Route::get('/forgot-password','index')->name('admin.forgot.password');
-    Route::get('/send-reset-otp/email={email}','getResetOtp')->name('admin.get.verifyOtp');
-    Route::post('/send-reset-otp','sendResetOtp')->name('admin.send.verifyOtp');
-    Route::post('/verify-reset-otp/{email}','verifyToken')->name('admin.forgot.verifyOtp');
+Route::prefix('/dashboard')->controller(AdminPasswordResetController::class)->group(function () {
+    Route::get('/forgot-password', 'index')->name('admin.forgot.password');
+    Route::get('/send-reset-otp/email={email}', 'getResetOtp')->name('admin.get.verifyOtp');
+    Route::post('/send-reset-otp', 'sendResetOtp')->name('admin.send.verifyOtp');
+    Route::post('/verify-reset-otp/{email}', 'verifyToken')->name('admin.forgot.verifyOtp');
     Route::get('/reset-password/email={email}&otp={otp}', 'resetPassword')->name('admin.reset.password');
-    Route::post('/update-password/{email}','updatePassword')->name('admin.password.update');
+    Route::post('/update-password/{email}', 'updatePassword')->name('admin.password.update');
 });
 
 Route::prefix('/dashboard')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     })->name('dashboard');
-    Route::prefix('/dashboard')->controller(AdminAuthController::class)->group(function(){
-        Route::get('/profile','edit')->name('admin.profile');
-        Route::put('/update-profile','update')->name('adminProfile.update');
-    });
-    
-    //Routes for account
-    Route::prefix('/account')->controller(UserController::class)->group(function(){
-        Route::get('/','index')->name('accounts');
-        Route::get('/create','create')->name('account.create');
-        Route::post('/store','store')->name('account.store');
-        Route::get('/{id}','edit')->name('account.edit');
-        Route::put('/update/{id}','update')->name('account.update');
-        Route::delete('/delete/{id}','destroy')->name('account.destroy');
-    });
-   
- 
-    //Routes for locations
-     Route::prefix('/location')->controller(LocationController::class)->group(function(){
-        Route::get('/','index')->name('locations');
-        Route::get('/create','create')->name('location.create');
-        Route::post('/store','store')->name('location.store');
-        Route::get('/{slug}','edit')->name('location.edit');
-        Route::put('/update/{slug}','update')->name('location.update');
-        Route::delete('/delete/{slug}','destroy')->name('location.destroy');
-    });
-    //Routes for extra pages
-     Route::prefix('/page')->controller(ExtrapageController::class)->group(function(){
-        Route::get('/','index')->name('pages');
-        Route::get('/create','create')->name('page.create');
-        Route::post('/upload-description','uploadDescription')->name('pageDescription.upload');
-        Route::post('/store','store')->name('page.store');
-        Route::get('/{slug}','edit')->name('page.edit');
-        Route::put('/update/{slug}','update')->name('page.update');
-        Route::delete('/delete/{slug}','destroy')->name('page.destroy');
-    });
-    //Routes for blog
-     Route::prefix('/blogs')->controller(BlogController::class)->group(function(){
-        Route::get('/','index')->name('blogs');
-        Route::get('/create','create')->name('blog.create');
-        Route::post('/upload-blog-img','uploadCkImage')->name('ckeditor.upload');
-        Route::post('/store','store')->name('blog.store');
-        Route::get('/{slug}','edit')->name('blog.edit');
-        Route::put('/update/{slug}','update')->name('blog.update');
-        Route::delete('/delete/{slug}','destroy')->name('blog.destroy');
-    });
-    // Routes for instructors
-    Route::prefix('/instructors')->controller(InstructorController::class)->group(function(){
-        Route::get('/', 'index')->name('instructors.index');           
-        Route::get('/create', 'create')->name('instructor.create');   
-        Route::put('/update/{id}', 'update')->name('instructor.update'); 
-        Route::delete('/delete/{id}', 'destroy')->name('instructor.destroy'); 
+    Route::prefix('/dashboard')->controller(AdminAuthController::class)->group(function () {
+        Route::get('/profile', 'edit')->name('admin.profile');
+        Route::put('/update-profile', 'update')->name('adminProfile.update');
     });
 
-    Route::prefix('/seo')->group(function(){
+    //Routes for account
+    Route::prefix('/account')->controller(UserController::class)->group(function () {
+        Route::get('/', 'index')->name('accounts');
+        Route::get('/create', 'create')->name('account.create');
+        Route::post('/store', 'store')->name('account.store');
+        Route::get('/{id}', 'edit')->name('account.edit');
+        Route::put('/update/{id}', 'update')->name('account.update');
+        Route::delete('/delete/{id}', 'destroy')->name('account.destroy');
+    });
+
+
+    //Routes for locations
+    Route::prefix('/location')->controller(LocationController::class)->group(function () {
+        Route::get('/', 'index')->name('locations');
+        Route::get('/create', 'create')->name('location.create');
+        Route::post('/store', 'store')->name('location.store');
+        Route::get('/{slug}', 'edit')->name('location.edit');
+        Route::put('/update/{slug}', 'update')->name('location.update');
+        Route::delete('/delete/{slug}', 'destroy')->name('location.destroy');
+    });
+
+    //Routes for blog
+    Route::prefix('/blogs')->controller(BlogController::class)->group(function () {
+        Route::get('/', 'index')->name('blogs');
+        Route::get('/create', 'create')->name('blog.create');
+        Route::post('/upload-blog-img', 'uploadCkImage')->name('ckeditor.upload');
+        Route::post('/store', 'store')->name('blog.store');
+        Route::get('/{slug}', 'edit')->name('blog.edit');
+        Route::put('/update/{slug}', 'update')->name('blog.update');
+        Route::delete('/delete/{slug}', 'destroy')->name('blog.destroy');
+    });
+    Route::prefix('/instructors')->controller(InstructorController::class)->group(function () {
+        Route::get('/', 'index')->name('instructors');
+        Route::get('/create', 'create')->name('instructor.create');
+        Route::post('/store', 'store')->name('instructor.store');
+        Route::get('/{id}', 'edit')->name('instructor.edit');
+        Route::put('/update/{id}', 'update')->name('instructor.update');
+        Route::delete('/delete/{id}', 'destroy')->name('instructor.destroy');
+    });
+
+    Route::prefix('/seo')->group(function () {
         //Routes for tags
-        Route::prefix('/tags')->controller(TagController::class)->group(function(){
-            Route::get('/','index')->name('tags');
-            Route::get('/create','create')->name('tag.create');
-            Route::post('/store','store')->name('tag.store');
-            Route::get('/{slug}','edit')->name('tag.edit');
-            Route::put('/update/{slug}','update')->name('tag.update');
-            Route::delete('/delete/{slug}','destroy')->name('tag.destroy');
+        Route::prefix('/tags')->controller(TagController::class)->group(function () {
+            Route::get('/', 'index')->name('tags');
+            Route::get('/create', 'create')->name('tag.create');
+            Route::post('/store', 'store')->name('tag.store');
+            Route::get('/{slug}', 'edit')->name('tag.edit');
+            Route::put('/update/{slug}', 'update')->name('tag.update');
+            Route::delete('/delete/{slug}', 'destroy')->name('tag.destroy');
         });
-        
-         //Routes for open graphs
-        Route::prefix('/open-graph')->controller(OpenGraphController::class)->group(function(){
-            Route::get('/','index')->name('graphs');
-            Route::get('/create','create')->name('graph.create');
-            Route::post('/store','store')->name('graph.store');
-            Route::get('/{slug}','edit')->name('graph.edit');
-            Route::put('/update/{slug}','update')->name('graph.update');
-            Route::delete('/delete/{slug}','destroy')->name('graph.destroy');
+
+        //Routes for open graphs
+        Route::prefix('/open-graph')->controller(OpenGraphController::class)->group(function () {
+            Route::get('/', 'index')->name('graphs');
+            Route::get('/create', 'create')->name('graph.create');
+            Route::post('/store', 'store')->name('graph.store');
+            Route::get('/{slug}', 'edit')->name('graph.edit');
+            Route::put('/update/{slug}', 'update')->name('graph.update');
+            Route::delete('/delete/{slug}', 'destroy')->name('graph.destroy');
         });
         //Routes for twitter cards
-        Route::prefix('/twitter-card')->controller(TwitterCardController::class)->group(function(){
-            Route::get('/','index')->name('cards');
-            Route::get('/create','create')->name('card.create');
-            Route::post('/store','store')->name('card.store');
-            Route::get('/{slug}','edit')->name('card.edit');
-            Route::put('/update/{slug}','update')->name('card.update');
-            Route::delete('/delete/{slug}','destroy')->name('card.destroy');
+        Route::prefix('/twitter-card')->controller(TwitterCardController::class)->group(function () {
+            Route::get('/', 'index')->name('cards');
+            Route::get('/create', 'create')->name('card.create');
+            Route::post('/store', 'store')->name('card.store');
+            Route::get('/{slug}', 'edit')->name('card.edit');
+            Route::put('/update/{slug}', 'update')->name('card.update');
+            Route::delete('/delete/{slug}', 'destroy')->name('card.destroy');
         });
         //Routes for script
-        Route::prefix('/scripts')->controller(ScriptController::class)->group(function(){
-            Route::get('/','index')->name('scripts');
-            Route::get('/create','create')->name('script.create');
-            Route::post('/store','store')->name('script.store');
-            Route::get('/{slug}','edit')->name('script.edit');
-            Route::put('/update/{slug}','update')->name('script.update');
-            Route::delete('/delete/{slug}','destroy')->name('script.destroy');
+        Route::prefix('/scripts')->controller(ScriptController::class)->group(function () {
+            Route::get('/', 'index')->name('scripts');
+            Route::get('/create', 'create')->name('script.create');
+            Route::post('/store', 'store')->name('script.store');
+            Route::get('/{slug}', 'edit')->name('script.edit');
+            Route::put('/update/{slug}', 'update')->name('script.update');
+            Route::delete('/delete/{slug}', 'destroy')->name('script.destroy');
         });
     });
 
     //Route for message sent by user
-    Route::prefix('/messages')->controller(MessageController::class)->group(function(){
-        Route::get('/','index')->name('messages');
-        Route::get('/{slug}','show')->name('message.show');
-        Route::delete('/delete/{slug}','destroy')->name('message.destroy');
+    Route::prefix('/messages')->controller(MessageController::class)->group(function () {
+        Route::get('/', 'index')->name('messages');
+        Route::get('/{slug}', 'show')->name('message.show');
+        Route::delete('/delete/{slug}', 'destroy')->name('message.destroy');
     });
- 
-      //Routes for faqs
-      Route::prefix('/faqs')->controller(FaqController::class)->group(function(){
-        Route::get('/','index')->name('faqs');
-        Route::get('/create','create')->name('faq.create');
-        Route::post('/store','store')->name('faq.store');
-        Route::get('/{slug}','edit')->name('faq.edit');
-        Route::put('/update/{slug}','update')->name('faq.update');
-        Route::delete('/destroy/{slug}','destroy')->name('faq.destroy');
+
+    //Routes for faqs
+    Route::prefix('/faqs')->controller(FaqController::class)->group(function () {
+        Route::get('/', 'index')->name('faqs');
+        Route::get('/create', 'create')->name('faq.create');
+        Route::post('/store', 'store')->name('faq.store');
+        Route::get('/{slug}', 'edit')->name('faq.edit');
+        Route::put('/update/{slug}', 'update')->name('faq.update');
+        Route::delete('/destroy/{slug}', 'destroy')->name('faq.destroy');
     });
-   
-     //Route for currency
-     Route::prefix('/currency')->controller(CurrencyController::class)->group(function(){
-        Route::get('/','index')->name('currencies');
-        Route::get('/create','create')->name('currency.create');
-        Route::post('/store','store')->name('currency.store');
-        Route::get('/{slug}','edit')->name('currency.edit');
-        Route::put('/update/{slug}','update')->name('currency.update');
-        Route::delete('/delete/{slug}','destroy')->name('currency.destroy');
+
+    //Route for currency
+    Route::prefix('/currency')->controller(CurrencyController::class)->group(function () {
+        Route::get('/', 'index')->name('currencies');
+        Route::get('/create', 'create')->name('currency.create');
+        Route::post('/store', 'store')->name('currency.store');
+        Route::get('/{slug}', 'edit')->name('currency.edit');
+        Route::put('/update/{slug}', 'update')->name('currency.update');
+        Route::delete('/delete/{slug}', 'destroy')->name('currency.destroy');
     });
 });
-
-
