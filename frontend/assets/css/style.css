@@ -19,32 +19,9 @@ html,body{
 {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-
-.slider-wrapper {
-    width: 100%; 
-    overflow: hidden;
+.owl-dots{
+    display: none !important;
 }
-
- .slider {
-    display: flex;
-    gap: 16px;
-    transition: transform 0.3s ease-in-out;
-}
-
-.card {
-    min-width: calc(100% / 4 - 16px);
-}
-
-
-
-@media (max-width: 1024px) {
-     .card {
-        flex: 0 0 calc(50% - 1rem);
-    }
-}
-
-@media (max-width: 640px) { 
-     .card {
-        flex: 0 0 calc(100% - 1rem); 
-    }
+.owl-nav{
+    display: none !important;
 }
