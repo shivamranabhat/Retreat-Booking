@@ -67,7 +67,7 @@ class InstructorController extends Controller
 
     /**
      * Show the form for editing the specified instructor.
-     */
+     */ 
     public function edit(int $id)
     {
         $instructor = Instructor::findOrFail($id);
@@ -79,26 +79,37 @@ class InstructorController extends Controller
      */
     public function update(Request $request, Instructor $instructor)
     {
-        $this->validateRequest($request);
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'experience' => 'required|numeric|min:0',
+            'description' => 'required|string',
+            'address' => 'required|string',
+            'phone_number' => 'required|string|max:15',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        ]);
 
         try {
-            // Handle image upload if a new image is provided
+            // Handle image upload
             $imagePath = $this->handleImageUpload($request, $instructor->image);
 
             // Update instructor data
             $instructor->update([
                 'name' => $request->name,
-                'image' => $imagePath,
+                'image' => $imagePath, // Image path or old image if not updated
                 'experience' => $request->experience,
                 'description' => $request->description,
                 'address' => $request->address,
                 'phone_number' => $request->phone_number,
             ]);
 
+            // Redirect to the instructors list with a success message
             return redirect()->route('instructors')->with('success', 'Instructor updated successfully.');
         } catch (QueryException $e) {
+            // Handle database-related errors
             return redirect()->back()->with('error', 'Database error: ' . $e->getMessage());
         } catch (\Exception $e) {
+            // Handle any other exceptions
             return redirect()->back()->with('error', 'An unexpected error occurred: ' . $e->getMessage());
         }
     }
@@ -109,19 +120,27 @@ class InstructorController extends Controller
     public function destroy(int $id)
     {
         $instructor = Instructor::findOrFail($id);
+
         try {
+            // Delete the image file if it exists
             if ($instructor->image) {
                 Storage::delete('public/' . $instructor->image);
             }
+
+            // Delete the instructor record
             $instructor->delete();
 
-            return redirect()->route('instructors.index')->with('success', 'Instructor deleted successfully.');
+            // Redirect with a success message
+            return redirect()->route('instructors')->with('success', 'Instructor deleted successfully.');
         } catch (QueryException $e) {
+            // Handle database-related errors
             return redirect()->back()->with('error', 'Database error: ' . $e->getMessage());
         } catch (\Exception $e) {
+            // Handle other exceptions
             return redirect()->back()->with('error', 'An unexpected error occurred: ' . $e->getMessage());
         }
     }
+
 
     /**
      * Validate the incoming request.
@@ -152,6 +171,7 @@ class InstructorController extends Controller
             return $request->file('image')->store('instructors', 'public');
         }
 
-        return $existingImage; // Return the existing image path if no new image is uploaded
+        // Return the existing image path if no new image is uploaded
+        return $existingImage;
     }
 }

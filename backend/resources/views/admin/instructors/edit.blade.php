@@ -19,10 +19,11 @@
                             </div>
                         </div>
                         <div class="card-body mt-2">
-                            <form action="{{ route('instructor.update', $instructor) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('instructor.update', $instructor->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
 
+                                <!-- Name Field -->
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="name">Name</label>
                                     <input type="text" name="name" id="name"
@@ -33,12 +34,12 @@
                                     @enderror
                                 </div>
 
+                                <!-- Image Upload and Preview -->
                                 <div class="form-outline mb-4">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
-                                        
                                         <div>
                                             <label class="form-label" for="imagePreview">New Image</label><br>
-                                            <img id="imagePreview" src="#" alt="Image Preview" width="150"/>
+                                            <img id="imagePreview" src="#" alt="Image Preview" width="150" style="display:none;" />
                                         </div>
                                         <div>
                                             <label class="form-label" for="currentImage">Current Image</label><br>
@@ -51,15 +52,13 @@
                                     </div>
 
                                     <label class="form-label" for="image">Image</label>
-                                    <input type="file" name="image" id="image"
-                                        class="form-control @error('image') is-invalid @enderror" onchange="previewImage(event)" />
+                                    <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)" />
                                     @error('image')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
 
-
-
+                                <!-- Experience Field -->
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="experience">Experience</label>
                                     <input type="number" name="experience" id="experience"
@@ -70,6 +69,7 @@
                                     @enderror
                                 </div>
 
+                                <!-- Description Field -->
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="description">Description</label>
                                     <textarea name="description" id="description"
@@ -80,6 +80,7 @@
                                     @enderror
                                 </div>
 
+                                <!-- Address Field -->
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="address">Address</label>
                                     <input type="text" name="address" id="address"
@@ -90,6 +91,7 @@
                                     @enderror
                                 </div>
 
+                                <!-- Phone Number Field -->
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="phone_number">Phone Number</label>
                                     <input type="text" name="phone_number" id="phone_number"
@@ -100,6 +102,7 @@
                                     @enderror
                                 </div>
 
+                                <!-- Submit Button -->
                                 <button type="submit" class="btn btn-primary btn-block rounded-pill mb-3">Update</button>
                             </form>
                         </div>
@@ -109,6 +112,7 @@
         </div>
     </div>
 
+    <!-- JavaScript to Preview the Image Before Upload -->
     <script>
         function previewImage(event) {
             const imagePreview = document.getElementById('imagePreview');
