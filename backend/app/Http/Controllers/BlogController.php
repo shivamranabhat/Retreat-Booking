@@ -103,7 +103,7 @@ class BlogController extends Controller
      */
    public function update(Request $request, String $slug)
     {
-        // try {
+        try {
             // Find the blog post by slug
             $blog = Blog::whereSlug($slug)->firstOrFail();
             $page = Page::where('slug', $slug)->first();
@@ -147,9 +147,9 @@ class BlogController extends Controller
             }
     
             return redirect()->route('blogs')->with('message', 'Blog updated successfully');
-        // } catch (\Exception $e) {
-        //     return redirect()->back()->with('error', 'Please fill the required fields.');
-        // }
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Please fill the required fields.');
+        }
     }
 
     /**
