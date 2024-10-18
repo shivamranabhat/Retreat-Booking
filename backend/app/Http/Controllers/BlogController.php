@@ -114,7 +114,6 @@ class BlogController extends Controller
                 'subtitle' => 'required',
                 'author' => 'required',
                 'main_img_alt' => 'required',
-                'details_img_alt' => 'nullable',
                 'description' => 'required',
                 'main_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
                 'details_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
@@ -134,20 +133,6 @@ class BlogController extends Controller
                 $fileName = time() . '-' . $uploadedFile->getClientOriginalName();
                 $mainImagePath = $uploadedFile->storeAs('blogs/main_image', $fileName, 'public');
                 $formFields['main_image'] = $mainImagePath;
-            }
-    
-            // Handle details image upload
-            if ($request->hasFile('details_image')) {
-                if (!empty($blog->details_image)) {
-                    $oldImagePath = public_path('storage/' . $blog->details_image);
-                    if (file_exists($oldImagePath)) {
-                        unlink($oldImagePath);
-                    }
-                }
-                $uploadedFile = $request->file('details_image');
-                $fileName = time() . '-' . $uploadedFile->getClientOriginalName();
-                $detailsImagePath = $uploadedFile->storeAs('blogs/details_image', $fileName, 'public');
-                $formFields['details_image'] = $detailsImagePath;
             }
     
             // Update the blog post

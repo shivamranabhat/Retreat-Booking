@@ -62,23 +62,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row align-items-end">
-                                    <div class="col-6 form-outline mb-3">
-                                        <div class="image-area mb-3"><img id="detailsImg"
-                                            src="{{ asset('storage/' . $blog->details_image) }}" width="150"></div>
-                                        <label class="form-label" for="details_image">Details Image</label>
-                                        <input class="form-control" type="file" id="details_image" name="details_image" />
-                                    </div>
-                                    <div class="col-6 form-outline mb-3">
-                                        <label class="form-label" for="details_img_alt">Image Alt</label>
-                                        <input type="text" name="details_img_alt" id="details_img_alt"
-                                            class="form-control @error('details_img_alt') is-invalid @enderror {{ $errors->has('details_img_alt') ? 'error' : '' }}"
-                                            value="{{ $blog->details_img_alt }}" />
-                                        @error('details_img_alt')
-                                        <span class="text-danger">{{$message}}</span>
-                                        @enderror
-                                    </div>
-                                </div>
+                               
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="author">Author</label>
                                     <input type="text" name="author" id="author"
