@@ -103,7 +103,6 @@ class BlogController extends Controller
      */
    public function update(Request $request, String $slug)
     {
-        try {
             // Find the blog post by slug
             $blog = Blog::whereSlug($slug)->firstOrFail();
             $page = Page::where('slug', $slug)->first();
@@ -115,8 +114,7 @@ class BlogController extends Controller
                 'author' => 'required',
                 'main_img_alt' => 'required',
                 'description' => 'required',
-                'main_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-                'details_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+                'main_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',                
             ], [
                 'title.unique' => 'Blog with this title already exists'
             ]);
@@ -148,9 +146,7 @@ class BlogController extends Controller
             }
     
             return redirect()->route('blogs')->with('message', 'Blog updated successfully');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Please fill the required fields.');
-        }
+       
     }
 
     /**
