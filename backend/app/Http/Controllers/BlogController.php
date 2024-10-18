@@ -116,7 +116,6 @@ class BlogController extends Controller
                 'main_img_alt' => 'required',
                 'description' => 'required',
                 'main_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-                'details_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             ], [
                 'title.unique' => 'Blog with this title already exists'
             ]);
