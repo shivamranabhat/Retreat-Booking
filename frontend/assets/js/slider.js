@@ -38,6 +38,20 @@ $(document).ready(function(){
         }
     });
 
+    // Initialize testimonial carousel
+    var detailsTestimonialCarousel = $('.details-testimonial-carousel').owlCarousel({
+        loop: true,
+        margin: 20,
+        nav: false,
+        autoplay: true,
+        autoplayTimeout: 3000,
+        responsive: {
+            0: { items: 1 },
+            600: { items: 1 },
+            1000: { items: 1 }
+        }
+    });
+
     // Previous button functionality for location carousel
     $('.prev').click(function() {
         locationCarousel.trigger('prev.owl.carousel');
