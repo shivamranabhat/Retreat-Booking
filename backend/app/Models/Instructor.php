@@ -10,7 +10,14 @@ class Instructor extends Model
     use HasFactory;
 
     protected $fillable = [
-       'id', 'name', 'image', 'experience', 'description', 'address', 'phone_number', 'created_at', 'updated_at'
+        'name',
+        'image',
+        'image_alt',
+        'experience',
+        'description',
+        'address',
+        'phone_number',
+        'slug'
     ];
 
     protected $table = 'instructors';
@@ -19,8 +26,8 @@ class Instructor extends Model
     {
         if ($filters['search'] ?? false) {
             $query->where('name', 'like', '%' . request('search') . '%')
-                  ->orWhere('address', 'like', '%' . request('search') . '%')
-                  ->orWhere('phone_number', 'like', '%' . request('search') . '%');
+                ->orWhere('address', 'like', '%' . request('search') . '%')
+                ->orWhere('phone_number', 'like', '%' . request('search') . '%');
         }
     }
 }

@@ -3,24 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Instructor;
-use Faker\Guesser\Name;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\QueryException;
 
 class InstructorController extends Controller
 {
     /**
-     * Display a listing of the instructors.
+     * Display a listing of the resource.
      */
     public function index()
     {
-        $instructors = Instructor::latest()->filter(request(['search']))->paginate(10);
+        $instructors = Instructor::filter(request(['search']))
+            ->latest()
+            ->select('id', 'image', 'name', 'address', 'phone_number', 'slug', 'created_at') // Add 'address' and 'phone_number'
+            ->paginate(10);
         return view('admin.instructors.index', compact('instructors'));
     }
-
+    
     /**
-     * Show the form for creating a new instructor.
+     * Show the form for creating a new resource.
      */
     public function create()
     {
@@ -28,150 +29,109 @@ class InstructorController extends Controller
     }
 
     /**
-     * Store a newly created instructor in storage.
+     * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $this->validateRequest($request);
-
         try {
-            // Handle image upload
-            $imagePath = $this->handleImageUpload($request);
-
-            // Create instructor
-            Instructor::create([
-                'name' => $request->name,
-                'image' => $imagePath,
-                'experience' => $request->experience,
-                'description' => $request->description,
-                'address' => $request->address,
-                'phone_number' => $request->phone_number,
+            // Validate the request
+            $formFields = $request->validate([
+                'name' => 'required',
+                'phone_number' => 'required',
+                'experience' => 'required',
+                'description' => 'required',
+                'address' => 'required',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+                'image_alt' => 'required'
             ]);
 
-            return redirect()->route('instructors')->with('success', 'Instructor created successfully.');
-        } catch (QueryException $e) {
-            return redirect()->back()->with('error', 'Database error: ' . $e->getMessage());
+            // Handle image upload
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = time() . '-' . $image->getClientOriginalName();
+                $formFields['image'] = $image->storeAs('instructors', $imageName, 'public');
+            }
+
+            // Generate slug from name
+            $slug = Str::slug($formFields['name']);
+            // Create instructor with the form fields and slug
+            Instructor::create($formFields + ['slug' => $slug]);
+
+            return redirect()->route('instructors')->with('message', 'Instructor added successfully');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'An unexpected error occurred: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Please fill the required fields.');
         }
     }
 
     /**
-     * Display the specified instructor.
+     * Show the form for editing the specified resource.
      */
-    public function show(int $id)
+    public function edit(String $slug)
     {
-        $instructor = Instructor::findOrFail($id);
-        return view('admin.instructors.show', compact('instructor'));
-    }
-
-    /**
-     * Show the form for editing the specified instructor.
-     */ 
-    public function edit(int $id)
-    {
-        $instructor = Instructor::findOrFail($id);
+        $instructor = Instructor::whereSlug($slug)->first();
         return view('admin.instructors.edit', compact('instructor'));
     }
 
     /**
-     * Update the specified instructor in storage.
+     * Update the specified resource in storage.
      */
-    public function update(Request $request, Instructor $instructor)
+    public function update(Request $request, String $slug)
     {
-        // Validate the request data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'experience' => 'required|numeric|min:0',
-            'description' => 'required|string',
-            'address' => 'required|string',
-            'phone_number' => 'required|string|max:15',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        $instructor = Instructor::whereSlug($slug)->firstOrFail();
+
+        // Validate the request
+        $formFields = $request->validate([
+            'name' => 'required|unique:instructors,name,' . $instructor->id,
+            'phone_number' => 'required',
+            'experience' => 'required',
+            'description' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+        ], [
+            'name.unique' => 'Instructor with this name already exists'
         ]);
 
-        try {
-            // Handle image upload
-            $imagePath = $this->handleImageUpload($request, $instructor->image);
-
-            // Update instructor data
-            $instructor->update([
-                'name' => $request->name,
-                'image' => $imagePath, // Image path or old image if not updated
-                'experience' => $request->experience,
-                'description' => $request->description,
-                'address' => $request->address,
-                'phone_number' => $request->phone_number,
-            ]);
-
-            // Redirect to the instructors list with a success message
-            return redirect()->route('instructors')->with('success', 'Instructor updated successfully.');
-        } catch (QueryException $e) {
-            // Handle database-related errors
-            return redirect()->back()->with('error', 'Database error: ' . $e->getMessage());
-        } catch (\Exception $e) {
-            // Handle any other exceptions
-            return redirect()->back()->with('error', 'An unexpected error occurred: ' . $e->getMessage());
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            if (!empty($instructor->image)) {
+                $oldImagePath = public_path('storage/' . $instructor->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+            $image = $request->file('image');
+            $imageName = time() . '-' . $image->getClientOriginalName();
+            $formFields['image'] = $image->storeAs('instructors', $imageName, 'public');
         }
+
+        // Update slug
+        $formFields['slug'] = Str::slug($formFields['name']);
+
+        // Update the instructor
+        $instructor->update($formFields);
+
+        return redirect()->route('instructors')->with('message', 'Instructor updated successfully');
     }
 
     /**
-     * Remove the specified instructor from storage.
+     * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(String $slug)
     {
-        $instructor = Instructor::findOrFail($id);
-
         try {
-            // Delete the image file if it exists
-            if ($instructor->image) {
-                Storage::delete('public/' . $instructor->image);
+            $instructor = Instructor::whereSlug($slug)->firstOrFail();
+
+            if (!empty($instructor->image)) {
+                $imagePath = public_path('storage/' . $instructor->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
             }
 
-            // Delete the instructor record
             $instructor->delete();
 
-            // Redirect with a success message
-            return redirect()->route('instructors')->with('success', 'Instructor deleted successfully.');
-        } catch (QueryException $e) {
-            // Handle database-related errors
-            return redirect()->back()->with('error', 'Database error: ' . $e->getMessage());
+            return redirect()->route('instructors')->with('message', 'Instructor deleted successfully');
         } catch (\Exception $e) {
-            // Handle other exceptions
-            return redirect()->back()->with('error', 'An unexpected error occurred: ' . $e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
         }
-    }
-
-
-    /**
-     * Validate the incoming request.
-     */
-    protected function validateRequest(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'image' => 'nullable|image|max:2048', // Set maximum size
-            'experience' => 'required|integer',
-            'description' => 'required|string',
-            'address' => 'required|string|max:255',
-            'phone_number' => 'required|string|max:15',
-        ]);
-    }
-
-    /**
-     * Handle image upload and return the path.
-     */
-    protected function handleImageUpload(Request $request, $existingImage = null)
-    {
-        if ($request->hasFile('image')) {
-            // Delete the old image if it exists
-            if ($existingImage) {
-                Storage::delete('public/' . $existingImage);
-            }
-            // Store the new image and return its path
-            return $request->file('image')->store('instructors', 'public');
-        }
-
-        // Return the existing image path if no new image is uploaded
-        return $existingImage;
     }
 }

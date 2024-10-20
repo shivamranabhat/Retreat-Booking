@@ -33,7 +33,7 @@
                                             <tr class="light">
                                                 <th>S.N.</th>
                                                 <th>Name</th>
-                                                <th>Image</th> <!-- New column for Image -->
+                                                <th>Image</th>
                                                 <th>Address</th>
                                                 <th>Phone</th>
                                                 <th style="min-width: 100px">Action</th>
@@ -46,16 +46,16 @@
                                                     <td>{{ $instructor->name }}</td>
                                                     <td>
                                                         @if ($instructor->image)
-                                                            <img src="{{ asset('storage/' . $instructor->image) }}" alt="Instructor Image" width="80" height="80" class="img-thumbnail"> <!-- Adjust width/height as needed -->
+                                                            <img src="{{ asset('storage/' . $instructor->image) }}" alt="Instructor Image" width="80" height="80" class="img-thumbnail">
                                                         @else
                                                             <p>No image</p>
                                                         @endif
-                                                    </td> <!-- Image column -->
+                                                    </td>
                                                     <td>{{ $instructor->address }}</td>
                                                     <td>{{ $instructor->phone_number }}</td>
                                                     <td>
                                                         <div class="flex align-items-center list-user-action">
-                                                            <a class="btn btn-sm btn-icon btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" href="{{ route('instructor.edit', $instructor->id) }}">
+                                                            <a class="btn btn-sm btn-icon btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" href="{{ route('instructor.edit', $instructor->slug) }}">
                                                                 <span class="btn-inner">
                                                                     <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                         <path d="M11.4925 2.78906H7.75349C4.67849 2.78906 2.75049 4.96606 2.75049 8.04806V16.3621C2.75049 19.4441 4.66949 21.6211 7.75349 21.6211H16.5775C19.6625 21.6211 21.5815 19.4441 21.5815 16.3621V12.3341" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -75,20 +75,21 @@
                                                                 </span>
                                                             </button>
 
-                                                            <!-- Modal -->
                                                             <div class="modal fade" id="delete_{{ $instructor->slug }}" tabindex="-1" role="dialog" aria-labelledby="deleteTitle" aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                                     <div class="modal-content">
                                                                         <div class="modal-body text-center">
                                                                             <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#D21312" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
-                                                                                <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm.126 4.067c-.059.06-.132.132-.196.196-.164.163-.361.48-.478.878-.117.399-.158.92-.152 1.46h1.049c.006-.541-.034-1.061-.153-1.46-.117-.399-.314-.715-.478-.878zm-.097 6.483a1.062 1.062 0 0 0 1.126-1.059 1.063 1.063 0 0 0-1.126-1.059 1.063 1.063 0 0 0-1.126 1.059 1.062 1.062 0 0 0 1.126 1.059z" />
+                                                                                <path d="M8.93 1.49c.24-.65 1.24-.65 1.48 0l6.78 18.18c.24.65-.18 1.31-.87 1.31H1.18c-.69 0-1.11-.66-.87-1.31l6.78-18.18zM8 10.5a.5.5 0 0 1-.5-.5V6a.5.5 0 0 1 1 0v4a.5.5 0 0 1-.5.5zm0 1a1 1 0 1 0 1 1 1 1 0 0 0-1-1z" />
                                                                             </svg>
-                                                                            <h5 class="my-2">Are you sure?</h5>
-                                                                            <p>Do you really want to delete this instructor?</p>
-                                                                            <form action="{{ route('instructor.destroy', $instructor->id) }}" method="POST">
+                                                                            <h5 class="modal-title" id="deleteTitle">Are you sure?</h5>
+                                                                            <p>Do you really want to delete this instructor? This process cannot be undone.</p>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <form method="POST" action="{{ route('instructor.destroy', $instructor->slug) }}">
                                                                                 @csrf
                                                                                 @method('DELETE')
-                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                                                             </form>
                                                                         </div>
@@ -105,9 +106,9 @@
                                             @endforelse
                                         </tbody>
                                     </table>
-                                    <div class="d-flex justify-content-center">
-                                        {{ $instructors->links() }}
-                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    {{ $instructors->links() }} <!-- Pagination links -->
                                 </div>
                             </div>
                         </div>

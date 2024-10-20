@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('image')->nullable();
+            $table->string('image_alt');
             $table->integer('experience'); // assuming experience is in years
             $table->text('description')->nullable();
             $table->string('address');
             $table->string('phone_number');
+            $table->string('slug');
             $table->timestamps();
         });
     }

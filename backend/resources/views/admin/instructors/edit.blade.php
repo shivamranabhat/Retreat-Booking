@@ -19,7 +19,7 @@
                             </div>
                         </div>
                         <div class="card-body mt-2">
-                            <form action="{{ route('instructor.update', $instructor->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('instructor.update', $instructor->slug) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
 
@@ -35,13 +35,13 @@
                                 </div>
 
                                 <!-- Image Upload and Preview -->
-                                <div class="form-outline mb-4">
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <div>
+                                <div class="mb-4">
+                                    <div class="row">
+                                        <div class="col-3">
                                             <label class="form-label" for="imagePreview">New Image</label><br>
                                             <img id="imagePreview" src="#" alt="Image Preview" width="150" style="display:none;" />
                                         </div>
-                                        <div>
+                                        <div class="col-3">
                                             <label class="form-label" for="currentImage">Current Image</label><br>
                                             @if ($instructor->image)
                                             <img src="{{ asset('storage/' . $instructor->image) }}" alt="Instructor Image" width="150">
@@ -49,15 +49,30 @@
                                             <p>No image available</p>
                                             @endif
                                         </div>
+                                        <div class="col-6">
+                                        </div>
                                     </div>
-
-                                    <label class="form-label" for="image">Image</label>
-                                    <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)" />
-                                    @error('image')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="form-label" for="image">Image</label>
+                                            <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)" />
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-outline mb-3">
+                                                <label class="form-label" for="image_alt">Image Alt</label>
+                                                <input type="text" name="image_alt" id="image_alt"
+                                                    class="form-control @error('image_alt') is-invalid @enderror {{ $errors->has('image_alt') ? 'error' : '' }}"
+                                                    value="{{ old('image_alt', $instructor->image_alt) }}" />
+                                                @error('image_alt')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        @error('image')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
-
                                 <!-- Experience Field -->
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="experience">Experience</label>

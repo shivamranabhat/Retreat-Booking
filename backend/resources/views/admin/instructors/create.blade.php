@@ -21,32 +21,43 @@
                         <div class="card-body mt-2">
                             <form action="{{ route('instructor.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                
+
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="name">Name</label>
-                                    <input type="text" name="name" id="name" 
-                                        class="form-control @error('name') is-invalid @enderror" 
+                                    <input type="text" name="name" id="name"
+                                        class="form-control @error('name') is-invalid @enderror"
                                         value="{{ old('name') }}" required />
                                     @error('name')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
 
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="image">Main Image</label>
+                                <div class="row align-items-end">
                                     <div class="image-area mb-3">
-                                        <img id="image-preview" src="" width="150" style="display: none;"/>
+                                        <img id="image-preview" src="" width="150" style="display: none;" />
                                     </div>
-                                    <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)" />
+                                    <div class="col-6 form-outline mb-3">
+                                        <label class="form-label" for="image">Image</label>
+                                        <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)" />
+                                    </div>
+                                    <div class="col-6 form-outline mb-3">
+                                        <label class="form-label" for="image_alt">Image Alt</label>
+                                        <input type="text" name="image_alt" id="image_alt"
+                                            class="form-control @error('image_alt') is-invalid @enderror {{ $errors->has('image_alt') ? 'error' : '' }}"
+                                            value="{{ old('image_alt') }}" />
+                                        @error('img_alt')
+                                        <span class="text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
                                     @error('image')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-
+                               
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="experience">Experience</label>
-                                    <input type="number" name="experience" id="experience" 
-                                        class="form-control @error('experience') is-invalid @enderror" 
+                                    <input type="number" name="experience" id="experience"
+                                        class="form-control @error('experience') is-invalid @enderror"
                                         value="{{ old('experience') }}" required />
                                     @error('experience')
                                     <span class="text-danger">{{ $message }}</span>
@@ -55,8 +66,8 @@
 
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="description">Description</label>
-                                    <textarea name="description" id="description" 
-                                        class="form-control @error('description') is-invalid @enderror" 
+                                    <textarea name="description" id="description"
+                                        class="form-control @error('description') is-invalid @enderror"
                                         required>{{ old('description') }}</textarea>
                                     @error('description')
                                     <span class="text-danger">{{ $message }}</span>
@@ -65,8 +76,8 @@
 
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="address">Address</label>
-                                    <input type="text" name="address" id="address" 
-                                        class="form-control @error('address') is-invalid @enderror" 
+                                    <input type="text" name="address" id="address"
+                                        class="form-control @error('address') is-invalid @enderror"
                                         value="{{ old('address') }}" required />
                                     @error('address')
                                     <span class="text-danger">{{ $message }}</span>
@@ -75,8 +86,8 @@
 
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="phone_number">Phone Number</label>
-                                    <input type="text" name="phone_number" id="phone_number" 
-                                        class="form-control @error('phone_number') is-invalid @enderror" 
+                                    <input type="text" name="phone_number" id="phone_number"
+                                        class="form-control @error('phone_number') is-invalid @enderror"
                                         value="{{ old('phone_number') }}" required />
                                     @error('phone_number')
                                     <span class="text-danger">{{ $message }}</span>
@@ -100,11 +111,14 @@
 
             reader.onload = function(e) {
                 imagePreview.src = e.target.result;
-                imagePreview.style.display = 'block'; // Show the image
+                imagePreview.style.display = 'block'; // Show the image preview
             };
 
             if (file) {
                 reader.readAsDataURL(file); // Convert image to base64 string
+            } else {
+                imagePreview.src = ''; // Clear preview if no file is selected
+                imagePreview.style.display = 'none';
             }
         }
     </script>

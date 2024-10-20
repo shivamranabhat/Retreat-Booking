@@ -92,10 +92,11 @@ Route::prefix('/dashboard')->group(function () {
         Route::get('/', 'index')->name('instructors');
         Route::get('/create', 'create')->name('instructor.create');
         Route::post('/store', 'store')->name('instructor.store');
-        Route::get('/{id}', 'edit')->name('instructor.edit');
-        Route::put('/update/{id}', 'update')->name('instructor.update');
-        Route::delete('/delete/{id}', 'destroy')->name('instructor.destroy');
+        Route::get('/{slug}', 'edit')->name('instructor.edit');
+        Route::put('/update/{slug}', 'update')->name('instructor.update'); 
+        Route::delete('/delete/{slug}', 'destroy')->name('instructor.destroy'); 
     });
+    
 
     Route::prefix('/seo')->group(function () {
         //Routes for tags
