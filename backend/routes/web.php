@@ -19,6 +19,8 @@ use App\Http\Controllers\AdminPasswordResetController;
 use App\Http\Controllers\LocationController;
 use App\Http\Middleware\AdminAuth;
 use App\Http\Controllers\InstructorController;
+    
+use App\Http\Controllers\AccommodationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -96,8 +98,18 @@ Route::prefix('/dashboard')->group(function () {
         Route::put('/update/{slug}', 'update')->name('instructor.update'); 
         Route::delete('/delete/{slug}', 'destroy')->name('instructor.destroy'); 
     });
-    
 
+
+    Route::prefix('/accommodations')->controller(AccommodationController::class)->group(function () {
+        Route::get('/', 'index')->name('accommodations'); // List all accommodations
+        Route::get('/create', 'create')->name('accommodation.create'); // Show form to create a new accommodation
+        Route::post('/store', 'store')->name('accommodation.store'); // Store a new accommodation
+        Route::get('/{slug}', 'show')->name('accommodation.show'); // Show a specific accommodation
+        Route::get('/{slug}/edit', 'edit')->name('accommodation.edit'); // Show form to edit an accommodation
+        Route::put('/{slug}', 'update')->name('accommodation.update'); // Update an existing accommodation
+        Route::delete('/{slug}', 'destroy')->name('accommodation.destroy'); // Delete an accommodation
+    });
+    
     Route::prefix('/seo')->group(function () {
         //Routes for tags
         Route::prefix('/tags')->controller(TagController::class)->group(function () {
