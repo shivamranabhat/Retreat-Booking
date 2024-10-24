@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "preline": "^2.5.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.14"
   }
 }
