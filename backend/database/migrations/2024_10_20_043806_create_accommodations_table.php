@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('accommodations', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
-            $table->string('image')->nullable();  
+            $table->text('image')->nullable();  
             $table->text('description')->nullable();
             $table->string('location')->nullable();
             $table->string('contact')->nullable();

@@ -133,9 +133,9 @@ class AccommodationController extends Controller
             $accommodation = Accommodation::where('slug', $slug)->firstOrFail();
 
             // Check if the accommodation has images stored
-            if (!empty($accommodation->images)) {
+            if (!empty($accommodation->image)) {
                 // Decode the JSON string to get an array of image paths
-                $imagePaths = json_decode($accommodation->images, true);
+                $imagePaths = json_decode($accommodation->image, true);
 
                 // Loop through each image path and delete the image file from storage
                 foreach ($imagePaths as $imagePath) {
