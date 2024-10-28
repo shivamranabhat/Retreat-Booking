@@ -188,18 +188,19 @@
                             <i class="icon">
                                 <!-- New Icon for Instructors -->
                                 <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-20">
-                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-4.41 0-8 3.59-8 8h16c0-4.41-3.59-8-8-8z" fill="currentColor" />
+                                    <path d="M12 0a10 10 0 00-10 10c0 5.52 4.48 10 10 10s10-4.48 10-10A10 10 0 0012 0zm-1 17.93V15h2v2.93c1.34-.48 2-1.72 2-3.43 0-2.76-2.24-5-5-5S6 11.24 6 14c0 1.71.66 2.95 2 3.43V15h2v2.93a8.03 8.03 0 004-1.07zM12 2a8 8 0 00-8 8c0 4.41 3.59 8 8 8s8-3.59 8-8a8 8 0 00-8-8z" fill="currentColor" />
                                 </svg>
                             </i>
                             <span class="item-name">Instructors</span>
                         </a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link {{ request()->segment(1) == 'accommodations' ? 'active' : '' }}" href="{{ route('accommodations') }}">
                             <i class="icon">
                                 <!-- New Icon for Accommodations -->
                                 <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-20">
-                                    <path d="M3 3h18v18H3V3zm2 2v12h14V5H5zm2 2h10v8H7V7z" fill="currentColor" />
+                                    <path d="M12 2L2 7v5h3v6h14v-6h3V7L12 2zm0 1.5l8 4-8 4-8-4 8-4z" fill="currentColor" />
                                 </svg>
                             </i>
                             <span class="item-name">Accommodations</span>
@@ -210,18 +211,19 @@
                             <i class="icon">
                                 <!-- New Icon for Packages -->
                                 <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-20">
-                                    <path d="M3 3h18v18H3V3zm2 2v12h14V5H5zm2 2h10v8H7V7z" fill="currentColor" />
+                                    <path d="M20 6h-2V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 4h8v2H8V4zm12 16H4V8h16v12z" fill="currentColor" />
                                 </svg>
                             </i>
                             <span class="item-name">Packages</span>
                         </a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link {{ request()->segment(1) == 'categories' ? 'active' : '' }}" href="{{ route('categories') }}">
                             <i class="icon">
                                 <!-- New Icon for Categories -->
                                 <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-20">
-                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-4.41 0-8 3.59-8 8h16c0-4.41-3.59-8-8-8z" fill="currentColor" />
+                                    <path d="M3 4h18v2H3V4zm0 6h18v2H3v-2zm0 6h18v2H3v-2z" fill="currentColor" />
                                 </svg>
                             </i>
                             <span class="item-name">Categories</span>

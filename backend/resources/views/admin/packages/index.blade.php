@@ -31,7 +31,7 @@
                                         <thead>
                                             <tr class="ligth">
                                                 <th>S.N.</th>
-                                                <th>Package title</th>
+                                                <th>Package Title</th>
                                                 <th>Create Date</th>
                                                 <th style="min-width: 100px">Action</th>
                                             </tr>
@@ -62,25 +62,38 @@
                                                                 </svg>
                                                             </span>
                                                         </a>
+
+                                                        <a class="btn btn-sm btn-icon {{ $package->status == 1 ? 'btn-success' : 'btn-danger' }}"
+                                                            data-bs-toggle="tooltip"
+                                                            data-bs-placement="top"
+                                                            title="Change Status"
+                                                            href="{{ route('package.updateStatus', $package->slug) }}"
+                                                            onclick="event.preventDefault(); document.getElementById('update-status-form-{{ $package->slug }}').submit();">
+                                                            <span class="btn-inner">
+                                                                <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M12 2a10 10 0 00-10 10c0 5.52 4.48 10 10 10s10-4.48 10-10A10 10 0 0012 2zm-1 17.93V15h2v4.93c1.34-.48 2-1.72 2-3.43 0-2.76-2.24-5-5-5S6 11.24 6 14c0 1.71.66 2.95 2 3.43V15h2v4.93a8.03 8.03 0 004-1.07z" fill="currentColor" />
+                                                                </svg>
+                                                            </span>
+                                                        </a>
+
+                                                        <form id="update-status-form-{{ $package->slug }}" action="{{ route('package.updateStatus', $package->slug) }}" method="POST" style="display: none;">
+                                                            @csrf
+                                                        </form>
+
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="delete_{{ $package->slug }}" tabindex="-1" role="dialog" aria-labelledby="deleteTitle" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-body text-center">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#D21312" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
-                                                                            <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
-                                                                            <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 4.5a.605.605 0 0 1-1.2 0l-.35-4.5z" />
+                                                                            <path d="M7.938 1.016a.5.5 0 0 1 .124.14l5.5 6.5a.5.5 0 0 1-.124.657l-11 7a.5.5 0 0 1-.758-.657l11-7-5.5-6.5a.5.5 0 0 1-.124-.14A.5.5 0 0 1 7.938 1.016zM7.5 3.5v4h1V3.5h-1zm0 5v1h1v-1h-1z" />
                                                                         </svg>
-                                                                        <h4 class="my-2">Are you sure?</h4>
-                                                                        <p class="mb-4">Do you really want to delete this package? This action cannot be undone.</p>
-                                                                        <div class="d-flex justify-content-center">
-                                                                            <form action="{{ route('package.destroy', $package->slug) }}" method="POST">
-                                                                                @csrf
-                                                                                @method('DELETE')
-                                                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                                                            </form>
-                                                                            <button type="button" class="btn btn-secondary mx-2" data-bs-dismiss="modal">Cancel</button>
-                                                                        </div>
+                                                                        <h4>Are you sure?</h4>
+                                                                        <p>Do you really want to delete this package?</p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                                        <button type="submit" class="btn btn-danger" form="delete-package-form-{{ $package->slug }}">Delete</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -90,17 +103,15 @@
                                             </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="5">No packages found.</td>
+                                                <td colspan="4" class="text-center">No packages found.</td>
                                             </tr>
                                             @endforelse
                                         </tbody>
                                     </table>
-                                    <div class="d-flex justify-content-end mt-3">
-                                        {{ $packages->links() }}
-                                    </div>
                                 </div>
                             </div>
                         </div>
+                        {{ $packages->links() }}
                     </div>
                 </div>
             </div>

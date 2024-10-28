@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->text('not_included')->nullable();
             $table->integer('days');
             $table->decimal('price', 8, 2);
-            $table->string('status');
+            $table->boolean('status'); 
             $table->date('start_date')->nullable();
             $table->date('end_date');
             $table->foreignId('instructors_id')->constrained('instructors')->onDelete('cascade');

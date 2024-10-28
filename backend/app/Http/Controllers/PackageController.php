@@ -142,14 +142,24 @@ class PackageController extends Controller
         return redirect()->route('packages')->with('success', 'Package updated successfully!');
     }
 
+
     public function updateStatus(string $slug)
     {
+        // Retrieve the package by slug or fail
         $package = Package::where('slug', $slug)->firstOrFail();
-        $package['status'] = 1;
-        $package->update($package);
+        // Toggle the status
+        $package->status = $package->status === 1 ? 0 : 1;
 
-        return redirect()->route('packages')->with('success', 'Package status updated successfully!');
+        // Save the changes to the database
+        if ($package->save()) {
+            return redirect()->route('packages')->with('success', 'Package status updated successfully!');
+        } else {
+            return redirect()->route('packages')->with('error', 'Failed to update status for package ' . $slug);
+        }
     }
+
+
+
     // Remove the specified package from storage
     public function destroy(string $slug)
     {

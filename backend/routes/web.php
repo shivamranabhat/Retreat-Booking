@@ -117,6 +117,7 @@ Route::prefix('/dashboard')->group(function () {
         Route::get('/{slug}/edit', 'edit')->name('package.edit'); 
         Route::put('/{slug}', 'update')->name('package.update');
         Route::delete('/{slug}', 'destroy')->name('package.destroy');
+        Route::post('{slug}/Change/Status/', 'updateStatus')->name('package.updateStatus');
     });
     Route::prefix('/categories')->controller(CategoryController::class)->group(function () {
         Route::get('/', 'index')->name('categories'); 
