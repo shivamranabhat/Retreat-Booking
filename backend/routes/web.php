@@ -95,8 +95,8 @@ Route::prefix('/dashboard')->group(function () {
         Route::get('/create', 'create')->name('instructor.create');
         Route::post('/store', 'store')->name('instructor.store');
         Route::get('/{slug}', 'edit')->name('instructor.edit');
-        Route::put('/update/{slug}', 'update')->name('instructor.update'); 
-        Route::delete('/delete/{slug}', 'destroy')->name('instructor.destroy'); 
+        Route::put('/update/{slug}', 'update')->name('instructor.update');
+        Route::delete('/delete/{slug}', 'destroy')->name('instructor.destroy');
     });
 
 
@@ -110,13 +110,22 @@ Route::prefix('/dashboard')->group(function () {
         Route::delete('/{slug}', 'destroy')->name('accommodation.destroy'); // Delete an accommodation
     });
     Route::prefix('/packages')->controller(PackageController::class)->group(function () {
-        Route::get('/', 'index')->name('packages'); // List all packages
-        Route::get('/create', 'create')->name('package.create'); // Show form to create a new package
-        Route::post('/store', 'store')->name('package.store'); // Store a new package
-        Route::get('/{slug}', 'show')->name('package.show'); // Show a specific package
-        Route::get('/{slug}/edit', 'edit')->name('package.edit'); // Show form to edit a package
-        Route::put('/{slug}', 'update')->name('package.update'); // Update an existing package
-        Route::delete('/{slug}', 'destroy')->name('package.destroy'); // Delete a package
+        Route::get('/', 'index')->name('packages');
+        Route::get('/create', 'create')->name('package.create');
+        Route::post('/store', 'store')->name('package.store');
+        Route::get('/{slug}', 'show')->name('package.show');
+        Route::get('/{slug}/edit', 'edit')->name('package.edit'); 
+        Route::put('/{slug}', 'update')->name('package.update');
+        Route::delete('/{slug}', 'destroy')->name('package.destroy');
+    });
+    Route::prefix('/categories')->controller(CategoryController::class)->group(function () {
+        Route::get('/', 'index')->name('categories'); 
+        Route::get('/create', 'create')->name('category.create'); 
+        Route::post('/store', 'store')->name('category.store'); 
+        Route::get('/{name}', 'show')->name('category.show'); 
+        Route::get('/{name}/edit', 'edit')->name('category.edit'); 
+        Route::put('/{name}', 'update')->name('category.update'); 
+        Route::delete('/{id}', 'destroy')->name('category.destroy'); 
     });
     Route::prefix('/seo')->group(function () {
         //Routes for tags

@@ -44,8 +44,8 @@
                                     </div>
                                 </div>
                                 <div class="form-outline mb-3">
-                                    <label class="form-label" for="location_id">Location</label>
-                                    <select name="location_id" id="location_id" class="form-control @error('location_id') is-invalid @enderror">
+                                    <label class="form-label" for="locations_id">Location</label>
+                                    <select name="locations_id" id="locations_id" class="form-control @error('locations_id') is-invalid @enderror">
                                         <option value="">Select Location</option>
                                         @foreach($dropdownData['locations'] as $location)
                                         <option value="{{ $location->id }}">{{ $location->name }}</option>
@@ -53,8 +53,23 @@
                                     </select>
                                     @error('location_id') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
+                                <div class="form-outline mb-3">
+                                    <label class="form-label" for="categories_id">Category</label>
+                                    <select name="categories_id" id="categories_id" class="form-control @error('categories_id') is-invalid @enderror">
+                                        <option value="">Select Category</option>
+                                        @foreach($dropdownData['categories'] as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('categories_id') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
                                 @php
-                                $fields = ['summary', 'features', 'description', 'benefits', 'program', 'facilities',
+                                $fields = ['summary',
+                                'features',
+                                'description',
+                                'highlights',
+                                'itinerary',
+                                'terms_and_conditions',
                                 'included',
                                 'not_included'];
                                 @endphp
@@ -68,8 +83,8 @@
                                 @endforeach
 
                                 <div class="form-outline mb-3">
-                                    <label class="form-label" for="instructor_id">Instructor</label>
-                                    <select name="instructor_id" id="instructor_id" class="form-control @error('instructor_id') is-invalid @enderror">
+                                    <label class="form-label" for="instructors_id">Instructor</label>
+                                    <select name="instructors_id" id="instructors_id" class="form-control @error('instructors_id') is-invalid @enderror">
                                         <option value="">Select Instructor</option>
                                         @foreach($dropdownData['instructors'] as $instructor)
                                         <option value="{{ $instructor->id }}">{{ $instructor->name }}</option>
@@ -78,8 +93,8 @@
                                     @error('instructor_id') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-outline mb-3">
-                                    <label class="form-label" for="accommodation_id">Accommodation</label>
-                                    <select name="accommodation_id" id="accommodation_id" class="form-control @error('accommodation_id') is-invalid @enderror">
+                                    <label class="form-label" for="accommodations_id">Accommodation</label>
+                                    <select name="accommodations_id" id="accommodations_id" class="form-control @error('accommodations_id') is-invalid @enderror">
                                         <option value="">Select Accommodation</option>
                                         @foreach($dropdownData['accommodations'] as $accommodation)
                                         <option value="{{ $accommodation->id }}">{{ $accommodation->name }}</option>
@@ -88,7 +103,7 @@
                                     @error('accommodation_id') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-outline mb-3">
-                                    <label class="form-label" for="start_date">Starting Date</label>
+                                    <label class="form-label" for="start_date">Start Date</label>
                                     <input type="date" name="start_date" id="start_date" class="form-control @error('start_date') is-invalid @enderror" value="{{ old('start_date') }}" required />
                                     @error('start_date') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
@@ -184,7 +199,12 @@
 
 
             document.addEventListener('DOMContentLoaded', function() {
-                const fieldsToInit = ['summary', 'features', 'description', 'benefits', 'program', 'facilities',
+                const fieldsToInit = ['summary',
+                    'features',
+                    'description',
+                    'highlights',
+                    'itinerary',
+                    'terms_and_conditions',
                     'included',
                     'not_included'
                 ];

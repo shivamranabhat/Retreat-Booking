@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Package;
 use App\Models\Accommodation;
+use App\Models\Category;
 use App\Models\Instructor;
 use App\Models\Location;
 use Illuminate\Support\Str;
@@ -17,6 +18,7 @@ class PackageController extends Controller
             'instructors' => Instructor::all(),
             'accommodations' => Accommodation::all(),
             'locations' => Location::all(),
+            'categories' => Category::all(),
         ];
     }
 
@@ -51,11 +53,12 @@ class PackageController extends Controller
             'price' => 'nullable|numeric',
             'included' => 'nullable|string|max:1000',
             'not_included' => 'nullable|string|max:1000',
-            'starting_date' => 'nullable|date',
+            'start_date' => 'nullable|date',
             'end_date' => 'nullable|date',
-            'instructor_id' => 'nullable|integer|exists:instructors,id',
-            'accommodation_id' => 'nullable|integer|exists:accommodations,id',
-            'location_id' => 'nullable|integer|exists:locations,id',
+            'instructors_id' => 'nullable|integer|exists:instructors,id',
+            'accommodations_id' => 'nullable|integer|exists:accommodations,id',
+            'locations_id' => 'nullable|integer|exists:locations,id',
+            'categories_id' => 'nullable|integer|exists:categories,id',
         ]);
 
         // Process multiple image uploads
@@ -71,6 +74,7 @@ class PackageController extends Controller
         $validatedData['slug'] = Str::slug($validatedData['title']);
         $validatedData['status'] = 0;
         Package::create($validatedData);
+        dd($validatedData);
         return redirect()->route('packages.index')->with('success', 'Package created successfully!');
     }
 
@@ -108,18 +112,19 @@ class PackageController extends Controller
             'price' => 'nullable|numeric',
             'included' => 'nullable|string|max:1000',
             'not_included' => 'nullable|string|max:1000',
-            'starting_date' => 'nullable|date',
+            'start_date' => 'nullable|date',
             'end_date' => 'nullable|date',
             'instructor_id' => 'nullable|integer|exists:instructors,id',
             'accommodation_id' => 'nullable|integer|exists:accommodations,id',
             'location_id' => 'nullable|integer|exists:locations,id',
+            'categories_id' => 'nullable|integer|exists:categories,id',
         ]);
 
         // Process new images
         $imagePaths = json_decode($package->images, true) ?? [];
         if ($request->hasFile('images')) {
             foreach ($imagePaths as $oldImagePath) {
-                $oldImageFullPath = public_path('storage/' . $oldImagePath);
+                $oldImageFullPath = public_path($oldImagePath);
                 if (file_exists($oldImageFullPath)) {
                     unlink($oldImageFullPath);
                 }
@@ -127,15 +132,14 @@ class PackageController extends Controller
 
             foreach ($request->file('images') as $image) {
                 $path = $image->store('storage/packages/', 'public');
-                $imagePaths[] = $path;
+                $newImagePaths[] = $path;
             }
         }
 
-        $validatedData['images'] = json_encode($imagePaths);
+        $validatedData['images'] = json_encode($newImagePaths ?? $imagePaths);
         $validatedData['slug'] = Str::slug($validatedData['title']);
         $package->update($validatedData);
-
-        return redirect()->route('packages.index')->with('success', 'Package updated successfully!');
+        return redirect()->route('packages')->with('success', 'Package updated successfully!');
     }
 
     public function updateStatus(string $slug)
@@ -144,8 +148,7 @@ class PackageController extends Controller
         $package['status'] = 1;
         $package->update($package);
 
-        return redirect()->route('packages.index')->with('success', 'Package status updated successfully!');
-    
+        return redirect()->route('packages')->with('success', 'Package status updated successfully!');
     }
     // Remove the specified package from storage
     public function destroy(string $slug)
@@ -163,6 +166,6 @@ class PackageController extends Controller
         }
 
         $package->delete();
-        return redirect()->route('packages.index')->with('success', 'Package deleted successfully.');
+        return redirect()->route('packages')->with('success', 'Package deleted successfully.');
     }
 }

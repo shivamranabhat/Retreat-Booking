@@ -17,7 +17,6 @@ class Package extends Model
         'description',
         'highlights',
         'itinerary',
-        'category',
         'terms_and_conditions',        
         'included',
         'not_included',
@@ -26,10 +25,10 @@ class Package extends Model
         'status',
         'start_date',
         'end_date',
-        'instructor_id',
-        'accommodation_id',
-        'location_id',
-        'category_id',
+        'instructors_id',
+        'accommodations_id',
+        'locations_id',
+        'categories_id',
         'slug'
     ];
 
