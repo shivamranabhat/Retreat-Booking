@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('instructors', function (Blueprint $table) {
+        Schema::create('exclusions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('package_id');
+            $table->longText('exclusion');
+
+            // Foreign key constraints
+            $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('instructors');
+        Schema::dropIfExists('exclusions');
     }
 };
