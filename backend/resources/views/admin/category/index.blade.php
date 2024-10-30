@@ -44,7 +44,7 @@
                                                     <div class="flex align-items-center list-user-action">
                                                         <a class="btn btn-sm btn-icon btn-warning"
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            data-original-title="Edit" href="{{route('category.edit', $category->slug)}}" aria-label="Edit"
+                                                            data-original-title="Edit" href="{{route('category.edit', $category->name)}}" aria-label="Edit"
                                                             data-bs-original-title="Edit">
                                                             <span class="btn-inner">
                                                                 <svg class="icon-20" width="20" viewBox="0 0 24 24"
@@ -66,7 +66,7 @@
                                                                 </svg>
                                                             </span>
                                                         </a>
-                                                        <a class="btn btn-sm btn-icon btn-danger" type="button" data-toggle="modal" data-target="#delete_{{ $category->slug }}" data-bs-original-title="Delete">
+                                                        <a class="btn btn-sm btn-icon btn-danger" type="button" data-toggle="modal" data-target="#delete_{{ $category->name }}" data-bs-original-title="Delete">
                                                             <span class="btn-inner">
                                                                 <svg class="icon-20" width="20" viewBox="0 0 24 24"
                                                                     fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +88,7 @@
                                                             </span>
                                                         </a>
                                                         <!-- Modal -->
-                                                        <div class="modal fade" id="delete_{{ $category->slug }}" tabindex="-1" role="dialog"
+                                                        <div class="modal fade" id="delete_{{ $category->name }}" tabindex="-1" role="dialog"
                                                             aria-labelledby="deleteTitle" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-centered"
                                                                 role="document">
@@ -108,12 +108,12 @@
                                                                             class="btn btn-secondary"
                                                                             data-bs-dismiss="modal">Cancel</button>
                                                                         <button class="btn btn-primary"
-                                                                            onclick="event.preventDefault();document.getElementById('delete-form-{{$category->slug}}').submit();">Delete</button>
+                                                                            onclick="event.preventDefault();document.getElementById('delete-form-{{$category->name}}').submit();">Delete</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <form id="delete-form-{{$category->slug}}" action="{{route('category.destroy', $category->slug)}}" method="POST" style="display:none;">
+                                                        <form id="delete-form-{{$category->name}}" action="{{route('category.destroy', $category->name)}}" method="POST" style="display:none;">
                                                             @csrf
                                                             @method('DELETE')
                                                         </form>

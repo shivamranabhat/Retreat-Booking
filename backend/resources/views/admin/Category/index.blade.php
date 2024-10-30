@@ -32,7 +32,6 @@
                                             <tr class="ligth">
                                                 <th>S.N.</th>
                                                 <th>Name</th>
-                                                <th>Published At</th>
                                                 <th style="min-width: 100px">Action</th>
                                             </tr>
                                         </thead>
