@@ -17,7 +17,7 @@
                             </div>
                         </div>
                         <div class="card-body mt-2">
-                            <form method="POST" action="{{ route('category.update', $category->name) }}">
+                            <form method="POST" action="{{ route('category.update', $category->slug) }}">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-outline mb-4">
