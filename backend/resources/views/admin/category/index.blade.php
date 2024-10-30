@@ -41,12 +41,11 @@
                                             <tr>
                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                 <td>{{ $category->name }}</td>
-                                                <td>{{ $category->created_at }}</td>
                                                 <td>
                                                     <div class="flex align-items-center list-user-action">
                                                         <a class="btn btn-sm btn-icon btn-warning"
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            data-original-title="Edit" href="{{route('category.edit', $category->slug)}}" aria-label="Edit"
+                                                            data-original-title="Edit" href="{{route('category.edit', $category->name)}}" aria-label="Edit"
                                                             data-bs-original-title="Edit">
                                                             <span class="btn-inner">
                                                                 <svg class="icon-20" width="20" viewBox="0 0 24 24"
@@ -68,7 +67,7 @@
                                                                 </svg>
                                                             </span>
                                                         </a>
-                                                        <a class="btn btn-sm btn-icon btn-danger" type="button" data-toggle="modal" data-target="#delete_{{ $category->slug }}" data-bs-original-title="Delete">
+                                                        <a class="btn btn-sm btn-icon btn-danger" type="button" data-toggle="modal" data-target="#delete_{{ $category->name }}" data-bs-original-title="Delete">
                                                             <span class="btn-inner">
                                                                 <svg class="icon-20" width="20" viewBox="0 0 24 24"
                                                                     fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +89,7 @@
                                                             </span>
                                                         </a>
                                                         <!-- Modal -->
-                                                        <div class="modal fade" id="delete_{{ $category->slug }}" tabindex="-1" role="dialog"
+                                                        <div class="modal fade" id="delete_{{ $category->name }}" tabindex="-1" role="dialog"
                                                             aria-labelledby="deleteTitle" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-centered"
                                                                 role="document">
@@ -103,28 +102,22 @@
                                                                             <path
                                                                                 d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
                                                                             <path
-                                                                                d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
+                                                                                d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 0 1 1.8 0l-.35 3.5a.55.55 0 1 1-1.1 0l-.35-3.5z" />
                                                                         </svg>
-                                                                        <h2 class="mt-3 mb-1"> Are you sure?</h2>
-                                                                        <h5>Do you really want to delete this record?
-                                                                        </h5>
-                                                                    </div>
-                                                                    <div class="modal-footer justify-content-center">
+                                                                        <h4 class="mt-3">Are you sure you want to delete this item?</h4>
                                                                         <button type="button"
-                                                                            class="btn btn-secondary rounded-pill"
-                                                                            data-dismiss="modal">Close</button>
-                                                                        <form
-                                                                            action="{{ route('category.destroy', $category->slug) }}"
-                                                                            method="POST">
-                                                                            @csrf
-                                                                            @method('DELETE')
-                                                                            <button type="submit"
-                                                                                class="btn btn-danger rounded-pill">Yes</button>
-                                                                        </form>
+                                                                            class="btn btn-secondary"
+                                                                            data-bs-dismiss="modal">Cancel</button>
+                                                                        <button class="btn btn-primary"
+                                                                            onclick="event.preventDefault();document.getElementById('delete-form-{{$category->name}}').submit();">Delete</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <form id="delete-form-{{$category->name}}" action="{{route('category.destroy', $category->name)}}" method="POST" style="display:none;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
                                                     </div>
                                                 </td>
                                             </tr>
