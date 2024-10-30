@@ -16,15 +16,7 @@ class AccommodationController extends Controller
     {
         $search = $request->input('search'); // Get the search input
 
-<<<<<<< HEAD
-        $accommodations = Accommodation::when($search, function ($query) use ($search) {
-            $query->where('name', 'like', "%{$search}%")
-                ->orWhere('location', 'like', "%{$search}%")
-                ->orWhere('contact', 'like', "%{$search}%");
-        })->paginate(10); // Use paginate instead of get
-=======
         $accommodations = Accommodation::filter(request(['search']))->paginate(10); // Use paginate instead of get
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
 
         return view('admin.accommodations.index', compact('accommodations', 'search'));
     }

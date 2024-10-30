@@ -99,17 +99,6 @@ Route::prefix('/dashboard')->group(function () {
         Route::delete('/delete/{slug}', 'destroy')->name('instructor.destroy');
     });
 
-<<<<<<< HEAD
-
-    Route::prefix('/accommodations')->controller(AccommodationController::class)->group(function () {
-        Route::get('/', 'index')->name('accommodations'); // List all accommodations
-        Route::get('/create', 'create')->name('accommodation.create'); // Show form to create a new accommodation
-        Route::post('/store', 'store')->name('accommodation.store'); // Store a new accommodation
-        Route::get('/{slug}', 'show')->name('accommodation.show'); // Show a specific accommodation
-        Route::get('/{slug}/edit', 'edit')->name('accommodation.edit'); // Show form to edit an accommodation
-        Route::put('/{slug}', 'update')->name('accommodation.update'); // Update an existing accommodation
-        Route::delete('/{slug}', 'destroy')->name('accommodation.destroy'); // Delete an accommodation
-=======
     Route::prefix('/accommodations')->controller(AccommodationController::class)->group(function () {
         Route::get('/', 'index')->name('accommodations');
         Route::get('/create', 'create')->name('accomodation.create');
@@ -117,28 +106,11 @@ Route::prefix('/dashboard')->group(function () {
         Route::get('/{slug}', 'edit')->name('accomodation.edit');
         Route::put('/update/{slug}', 'update')->name('accomodation.update');
         Route::delete('/delete/{slug}', 'destroy')->name('accomodation.destroy');
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
     });
     Route::prefix('/packages')->controller(PackageController::class)->group(function () {
         Route::get('/', 'index')->name('packages');
         Route::get('/create', 'create')->name('package.create');
         Route::post('/store', 'store')->name('package.store');
-<<<<<<< HEAD
-        Route::get('/{slug}', 'show')->name('package.show');
-        Route::get('/{slug}/edit', 'edit')->name('package.edit'); 
-        Route::put('/{slug}', 'update')->name('package.update');
-        Route::delete('/{slug}', 'destroy')->name('package.destroy');
-        Route::post('{slug}/Change/Status/', 'updateStatus')->name('package.updateStatus');
-    });
-    Route::prefix('/categories')->controller(CategoryController::class)->group(function () {
-        Route::get('/', 'index')->name('categories'); 
-        Route::get('/create', 'create')->name('category.create'); 
-        Route::post('/store', 'store')->name('category.store'); 
-        Route::get('/{name}', 'show')->name('category.show'); 
-        Route::get('/{name}/edit', 'edit')->name('category.edit'); 
-        Route::put('/{name}', 'update')->name('category.update'); 
-        Route::delete('/{id}', 'destroy')->name('category.destroy'); 
-=======
         Route::get('/{slug}', 'edit')->name('package.edit');
         Route::post('/upload-package-img', 'uploadPackageImage')->name('package.upload');
         Route::put('/update/{slug}', 'update')->name('package.update');
@@ -152,7 +124,6 @@ Route::prefix('/dashboard')->group(function () {
         Route::get('/{slug}', 'edit')->name('category.edit');
         Route::put('/update/{slug}', 'update')->name('category.update');
         Route::delete('/delete/{slug}', 'destroy')->name('category.destroy');
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
     });
     Route::prefix('/seo')->group(function () {
         //Routes for tags

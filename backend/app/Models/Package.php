@@ -14,18 +14,12 @@ class Package extends Model
         'images',
         'summary',
         'features',
-<<<<<<< HEAD
         'description',
         'highlights',
         'itinerary',
         'terms_and_conditions',        
         'included',
         'not_included',
-=======
-        'highlights',
-        'itinerary',
-        'terms_and_conditions',        
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
         'days',
         'price',
         'status',
@@ -63,8 +57,6 @@ class Package extends Model
     {
         return $this->belongsTo(Location::class, 'location_id');
     }
-<<<<<<< HEAD
-=======
     public function inclusions()
     {
         return $this->hasMany(Inclusion::class);
@@ -73,5 +65,4 @@ class Package extends Model
     {
         return $this->hasMany(Exclusion::class);
     }
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
 }
