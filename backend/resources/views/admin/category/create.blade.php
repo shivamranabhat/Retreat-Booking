@@ -26,7 +26,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-block rounded-pill mb-3">Create</button>
+                                <button type="submit" class="btn btn-success btn-block rounded-pill mb-3">Create</button>
                             </form>
                         </div>
                     </div>
