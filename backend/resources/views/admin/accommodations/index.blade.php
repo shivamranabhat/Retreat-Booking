@@ -12,12 +12,16 @@
                         <div class="table-responsive">
                             <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap5">
                                 <div class="row align-items-center">
+<<<<<<< HEAD
                                     <div class="col-12 col-md-6 col-lg-6 px-0">
                                         <form action="{{ route('accommodations') }}" method="GET" class="d-flex justify-content-end mt-3 mt-lg-0 mt-xl-0">
                                             <input type="text" name="search" value="{{ request()->input('search') }}" class="form-control" placeholder="Search accommodations...">
                                             <button type="submit" class="btn btn-primary ms-2">Search</button>
                                         </form>
                                     </div>
+=======
+                                    <x-search />
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                     <div class="col-12 col-md-6 col-lg-6 px-0">
                                         <div class="dataTables_length d-flex justify-content-end mt-3 mt-lg-0 mt-xl-0">
                                             <a href="{{ route('accommodation.create') }}" class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">

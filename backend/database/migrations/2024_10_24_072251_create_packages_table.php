@@ -17,8 +17,11 @@ return new class extends Migration {
             $table->text('highlights')->nullable();
             $table->text('itinerary')->nullable();
             $table->text('terms_and_conditions')->nullable();
+<<<<<<< HEAD
             $table->text('included')->nullable();
             $table->text('not_included')->nullable();
+=======
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
             $table->integer('days');
             $table->decimal('price', 8, 2);
             $table->boolean('status'); 

@@ -50,7 +50,6 @@
                                 </div>
                             
                                 <button type="submit" class="btn btn-primary btn-block rounded-pill mb-4">Update
-                                    <x-spinner />
                                 </button>
                             </form>
                         </div>

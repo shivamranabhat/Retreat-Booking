@@ -7,6 +7,11 @@ use App\Models\Accommodation;
 use App\Models\Category;
 use App\Models\Instructor;
 use App\Models\Location;
+<<<<<<< HEAD
+=======
+use App\Models\Inclusion;
+use App\Models\Exclusion;
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -29,6 +34,27 @@ class PackageController extends Controller
         return view('admin.packages.index', compact('packages'));
     }
 
+<<<<<<< HEAD
+=======
+    public function uploadPackageImage(Request $request)
+    {
+        if ($request->hasFile('upload')) {
+            $uploadedFile = $request->file('upload');
+            // Generate a unique file name
+            $fileName = $uploadedFile->getClientOriginalName();
+            // Move the file to the desired directory
+            $uploadedFile->move(public_path('storage/packages'), $fileName);
+            // Construct the URL to the uploaded file
+            $url = asset('storage/packages/' . $fileName);
+            // Return JSON response
+            return response()->json(['file' => $fileName, 'uploaded' => 1, 'url' => $url]);
+        } else {
+            // Handle case when no file is uploaded
+            return response()->json(['uploaded' => 0, 'error' => 'No file uploaded']);
+        }
+    }
+
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
     // Show the form for creating a new package
     public function create()
     {
@@ -42,13 +68,19 @@ class PackageController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:100',
             'images.*' => 'nullable|file|mimes:jpg,jpeg,png,gif',
+<<<<<<< HEAD
             'summary' => 'nullable|string|max:1000',
             'features' => 'nullable|string|max:1000',
             'description' => 'nullable|string|max:1000',
+=======
+            'summary' => 'required|string|max:1000',
+            'features' => 'nullable|string|max:1000',
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
             'highlights' => 'nullable|string|max:1000',
             'itinerary' => 'nullable|string|max:1000',
             'category' => 'nullable|string|max:100',
             'terms_and_conditions' => 'nullable|string|max:1000',
+<<<<<<< HEAD
             'days' => 'nullable|integer',
             'price' => 'nullable|numeric',
             'included' => 'nullable|string|max:1000',
@@ -59,13 +91,27 @@ class PackageController extends Controller
             'accommodations_id' => 'nullable|integer|exists:accommodations,id',
             'locations_id' => 'nullable|integer|exists:locations,id',
             'categories_id' => 'nullable|integer|exists:categories,id',
+=======
+            'days' => 'required|integer',
+            'price' => 'required|numeric',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'instructors_id' => 'required|integer|exists:instructors,id',
+            'accommodations_id' => 'required|integer|exists:accommodations,id',
+            'locations_id' => 'required|integer|exists:locations,id',
+            'categories_id' => 'required|integer|exists:categories,id',
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
         ]);
 
         // Process multiple image uploads
         $imagePaths = [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
+<<<<<<< HEAD
                 $path = $image->store('storage/packages/', 'public'); // Specify path for package images
+=======
+                $path = $image->store('packages/', 'public'); // Specify path for package images
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                 $imagePaths[] = $path;
             }
         }
@@ -73,9 +119,34 @@ class PackageController extends Controller
         $validatedData['images'] = json_encode($imagePaths);
         $validatedData['slug'] = Str::slug($validatedData['title']);
         $validatedData['status'] = 0;
+<<<<<<< HEAD
         Package::create($validatedData);
         dd($validatedData);
         return redirect()->route('packages.index')->with('success', 'Package created successfully!');
+=======
+        $package = Package::create($validatedData);
+        if ($request->has('inclusions')) {
+            foreach ($request->input('inclusions') as $inclusion) {
+                $inclusions = [
+                    'inclusion' => $inclusion['title'],
+                    'package_id' => $package->id,
+                ];
+    
+                Inclusion::create($inclusions);
+            }
+        }
+        if ($request->has('exclusions')) {
+            foreach ($request->input('exclusions') as $exclusion) {
+                $exclusions = [
+                    'exclusion' => $exclusion['title'],
+                    'package_id' => $package->id,
+                ];
+    
+                Exclusion::create($exclusions);
+            }
+        }
+        return redirect()->route('packages')->with('success', 'Package created successfully!');
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
     }
 
     // Display the specified package
@@ -110,8 +181,11 @@ class PackageController extends Controller
             'terms_and_conditions' => 'nullable|string|max:1000',
             'days' => 'nullable|integer',
             'price' => 'nullable|numeric',
+<<<<<<< HEAD
             'included' => 'nullable|string|max:1000',
             'not_included' => 'nullable|string|max:1000',
+=======
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date',
             'instructor_id' => 'nullable|integer|exists:instructors,id',
@@ -139,6 +213,33 @@ class PackageController extends Controller
         $validatedData['images'] = json_encode($newImagePaths ?? $imagePaths);
         $validatedData['slug'] = Str::slug($validatedData['title']);
         $package->update($validatedData);
+<<<<<<< HEAD
+=======
+        if ($request->has('inclusions')) {
+            foreach ($request->input('inclusions') as $inclusion) {
+                $inclusionData = [
+                    'inclusion' => $inclusion['title'],
+                    'package_id'=>$package->id,
+                ];
+                Inclusion::updateOrCreate(
+                    ['id' => $inclusion['id'] ?? null], 
+                    $inclusionData
+                );
+            }
+        }
+        if ($request->has('exclusions')) {
+            foreach ($request->input('exclusions') as $exclusion) {
+                $exclusionData = [
+                    'exclusion' => $exclusion['title'],
+                    'package_id'=>$package->id,
+                ];
+                Exclusion::updateOrCreate(
+                    ['id' => $exclusion['id'] ?? null], 
+                    $exclusionData
+                );
+            }
+        }
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
         return redirect()->route('packages')->with('success', 'Package updated successfully!');
     }
 
@@ -174,7 +275,26 @@ class PackageController extends Controller
                 }
             }
         }
+<<<<<<< HEAD
 
+=======
+        $inclusions = Inclusion::where('package_id',$package->id)->get();
+        $exclusions = Exclusion::where('package_id',$package->id)->get();
+        if($inclusions)
+        {
+
+            foreach ($inclusions as $inclusion) {
+                $inclusion->delete();
+            }
+        }
+        if($exclusions)
+        {
+
+            foreach ($exclusions as $exclusion) {
+                $exclusion->delete();
+            }
+        }
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
         $package->delete();
         return redirect()->route('packages')->with('success', 'Package deleted successfully.');
     }

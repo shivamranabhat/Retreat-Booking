@@ -10,12 +10,20 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::paginate(10);
+<<<<<<< HEAD
         return view('admin.categories.index', compact('categories'));
+=======
+        return view('admin.category.index', compact('categories'));
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
     }
 
     public function create()
     {
+<<<<<<< HEAD
         return view('admin.categories.create');
+=======
+        return view('admin.category.create');
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
     }
 
     public function store(Request $request)
@@ -28,6 +36,7 @@ class CategoryController extends Controller
         return redirect()->route('categories')->with('success', 'Category created successfully.');
     }
 
+<<<<<<< HEAD
     public function show(string $name)
     {
         $category = Category::where('name', $name)->firstOrFail();
@@ -47,13 +56,34 @@ class CategoryController extends Controller
         ]);
 
         $category = Category::where('name', $name)->firstOrFail();
+=======
+   
+    public function edit(string $slug)
+    {
+        $category = Category::whereSlug($slug)->firstOrFail();
+        return view('admin.category.edit', compact('category'));
+    }
+
+    public function update(Request $request, string $slug)
+    {
+        $category = Category::whereSlug($slug)->firstOrFail();
+        $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name,' . $category->name,
+        ]);
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
         $category->update($request->all());
         return redirect()->route('categories')->with('success', 'Category updated successfully.');
     }
 
+<<<<<<< HEAD
     public function destroy(string $name)
     {
         $category = Category::where('name', $name)->firstOrFail();
+=======
+    public function destroy(string $slug)
+    {
+        $category = Category::whereSlug($slug)->firstOrFail();
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
         $category->delete();
         return redirect()->route('categories')->with('success', 'Category deleted successfully.');
     }

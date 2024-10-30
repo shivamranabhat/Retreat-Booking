@@ -1,7 +1,11 @@
 <x-app-layout>
     <style>
         .ck-editor__editable {
+<<<<<<< HEAD
             min-height: 300px;
+=======
+            min-height: 150px;
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
             /* Set minimum height */
             height: auto;
             /* Allow it to grow */
@@ -14,6 +18,7 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
+<<<<<<< HEAD
                                 <h4 class="card-title">Add New Package</h4>
                             </div>
                             <div class="back">
@@ -21,6 +26,19 @@
                                     <i class="btn-inner">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 25 25" fill="none" stroke="currentColor">
                                             <path d="M24 12.001H2.914l5.294-5.295-.707-.707L1 12.501l6.5 6.5.707-.707-5.293-5.293H24v-1z" data-name="Left" />
+=======
+                                <h4 class="card-title">Create Package</h4>
+                            </div>
+                            <div class="back">
+                                <a href="{{ route('packages') }}"
+                                    class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
+                                    <i class="btn-inner">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 25 25"
+                                            fill="none" stroke="currentColor">
+                                            <path
+                                                d="M24 12.001H2.914l5.294-5.295-.707-.707L1 12.501l6.5 6.5.707-.707-5.293-5.293H24v-1z"
+                                                data-name="Left" />
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         </svg>
                                     </i>
                                 </a>
@@ -32,20 +50,38 @@
 
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="title">Title</label>
+<<<<<<< HEAD
                                     <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" required />
+=======
+                                    <input type="text" name="title" id="title"
+                                        class="form-control @error('title') is-invalid @enderror"
+                                        value="{{ old('title') }}" required />
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                     @error('title') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="row" id="image-preview-container"></div>
                                 <div class="row align-items-end">
                                     <div class="form-outline mb-3">
+<<<<<<< HEAD
                                         <label class="form-label" for="images">Images</label>
                                         <input type="file" name="images[]" id="images" class="form-control @error('images') is-invalid @enderror" accept="image/*" multiple required />
+=======
+                                        <label class="form-label" for="images">Gallery Images</label>
+                                        <input type="file" name="images[]" id="images"
+                                            class="form-control @error('images') is-invalid @enderror" accept="image/*"
+                                            multiple required />
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         @error('images') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="locations_id">Location</label>
+<<<<<<< HEAD
                                     <select name="locations_id" id="locations_id" class="form-control @error('locations_id') is-invalid @enderror">
+=======
+                                    <select name="locations_id" id="locations_id"
+                                        class="form-control @error('locations_id') is-invalid @enderror">
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         <option value="">Select Location</option>
                                         @foreach($dropdownData['locations'] as $location)
                                         <option value="{{ $location->id }}">{{ $location->name }}</option>
@@ -55,7 +91,12 @@
                                 </div>
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="categories_id">Category</label>
+<<<<<<< HEAD
                                     <select name="categories_id" id="categories_id" class="form-control @error('categories_id') is-invalid @enderror">
+=======
+                                    <select name="categories_id" id="categories_id"
+                                        class="form-control @error('categories_id') is-invalid @enderror">
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         <option value="">Select Category</option>
                                         @foreach($dropdownData['categories'] as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -63,12 +104,92 @@
                                     </select>
                                     @error('categories_id') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
+<<<<<<< HEAD
+=======
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <div class="d-flex flex-column flex-wrap align-items-start" style="gap: 3rem">
+                                            <div class="d-flex mt-3 flex-wrap align-items-center">
+                                                <div class="d-flex flex-wrap align-items-center mb-4 mb-sm-0">
+                                                    <h4 class="me-2 h4">Package</h4>
+                                                    <span> - In/Exclusion</span>
+                                                </div>
+                                            </div>
+                                            <ul class="d-flex nav nav-pills mb-5 profile-tab nav-slider gap-3"
+                                                data-toggle="slider-tab" id="profile-pills-tab" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link text-decoration-none show active"
+                                                        data-bs-toggle="tab" href="#inclusion" role="tab"
+                                                        aria-selected="true">Inclusion </a>
+                                                </li>
+
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link text-decoration-none" data-bs-toggle="tab"
+                                                        href="#exclusion" role="tab" aria-selected="false">Exclusion</a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="tab-content h-100">
+                                            <div id="inclusion" class="tab-pane h-100 fade active show" role="tabpanel">
+                                                <div class="row w-100 header-title d-flex justify-content-between">
+                                                    <h4 class="col-lg-8 card-title">Inclusion</h4>
+                                                    <p>List the inclusions</p>
+                                                </div>
+                                                <div class="body mt-2">
+                                                    <div class="form-outline mb-5">
+                                                        <label class="form-label" for="number_of_inclusions">Type the
+                                                            number of inclusions you want to create:</label>
+                                                        <div class="d-flex gap-3">
+                                                            <input class="form-control" type="number"
+                                                                id="number_of_inclusions" min="1">
+                                                            <button type="button"
+                                                                class="btn btn-sm btn-dark btn-block rounded-pill"
+                                                                id="generate-inclusions">Generate</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-outline mb-4">
+                                                        <div id="inclusions"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="exclusion" class="tab-pane h-100 fade" role="tabpanel">
+                                                <div class="row w-100 header-title d-flex justify-content-between">
+                                                    <h4 class="col-lg-8 card-title">Exclusion</h4>
+                                                    <p>List the exclusions</p>
+                                                </div>
+                                                <div class="body mt-2">
+                                                    <div class="form-outline mb-5">
+                                                        <label class="form-label" for="number_of_exclusions">Type the
+                                                            number of exclusions you want to create:</label>
+                                                        <div class="d-flex gap-3">
+                                                            <input class="form-control" type="number"
+                                                                id="number_of_exclusions" min="1">
+                                                            <button type="button"
+                                                                class="btn btn-sm btn-dark btn-block rounded-pill"
+                                                                id="generate-exclusions">Generate</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-outline mb-4">
+                                                        <div id="exclusions"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                 @php
                                 $fields = ['summary',
                                 'features',
                                 'description',
                                 'highlights',
                                 'itinerary',
+<<<<<<< HEAD
                                 'terms_and_conditions',
                                 'included',
                                 'not_included'];
@@ -85,6 +206,17 @@
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="instructors_id">Instructor</label>
                                     <select name="instructors_id" id="instructors_id" class="form-control @error('instructors_id') is-invalid @enderror">
+=======
+                                'terms_and_conditions'];
+                                @endphp
+
+
+
+                                <div class="form-outline mb-3">
+                                    <label class="form-label" for="instructors_id">Instructor</label>
+                                    <select name="instructors_id" id="instructors_id"
+                                        class="form-control @error('instructors_id') is-invalid @enderror">
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         <option value="">Select Instructor</option>
                                         @foreach($dropdownData['instructors'] as $instructor)
                                         <option value="{{ $instructor->id }}">{{ $instructor->name }}</option>
@@ -94,7 +226,12 @@
                                 </div>
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="accommodations_id">Accommodation</label>
+<<<<<<< HEAD
                                     <select name="accommodations_id" id="accommodations_id" class="form-control @error('accommodations_id') is-invalid @enderror">
+=======
+                                    <select name="accommodations_id" id="accommodations_id"
+                                        class="form-control @error('accommodations_id') is-invalid @enderror">
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         <option value="">Select Accommodation</option>
                                         @foreach($dropdownData['accommodations'] as $accommodation)
                                         <option value="{{ $accommodation->id }}">{{ $accommodation->name }}</option>
@@ -104,13 +241,25 @@
                                 </div>
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="start_date">Start Date</label>
+<<<<<<< HEAD
                                     <input type="date" name="start_date" id="start_date" class="form-control @error('start_date') is-invalid @enderror" value="{{ old('start_date') }}" required />
+=======
+                                    <input type="date" name="start_date" id="start_date"
+                                        class="form-control @error('start_date') is-invalid @enderror"
+                                        value="{{ old('start_date') }}" required />
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                     @error('start_date') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="end_date">End Date</label>
+<<<<<<< HEAD
                                     <input type="date" name="end_date" id="end_date" class="form-control @error('end_date') is-invalid @enderror" value="{{ old('end_date') }}" required />
+=======
+                                    <input type="date" name="end_date" id="end_date"
+                                        class="form-control @error('end_date') is-invalid @enderror"
+                                        value="{{ old('end_date') }}" required />
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                     @error('end_date') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
@@ -121,12 +270,98 @@
 
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="price">Package Price</label>
+<<<<<<< HEAD
                                     <input type="number" name="price" id="price" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}" required />
                                     @error('price') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
 
                                 <button type="submit" class="btn btn-primary btn-block rounded-pill mb-3">Create</button>
+=======
+                                    <input type="number" name="price" id="price"
+                                        class="form-control @error('price') is-invalid @enderror"
+                                        value="{{ old('price') }}" required />
+                                    @error('price') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="d-flex flex-column flex-wrap align-items-start" style="gap: 3rem">
+                                            <div class="d-flex mt-3 flex-wrap align-items-center">
+                                                <div class="d-flex flex-wrap align-items-center mb-4 mb-sm-0">
+                                                    <h4 class="me-2 h4">Package</h4>
+                                                    <span> - In/Exclusion</span>
+                                                </div>
+                                            </div>
+                                            <ul class="d-flex nav nav-pills mb-5 profile-tab nav-slider gap-3"
+                                                data-toggle="slider-tab" id="profile-pills-tab" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link text-decoration-none show active"
+                                                        data-bs-toggle="tab" href="#inclusions" role="tab"
+                                                        aria-selected="true">Inclusions </a>
+                                                </li>
+
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link text-decoration-none" data-bs-toggle="tab"
+                                                        href="#exclusions" role="tab" aria-selected="false">Exclusions</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="tab-content h-100">
+                                            <div id="inclusion" class="tab-pane h-100 fade active show" role="tabpanel">
+                                                <div class="row w-100 header-title d-flex justify-content-between">
+                                                    <h4 class="col-lg-8 card-title">Inclusion</h4>
+                                                    <p>List the inclusions</p>
+                                                </div>
+                                                <div class="body mt-2">
+                                                    <div class="form-outline mb-5">
+                                                        <label class="form-label" for="number_of_inclusions">Type the number of inclusions you want to create:</label>
+                                                        <div class="d-flex gap-3">
+                                                            <input class="form-control" type="number" id="number_of_inclusions" min="1">
+                                                            <button type="button" class="btn btn-sm btn-dark btn-block rounded-pill" id="generate-inclusions">Generate</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-outline mb-4">
+                                                        <div id="inclusions"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div id="exclusion" class="tab-pane h-100 fade" role="tabpanel">
+                                                <div class="row w-100 header-title d-flex justify-content-between">
+                                                    <h4 class="col-lg-8 card-title">Exclusion</h4>
+                                                    <p>List the exclusions</p>
+                                                </div>
+                                                <div class="body mt-2">
+                                                    <div class="form-outline mb-5">
+                                                        <label class="form-label" for="number_of_exclusions">Type the number of exclusions you want to create:</label>
+                                                        <div class="d-flex gap-3">
+                                                            <input class="form-control" type="number" id="number_of_exclusions" min="1">
+                                                            <button type="button" class="btn btn-sm btn-dark btn-block rounded-pill" id="generate-exclusions">Generate</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-outline mb-4">
+                                                        <div id="exclusions"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @foreach ($fields as $field)
+                                <div class="form-outline mb-3">
+                                    <label class="form-label text-capitalize" for="{{ $field }}">{{
+                                        ucfirst(str_replace('_', ' ', $field)) }}</label>
+                                    <textarea name="{{ $field }}" id="{{ $field }}"
+                                        class="form-control @error($field) is-invalid @enderror">{{ old($field) }}</textarea>
+                                    @error($field) <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                @endforeach
+                                <button type="submit"
+                                    class="btn btn-primary btn-block rounded-pill mb-3">Create</button>
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                             </form>
                         </div>
                     </div>
@@ -136,6 +371,43 @@
 
         @push('scripts')
         <script>
+<<<<<<< HEAD
+=======
+            document.getElementById('generate-inclusions').addEventListener('click', function() {
+                let numberOfInclusions = document.getElementById('number_of_inclusions').value;
+                let inclusionsContainer = document.getElementById('inclusions');
+                inclusionsContainer.innerHTML = '';
+                
+                if (numberOfInclusions > 0) {
+                    for (let i = 0; i < numberOfInclusions; i++) {
+                        let inclusionHTML = `
+                            <div class="form-outline mb-3">
+                                <label class="form-label" for="inclusion_${i}">Inclusion ${i + 1}</label>
+                                <textarea class="form-control" rows="1" name="inclusions[${i}][title]" id="inclusion_${i}"></textarea>
+                            </div>`;
+                        inclusionsContainer.insertAdjacentHTML('beforeend', inclusionHTML);
+                    }
+                }
+            });
+
+            document.getElementById('generate-exclusions').addEventListener('click', function() {
+                let numberOfExclusions = document.getElementById('number_of_exclusions').value;
+                let exclusionsContainer = document.getElementById('exclusions');
+                exclusionsContainer.innerHTML = '';
+                
+                if (numberOfExclusions > 0) {
+                    for (let i = 0; i < numberOfExclusions; i++) {
+                        let exclusionHTML = `
+                            <div class="form-outline mb-3">
+                                <label class="form-label" for="exclusion_${i}">Exclusion ${i + 1}</label>
+                                <textarea class="form-control" rows="1" name="exclusions[${i}][title]" id="exclusion_${i}"></textarea>
+                            </div>`;
+                        exclusionsContainer.insertAdjacentHTML('beforeend', exclusionHTML);
+                    }
+                }
+            });
+           
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
             document.addEventListener('DOMContentLoaded', function() {
                 const startDateInput = document.getElementById('start_date');
                 const endDateInput = document.getElementById('end_date');
@@ -212,7 +484,11 @@
                 function initializeCKEditor(fieldId) {
                     CKEDITOR.ClassicEditor.create(document.getElementById(fieldId), {
                         ckfinder: {
+<<<<<<< HEAD
                             uploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}",
+=======
+                            uploadUrl: "{{route('package.upload',['_token'=>csrf_token()])}}",
+>>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                         },
                         height: 500,
                         toolbar: {
