@@ -1,11 +1,7 @@
 <x-app-layout>
     <style>
         .ck-editor__editable {
-<<<<<<< HEAD
-            min-height: 300px;
-=======
             min-height: 150px;
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
             height: auto;
         }
     </style>
@@ -19,12 +15,6 @@
                                 <h4 class="card-title">Edit Package</h4>
                             </div>
                             <div class="back">
-<<<<<<< HEAD
-                                <a href="{{ route('packages') }}" class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
-                                    <i class="btn-inner">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 25 25" fill="none" stroke="currentColor">
-                                            <path d="M24 12.001H2.914l5.294-5.295-.707-.707L1 12.501l6.5 6.5.707-.707-5.293-5.293H24v-1z" data-name="Left" />
-=======
                                 <a href="{{ route('packages') }}"
                                     class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
                                     <i class="btn-inner">
@@ -33,33 +23,19 @@
                                             <path
                                                 d="M24 12.001H2.914l5.294-5.295-.707-.707L1 12.501l6.5 6.5.707-.707-5.293-5.293H24v-1z"
                                                 data-name="Left" />
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         </svg>
                                     </i>
                                 </a>
                             </div>
                         </div>
                         <div class="card-body mt-2">
-<<<<<<< HEAD
-                            <form action="{{ route('package.update', $package->slug) }}" method="POST" enctype="multipart/form-data">
-=======
                             <form action="{{ route('package.update', $package->slug) }}" method="POST"
                                 enctype="multipart/form-data">
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                 @csrf
                                 @method('PUT')
 
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="title">Title</label>
-<<<<<<< HEAD
-                                    <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', $package->title) }}" required />
-                                    @error('title') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="row">
-                                    <div class="d-flex flex-wrap" id="image-preview-area" style="gap: 10px;">
-                                        <!-- Previews will be inserted here -->
-=======
                                     <input type="text" name="title" id="title"
                                         class="form-control @error('title') is-invalid @enderror"
                                         value="{{ old('title', $package->title) }}" required />
@@ -68,17 +44,12 @@
 
                                 <div class="row mb-3">
                                     <div class="d-flex flex-wrap" id="image-preview-area" style="gap: 10px;">
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         @if (!empty($package->images))
                                         @php $images = json_decode($package->images, true); @endphp
                                         @foreach ($images as $image)
                                         <div class="image-container">
-<<<<<<< HEAD
-                                            <img src="{{ asset('storage/' . $image) }}" style="width: 100px;" class="img-fluid rounded" />
-=======
                                             <img src="{{ asset('storage/' . $image) }}" style="width: 100px;"
                                                 class="img-fluid rounded" />
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         </div>
                                         @endforeach
                                         @endif
@@ -86,34 +57,22 @@
                                 </div>
                                 <div class="row align-items-end">
                                     <div class="form-outline mb-3">
-<<<<<<< HEAD
-                                        <label class="form-label" for="images">Upload Images</label>
-                                        <input type="file" name="images[]" id="images" class="form-control @error('images') is-invalid @enderror" accept="image/*" multiple />
-=======
                                         <label class="form-label" for="images">Gallery Images</label>
                                         <input type="file" name="images[]" id="images"
                                             class="form-control @error('images') is-invalid @enderror" accept="image/*"
                                             multiple />
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         @error('images') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
 
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="locations_id">Location</label>
-<<<<<<< HEAD
-                                    <select name="locations_id" id="locations_id" class="form-control @error('locations_id') is-invalid @enderror">
-                                        <option value="">Select Location</option>
-                                        @foreach($dropdownData['locations'] as $location)
-                                        <option value="{{ $location->id }}" {{ $location->id == old('locations_id', $package->locations_id) ? 'selected' : '' }}>{{ $location->name }}</option>
-=======
                                     <select name="locations_id" id="locations_id"
                                         class="form-control @error('locations_id') is-invalid @enderror">
                                         <option value="">Select Location</option>
                                         @foreach($dropdownData['locations'] as $location)
                                         <option value="{{ $location->id }}" {{ $location->id == old('locations_id',
                                             $package->locations_id) ? 'selected' : '' }}>{{ $location->name }}</option>
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         @endforeach
                                     </select>
                                     @error('locations_id') <span class="text-danger">{{ $message }}</span> @enderror
@@ -121,54 +80,16 @@
 
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="categories_id">Category</label>
-<<<<<<< HEAD
-                                    <select name="categories_id" id="categories_id" class="form-control @error('categories_id') is-invalid @enderror">
-                                        <option value="">Select Category</option>
-                                        @foreach($dropdownData['categories'] as $category)
-                                        <option value="{{ $category->id }}" {{ $category->id == old('categories_id', $package->categories_id) ? 'selected' : '' }}>{{ $category->name }}</option>
-=======
                                     <select name="categories_id" id="categories_id"
                                         class="form-control @error('categories_id') is-invalid @enderror">
                                         <option value="">Select Category</option>
                                         @foreach($dropdownData['categories'] as $category)
                                         <option value="{{ $category->id }}" {{ $category->id == old('categories_id',
                                             $package->categories_id) ? 'selected' : '' }}>{{ $category->name }}</option>
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         @endforeach
                                     </select>
                                     @error('categories_id') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
-<<<<<<< HEAD
-
-                                @php
-                                $fields = [
-                                'summary',
-                                'features',
-                                'description',
-                                'highlights',
-                                'itinerary',
-                                'terms_and_conditions',
-                                'included',
-                                'not_included'
-                                ];
-                                @endphp
-
-                                @foreach ($fields as $field)
-                                <div class="form-outline mb-3">
-                                    <label class="form-label" for="{{ $field }}">{{ ucfirst(str_replace('_', ' ', $field)) }}</label>
-                                    <textarea name="{{ $field }}" id="{{ $field }}" class="form-control @error($field) is-invalid @enderror">{{ old($field, $package->$field) }}</textarea>
-                                    @error($field) <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-                                @endforeach
-
-
-                                <div class="form-outline mb-3">
-                                    <label class="form-label" for="instructors_id">Instructor</label>
-                                    <select name="instructors_id" id="instructors_id" class="form-control @error('instructors_id') is-invalid @enderror">
-                                        <option value="">Select Instructor</option>
-                                        @foreach($dropdownData['instructors'] as $instructor)
-                                        <option value="{{ $instructor->id }}" {{ $instructor->id == old('instructors_id', $package->instructors_id) ? 'selected' : '' }}>{{ $instructor->name }}</option>
-=======
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="d-flex flex-column flex-wrap align-items-start" style="gap: 3rem">
@@ -290,7 +211,6 @@
                                         <option value="{{ $instructor->id }}" {{ $instructor->id ==
                                             old('instructors_id', $package->instructors_id) ? 'selected' : '' }}>{{
                                             $instructor->name }}</option>
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         @endforeach
                                     </select>
                                     @error('instructors_id') <span class="text-danger">{{ $message }}</span> @enderror
@@ -298,20 +218,6 @@
 
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="accommodations_id">Accommodation</label>
-<<<<<<< HEAD
-                                    <select name="accommodations_id" id="accommodations_id" class="form-control @error('accommodations_id') is-invalid @enderror">
-                                        <option value="">Select Accommodation</option>
-                                        @foreach($dropdownData['accommodations'] as $accommodation)
-                                        <option value="{{ $accommodation->id }}" {{ $accommodation->id == old('accommodations_id', $package->accommodations_id) ? 'selected' : '' }}>{{ $accommodation->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('accommodations_id') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="form-outline mb-3">
-                                    <label class="form-label" for="start_date">Starting Date</label>
-                                    <input type="date" name="start_date" id="start_date" class="form-control @error('start_date') is-invalid @enderror" value="{{ old('start_date', $package->start_date) }}" required />
-=======
                                     <select name="accommodations_id" id="accommodations_id"
                                         class="form-control @error('accommodations_id') is-invalid @enderror">
                                         <option value="">Select Accommodation</option>
@@ -329,19 +235,14 @@
                                     <input type="date" name="start_date" id="start_date"
                                         class="form-control @error('start_date') is-invalid @enderror"
                                         value="{{ old('start_date', $package->start_date) }}" required />
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                     @error('start_date') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="end_date">End Date</label>
-<<<<<<< HEAD
-                                    <input type="date" name="end_date" id="end_date" class="form-control @error('end_date') is-invalid @enderror" value="{{ old('end_date', $package->end_date) }}" required />
-=======
                                     <input type="date" name="end_date" id="end_date"
                                         class="form-control @error('end_date') is-invalid @enderror"
                                         value="{{ old('end_date', $package->end_date) }}" required />
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                     @error('end_date') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
@@ -352,13 +253,6 @@
 
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="price">Package Price</label>
-<<<<<<< HEAD
-                                    <input type="number" name="price" id="price" class="form-control @error('price') is-invalid @enderror" value="{{ old('price', $package->price) }}" required />
-                                    @error('price') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-
-                                <button type="submit" class="btn btn-primary btn-block rounded-pill mb-3">Update</button>
-=======
                                     <input type="number" name="price" id="price"
                                         class="form-control @error('price') is-invalid @enderror"
                                         value="{{ old('price', $package->price) }}" required />
@@ -387,7 +281,6 @@
                                
                                 <button type="submit"
                                     class="btn btn-primary btn-block rounded-pill mb-3">Update</button>
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                             </form>
                         </div>
                     </div>
@@ -397,8 +290,6 @@
 
         @push('scripts')
         <script>
-<<<<<<< HEAD
-=======
             document.getElementById('generate-inclusions').addEventListener('click', function() {
                 let numberOfInclusions = parseInt(document.getElementById('number_of_inclusions').value);
                 let inclusionsContainer = document.getElementById('inclusions');
@@ -431,7 +322,6 @@
             });
 
 
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
             document.addEventListener('DOMContentLoaded', function() {
                 const startDateInput = document.getElementById('start_date');
                 const endDateInput = document.getElementById('end_date');
@@ -499,11 +389,7 @@
                 function initializeCKEditor(fieldId) {
                     CKEDITOR.ClassicEditor.create(document.getElementById(fieldId), {
                         ckfinder: {
-<<<<<<< HEAD
-                            uploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}",
-=======
                             uploadUrl: "{{route('package.upload',['_token'=>csrf_token()])}}",
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                         },
                         height: 500,
                         toolbar: {

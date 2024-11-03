@@ -5,11 +5,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-<<<<<<< HEAD
-                            <h4 class="card-title">Package Management</h4>
-=======
                             <h4 class="card-title">Package</h4>
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                         </div>
                     </div>
                     <div class="card-body">
@@ -25,11 +21,7 @@
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                                     </svg>
                                                 </i>
-<<<<<<< HEAD
-                                                <span>Create Package</span>
-=======
                                                 <span>Create</span>
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                             </a>
                                         </div>
                                     </div>
@@ -89,21 +81,6 @@
                                                         </form>
 
                                                         <!-- Modal -->
-<<<<<<< HEAD
-                                                        <div class="modal fade" id="delete_{{ $package->slug }}" tabindex="-1" role="dialog" aria-labelledby="deleteTitle" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-body text-center">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#D21312" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
-                                                                            <path d="M7.938 1.016a.5.5 0 0 1 .124.14l5.5 6.5a.5.5 0 0 1-.124.657l-11 7a.5.5 0 0 1-.758-.657l11-7-5.5-6.5a.5.5 0 0 1-.124-.14A.5.5 0 0 1 7.938 1.016zM7.5 3.5v4h1V3.5h-1zm0 5v1h1v-1h-1z" />
-                                                                        </svg>
-                                                                        <h4>Are you sure?</h4>
-                                                                        <p>Do you really want to delete this package?</p>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                                        <button type="submit" class="btn btn-danger" form="delete-package-form-{{ $package->slug }}">Delete</button>
-=======
                                                         <div class="modal fade" id="delete_{{ $package->slug }}" tabindex="-1" role="dialog"
                                                             aria-labelledby="deleteTitle" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-centered"
@@ -135,7 +112,6 @@
                                                                             <button type="submit"
                                                                                 class="btn btn-danger rounded-pill">Yes</button>
                                                                         </form>
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                                                     </div>
                                                                 </div>
                                                             </div>

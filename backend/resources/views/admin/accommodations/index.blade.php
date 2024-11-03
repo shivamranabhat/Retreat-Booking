@@ -12,19 +12,15 @@
                         <div class="table-responsive">
                             <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap5">
                                 <div class="row align-items-center">
-<<<<<<< HEAD
                                     <div class="col-12 col-md-6 col-lg-6 px-0">
                                         <form action="{{ route('accommodations') }}" method="GET" class="d-flex justify-content-end mt-3 mt-lg-0 mt-xl-0">
                                             <input type="text" name="search" value="{{ request()->input('search') }}" class="form-control" placeholder="Search accommodations...">
                                             <button type="submit" class="btn btn-primary ms-2">Search</button>
                                         </form>
                                     </div>
-=======
-                                    <x-search />
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                     <div class="col-12 col-md-6 col-lg-6 px-0">
                                         <div class="dataTables_length d-flex justify-content-end mt-3 mt-lg-0 mt-xl-0">
-                                            <a href="{{ route('accommodation.create') }}" class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
+                                            <a href="{{ route('accomodation.create') }}" class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
                                                 <i class="btn-inner">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>

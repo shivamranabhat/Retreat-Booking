@@ -1,11 +1,7 @@
 <x-app-layout>
     <style>
         .ck-editor__editable {
-<<<<<<< HEAD
-            min-height: 300px;
-=======
             min-height: 150px;
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
             /* Set minimum height */
             height: auto;
             /* Allow it to grow */
@@ -18,15 +14,6 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
-<<<<<<< HEAD
-                                <h4 class="card-title">Add New Package</h4>
-                            </div>
-                            <div class="back">
-                                <a href="{{ route('packages') }}" class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
-                                    <i class="btn-inner">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 25 25" fill="none" stroke="currentColor">
-                                            <path d="M24 12.001H2.914l5.294-5.295-.707-.707L1 12.501l6.5 6.5.707-.707-5.293-5.293H24v-1z" data-name="Left" />
-=======
                                 <h4 class="card-title">Create Package</h4>
                             </div>
                             <div class="back">
@@ -38,7 +25,6 @@
                                             <path
                                                 d="M24 12.001H2.914l5.294-5.295-.707-.707L1 12.501l6.5 6.5.707-.707-5.293-5.293H24v-1z"
                                                 data-name="Left" />
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         </svg>
                                     </i>
                                 </a>
@@ -50,38 +36,25 @@
 
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="title">Title</label>
-<<<<<<< HEAD
-                                    <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" required />
-=======
                                     <input type="text" name="title" id="title"
                                         class="form-control @error('title') is-invalid @enderror"
                                         value="{{ old('title') }}" required />
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                     @error('title') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="row" id="image-preview-container"></div>
                                 <div class="row align-items-end">
                                     <div class="form-outline mb-3">
-<<<<<<< HEAD
-                                        <label class="form-label" for="images">Images</label>
-                                        <input type="file" name="images[]" id="images" class="form-control @error('images') is-invalid @enderror" accept="image/*" multiple required />
-=======
                                         <label class="form-label" for="images">Gallery Images</label>
                                         <input type="file" name="images[]" id="images"
                                             class="form-control @error('images') is-invalid @enderror" accept="image/*"
                                             multiple required />
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         @error('images') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="locations_id">Location</label>
-<<<<<<< HEAD
-                                    <select name="locations_id" id="locations_id" class="form-control @error('locations_id') is-invalid @enderror">
-=======
                                     <select name="locations_id" id="locations_id"
                                         class="form-control @error('locations_id') is-invalid @enderror">
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         <option value="">Select Location</option>
                                         @foreach($dropdownData['locations'] as $location)
                                         <option value="{{ $location->id }}">{{ $location->name }}</option>
@@ -91,12 +64,8 @@
                                 </div>
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="categories_id">Category</label>
-<<<<<<< HEAD
-                                    <select name="categories_id" id="categories_id" class="form-control @error('categories_id') is-invalid @enderror">
-=======
                                     <select name="categories_id" id="categories_id"
                                         class="form-control @error('categories_id') is-invalid @enderror">
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         <option value="">Select Category</option>
                                         @foreach($dropdownData['categories'] as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -104,8 +73,6 @@
                                     </select>
                                     @error('categories_id') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
-<<<<<<< HEAD
-=======
                                 <div class="row mb-4">
                                     <div class="col-12">
                                         <div class="d-flex flex-column flex-wrap align-items-start" style="gap: 3rem">
@@ -182,31 +149,12 @@
                                         </div>
                                     </div>
                                 </div>
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                 @php
                                 $fields = ['summary',
                                 'features',
                                 'description',
                                 'highlights',
                                 'itinerary',
-<<<<<<< HEAD
-                                'terms_and_conditions',
-                                'included',
-                                'not_included'];
-                                @endphp
-
-                                @foreach ($fields as $field)
-                                <div class="form-outline mb-3">
-                                    <label class="form-label" for="{{ $field }}">{{ ucfirst($field) }}</label>
-                                    <textarea name="{{ $field }}" id="{{ $field }}" class="form-control @error($field) is-invalid @enderror">{{ old($field) }}</textarea>
-                                    @error($field) <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-                                @endforeach
-
-                                <div class="form-outline mb-3">
-                                    <label class="form-label" for="instructors_id">Instructor</label>
-                                    <select name="instructors_id" id="instructors_id" class="form-control @error('instructors_id') is-invalid @enderror">
-=======
                                 'terms_and_conditions'];
                                 @endphp
 
@@ -216,7 +164,6 @@
                                     <label class="form-label" for="instructors_id">Instructor</label>
                                     <select name="instructors_id" id="instructors_id"
                                         class="form-control @error('instructors_id') is-invalid @enderror">
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         <option value="">Select Instructor</option>
                                         @foreach($dropdownData['instructors'] as $instructor)
                                         <option value="{{ $instructor->id }}">{{ $instructor->name }}</option>
@@ -226,12 +173,8 @@
                                 </div>
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="accommodations_id">Accommodation</label>
-<<<<<<< HEAD
-                                    <select name="accommodations_id" id="accommodations_id" class="form-control @error('accommodations_id') is-invalid @enderror">
-=======
                                     <select name="accommodations_id" id="accommodations_id"
                                         class="form-control @error('accommodations_id') is-invalid @enderror">
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                         <option value="">Select Accommodation</option>
                                         @foreach($dropdownData['accommodations'] as $accommodation)
                                         <option value="{{ $accommodation->id }}">{{ $accommodation->name }}</option>
@@ -241,25 +184,17 @@
                                 </div>
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="start_date">Start Date</label>
-<<<<<<< HEAD
-                                    <input type="date" name="start_date" id="start_date" class="form-control @error('start_date') is-invalid @enderror" value="{{ old('start_date') }}" required />
-=======
                                     <input type="date" name="start_date" id="start_date"
                                         class="form-control @error('start_date') is-invalid @enderror"
                                         value="{{ old('start_date') }}" required />
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                     @error('start_date') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="end_date">End Date</label>
-<<<<<<< HEAD
-                                    <input type="date" name="end_date" id="end_date" class="form-control @error('end_date') is-invalid @enderror" value="{{ old('end_date') }}" required />
-=======
                                     <input type="date" name="end_date" id="end_date"
                                         class="form-control @error('end_date') is-invalid @enderror"
                                         value="{{ old('end_date') }}" required />
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                                     @error('end_date') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
@@ -270,14 +205,6 @@
 
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="price">Package Price</label>
-<<<<<<< HEAD
-                                    <input type="number" name="price" id="price" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}" required />
-                                    @error('price') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-
-
-                                <button type="submit" class="btn btn-primary btn-block rounded-pill mb-3">Create</button>
-=======
                                     <input type="number" name="price" id="price"
                                         class="form-control @error('price') is-invalid @enderror"
                                         value="{{ old('price') }}" required />
@@ -361,7 +288,6 @@
                                 @endforeach
                                 <button type="submit"
                                     class="btn btn-primary btn-block rounded-pill mb-3">Create</button>
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                             </form>
                         </div>
                     </div>
@@ -371,8 +297,6 @@
 
         @push('scripts')
         <script>
-<<<<<<< HEAD
-=======
             document.getElementById('generate-inclusions').addEventListener('click', function() {
                 let numberOfInclusions = document.getElementById('number_of_inclusions').value;
                 let inclusionsContainer = document.getElementById('inclusions');
@@ -407,7 +331,6 @@
                 }
             });
            
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
             document.addEventListener('DOMContentLoaded', function() {
                 const startDateInput = document.getElementById('start_date');
                 const endDateInput = document.getElementById('end_date');
@@ -484,11 +407,7 @@
                 function initializeCKEditor(fieldId) {
                     CKEDITOR.ClassicEditor.create(document.getElementById(fieldId), {
                         ckfinder: {
-<<<<<<< HEAD
-                            uploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}",
-=======
                             uploadUrl: "{{route('package.upload',['_token'=>csrf_token()])}}",
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                         },
                         height: 500,
                         toolbar: {

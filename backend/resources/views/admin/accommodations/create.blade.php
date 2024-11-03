@@ -6,11 +6,8 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
-<<<<<<< HEAD
-                                <h4 class="card-title">Add New Accommodation</h4>
-=======
+
                                 <h4 class="card-title">Accommodation</h4>
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                             </div>
                             <div class="back">
                                 <a href="{{ route('accommodations') }}" class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
@@ -27,11 +24,8 @@
                                 @csrf
 
                                 <div class="form-outline mb-4">
-<<<<<<< HEAD
                                     <label class="form-label" for="name">Accommodation Name</label>
-=======
-                                    <label class="form-label" for="name">Name</label>
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
+
                                     <input type="text" name="name" id="name"
                                         class="form-control @error('name') is-invalid @enderror"
                                         value="{{ old('name') }}" required />
@@ -81,11 +75,8 @@
                                     @enderror
                                 </div>
 
-<<<<<<< HEAD
-                                <button type="submit" class="btn btn-primary btn-block rounded-pill mb-3">Add Accommodation</button>
-=======
+
                                 <button type="submit" class="btn btn-primary btn-block rounded-pill mb-3">Create</button>
->>>>>>> e309fa3c7707d0235c4051d2cf80e7baae6d459d
                             </form>
                         </div>
                     </div>
