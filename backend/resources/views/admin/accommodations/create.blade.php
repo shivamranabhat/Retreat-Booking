@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <div class="card-body mt-3">
-                            <form action="{{ route('accommodation.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('accomodation.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-outline mb-4">
