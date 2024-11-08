@@ -4,19 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>Book Now</title>
     <link rel="stylesheet" href="./assets/css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="./src/output.css" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -63,7 +72,7 @@
                             USD $
                         </button>
                         <div
-                            class="currencies absolute w-[10rem] top-[2.7rem] mt-1 flex flex-col box-shadow-i opacity-0 invisible transition-opacity duration-300 ease-in-out group-hover:opacity-100 group-hover:visible bg-white">
+                            class="currencies absolute w-[10rem] top-[2.7rem] flex flex-col box-shadow-i opacity-0 invisible transition-opacity duration-300 ease-in-out group-hover:opacity-100 group-hover:visible bg-white">
                             <button
                                 class="border-none p-4 bg-white hover:bg-gray-200 transition-all hover:ease-in-out duration-200 text-sm outline-none flex gap-x-2 items-center">
                                 <img src="./assets/images/flags/aus.png" alt="us" class="w-6">
@@ -88,91 +97,153 @@
         </div>
     </section>
     <!-- nav section -->
-    <!-- contact section -->
-    <section class="contact flex flex-col gap-y-36 mt-16 px-6 md:px-28 lg:px-48 xl:px-56 py-14 md:py-20">
+    <!-- details section -->
+    <section
+        class="form flex flex-col gap-y-8 md:gap-y-12 mt-16 px-6 md:px-28 lg:px-48 xl:px-56 py-14 md:py-20">
         <div class="container mx-auto flex flex-col gap-y-6">
-            <h2 class="mb-16 text-center text-4xl leading-10 font-bold lg:leading-[50px] lg:text-5xl">Get in
-                touch with our 24/7 customer <br> support team</h2>
-            <div class="grid grid-cols-2 lg:grid-cols-3 gap-10">
-                <div class="col-span-2 lg:col-span-1 grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-col gap-6">
-                    <div
-                        class="pt-5 h-full flex flex-col items-center justify-between border border-solid border-gray-200 rounded-xl box-shadow-iii cursor-pointer lg:flex-1">
-                        <div class="mb-4 w-20 h-20 flex items-center justify-center rounded-full bg-[#00A6FF26]">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="fill-gray-600 size-6">
-                                <path
-                                    d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
-                                <path
-                                    d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
+            <div class="bread-crumb flex items-center gap-1">
+                <p class="text-sm text-gray-500">
+                    Home
+                </p>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-3">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+                <p class="text-sm text-gray-500">
+                    Retreat
+                </p>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-3">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+                <p class="text-sm text-gray-500">
+                    Yoga Retreat in Green Hills
+                </p>
+            </div>
+            <h2 class="text-4xl font-bold">Your Reservation</h2>
+            <div class="grid grid-cols-2 xl:grid-cols-5 gap-10">
+                <div class="col-span-2 border border-gray-300 p-4 rounded-xl flex flex-col gap-2">
+                    <img class="rounded-xl"
+                        src="https://bookretreats.com/cdn-cgi/image/width=1000,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/23k/23146/p_681784/1000_1643729026.jpg"
+                        alt="">
+                    <h5 class="text-lg font-semibold">4 Day Rejuvenating Himalayan Yoga Retreat in Pokhara, Nepal
+                    </h5>
+                    <div class="flex gap-x-4 items-center">
+                        <p class="text-sm flex gap-x-1 items-center text-gray-500">5.00 <svg
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF9B" class="size-4">
+                                <path fill-rule="evenodd"
+                                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                                    clip-rule="evenodd" />
                             </svg>
-                        </div><span class="block mb-1 text-2xl text-black font-bold">Email support</span><span
-                            class="block mb-8 text-center text-gray-600 px-9">Email us <br> <a href="#"
-                                class="underline">ishworgautam@gmail.com</a></span>
+                            <span class="text-xs mt-1">(20 reviews)</span>
+                        </p>
+                        <p class="text-sm flex gap-x-1 items-center text-gray-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF9B" class="size-4">
+                                <path fill-rule="evenodd"
+                                    d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Pokhara, Nepal
+                        </p>
                     </div>
-                    <div class="flex-none border border-solid border-gray-200 rounded-xl box-shadow-iii lg:flex-1">
-                        <div class="pt-5 h-full flex flex-col items-center justify-between">
-                            <div class="mb-4 w-20 h-20 flex items-center justify-center rounded-full bg-[#F5F0FF]">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                    class="fill-gray-600 size-6">
-                                    <path fill-rule="evenodd"
-                                        d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z"
-                                        clip-rule="evenodd" />
-                                </svg>
-
+                    <div class="h-px bg-gray-200 my-6">
+                    </div>
+                    <div class="details flex flex-col gap-4">
+                        <div class="date flex gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                                <path d="M3.5957 8.72873H19.1917" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M15.2764 12.146H15.2844" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M11.3936 12.146H11.4017" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M7.50293 12.146H7.51103" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M15.2764 15.5467H15.2844" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M11.3936 15.5467H11.4017" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M7.50293 15.5467H7.51103" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M14.9277 2.25V5.12943" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M7.85938 2.25V5.12943" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M15.0982 3.63181H7.68924C5.11963 3.63181 3.51465 5.06325 3.51465 7.69446V15.6129C3.51465 18.2854 5.11963 19.75 7.68924 19.75H15.09C17.6678 19.75 19.2646 18.3103 19.2646 15.6791V7.69446C19.2727 5.06325 17.6758 3.63181 15.0982 3.63181Z"
+                                    stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <div class="content flex justify-between w-full">
+                                <p class="text-gray-600" id="date">Date</p>
+                                <span class="text-gray-800">Nov 07, 2024</span>
                             </div>
-                            <span class="block mb-1 text-2xl text-black font-bold">Call to us</span><span
-                                class="block mb-8 text-center text-gray-600 px-9">Call us <br> <a href="#"
-                                    class="underline">+1 (415) 707-0547</a></span>
+                        </div>
+                        <div class="guest flex gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF9B" class="size-6">
+                                <path d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a2.25 2.25 0 0 1-.233.96 10.088 10.088 0 0 0 5.06-1.01.75.75 0 0 0 .42-.643 4.875 4.875 0 0 0-6.957-4.611 8.586 8.586 0 0 1 1.71 5.157v.003Z" />
+                              </svg>
+                              
+                            <div class="content flex justify-between w-full">
+                                <p class="text-gray-600" id="date">People</p>
+                                <span class="text-gray-800">2</span>
+                            </div>
                         </div>
                     </div>
+                    <div class="amount mt-4">
+                        <p class="text-gray-600 flex justify-between">Total Amount: <span
+                                class="font-semibold text-gray-800">$350 X 2</span></p>
+                    </div>
                 </div>
-                <form class="col-span-2 flex flex-col gap-6">
-                    <div class="input-field">
-                        <input
-                            class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out"
-                            type="text" wire:model="name" placeholder="Full Name">
-                    </div>
+                <div class="col-span-2 xl:col-span-3 flex flex-col gap-6">
+                    <h5 class="text-xl font-semibold">Check availability and plan your dream trip!</h5>
+                    <form class="col-span-2 flex flex-col gap-6">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                            <div class="input-field">
+                                <input
+                                    class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out"
+                                    type="text" wire:model="name" placeholder="Full Name">
+                            </div>
 
-                    <div class="input-field">
-                        <input
-                            class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out"
-                            type="email" wire:model="email" placeholder="Email Address">
-                    </div>
-                    <div class="input-field">
-                        <input
-                            class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out"
-                            type="email" wire:model="subject" placeholder="Subject">
-                    </div>
+                            <div class="input-field">
+                                <input
+                                    class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out"
+                                    type="email" wire:model="email" placeholder="Email Address">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                            <div class="input-field">
+                                <select name="" id=""
+                                    class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out">
+                                    <option value="">Shared Room : $150</option>
+                                    <option value="">Single Room : $350</option>
+                                </select>
+                            </div>
+                            <div class="input-field">
+                                <input
+                                    class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out"
+                                    type="number" wire:model="guest" placeholder="Number of people">
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <input
+                                class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out"
+                                type="text" id="arrival-date" wire:model="date" placeholder="Arrival date">
+                        </div>
+                        <div class="text-area">
+                            <textarea
+                                class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out h-32 lg:h-44"
+                                wire:model="message" placeholder="Message"></textarea>
+                        </div>
 
-                    <div class="text-area">
-                        <textarea
-                            class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out h-32 lg:h-56"
-                            wire:model="message" placeholder="Message"></textarea>
-                    </div>
-
-                    <button type="submit"
-                        class="font-semibold rounded-3xl flex items-center justify-center bg-main text-white px-6 py-3 hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all">Submit
-                    </button>
-                </form>
-
-            </div>
-        </div>
-        <div class="container mx-auto flex flex-col gap-y-10 mb-10">
-            <h2 class="text-center leading-10 font-semibold lg:leading-[50px] text-4xl">Connect with us</h2>
-            <div class="icons flex justify-center gap-10">
-                <a href="#" class="link box-shadow-iii border border-gray-300 rounded-lg p-4 cursor-pointer">
-                    <img class="w-8" src="./assets/images/facebook.png" alt="facebook">
-                </a>
-                <a href="#" class="link box-shadow-iii border border-gray-300 rounded-lg p-4 cursor-pointer">
-                    <img class="w-8" src="./assets/images/instagram.png" alt="Instagram">
-                </a>
-                <a href="#" class="link box-shadow-iii border border-gray-300 rounded-lg p-4 cursor-pointer">
-                    <img class="w-8" src="./assets/images/whatsapp.png" alt="Whatsapp">
-                </a>
+                        <button type="submit"
+                            class="font-semibold rounded-3xl flex items-center justify-center bg-main text-white px-6 py-3 hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all">Submit
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
-    <!-- contact section -->
+
     <!-- section footer -->
     <footer class="footer-section bg-[#EBF8F3] pt-10 pb-6 px-6 md:px-28 lg:px-48 xl:px-56">
         <div class="container grid grid-cols-1 lg:grid-cols-4 xl:grid-cols-7 gap-10">
@@ -308,12 +379,13 @@
         </div>
     </footer>
     <!-- section footer -->
-    <script src="./node_modules/preline/dist/preline.js"></script>
-
+    <script src="./node_modules/preline/dist/preline.js" defer></script>
+    <script src="./assets/js/slider.js"></script>
     <script>
-        flatpickr("#date", {
+        flatpickr("#arrival-date", {
             enableTime: false,
             dateFormat: "M d Y",
+            minDate: "today"
         });
 
     </script>
