@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Accommodation extends Model
+class RoomType extends Model
 {
     use HasFactory;
 
@@ -13,20 +13,17 @@ class Accommodation extends Model
         'name', 
         'image',  
         'description', 
-        'location', 
-        'contact',
-        'room_types',
+        'price', 
         'slug'
     ];
 
-    protected $table = 'accommodations'; 
+    protected $table = 'roomtypes'; 
 
     public function scopeFilter($query, array $filters)
     {
         if ($filters['search'] ?? false) {
             $query->where('name', 'like', '%' . $filters['search'] . '%')
-                ->orWhere('location', 'like', '%' . $filters['search'] . '%') 
-                ->orWhere('contact', 'like', '%' . $filters['search'] . '%');
+                ->orWhere('image', 'like', '%' . $filters['search'] . '%');
         }
     }
 }

@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Accommodation;
-
+use App\Models\RoomType;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class AccommodationController extends Controller
 {
+    protected function getDropdownData()
+    {
+        return [
+            'room_types' => RoomType::all()
+        ];
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -27,7 +34,8 @@ class AccommodationController extends Controller
      */
     public function create()
     {
-        return view('admin.accommodations.create');
+        $dropdownData = $this->getDropdownData();
+        return view('admin.accommodations.create', compact('dropdownData'));
     }
 
     /**
@@ -37,25 +45,40 @@ class AccommodationController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate multiple images
-            'description' => 'nullable|string',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required|string',
             'location' => 'nullable|string',
             'contact' => 'nullable|string',
+            'room_types' => 'nullable|array',
+            'room_types.*' => 'exists:roomtypes,id'
         ]);
-        $data = $request->all();
-        // Handle multiple images upload
+
+        // Initialize accommodation instance
+        $accommodation = new Accommodation();
+        $accommodation->name = $request->name;
+        $accommodation->description = $request->description;
+        $accommodation->location = $request->location;
+        $accommodation->contact = $request->contact;
+
+        // Store room types as JSON
+        if ($request->has('room_types')) {
+            $accommodation->room_types = json_encode($request->room_types);
+        }
+
+        // Store images if available
         if ($request->hasFile('images')) {
             $imagePaths = [];
             foreach ($request->file('images') as $image) {
-                $imagePaths[] = $image->store('accommodations', 'public'); // Store images in public storage
+                $imagePaths[] = $image->store('accommodation_images', 'public');
             }
-            $data['image'] = json_encode($imagePaths); // Convert array of paths to JSON
+            $accommodation->image = json_encode($imagePaths); // Save images as JSON
         }
-        $slug = Str::slug($request['name']);
-        Accommodation::create($data + ['slug' => $slug]);
 
+        $accommodation->slug = Str::slug($accommodation->name);
+        $accommodation->save();
         return redirect()->route('accommodations')->with('success', 'Accommodation created successfully!');
     }
+
 
 
     /**
@@ -73,7 +96,15 @@ class AccommodationController extends Controller
     public function edit(string $slug)
     {
         $accommodation = Accommodation::where('slug', $slug)->firstOrFail();
-        return view('admin.accommodations.edit', compact('accommodation'));
+
+        // Decode JSON fields
+        $accommodation->image = json_decode($accommodation->image, true);
+        $accommodation->room_types = json_decode($accommodation->room_types, true) ?? []; // Decoded as array for easy access
+
+        // Get all room types for selection
+        $roomTypes = RoomType::all();
+
+        return view('admin.accommodations.edit', compact('accommodation', 'roomTypes'));
     }
 
     /**
@@ -84,14 +115,26 @@ class AccommodationController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
             'location' => 'nullable|string',
             'contact' => 'nullable|string',
+            'room_types' => 'nullable|array',
+            'room_types.*' => 'exists:roomtypes,id'
         ]);
 
         $accommodation = Accommodation::where('slug', $slug)->firstOrFail();
 
-        // Check for new images
+        $accommodation->name = $request->name;
+        $accommodation->description = $request->description;
+        $accommodation->location = $request->location;
+        $accommodation->contact = $request->contact;
+
+        // Update room types as JSON
+        if ($request->has('room_types')) {
+            $accommodation->room_types = json_encode($request->room_types);
+        }
+
+        // Update images if new ones are uploaded
         if ($request->hasFile('images')) {
             // Delete old images
             if (!empty($accommodation->image)) {
@@ -104,22 +147,20 @@ class AccommodationController extends Controller
                 }
             }
 
-            // Handle new images upload
+            // Store new images
             $imagePaths = [];
             foreach ($request->file('images') as $image) {
-                $imagePaths[] = $image->store('accommodations', 'public'); // Store images in public storage
+                $imagePaths[] = $image->store('accommodation_images', 'public');
             }
-            $data['image'] = json_encode($imagePaths); // Convert array of paths to JSON
-
+            $accommodation->image = json_encode($imagePaths);
         }
-        // Update the accommodation with new data
-        $data = $request->all();
-        $data['slug'] = Str::slug($data['name']);
-        $data['image'] = $data['image'] ?? $accommodation->image;
-        $accommodation->update($data);
+
+        $accommodation->slug = Str::slug($accommodation->name);
+        $accommodation->save();
 
         return redirect()->route('accommodations')->with('success', 'Accommodation updated successfully!');
     }
+
 
 
     public function destroy(string $slug)

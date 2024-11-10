@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Accommodation</h4>
+                            <h4 class="card-title">Edit Accommodation</h4>
                         </div>
                         <div class="back">
                             <a href="{{ route('accommodations') }}" class="btn btn-primary btn-icon">
@@ -25,21 +25,31 @@
                     </div>
 
                     <div class="card-body mt-3">
-                        <form action="{{ route('accommodation.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('accommodation.update', $accommodation->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
+
                             <!-- Accommodation Name -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="name">Accommodation Name</label>
-                                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required />
+                                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
+                                    value="{{ old('name', $accommodation->name) }}" required />
                                 @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
 
-                            <!-- Images Upload -->
+                            <!-- Existing Images Preview and Upload New Images -->
                             <div class="form-outline mb-4">
                                 <label class="form-label">Images</label>
-                                <div class="row" id="image-preview-area"></div>
+                                <div class="row" id="image-preview-area">
+                                    <!-- Display Existing Images -->
+                                    @foreach($accommodation->images as $image)
+                                    <div class="col-2 mb-2">
+                                        <img src="{{ asset('storage/'.$image->path) }}" class="img-fluid rounded" style="width: 100px;" alt="Existing Image">
+                                    </div>
+                                    @endforeach
+                                </div>
                                 <input class="form-control @error('images.*') is-invalid @enderror" type="file" name="images[]" accept="image/*" multiple />
                                 @error('images.*')
                                 <span class="text-danger">{{ $message }}</span>
@@ -49,7 +59,7 @@
                             <!-- Description -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="description">Description</label>
-                                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" required>{{ old('description') }}</textarea>
+                                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" required>{{ old('description', $accommodation->description) }}</textarea>
                                 @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -58,7 +68,8 @@
                             <!-- Location -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="location">Location</label>
-                                <input type="text" name="location" id="location" class="form-control @error('location') is-invalid @enderror" value="{{ old('location') }}" />
+                                <input type="text" name="location" id="location" class="form-control @error('location') is-invalid @enderror"
+                                    value="{{ old('location', $accommodation->location) }}" />
                                 @error('location')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -67,7 +78,8 @@
                             <!-- Contact -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="contact">Contact</label>
-                                <input type="text" name="contact" id="contact" class="form-control @error('contact') is-invalid @enderror" value="{{ old('contact') }}" />
+                                <input type="text" name="contact" id="contact" class="form-control @error('contact') is-invalid @enderror"
+                                    value="{{ old('contact', $accommodation->contact) }}" />
                                 @error('contact')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -86,7 +98,7 @@
                                         @foreach($dropdownData['room_types'] as $roomType)
                                         <label class="flex items-center space-x-4 text-lg font-semibold">
                                             <input type="checkbox" name="room_types[]" value="{{ $roomType->id }}" aria-label="Room Type {{ $roomType->name }}"
-                                                {{ in_array($roomType->id, old('room_types', [])) ? 'checked' : '' }} class="h-5 w-5">
+                                                {{ in_array($roomType->id, old('room_types', $accommodation->room_types->pluck('id')->toArray())) ? 'checked' : '' }} class="h-5 w-5">
                                             <span>{{ $roomType->name }}</span>
                                         </label>
                                         @endforeach
@@ -97,7 +109,7 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-block mb-3">Create</button>
+                            <button type="submit" class="btn btn-primary btn-block mb-3">Update</button>
                         </form>
                     </div>
                 </div>
@@ -106,32 +118,7 @@
     </div>
 
     <script>
-        // Image Preview
-        document.querySelector('input[type="file"]').addEventListener('change', function(event) {
-            const files = event.target.files;
-            const previewArea = document.getElementById('image-preview-area');
-            previewArea.innerHTML = '';
-
-            Array.from(files).forEach(file => {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const imgContainer = document.createElement('div');
-                    imgContainer.classList.add('col-1');
-
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.alt = 'Accommodation Image Preview';
-                    img.style.width = '100px';
-                    img.classList.add('img-fluid', 'rounded');
-
-                    imgContainer.appendChild(img);
-                    previewArea.appendChild(imgContainer);
-                };
-                reader.readAsDataURL(file);
-            });
-        });
-
-        // Room Types Dropdown Toggle
+        // Toggle Room Types Dropdown
         document.addEventListener('click', function(event) {
             const dropdown = document.getElementById('room-types-dropdown');
             const selectedRoomTypes = document.getElementById('selected-room-types');

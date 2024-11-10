@@ -21,6 +21,7 @@ use App\Http\Middleware\AdminAuth;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\AccommodationController;
+use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\PageController;
 /*
 |--------------------------------------------------------------------------
@@ -107,6 +108,16 @@ Route::prefix('/dashboard')->group(function () {
         Route::get('/{slug}', 'edit')->name('accommodation.edit');
         Route::put('/update/{slug}', 'update')->name('accommodation.update');
         Route::delete('/delete/{slug}', 'destroy')->name('accommodation.destroy');
+
+    });
+    Route::prefix('/room-types')->controller(RoomTypeController::class)->group(function () {
+        Route::get('/', 'index')->name('room_types');
+        Route::get('/create', 'create')->name('room_type.create');
+        Route::post('/store', 'store')->name('room_type.store');
+        Route::get('/{slug}', 'edit')->name('room_type.edit');
+        Route::put('/update/{slug}', 'update')->name('room_type.update');
+        Route::delete('/delete/{slug}', 'destroy')->name('room_type.destroy');
+
     });
     Route::prefix('/packages')->controller(PackageController::class)->group(function () {
         Route::get('/', 'index')->name('packages');

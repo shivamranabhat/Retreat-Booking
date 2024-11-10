@@ -5,7 +5,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
-                            <h4 class="card-title">Create Category</h4>
+                            <h4 class="card-title">Edit Category</h4>
                             <div class="back">
                                 <a href="{{ route('categories') }}" class="btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
                                     <i class="btn-inner">
@@ -17,16 +17,17 @@
                             </div>
                         </div>
                         <div class="card-body mt-2">
-                            <form method="POST" action="{{ route('category.store') }}">
+                            <form method="POST" action="{{ route('category.update', $category->slug) }}">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="name">Category Name</label>
-                                    <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required />
+                                    <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $category->name) }}" required />
                                     @error('name')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <button type="submit" class="btn btn-success btn-block rounded-pill mb-3">Create</button>
+                                <button type="submit" class="btn btn-success btn-block rounded-pill mb-3">Update</button>
                             </form>
                         </div>
                     </div>

@@ -24,8 +24,9 @@ class CategoryController extends Controller
         $formFields = $request->validate([
             'name' => 'required|string|max:255|unique:categories,name',
         ]);
-        $slug = Str::slug($formFields['name']);
-        Category::create($formFields+['slug'=>$slug]);
+        $slug = Str::slug($request['name']);
+        Category::create($request->all() + ['slug' => $slug]);
+
         return redirect()->route('categories')->with('success', 'Category created successfully.');
     }
 
