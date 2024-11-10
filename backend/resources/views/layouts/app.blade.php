@@ -232,11 +232,9 @@
                             href="{{ route('accommodations') }}">
                             <i class="icon">
                                 <!-- New Icon for Accommodations -->
-                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                    class="icon-20">
-                                    <path d="M12 2L2 7v5h3v6h14v-6h3V7L12 2zm0 1.5l8 4-8 4-8-4 8-4z"
-                                        fill="currentColor" />
-                                </svg>
+                                <svg width="20" viewBox="0 0 24 24" fill="none" class="icon-20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 21H5M5 21H10M5 21V3M10 21H14M10 21V16L8 16C10 13.3333 14 13.3333 16 16L14 16V21M14 21H19M19 21H21M19 21V3M3 3H5M5 3H19M19 3H21M9 6.5H10M14 6.5H15M9 10.5H10M14 10.5H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
                             </i>
                             <span class="item-name">Accommodations</span>
                         </a>
@@ -471,7 +469,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link {{request()->segment(2) == 'subscribers' ? 'active' : ''}}" href="">
+                        <a class="nav-link {{request()->segment(2) == 'subscribers' ? 'active' : ''}}" href="{{route('subscribers')}}">
                             <i class="icon">
                                 <svg viewBox="0 0 24 24" fill="none" class="icon-20" width="25"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -537,6 +535,7 @@
                             <span class="item-name">Currency</span>
                         </a>
                     </li>
+
                     <li>
                         <hr class="hr-horizontal">
                     </li>
