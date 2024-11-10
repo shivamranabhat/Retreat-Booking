@@ -163,59 +163,76 @@
         </div>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-10">
             <div class="filter-options hidden lg:flex flex-col gap-y-6">
+                <h5 class="text-gray-800 text-lg font-medium">Filters</h5>
+                <div class="h-px w-full bg-gray-200"></div>
                 <div class="option flex flex-col gap-y-2">
-                    <h5 class="text-gray-600 text-gray-600 text-base font-medium">Atmosphere</h5>
+                    <h5 class="text-gray-600 text-base font-medium">Price</h5>
                     <div class="inputs flex justify-between">
                         <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                            <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
+                            <input type="radio" name="price" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
                                 id="">
-                            Women Only
+                                All
+                        </label>
+                        <span class="text-gray-500 text-sm">10</span>
+                    </div>
+                    <div class="inputs flex justify-between">
+                        <label for="" class="text-sm w-full flex gap-x-2 items-center">
+                            <input type="radio" name="price" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
+                                id="">
+                            $100-$200
                         </label>
                         <span class="text-gray-500 text-sm">30</span>
                     </div>
                     <div class="inputs flex justify-between">
                         <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                            <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
+                            <input type="radio" name="price" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
                                 id="">
-                            Family Friendly
+                                $200-$400
                         </label>
                         <span class="text-gray-500 text-sm">30</span>
                     </div>
                     <div class="inputs flex justify-between">
                         <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                            <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
+                            <input type="radio" name="price" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
                                 id="">
-                            Alcohol Free
+                                $400-$600
+                        </label>
+                        <span class="text-gray-500 text-sm">30</span>
+                    </div>
+                    <div class="inputs flex justify-between">
+                        <label for="" class="text-sm w-full flex gap-x-2 items-center">
+                            <input type="radio" name="price" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
+                                id="">
+                                $600+
                         </label>
                         <span class="text-gray-500 text-sm">30</span>
                     </div>
                 </div>
+              
                 <div class="h-px w-full bg-gray-200"></div>
                 <div class="option flex flex-col gap-y-2">
-                    <h5 class="text-gray-600 text-base font-medium">Skill Level</h5>
+                    <h5 class="text-gray-600 text-base font-medium">Locations</h5>
                     <div class="inputs flex justify-between">
                         <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                            <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
+                            <input type="radio" name="location" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
                                 id="">
-                            Beginner
+                                All
                         </label>
-                        <span class="text-gray-500 text-sm">30</span>
+                        <span class="text-gray-500 text-sm">10</span>
                     </div>
                     <div class="inputs flex justify-between">
                         <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                            <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
-                                id="">
-                            Intermediate
+                            <input type="radio" name="location" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name="">
+                            Pokhara
                         </label>
-                        <span class="text-gray-500 text-sm">30</span>
+                        <span class="text-gray-500 text-sm">10</span>
                     </div>
                     <div class="inputs flex justify-between">
                         <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                            <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
-                                id="">
-                            Advanced
+                            <input type="radio" name="location" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name="">
+                            Kathmandu
                         </label>
-                        <span class="text-gray-500 text-sm">30</span>
+                        <span class="text-gray-500 text-sm">20</span>
                     </div>
                 </div>
                 <div class="h-px w-full bg-gray-200"></div>
@@ -238,90 +255,15 @@
                         <span class="text-gray-500 text-sm">20</span>
                     </div>
                 </div>
+                
                 <div class="h-px w-full bg-gray-200"></div>
                 <div class="option flex flex-col gap-y-2">
-                    <h5 class="text-gray-600 text-base font-medium">Instruction Language</h5>
+                    <h5 class="text-gray-600 text-base font-medium">Days</h5>
                     <div class="inputs flex justify-between">
                         <label for="" class="text-sm w-full flex gap-x-2 items-center">
                             <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
                                 id="">
-                            English
-                        </label>
-                        <span class="text-gray-500 text-sm">36</span>
-                    </div>
-                    <div class="inputs flex justify-between">
-                        <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                            <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
-                                id="">
-                            Spanish
-                        </label>
-                        <span class="text-gray-500 text-sm">10</span>
-                    </div>
-                </div>
-                <div class="h-px w-full bg-gray-200"></div>
-                <div class="option flex flex-col gap-y-2">
-                    <h5 class="text-gray-600 text-gray-600 text-base font-medium">Atmosphere</h5>
-                    <div class="inputs flex justify-between">
-                        <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                            <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
-                                id="">
-                            Women Only
-                        </label>
-                        <span class="text-gray-500 text-sm">30</span>
-                    </div>
-                    <div class="inputs flex justify-between">
-                        <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                            <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
-                                id="">
-                            Family Friendly
-                        </label>
-                        <span class="text-gray-500 text-sm">30</span>
-                    </div>
-                    <div class="inputs flex justify-between">
-                        <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                            <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
-                                id="">
-                            Alcohol Free
-                        </label>
-                        <span class="text-gray-500 text-sm">30</span>
-                    </div>
-                </div>
-                <div class="h-px w-full bg-gray-200"></div>
-                <div class="option flex flex-col gap-y-2">
-                    <h5 class="text-gray-600 text-base font-medium">Skill Level</h5>
-                    <div class="inputs flex justify-between">
-                        <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                            <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
-                                id="">
-                            Beginner
-                        </label>
-                        <span class="text-gray-500 text-sm">30</span>
-                    </div>
-                    <div class="inputs flex justify-between">
-                        <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                            <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
-                                id="">
-                            Intermediate
-                        </label>
-                        <span class="text-gray-500 text-sm">30</span>
-                    </div>
-                    <div class="inputs flex justify-between">
-                        <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                            <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
-                                id="">
-                            Advanced
-                        </label>
-                        <span class="text-gray-500 text-sm">30</span>
-                    </div>
-                </div>
-                <div class="h-px w-full bg-gray-200"></div>
-                <div class="option flex flex-col gap-y-2">
-                    <h5 class="text-gray-600 text-base font-medium">Room Type</h5>
-                    <div class="inputs flex justify-between">
-                        <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                            <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
-                                id="">
-                            Private
+                            1-2 Days
                         </label>
                         <span class="text-gray-500 text-sm">10</span>
                     </div>
@@ -329,29 +271,17 @@
                         <label for="" class="text-sm w-full flex gap-x-2 items-center">
                             <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
                                 id="">
-                            Shared
+                            2-4 Days
                         </label>
                         <span class="text-gray-500 text-sm">20</span>
                     </div>
-                </div>
-                <div class="h-px w-full bg-gray-200"></div>
-                <div class="option flex flex-col gap-y-2">
-                    <h5 class="text-gray-600 text-base font-medium">Instruction Language</h5>
                     <div class="inputs flex justify-between">
                         <label for="" class="text-sm w-full flex gap-x-2 items-center">
                             <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
                                 id="">
-                            English
+                            5+ Days
                         </label>
-                        <span class="text-gray-500 text-sm">36</span>
-                    </div>
-                    <div class="inputs flex justify-between">
-                        <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                            <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF9B]" name=""
-                                id="">
-                            Spanish
-                        </label>
-                        <span class="text-gray-500 text-sm">10</span>
+                        <span class="text-gray-500 text-sm">20</span>
                     </div>
                 </div>
             </div>

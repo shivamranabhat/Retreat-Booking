@@ -38,46 +38,26 @@
 
 <body>
     <!-- nav section -->
-    <section class="navbar-section box-shadow-i py-4 px-6 md:px-28 lg:px-48 xl:px-56 fixed top-0 w-full bg-white z-10">
-        <div class="container mx-auto flex justify-between items-center">
+    <section class="navbar-section box-shadow-i fixed top-0 w-full bg-white z-10">
+        <div class="container mx-auto py-4 px-6 md:px-28 lg:px-48 xl:px-56 flex justify-between items-center">
             <a href="index.html" class="logo">
                 <img src="./assets/images/logo.svg" class="w-44" alt="logo">
             </a>
             <div class="links">
                 <ul class="hidden lg:flex gap-x-10">
-                    <li><a href="#"
-                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-300 transition-all duration-200 ease-in-out">About</a>
+                    <li><a href="about.html"
+                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-200 transition-all duration-200 ease-in-out">About</a>
                     </li>
-                    <li><a href="#"
-                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-300 transition-all duration-200 ease-in-out">FAQs</a>
+                    <li><a href="faq.html"
+                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-200 transition-all duration-200 ease-in-out">FAQs</a>
                     </li>
                     <li><a href="blogs.html"
-                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-300 transition-all duration-200 ease-in-out">Blogs</a>
+                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-200 transition-all duration-200 ease-in-out">Blogs</a>
                     </li>
-                    <li><a href="#"
-                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-300 transition-all duration-200 ease-in-out">Contact</a>
+                    <li><a href="contact.html"
+                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-200 transition-all duration-200 ease-in-out">Contact</a>
                     </li>
-                    <li class="relative group">
-                        <button class="border-none text-sm outline-none flex gap-x-2 items-center">
-                            <img src="./assets/images/flags/us.png" alt="us" class="w-6">
-                            USD $
-                        </button>
-                        <div
-                            class="currencies absolute w-[10rem] top-[2.7rem] mt-1 flex flex-col box-shadow-i opacity-0 invisible transition-opacity duration-300 ease-in-out group-hover:opacity-100 group-hover:visible bg-white">
-                            <button
-                                class="border-none p-4 bg-white hover:bg-gray-200 transition-all hover:ease-in-out duration-200 text-sm outline-none flex gap-x-2 items-center">
-                                <img src="./assets/images/flags/aus.png" alt="us" class="w-6">
-                                AUD $
-                            </button>
-                            <button
-                                class="border-none p-4 bg-white hover:bg-gray-200 transition-all hover:ease-in-out duration-200 text-sm outline-none flex gap-x-2 items-center">
-                                <img src="./assets/images/flags/uk.png" alt="us" class="w-6">
-                                GBP $
-                            </button>
-
-                        </div>
-                    </li>
-
+                    
                 </ul>
             </div>
             <div class="ham-btn lg:hidden flex flex-col gap-2">
@@ -85,6 +65,8 @@
                 <div class="line h-[0.2rem] w-5 bg-main rounded-xl"></div>
                 <div class="line h-[0.2rem] w-8 bg-main rounded-xl"></div>
             </div>
+        </div>
+        <div class="ham-menu hidden w-screen h-screen bg-white z-10">
         </div>
     </section>
     <!-- nav section -->
@@ -309,14 +291,8 @@
     </footer>
     <!-- section footer -->
     <script src="./node_modules/preline/dist/preline.js"></script>
-
-    <script>
-        flatpickr("#date", {
-            enableTime: false,
-            dateFormat: "M d Y",
-        });
-
-    </script>
+    <script src="./assets/js/ham.js"></script>
+    <script src="./assets/js/date.js"></script>
 
 </body>
 

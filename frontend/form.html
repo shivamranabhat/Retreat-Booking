@@ -47,44 +47,24 @@
 
 <body>
     <!-- nav section -->
-    <section class="navbar-section box-shadow-i py-4 px-6 md:px-28 lg:px-48 xl:px-56 fixed top-0 w-full bg-white z-10">
-        <div class="container mx-auto flex justify-between items-center">
+    <section class="navbar-section box-shadow-i fixed top-0 w-full bg-white z-10">
+        <div class="container mx-auto py-4 px-6 md:px-28 lg:px-48 xl:px-56 flex justify-between items-center">
             <a href="index.html" class="logo">
                 <img src="./assets/images/logo.svg" class="w-44" alt="logo">
             </a>
             <div class="links">
                 <ul class="hidden lg:flex gap-x-10">
-                    <li><a href="#"
-                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-300 transition-all duration-200 ease-in-out">About</a>
+                    <li><a href="about.html"
+                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-200 transition-all duration-200 ease-in-out">About</a>
                     </li>
-                    <li><a href="#"
-                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-300 transition-all duration-200 ease-in-out">FAQs</a>
+                    <li><a href="faq.html"
+                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-200 transition-all duration-200 ease-in-out">FAQs</a>
                     </li>
                     <li><a href="blogs.html"
-                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-300 transition-all duration-200 ease-in-out">Blogs</a>
+                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-200 transition-all duration-200 ease-in-out">Blogs</a>
                     </li>
-                    <li><a href="#"
-                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-300 transition-all duration-200 ease-in-out">Contact</a>
-                    </li>
-                    <li class="relative group">
-                        <button class="border-none text-sm outline-none flex gap-x-2 items-center">
-                            <img src="./assets/images/flags/us.png" alt="us" class="w-6">
-                            USD $
-                        </button>
-                        <div
-                            class="currencies absolute w-[10rem] top-[2.7rem] flex flex-col box-shadow-i opacity-0 invisible transition-opacity duration-300 ease-in-out group-hover:opacity-100 group-hover:visible bg-white">
-                            <button
-                                class="border-none p-4 bg-white hover:bg-gray-200 transition-all hover:ease-in-out duration-200 text-sm outline-none flex gap-x-2 items-center">
-                                <img src="./assets/images/flags/aus.png" alt="us" class="w-6">
-                                AUD $
-                            </button>
-                            <button
-                                class="border-none p-4 bg-white hover:bg-gray-200 transition-all hover:ease-in-out duration-200 text-sm outline-none flex gap-x-2 items-center">
-                                <img src="./assets/images/flags/uk.png" alt="us" class="w-6">
-                                GBP $
-                            </button>
-
-                        </div>
+                    <li><a href="contact.html"
+                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-200 transition-all duration-200 ease-in-out">Contact</a>
                     </li>
 
                 </ul>
@@ -95,11 +75,12 @@
                 <div class="line h-[0.2rem] w-8 bg-main rounded-xl"></div>
             </div>
         </div>
+        <div class="ham-menu hidden w-screen h-screen bg-white z-10">
+        </div>
     </section>
     <!-- nav section -->
     <!-- details section -->
-    <section
-        class="form flex flex-col gap-y-8 md:gap-y-12 mt-16 px-6 md:px-28 lg:px-48 xl:px-56 py-14 md:py-20">
+    <section class="form flex flex-col gap-y-8 md:gap-y-12 mt-16 px-6 md:px-28 lg:px-48 xl:px-56 py-14 md:py-20">
         <div class="container mx-auto flex flex-col gap-y-6">
             <div class="bread-crumb flex items-center gap-1">
                 <p class="text-sm text-gray-500">
@@ -150,28 +131,30 @@
                     </div>
                     <div class="details flex flex-col gap-4">
                         <div class="date flex gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
-                                <path d="M3.5957 8.72873H19.1917" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M15.2764 12.146H15.2844" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M11.3936 12.146H11.4017" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M7.50293 12.146H7.51103" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M15.2764 15.5467H15.2844" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M11.3936 15.5467H11.4017" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M7.50293 15.5467H7.51103" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M14.9277 2.25V5.12943" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M7.85938 2.25V5.12943" stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
-                                    stroke-linejoin="round" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
+                                fill="none">
+                                <path d="M3.5957 8.72873H19.1917" stroke="#00B67A" stroke-width="1.3125"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M15.2764 12.146H15.2844" stroke="#00B67A" stroke-width="1.3125"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M11.3936 12.146H11.4017" stroke="#00B67A" stroke-width="1.3125"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M7.50293 12.146H7.51103" stroke="#00B67A" stroke-width="1.3125"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M15.2764 15.5467H15.2844" stroke="#00B67A" stroke-width="1.3125"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M11.3936 15.5467H11.4017" stroke="#00B67A" stroke-width="1.3125"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M7.50293 15.5467H7.51103" stroke="#00B67A" stroke-width="1.3125"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M14.9277 2.25V5.12943" stroke="#00B67A" stroke-width="1.3125"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M7.85938 2.25V5.12943" stroke="#00B67A" stroke-width="1.3125"
+                                    stroke-linecap="round" stroke-linejoin="round" />
                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                     d="M15.0982 3.63181H7.68924C5.11963 3.63181 3.51465 5.06325 3.51465 7.69446V15.6129C3.51465 18.2854 5.11963 19.75 7.68924 19.75H15.09C17.6678 19.75 19.2646 18.3103 19.2646 15.6791V7.69446C19.2727 5.06325 17.6758 3.63181 15.0982 3.63181Z"
-                                    stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round" />
+                                    stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round"
+                                    stroke-linejoin="round" />
                             </svg>
                             <div class="content flex justify-between w-full">
                                 <p class="text-gray-600" id="date">Date</p>
@@ -180,9 +163,10 @@
                         </div>
                         <div class="guest flex gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF9B" class="size-6">
-                                <path d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a2.25 2.25 0 0 1-.233.96 10.088 10.088 0 0 0 5.06-1.01.75.75 0 0 0 .42-.643 4.875 4.875 0 0 0-6.957-4.611 8.586 8.586 0 0 1 1.71 5.157v.003Z" />
-                              </svg>
-                              
+                                <path
+                                    d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a2.25 2.25 0 0 1-.233.96 10.088 10.088 0 0 0 5.06-1.01.75.75 0 0 0 .42-.643 4.875 4.875 0 0 0-6.957-4.611 8.586 8.586 0 0 1 1.71 5.157v.003Z" />
+                            </svg>
+
                             <div class="content flex justify-between w-full">
                                 <p class="text-gray-600" id="date">People</p>
                                 <span class="text-gray-800">2</span>
@@ -197,7 +181,7 @@
                 <div class="col-span-2 xl:col-span-3 flex flex-col gap-6">
                     <h5 class="text-xl font-semibold">Check availability and plan your dream trip!</h5>
                     <form class="col-span-2 flex flex-col gap-6">
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                             <div class="input-field">
                                 <input
                                     class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out"
@@ -210,10 +194,10 @@
                                     type="email" wire:model="email" placeholder="Email Address">
                             </div>
                         </div>
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                             <div class="input-field">
                                 <select name="" id=""
-                                    class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out">
+                                    class="p-5 w-full text-stone-700 rounded-xl text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out">
                                     <option value="">Shared Room : $150</option>
                                     <option value="">Single Room : $350</option>
                                 </select>
@@ -224,10 +208,17 @@
                                     type="number" wire:model="guest" placeholder="Number of people">
                             </div>
                         </div>
-                        <div class="input-field">
-                            <input
-                                class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out"
-                                type="text" id="arrival-date" wire:model="date" placeholder="Arrival date">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div class="input-field">
+                                <input
+                                    class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out"
+                                    type="text" id="start-date" wire:model="start_date" placeholder="Start date">
+                            </div>
+                            <div class="input-field">
+                                <input
+                                    class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out"
+                                    type="text" id="end-date" wire:model="end_date" placeholder="End date">
+                            </div>
                         </div>
                         <div class="text-area">
                             <textarea
@@ -381,14 +372,8 @@
     <!-- section footer -->
     <script src="./node_modules/preline/dist/preline.js" defer></script>
     <script src="./assets/js/slider.js"></script>
-    <script>
-        flatpickr("#arrival-date", {
-            enableTime: false,
-            dateFormat: "M d Y",
-            minDate: "today"
-        });
-
-    </script>
+    <script src="./assets/js/date.js"></script>
+    <script src="./assets/js/ham.js"></script>
 
 </body>
 

@@ -218,11 +218,9 @@
                             href="{{ route('accommodations') }}">
                             <i class="icon">
                                 <!-- New Icon for Accommodations -->
-                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                    class="icon-20">
-                                    <path d="M12 2L2 7v5h3v6h14v-6h3V7L12 2zm0 1.5l8 4-8 4-8-4 8-4z"
-                                        fill="currentColor" />
-                                </svg>
+                                <svg width="20" viewBox="0 0 24 24" fill="none" class="icon-20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 21H5M5 21H10M5 21V3M10 21H14M10 21V16L8 16C10 13.3333 14 13.3333 16 16L14 16V21M14 21H19M19 21H21M19 21V3M3 3H5M5 3H19M19 3H21M9 6.5H10M14 6.5H15M9 10.5H10M14 10.5H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
                             </i>
                             <span class="item-name">Accommodations</span>
                         </a>
@@ -467,7 +465,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link {{request()->segment(2) == 'subscribers' ? 'active' : ''}}" href="">
+                        <a class="nav-link {{request()->segment(2) == 'subscribers' ? 'active' : ''}}" href="{{route('subscribers')}}">
                             <i class="icon">
                                 <svg viewBox="0 0 24 24" fill="none" class="icon-20" width="25"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -500,39 +498,7 @@
                             <span class="item-name">Message</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{request()->segment(2) == 'currency' ? 'active' : ''}}"
-                            href="{{route('currencies')}}">
-                            <i class="icon">
-
-                                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                    class="icon-20" width="20">
-                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier">
-                                        <title>currency-revenue</title>
-                                        <g id="Layer_2" data-name="Layer 2">
-                                            <g id="invisible_box" data-name="invisible box">
-                                                <rect width="48" height="48" fill="none"></rect>
-                                            </g>
-                                            <g id="Q3_icons" data-name="Q3 icons">
-                                                <path
-                                                    d="M44,7.1V14a2,2,0,0,1-2,2H35a2,2,0,0,1-2-2.3A2.1,2.1,0,0,1,35.1,12h2.3A18,18,0,0,0,6.1,22.2a2,2,0,0,1-2,1.8h0a2,2,0,0,1-2-2.2A22,22,0,0,1,40,8.9V7a2,2,0,0,1,2.3-2A2.1,2.1,0,0,1,44,7.1Z">
-                                                </path>
-                                                <path
-                                                    d="M4,40.9V34a2,2,0,0,1,2-2h7a2,2,0,0,1,2,2.3A2.1,2.1,0,0,1,12.9,36H10.6A18,18,0,0,0,41.9,25.8a2,2,0,0,1,2-1.8h0a2,2,0,0,1,2,2.2A22,22,0,0,1,8,39.1V41a2,2,0,0,1-2.3,2A2.1,2.1,0,0,1,4,40.9Z">
-                                                </path>
-                                                <path
-                                                    d="M24.7,22c-3.5-.7-3.5-1.3-3.5-1.8s.2-.6.5-.9a3.4,3.4,0,0,1,1.8-.4,6.3,6.3,0,0,1,3.3.9,1.8,1.8,0,0,0,2.7-.5,1.9,1.9,0,0,0-.4-2.8A9.1,9.1,0,0,0,26,15.3V13a2,2,0,0,0-4,0v2.2c-3,.5-5,2.5-5,5.2s3.3,4.9,6.5,5.5,3.3,1.3,3.3,1.8-1.1,1.4-2.5,1.4h0a6.7,6.7,0,0,1-4.1-1.3,2,2,0,0,0-2.8.6,1.8,1.8,0,0,0,.3,2.6A10.9,10.9,0,0,0,22,32.8V35a2,2,0,0,0,4,0V32.8a6.3,6.3,0,0,0,3-1.3,4.9,4.9,0,0,0,2-4h0C31,23.8,27.6,22.6,24.7,22Z">
-                                                </path>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>
-                            </i>
-                            <span class="item-name">Currency</span>
-                        </a>
-                    </li>
+                   
                     <li>
                         <hr class="hr-horizontal">
                     </li>

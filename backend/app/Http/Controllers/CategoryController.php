@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::paginate(10);
+        $categories = Category::filter(request(['search']))->latest()->paginate(10);
         return view('admin.category.index', compact('categories'));
     }
 
@@ -20,11 +21,11 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $formFields = $request->validate([
             'name' => 'required|string|max:255|unique:categories,name',
         ]);
-
-        Category::create($request->all());
+        $slug = Str::slug($formFields['name']);
+        Category::create($formFields+['slug'=>$slug]);
         return redirect()->route('categories')->with('success', 'Category created successfully.');
     }
 
@@ -38,10 +39,11 @@ class CategoryController extends Controller
     public function update(Request $request, string $slug)
     {
         $category = Category::whereSlug($slug)->firstOrFail();
-        $request->validate([
+        $formFields = $request->validate([
             'name' => 'required|string|max:255|unique:categories,name,' . $category->name,
         ]);
-        $category->update($request->all());
+        $slug = Str::slug($formFields['name']);
+        $category->update($formFields+['slug'=>$slug]);
         return redirect()->route('categories')->with('success', 'Category updated successfully.');
     }
 

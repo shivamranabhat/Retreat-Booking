@@ -13,7 +13,13 @@ class Category extends Model
         'name',
         'slug'
     ];
-
+    public function scopeFilter($query, array $filters)
+    {
+        if($filters['search'] ?? false)
+        {
+            $query->where('name','like','%'.request('search').'%');
+        }
+    }
     public function packages()
     {
         return $this->hasMany(Package::class, 'category_id');
