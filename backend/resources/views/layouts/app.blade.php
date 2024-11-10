@@ -213,7 +213,20 @@
                             <span class="item-name">Instructors</span>
                         </a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->segment(2) == 'room_types' ? 'active' : '' }}"
+                            href="{{ route('room_types') }}">
+                            <i class="icon">
+                                <!-- New Icon for room_types -->
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                    class="icon-20">
+                                    <path d="M12 2L2 7v5h3v6h14v-6h3V7L12 2zm0 1.5l8 4-8 4-8-4 8-4z"
+                                        fill="currentColor" />
+                                </svg>
+                            </i>
+                            <span class="item-name">Room Type</span>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->segment(2) == 'accommodations' ? 'active' : '' }}"
                             href="{{ route('accommodations') }}">
