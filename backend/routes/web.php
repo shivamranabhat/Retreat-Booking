@@ -102,11 +102,11 @@ Route::prefix('/dashboard')->group(function () {
 
     Route::prefix('/accommodations')->controller(AccommodationController::class)->group(function () {
         Route::get('/', 'index')->name('accommodations');
-        Route::get('/create', 'create')->name('accomodation.create');
-        Route::post('/store', 'store')->name('accomodation.store');
-        Route::get('/{slug}', 'edit')->name('accomodation.edit');
-        Route::put('/update/{slug}', 'update')->name('accomodation.update');
-        Route::delete('/delete/{slug}', 'destroy')->name('accomodation.destroy');
+        Route::get('/create', 'create')->name('accommodation.create');
+        Route::post('/store', 'store')->name('accommodation.store');
+        Route::get('/{slug}', 'edit')->name('accommodation.edit');
+        Route::put('/update/{slug}', 'update')->name('accommodation.update');
+        Route::delete('/delete/{slug}', 'destroy')->name('accommodation.destroy');
     });
     Route::prefix('/room-types')->controller(RoomTypeController::class)->group(function () {
         Route::get('/', 'index')->name('room_types');

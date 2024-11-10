@@ -15,7 +15,7 @@
                                     <x-search />
                                     <div class="col-12 col-md-6 col-lg-6 px-0">
                                         <div class="dataTables_length d-flex justify-content-end mt-3 mt-lg-0 mt-xl-0">
-                                            <a href="{{ route('accomodation.create') }}" class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
+                                            <a href="{{ route('accommodation.create') }}" class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
                                                 <i class="btn-inner">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -63,7 +63,7 @@
                                                 <td>{{ $accommodation->contact }}</td>
                                                 <td>
                                                     <div class="flex align-items-center list-user-action">
-                                                        <a class="btn btn-sm btn-icon btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" href="{{ route('accomodation.edit', $accommodation->slug) }}">
+                                                        <a class="btn btn-sm btn-icon btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" href="{{ route('accommodation.edit', $accommodation->slug) }}">
                                                             <span class="btn-inner">
                                                                 <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                     <path d="M11.4925 2.78906H7.75349C4.67849 2.78906 2.75049 4.96606 2.75049 8.04806V16.3621C2.75049 19.4441 4.66949 21.6211 7.75349 21.6211H16.5775C19.6625 21.6211 21.5815 19.4441 21.5815 16.3621V12.3341" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -97,7 +97,7 @@
                                                                         <p>Are you sure you want to delete this accommodation?</p>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <form action="{{ route('accomodation.destroy', $accommodation->slug) }}" method="POST">
+                                                                        <form action="{{ route('accommodation.destroy', $accommodation->slug) }}" method="POST">
                                                                             @csrf
                                                                             @method('DELETE')
                                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

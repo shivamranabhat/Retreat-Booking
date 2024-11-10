@@ -15,6 +15,7 @@ class Accommodation extends Model
         'description', 
         'location', 
         'contact',
+        'room_types',
         'slug'
     ];
 

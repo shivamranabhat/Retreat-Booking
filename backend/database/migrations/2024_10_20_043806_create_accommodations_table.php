@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('location')->nullable();
             $table->string('contact')->nullable();
-            $table->string('room_type_Id')->nullable();
+            $table->string('room_types')->nullable();
             $table->string('slug')->nullable();
             $table->timestamps();
         });
