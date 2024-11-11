@@ -6,6 +6,7 @@ use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminte\Validation\Rule;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class LocationController extends Controller
 {
@@ -26,27 +27,36 @@ class LocationController extends Controller
         return view('admin.location.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'name'=>'required|unique:locations,name',
-            'description'=>'required',
-            'image'=>'required|image|mimes:jpeg,png,jpg,webp',
-            'image_alt'=>'required'
-        ],['name.unique'=>'This location is already exists']);
-         // Handle main image upload
-         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '-' . $image->getClientOriginalName();
-            $formFields['image'] = $image->storeAs('location', $imageName, 'public');
+            'name' => 'required|unique:locations,name',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp',
+            'image_alt' => 'required'
+        ], [
+            'name.unique' => 'This location already exists'
+        ]);
+
+        try {
+            // Handle image upload
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = time() . '-' . $image->getClientOriginalName();
+                $formFields['image'] = $image->storeAs('location', $imageName, 'public');
+            }
+
+            // Generate slug and save location
+            $slug = Str::slug($formFields['name']);
+            Location::create($formFields + ['slug' => $slug]);
+
+            return redirect()->route('locations')->with('message', 'Location added successfully');
+        } catch (\Exception $e) {
+            Log::error('Error storing location: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['message' => 'An error occurred while adding the location. Please try again.']);
         }
-        $slug = Str::slug($formFields['name']);
-        Location::create($formFields+['slug'=>$slug]);
-        return redirect()->route('locations')->with('message','Location added successfully');
     }
+
 
    
 

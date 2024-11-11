@@ -1,63 +1,77 @@
 <x-app-layout>
     <div class="container-fluid content-inner mt-n5 py-0">
-        <div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-between">
-                            <div class="header-title">
-                                <h4 class="card-title">Location</h4>
-                            </div>
-                            <div class="back">
-                                <a href="{{route('locations')}}" class=" text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
-                                    <i class="btn-inner">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 25 25" fill="none" stroke="currentColor"><path  d="M24 12.001H2.914l5.294-5.295-.707-.707L1 12.501l6.5 6.5.707-.707-5.293-5.293H24v-1z" data-name="Left"/></svg>
-                                    </i>
-                                </a>
-                            </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Create Location</h4>
                         </div>
-                        <div class="card-body mt-2">
-                            <form  method="POST" action="{{ route('location.store') }}" enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-outline mb-3">
-                                    <label class="form-label" for="name">Name</label>
-                                    <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror {{ $errors->has('name') ? 'error' : '' }}"
-                                        value="{{ old('name') }}" />
-                                    @error('name')
-                                    <span class="text-danger">{{$message}}</span>
-                                    @enderror
+                        <div class="back">
+                            <a href="{{ route('locations') }}" class="btn btn-primary">Back</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('location.store') }}" enctype="multipart/form-data">
+                            @csrf
+                            <!-- Location Name Input -->
+                            <div class="form-outline mb-3">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
+                                @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <!-- Image and Image Alt Input with Preview -->
+                            <div class="form-outline mb-3">
+                                <div id="image-preview-area" class="mt-2">
+                                    <img id="imageResult" src="#" style="width: 150px; display: none;">
                                 </div>
-                                <div class="row align-items-end">
-                                    <div class="image-area"><img id="imageResult" src="" width="150"></div>
-                                    <div class="col-6 form-outline mb-3">
-                                        <label class="form-label" for="image">Image</label>
-                                        <input class="form-control" type="file" id="image" name="image" />
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="image">Image</label>
+                                        <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror" onchange="previewImage(event)" required>
+                                        @error('image')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
-                                    <div class="col-6 form-outline mb-3">
-                                        <label class="form-label" for="image_alt">Image Alt</label>
-                                        <input type="text" name="image_alt" id="image_alt"
-                                            class="form-control @error('image_alt') is-invalid @enderror {{ $errors->has('image_alt') ? 'error' : '' }}"
-                                            value="{{ old('image_alt') }}" />
+                                    <div class="col-md-6 mb-3">
+                                        <label for="image_alt">Image Alt</label>
+                                        <input type="text" name="image_alt" id="image_alt" class="form-control @error('image_alt') is-invalid @enderror" value="{{ old('image_alt') }}" required>
                                         @error('image_alt')
-                                        <span class="text-danger">{{$message}}</span>
+                                        <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="description">Description</label>
-                                    <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" required>{{ old('description') }}</textarea>
-                                    @error('description')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-block rounded-pill mb-4">Create</button>
-                            </form>
-                        </div>
+                            </div>
+
+                            <!-- Description Input -->
+                            <div class="form-outline mb-3">
+                                <label for="description">Description</label>
+                                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" required>{{ old('description') }}</textarea>
+                                @error('description')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        @push('scripts')
-           <script src="{{ asset('assets/js/imagePreview.js?v=').time() }}"></script>
-        @endpush
+    </div>
+
+    <!-- JavaScript to Preview Image -->
+    @push('scripts')
+    <script>
+        function previewImage(event) {
+            const image = document.getElementById('imageResult');
+            image.src = URL.createObjectURL(event.target.files[0]);
+            image.style.display = 'block';
+        }
+    </script>
+    @endpush
 </x-app-layout>

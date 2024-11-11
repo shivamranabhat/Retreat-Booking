@@ -12,6 +12,7 @@ class RoomType extends Model
     protected $fillable=[
         'name','image','description','price','slug'
     ];
+    protected $table = 'roomtypes'; 
     public function scopeFilter($query, array $filters)
     {
         if($filters['search'] ?? false)

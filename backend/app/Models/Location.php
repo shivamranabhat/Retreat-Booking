@@ -11,6 +11,7 @@ class Location extends Model
     protected $fillable=[
         'name','image','description','image_alt','slug'
     ];
+    protected $table = 'locations'; 
     public function scopeFilter($query, array $filters)
     {
         if($filters['search'] ?? false)

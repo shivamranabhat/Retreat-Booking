@@ -81,7 +81,7 @@ Route::prefix('/dashboard')->group(function () {
         Route::put('/update/{slug}', 'update')->name('location.update');
         Route::delete('/delete/{slug}', 'destroy')->name('location.destroy');
     });
-
+    
     //Routes for blog
     Route::prefix('/blogs')->controller(BlogController::class)->group(function () {
         Route::get('/', 'index')->name('blogs');
