@@ -33,7 +33,7 @@
 
                             <!-- Accommodation Name -->
                             <div class="form-outline mb-4">
-                                <label class="form-label" for="name">Accommodation Name</label>
+                                <label class="form-label" for="name">Name</label>
                                 <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
                                     value="{{ old('name', $accommodation->name) }}" required />
                                 @error('name')
@@ -55,15 +55,6 @@
                                 </div>
                                 <input class="form-control @error('images.*') is-invalid @enderror" type="file" name="images[]" accept="image/*" multiple />
                                 @error('images.*')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <!-- Description -->
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="description">Description</label>
-                                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" required>{{ old('description', $accommodation->description) }}</textarea>
-                                @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -113,8 +104,15 @@
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-
-                            <button type="submit" class="btn btn-primary btn-block mb-3">Update</button>
+                            <!-- Description -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="description">Description</label>
+                                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" required>{{ old('description', $accommodation->description) }}</textarea>
+                                @error('description')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <button type="submit" class="btn btn-primary rounded-pill btn-block mb-3">Update</button>
                         </form>
                     </div>
                 </div>

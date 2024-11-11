@@ -42,7 +42,8 @@
                                             <tr>
                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                 <td>@if($blog->main_image)<img src="{{asset('storage/'.$blog->main_image)}}" width="50" class="rounded" alt="{{$blog->title}}">@else No Image @endif</td>
-                                                <td>{{ $blog->title }}</td>
+                                                <td>{{ Str::words($blog->title, 5, '...') }}
+                                                </td>
                                                 <td>{{ $blog->created_at }}</td>
                                                 <td>
                                                     <div class="flex align-items-center list-user-action">

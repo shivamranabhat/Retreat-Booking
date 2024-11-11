@@ -11,10 +11,10 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Edit Accommodation</h4>
+                            <h4 class="card-title">Edit</h4>
                         </div>
                         <div class="back">
-                            <a href="{{ route('accommodations') }}" class="btn btn-primary btn-icon">
+                            <a href="{{ route('roomTypes') }}" class="btn btn-primary btn-icon">
                                 <i class="btn-inner">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 25 25" fill="none" stroke="currentColor">
                                         <path d="M24 12.001H2.914l5.294-5.295-.707-.707L1 12.501l6.5 6.5.707-.707-5.293-5.293H24v-1z" />
@@ -25,15 +25,15 @@
                     </div>
 
                     <div class="card-body mt-3">
-                        <form action="{{ route('accommodation.update', $accommodation->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('roomType.update', $roomType->slug) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
                             <!-- Accommodation Name -->
                             <div class="form-outline mb-4">
-                                <label class="form-label" for="name">Accommodation Name</label>
+                                <label class="form-label" for="name">Name</label>
                                 <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
-                                    value="{{ old('name', $accommodation->name) }}" required />
+                                    value="{{ old('name', $roomType->name) }}" />
                                 @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror

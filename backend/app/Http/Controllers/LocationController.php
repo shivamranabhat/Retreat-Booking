@@ -33,6 +33,7 @@ class LocationController extends Controller
     {
         $formFields = $request->validate([
             'name'=>'required|unique:locations,name',
+            'description'=>'required',
             'image'=>'required|image|mimes:jpeg,png,jpg,webp',
             'image_alt'=>'required'
         ],['name.unique'=>'This location is already exists']);
@@ -66,6 +67,7 @@ class LocationController extends Controller
         $location = Location::whereSlug($slug)->first();
         $formFields = $request->validate([
             'name'=>'required|unique:locations,name,'.$location->id,
+            'description'=>'required',
             'image'=>'nullable|image|mimes:jpeg,png,jpg,webp',
             'image_alt'=>'required'
         ],['name.unique'=>'This location is already exists']);

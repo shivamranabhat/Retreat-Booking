@@ -43,6 +43,13 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="description">Description</label>
+                                    <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" required>{{ old('description') }}</textarea>
+                                    @error('description')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                                 <button type="submit" class="btn btn-primary btn-block rounded-pill mb-4">Create</button>
                             </form>
                         </div>

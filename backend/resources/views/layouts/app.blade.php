@@ -58,20 +58,20 @@
             <a class="navbar-brand d-flex align-items-center gap-1">
                 {{-- <div class="logo-main">
                     <img src="{{asset('main/images/logo-2.jpg')}}" class="rounded-circle" width="40" alt="logo">
-        </div> --}}
-        <!--logo End-->
-        <h4 class="logo-title m-0">Retreat</h4>
-        </a>
-        <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
-            <i class="icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4.25 12.2744L19.25 12.2744" stroke="currentColor" stroke-width="1.5"
-                        stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M10.2998 18.2988L4.2498 12.2748L10.2998 6.24976" stroke="currentColor"
-                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-            </i>
-        </div>
+                </div> --}}
+                <!--logo End-->
+                <h4 class="logo-title m-0">Retreat</h4>
+            </a>
+            <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
+                <i class="icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.25 12.2744L19.25 12.2744" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M10.2998 18.2988L4.2498 12.2748L10.2998 6.24976" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </i>
+            </div>
         </div>
         <div class="sidebar-body pt-0 data-scrollbar">
             <div class="sidebar-list">
@@ -188,9 +188,10 @@
                         <a class="nav-link {{ request()->segment(2) == 'instructors' ? 'active' : '' }}"
                             href="{{ route('instructors') }}">
                             <i class="icon">
-                                <svg fill="currentColor" stroke="2" height="800px" width="800px" class="icon-20" version="1.1" id="Layer_1"
-                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    viewBox="0 0 299.97 299.97" xml:space="preserve">
+                                <svg fill="currentColor" stroke="2" height="800px" width="800px" class="icon-20"
+                                    version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 299.97 299.97"
+                                    xml:space="preserve">
                                     <g>
                                         <g>
                                             <g>
@@ -214,17 +215,26 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->segment(2) == 'room_types' ? 'active' : '' }}"
-                            href="{{ route('room_types') }}">
+                        <a class="nav-link {{ request()->segment(2) == 'room-types' ? 'active' : '' }}"
+                            href="{{ route('roomTypes') }}">
                             <i class="icon">
                                 <!-- New Icon for room_types -->
-                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                    class="icon-20">
-                                    <path d="M12 2L2 7v5h3v6h14v-6h3V7L12 2zm0 1.5l8 4-8 4-8-4 8-4z"
-                                        fill="currentColor" />
+                                <svg width="20" class="icon-20" fill="none" stroke="currentColor" viewBox="0 0 24 24" version="1.1" xml:space="preserve"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+                                  
+                                    <g id="Layer_Grid" />
+
+                                    <g id="Layer_2">
+
+                                        <path
+                                            d="M21,8c0-2.2-1.8-4-4-4H7C4.8,4,3,5.8,3,8v3.8c-0.6,0.5-1,1.3-1,2.2v2.7V17v2c0,0.6,0.4,1,1,1s1-0.4,1-1v-1h16v1   c0,0.6,0.4,1,1,1s1-0.4,1-1v-2v-0.3V14c0-0.9-0.4-1.7-1-2.2V8z M5,8c0-1.1,0.9-2,2-2h10c1.1,0,2,0.9,2,2v3h-1v-1c0-1.7-1.3-3-3-3   h-1c-0.8,0-1.5,0.3-2,0.8C11.5,7.3,10.8,7,10,7H9c-1.7,0-3,1.3-3,3v1H5V8z M16,10v1h-3v-1c0-0.6,0.4-1,1-1h1C15.6,9,16,9.4,16,10z    M11,10v1H8v-1c0-0.6,0.4-1,1-1h1C10.6,9,11,9.4,11,10z M20,16H4v-2c0-0.6,0.4-1,1-1h3h3h2h3h3c0.6,0,1,0.4,1,1V16z" />
+
+                                    </g>
+
                                 </svg>
                             </i>
-                            <span class="item-name">Room Type</span>
+                            <span class="item-name">Rooms</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -232,9 +242,13 @@
                             href="{{ route('accommodations') }}">
                             <i class="icon">
                                 <!-- New Icon for Accommodations -->
-                                <svg width="20" viewBox="0 0 24 24" fill="none" class="icon-20" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3 21H5M5 21H10M5 21V3M10 21H14M10 21V16L8 16C10 13.3333 14 13.3333 16 16L14 16V21M14 21H19M19 21H21M19 21V3M3 3H5M5 3H19M19 3H21M9 6.5H10M14 6.5H15M9 10.5H10M14 10.5H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
+                                <svg width="20" viewBox="0 0 24 24" fill="none" class="icon-20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M3 21H5M5 21H10M5 21V3M10 21H14M10 21V16L8 16C10 13.3333 14 13.3333 16 16L14 16V21M14 21H19M19 21H21M19 21V3M3 3H5M5 3H19M19 3H21M9 6.5H10M14 6.5H15M9 10.5H10M14 10.5H15"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
                             </i>
                             <span class="item-name">Accommodations</span>
                         </a>
@@ -257,10 +271,12 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->segment(1) == 'categories' ? 'active' : '' }}" href="{{ route('categories') }}">
+                        <a class="nav-link {{ request()->segment(1) == 'categories' ? 'active' : '' }}"
+                            href="{{ route('categories') }}">
                             <i class="icon">
                                 <!-- New Icon for Categories -->
-                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-20">
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                    class="icon-20">
                                     <path d="M3 4h18v2H3V4zm0 6h18v2H3v-2zm0 6h18v2H3v-2z" fill="currentColor" />
                                 </svg>
 
@@ -469,7 +485,8 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link {{request()->segment(2) == 'subscribers' ? 'active' : ''}}" href="{{route('subscribers')}}">
+                        <a class="nav-link {{request()->segment(2) == 'subscribers' ? 'active' : ''}}"
+                            href="{{route('subscribers')}}">
                             <i class="icon">
                                 <svg viewBox="0 0 24 24" fill="none" class="icon-20" width="25"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -500,39 +517,6 @@
                                 </svg>
                             </i>
                             <span class="item-name">Message</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{request()->segment(2) == 'currency' ? 'active' : ''}}"
-                            href="{{route('currencies')}}">
-                            <i class="icon">
-
-                                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="icon-20" width="20">
-
-                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier">
-                                        <title>currency-revenue</title>
-                                        <g id="Layer_2" data-name="Layer 2">
-                                            <g id="invisible_box" data-name="invisible box">
-                                                <rect width="48" height="48" fill="none"></rect>
-                                            </g>
-                                            <g id="Q3_icons" data-name="Q3 icons">
-                                                <path
-                                                    d="M44,7.1V14a2,2,0,0,1-2,2H35a2,2,0,0,1-2-2.3A2.1,2.1,0,0,1,35.1,12h2.3A18,18,0,0,0,6.1,22.2a2,2,0,0,1-2,1.8h0a2,2,0,0,1-2-2.2A22,22,0,0,1,40,8.9V7a2,2,0,0,1,2.3-2A2.1,2.1,0,0,1,44,7.1Z">
-                                                </path>
-                                                <path
-                                                    d="M4,40.9V34a2,2,0,0,1,2-2h7a2,2,0,0,1,2,2.3A2.1,2.1,0,0,1,12.9,36H10.6A18,18,0,0,0,41.9,25.8a2,2,0,0,1,2-1.8h0a2,2,0,0,1,2,2.2A22,22,0,0,1,8,39.1V41a2,2,0,0,1-2.3,2A2.1,2.1,0,0,1,4,40.9Z">
-                                                </path>
-                                                <path
-                                                    d="M24.7,22c-3.5-.7-3.5-1.3-3.5-1.8s.2-.6.5-.9a3.4,3.4,0,0,1,1.8-.4,6.3,6.3,0,0,1,3.3.9,1.8,1.8,0,0,0,2.7-.5,1.9,1.9,0,0,0-.4-2.8A9.1,9.1,0,0,0,26,15.3V13a2,2,0,0,0-4,0v2.2c-3,.5-5,2.5-5,5.2s3.3,4.9,6.5,5.5,3.3,1.3,3.3,1.8-1.1,1.4-2.5,1.4h0a6.7,6.7,0,0,1-4.1-1.3,2,2,0,0,0-2.8.6,1.8,1.8,0,0,0,.3,2.6A10.9,10.9,0,0,0,22,32.8V35a2,2,0,0,0,4,0V32.8a6.3,6.3,0,0,0,3-1.3,4.9,4.9,0,0,0,2-4h0C31,23.8,27.6,22.6,24.7,22Z">
-                                                </path>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>
-                            </i>
-                            <span class="item-name">Currency</span>
                         </a>
                     </li>
 

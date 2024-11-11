@@ -25,7 +25,7 @@ class BlogStoreRequest extends FormRequest
             'title'=>'required|unique:blogs,title',
             'subtitle'=>'required',
             'author'=>'required',
-            'main_image' => 'required|image|mimes:jpeg,png,jpg,webp',
+            'main_image' => 'required|image|mimes:jpeg,png,jpg,webp,avif',
             'main_img_alt'=>'required',
             'description' => 'required',
         ];

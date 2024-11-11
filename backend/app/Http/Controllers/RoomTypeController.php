@@ -44,13 +44,13 @@ class RoomTypeController extends Controller
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $imageName = time() . '-' . $image->getClientOriginalName();
-                $formFields['image'] = $image->storeAs('room_types', $imageName, 'public');
+                $formFields['image'] = $image->storeAs('rooms', $imageName, 'public');
             }
 
             $slug = Str::slug($formFields['name']);
             RoomType::create($formFields + ['slug' => $slug]);
 
-            return redirect()->route('room_types')->with('message', 'Room type added successfully');
+            return redirect()->route('roomTypes')->with('message', 'Room type added successfully');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Please fill the required fields.');
         }
@@ -88,13 +88,13 @@ class RoomTypeController extends Controller
             }
             $image = $request->file('image');
             $imageName = time() . '-' . $image->getClientOriginalName();
-            $formFields['image'] = $image->storeAs('room_types', $imageName, 'public');
+            $formFields['image'] = $image->storeAs('rooms', $imageName, 'public');
         }
 
         $formFields['slug'] = Str::slug($formFields['name']);
         $roomType->update($formFields);
 
-        return redirect()->route('room_types')->with('message', 'Room type updated successfully');
+        return redirect()->route('roomTypes')->with('message', 'Room type updated successfully');
     }
 
     /**
@@ -113,8 +113,7 @@ class RoomTypeController extends Controller
             }
 
             $roomType->delete();
-
-            return redirect()->route('room_types')->with('message', 'Room type deleted successfully');
+            return redirect()->route('roomTypes')->with('message', 'Room type deleted successfully');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }

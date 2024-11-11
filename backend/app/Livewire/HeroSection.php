@@ -3,11 +3,37 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Category;
+use App\Models\Location;
 
 class HeroSection extends Component
 {
+    public $selectedLocation;
+    public $selectedCategory;
+    public $selectedDate;
+
+    public function getLocation($id)
+    {
+        $location = Location::find($id);
+        $this->selectedLocation = $location->name;
+    }
+
+    public function getCategory($id)
+    {
+        $category = Category::find($id);
+        $this->selectedCategory = $category->name;
+    }
+
+    public function getDate($value)
+    {
+        $this->selectedDate = $value;
+        dd($this->selectedDate);
+    }
+
     public function render()
     {
-        return view('livewire.hero-section');
+        $locations = Location::latest()->select('id','name','slug')->get();
+        $categories = Category::latest()->select('id','name','slug')->get();
+        return view('livewire.hero-section',compact('locations','categories'));
     }
 }

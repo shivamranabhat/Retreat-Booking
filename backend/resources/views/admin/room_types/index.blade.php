@@ -15,7 +15,7 @@
                                     <x-search />
                                     <div class="col-12 col-md-6 col-lg-6 px-0">
                                         <div class="dataTables_length d-flex justify-content-end mt-3 mt-lg-0 mt-xl-0">
-                                            <a href="{{ route('room_type.create') }}" class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
+                                            <a href="{{ route('roomType.create') }}" class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
                                                 <i class="btn-inner">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -32,7 +32,7 @@
                                         <thead>
                                             <tr class="light">
                                                 <th>S.N.</th>
-                                                <th>Room Type Name</th>
+                                                <th>Name</th>
                                                 <th>Description</th>
                                                 <th>Price</th>
                                                 <th style="min-width: 100px">Action</th>
@@ -47,7 +47,7 @@
                                                     <td>${{ number_format($roomType->price, 2) }}</td>
                                                     <td>
                                                         <div class="flex align-items-center list-user-action">
-                                                            <a class="btn btn-sm btn-icon btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" href="{{ route('room_type.edit', $roomType->slug) }}">
+                                                            <a class="btn btn-sm btn-icon btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" href="{{ route('roomType.edit', $roomType->slug) }}">
                                                                 <span class="btn-inner">
                                                                     <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                         <path d="M11.4925 2.78906H7.75349C4.67849 2.78906 2.75049 4.96606 2.75049 8.04806V16.3621C2.75049 19.4441 4.66949 21.6211 7.75349 21.6211H16.5775C19.6625 21.6211 21.5815 19.4441 21.5815 16.3621V12.3341" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -78,7 +78,7 @@
                                                                             <p>Do you really want to delete this room type?</p>
                                                                         </div>
                                                                         <div class="modal-footer justify-content-center">
-                                                                            <form action="{{ route('room_type.destroy', $roomType->slug) }}" method="POST">
+                                                                            <form action="{{ route('roomType.destroy', $roomType->slug) }}" method="POST">
                                                                                 @csrf
                                                                                 @method('DELETE')
                                                                                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
@@ -93,7 +93,7 @@
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="5" class="text-center">No Room Types Found</td>
+                                                    <td colspan="5" class="text-center">No data Found</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>

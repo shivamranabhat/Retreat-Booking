@@ -3,11 +3,13 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Location;
 
 class LocationSection extends Component
 {
     public function render()
     {
-        return view('livewire.location-section');
+        $locations = Location::latest()->get();
+        return view('livewire.location-section',compact('locations'));
     }
 }

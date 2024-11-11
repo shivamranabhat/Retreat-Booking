@@ -6,10 +6,10 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
-                                <h4 class="card-title">Create Room Type</h4>
+                                <h4 class="card-title">Room Type</h4>
                             </div>
                             <div class="back">
-                                <a href="{{ route('room_types') }}" class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
+                                <a href="{{ route('roomTypes') }}" class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
                                     <i class="btn-inner">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 25 25" fill="none" stroke="currentColor">
                                             <path d="M24 12.001H2.914l5.294-5.295-.707-.707L1 12.501l6.5 6.5.707-.707-5.293-5.293H24v-1z" data-name="Left" />
@@ -19,11 +19,11 @@
                             </div>
                         </div>
                         <div class="card-body mt-3">
-                            <form action="{{ route('room_type.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('roomType.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="name">Room Type Name</label>
+                                    <label class="form-label" for="name">Name</label>
                                     <input type="text" name="name" id="name"
                                         class="form-control @error('name') is-invalid @enderror"
                                         value="{{ old('name') }}" required />
@@ -43,15 +43,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="description">Description</label>
-                                    <textarea name="description" id="description"
-                                        class="form-control @error('description') is-invalid @enderror"
-                                        required>{{ old('description') }}</textarea>
-                                    @error('description')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
+                               
 
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="price">Price</label>
@@ -62,7 +54,15 @@
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="description">Description</label>
+                                    <textarea name="description" id="description"
+                                        class="form-control @error('description') is-invalid @enderror"
+                                        required>{{ old('description') }}</textarea>
+                                    @error('description')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                                 <button type="submit" class="btn btn-primary btn-block rounded-pill mb-3">Create</button>
                             </form>
                         </div>

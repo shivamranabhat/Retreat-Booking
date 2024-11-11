@@ -50,7 +50,7 @@ class AccommodationController extends Controller
             'location' => 'nullable|string',
             'contact' => 'nullable|string',
             'room_types' => 'nullable|array',
-            'room_types.*' => 'exists:roomtypes,id'
+            'room_types.*' => 'exists:room_types,id'
         ]);
 
         // Initialize accommodation instance
@@ -69,7 +69,7 @@ class AccommodationController extends Controller
         if ($request->hasFile('images')) {
             $imagePaths = [];
             foreach ($request->file('images') as $image) {
-                $imagePaths[] = $image->store('accommodation_images', 'public');
+                $imagePaths[] = $image->store('accommodations', 'public');
             }
             $accommodation->image = json_encode($imagePaths); // Save images as JSON
         }
@@ -150,7 +150,7 @@ class AccommodationController extends Controller
             // Store new images
             $imagePaths = [];
             foreach ($request->file('images') as $image) {
-                $imagePaths[] = $image->store('accommodation_images', 'public');
+                $imagePaths[] = $image->store('accommodations', 'public');
             }
             $accommodation->image = json_encode($imagePaths);
         }
@@ -187,7 +187,7 @@ class AccommodationController extends Controller
             $accommodation->delete();
 
             // Redirect with a success message
-            return redirect()->route('accommodations')->with('success', 'Accommodation and its images deleted successfully.');
+            return redirect()->route('accommodations')->with('success', 'Accommodation deleted successfully.');
         } catch (\Exception $e) {
             // Handle any exceptions and redirect with an error message
             return redirect()->back()->with('error', $e->getMessage());

@@ -21,27 +21,29 @@
         <div
             class="search-bar bg-white p-4 md:p-0 w-full grid grid-cols-1 lg:grid-cols-3 gap-y-2 md:gap-0 box-shadow-i rounded-xl mx-auto">
             <div class="category cursor-pointer flex gap-2 col-span-1 p-4 relative group">
-                <svg width="22" height="22" stroke="#00B67A" viewBox="0 0 24 24" fill="none">
+                <svg class="mt-[0.1rem]" width="22" height="22" stroke="#00B67A" viewBox="0 0 24 24" fill="none">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
                     </path>
                 </svg>
                 <div class="content flex flex-col gap-y-1">
-                    <p class="font-lead-bold text-gray-600">Category</p>
-                    <span class="text-gray-500 text-sm">Yoga Retreat</span>
+                    <p class="font-lead-bold text-gray-600">{{$selectedCategory ? $selectedCategory : 'Catgeory' }}</p>
+                    <span class="text-gray-500 text-sm">Which retreat you want?</span>
                 </div>
                 <div
                     class="dropdown absolute z-10 left-0 top-20 mt-1 rounded-xl p-1 w-48 bg-white border border-gray-200 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity">
                     <ul>
-                        <li class="px-4 py-3 hover:bg-gray-200 rounded-xl cursor-pointer">Retreat 1</li>
-                        <li class="px-4 py-3 hover:bg-gray-200 rounded-xl cursor-pointer">Retreat 2</li>
-                        <li class="px-4 py-3 hover:bg-gray-200 rounded-xl cursor-pointer">Retreat 3</li>
+                        @forelse($categories as $category)
+                        <li class="px-4 py-3 hover:bg-gray-200 rounded-xl cursor-pointer" wire:click='getCategory({{$category->id}})'>{{$category->name}}</li>
+                        @empty 
+                        <li class="px-4 py-3 hover:bg-gray-200 rounded-xl cursor-pointer">No category found</li>
+                        @endforelse
                     </ul>
                 </div>
             </div>
             <div class="bg-gray-200 h-px w-full flex md:hidden"></div>
             <div class="location cursor-pointer flex gap-2 col-span-1 p-4 relative group">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <svg class="mt-[0.1rem]" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
                     <path
                         d="M15.7497 15.0749L12.0371 18.7875C11.8747 18.95 11.6819 19.0789 11.4697 19.1669C11.2575 19.2549 11.03 19.3002 10.8002 19.3002C10.5705 19.3002 10.343 19.2549 10.1308 19.1669C9.9186 19.0789 9.7258 18.95 9.56343 18.7875L5.84993 15.0749C4.871 14.0959 4.20435 12.8486 3.93428 11.4907C3.66422 10.1329 3.80286 8.72544 4.33269 7.44638C4.86251 6.16732 5.75972 5.07409 6.91085 4.30493C8.06199 3.53578 9.41535 3.12524 10.7998 3.12524C12.1843 3.12524 13.5376 3.53578 14.6888 4.30493C15.8399 5.07409 16.7371 6.16732 17.2669 7.44638C17.7968 8.72544 17.9354 10.1329 17.6653 11.4907C17.3953 12.8486 16.7286 14.0959 15.7497 15.0749Z"
                         stroke="#00B67A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
@@ -50,24 +52,26 @@
                         stroke="#00B67A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
                 <div class="content flex flex-col gap-y-1">
-                    <p class="font-lead-bold text-gray-600">Locations</p>
+                    <p class="font-lead-bold text-gray-600">{{$selectedLocation ? $selectedLocation : 'Locations' }}</p>
                     <span class="text-gray-500 text-sm">Where you want to go?</span>
                 </div>
                 <!-- Dropdown content -->
                 <div
                     class="dropdown absolute z-10 left-0 top-20 mt-1 rounded-xl p-1 w-48 bg-white border border-gray-200 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity">
                     <ul>
-                        <li class="px-4 py-3 hover:bg-gray-200 rounded-xl cursor-pointer">Location 1</li>
-                        <li class="px-4 py-3 hover:bg-gray-200 rounded-xl cursor-pointer">Location 2</li>
-                        <li class="px-4 py-3 hover:bg-gray-200 rounded-xl cursor-pointer">Location 3</li>
+                        @forelse($locations as $location)
+                        <li class="px-4 py-3 hover:bg-gray-200 rounded-xl cursor-pointer" wire:click='getLocation({{$location->id}})'>{{$location->name}}</li>
+                        @empty 
+                        <li class="px-4 py-3 hover:bg-gray-200 rounded-xl cursor-pointer">No location found</li>
+                        @endforelse
                     </ul>
                 </div>
             </div>
 
             <div class="bg-gray-200 h-px w-full flex md:hidden"></div>
             <div class="end flex justify-between items-center p-4">
-                <div class="date flex gap-2 col-span-1 justify-end">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <div class="date flex gap-2 col-span-1 justify-end cursor-pointer">
+                    <svg class="mt-[0.1rem]" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
                         <path d="M3.5957 8.72873H19.1917" stroke="#00B67A" stroke-width="1.3125"
                             stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M15.2764 12.146H15.2844" stroke="#00B67A" stroke-width="1.3125"
@@ -91,7 +95,7 @@
                             stroke="#00B67A" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                     <div class="content flex flex-col gap-y-1">
-                        <p class="font-lead-bold text-gray-600 border-none outline-none" id="date">Dates</p>
+                        <input class="font-lead-bold text-gray-600 border-none outline-none cursor-pointer" id="date" value="Date"/>
                         <span class="text-gray-500 text-sm">When you want to go?</span>
                     </div>
                 </div>
