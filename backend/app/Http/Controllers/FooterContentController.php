@@ -43,6 +43,7 @@ class FooterContentController extends Controller
         {
             $formFields = $request->validate([
                 'title'=>'required',
+                'subtitle'=>'required',
             ]);
             $slug = 'footer';
             BodyContent::create($formFields+['position'=>'footer','slug'=>$slug]);
@@ -79,6 +80,7 @@ class FooterContentController extends Controller
             $content = BodyContent::whereSlug($slug)->first();
             $formFields = $request->validate([
                 'title'=>'required',
+                'subtitle'=>'required',
             ]);
             $content->update($formFields);
             return redirect()->route('footers')->with('message','Footer content updated successfully');

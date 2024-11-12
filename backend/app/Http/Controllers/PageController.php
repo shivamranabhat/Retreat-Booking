@@ -25,4 +25,12 @@ class PageController extends Controller
         $blog = Blog::whereSlug($slug)->first();
         return view('pages.blog',compact('slug','blog'));
     }
+    public function about()
+    {
+        return view('pages.about');
+    }
+    public function contact()
+    {
+        return view('pages.contact');
+    }
 }

@@ -44,11 +44,11 @@
                         </svg>
                         <div
                         class="dropdown absolute z-10 left-0 top-8 mt-1 rounded-xl p-1 w-48 bg-white border border-gray-200 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity">
-                        <ul>
-                            <li class="px-4 py-3 text-sm hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="about.html">About</a></li>
-                            <li class="px-4 py-3 text-sm hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="{{route('faq')}}">FAQs</a></li>
-                            <li class="px-4 py-3 text-sm hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="blogs.html">Blogs</a></li>
-                            <li class="px-4 py-3 text-sm hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="contact.html">Contact</a></li>
+                        <ul class="flex flex-col gap-y-2">
+                            <li class="px-4 py-3 text-sm {{request()->segment(1) == 'about-us' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="{{route('about')}}">About</a></li>
+                            <li class="px-4 py-3 text-sm {{request()->segment(1) == 'faqs' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="{{route('faq')}}">FAQs</a></li>
+                            <li class="px-4 py-3 text-sm {{request()->segment(1) == 'blogs' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="{{route('blogs')}}">Blogs</a></li>
+                            <li class="px-4 py-3 text-sm {{request()->segment(1) == 'contact' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="{{route('contact')}}">Contact</a></li>
                         </ul>
                     </div>
                     </div>
@@ -65,28 +65,31 @@
             <div class="links">
                 <ul class="flex flex-col gap-10">
                     <li><a href="about.html"
-                            class="text-xl font-semibold text-main px-3 py-2 rounded-3xl hover:text-main transition-all duration-200 ease-in-out">Course</a>
+                            class="text-xl font-semibold px-3 py-2 {{request()->segment(1) == 'courses' ? 'text-black' : 'text-gray-500'}} rounded-3xl hover:text-black transition-all duration-200 ease-in-out">Course</a>
                     </li>
                     <li><a href="about.html"
-                            class="text-xl font-semibold px-3 py-2 rounded-3xl hover:text-main transition-all duration-200 ease-in-out">Yoga
+                            class="text-xl font-semibold px-3 py-2 {{request()->segment(1) == 'yoga-retreat' ? 'text-black' : 'text-gray-500'}} rounded-3xl hover:text-black transition-all duration-200 ease-in-out">Yoga
                             Retreat</a>
                     </li>
                     <li><a href="about.html"
-                            class="text-xl font-semibold px-3 py-2 rounded-3xl hover:text-main transition-all duration-200 ease-in-out">Spiritual
+                            class="text-xl font-semibold px-3 py-2 {{request()->segment(1) == 'spiritual-tour' ? 'text-black' : 'text-gray-500'}} rounded-3xl hover:text-black transition-all duration-200 ease-in-out">Spiritual
                             Tour</a>
                     </li>
-                    <li><a href="about.html"
-                            class="text-xl font-semibold px-3 py-2 rounded-3xl hover:text-main transition-all duration-200 ease-in-out">Welness
+                    <li><a href="{{route('about')}}"
+                            class="text-xl font-semibold px-3 py-2 {{request()->segment(1) == 'welness-tour' ? 'text-black' : 'text-gray-500'}} rounded-3xl hover:text-black transition-all duration-200 ease-in-out">Welness
                             Tour</a>
                     </li>
-                    <li><a href="faq.html"
-                            class="text-xl font-semibold px-3 py-2 rounded-3xl hover:text-main transition-all duration-200 ease-in-out">FAQs</a>
+                    <li><a href="{{route('about')}}"
+                            class="text-xl font-semibold px-3 py-2 {{request()->segment(1) == 'about-us' ? 'text-black' : 'text-gray-500'}} rounded-3xl hover:text-black transition-all duration-200 ease-in-out">About</a>
                     </li>
-                    <li><a href="blogs.html"
-                            class="text-xl font-semibold px-3 py-2 rounded-3xl hover:text-main transition-all duration-200 ease-in-out">Blogs</a>
+                    <li><a href="{{route('faq')}}"
+                            class="text-xl font-semibold px-3 py-2 {{request()->segment(1) == 'faqs' ? 'text-black' : 'text-gray-500'}} rounded-3xl hover:text-black transition-all duration-200 ease-in-out">FAQs</a>
                     </li>
-                    <li><a href="contact.html"
-                            class="text-xl font-semibold px-3 py-2 rounded-3xl hover:text-main transition-all duration-200 ease-in-out">Contact</a>
+                    <li><a href="{{route('blogs')}}"
+                            class="text-xl font-semibold px-3 py-2 {{request()->segment(1) == 'blogs' ? 'text-black' : 'text-gray-500'}} rounded-3xl hover:text-black transition-all duration-200 ease-in-out">Blogs</a>
+                    </li>
+                    <li><a href="{{route('contact')}}"
+                            class="text-xl font-semibold px-3 py-2 {{request()->segment(1) == 'contact' ? 'text-black' : 'text-gray-500'}} rounded-3xl hover:text-black transition-all duration-200 ease-in-out">Contact</a>
                     </li>
 
                 </ul>

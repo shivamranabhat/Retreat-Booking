@@ -3,11 +3,15 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\ContactDetail;
+use App\Models\BodyContent;
 
 class Footer extends Component
 {
     public function render()
     {
-        return view('livewire.footer');
+        $details = ContactDetail::first();
+        $content = BodyContent::select('title','subtitle')->where('position','footer')->first();
+        return view('livewire.footer',compact('details','content'));
     }
 }

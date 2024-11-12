@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BodyContent;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\BodyContent;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
-
-class BodyContentController extends Controller
+class AboutContentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $contents = BodyContent::select('title','slug','created_at')->whereSlug('main-body')->get();
-        return view('admin.body_contents.index',compact('contents'));
+        $contents = BodyContent::select('title','slug','created_at')->whereSlug('about-body')->get();
+        return view('admin.about.contents.index',compact('contents'));
 
     }
 
@@ -26,11 +23,11 @@ class BodyContentController extends Controller
      */
     public function create()
     {
-        $content = BodyContent::whereSlug('main-body')->first();
+        $content = BodyContent::whereSlug('about-body')->first();
         if ($content) {
-            return redirect()->route('mains')->with('error','Body content already exists');
+            return redirect()->route('abouts')->with('error','About content already exists');
         }
-        return view('admin.body_contents.create');
+        return view('admin.about.contents.create');
     }
 
     /**
@@ -43,31 +40,23 @@ class BodyContentController extends Controller
             $formFields = $request->validate([
                 'title'=>'required',
                 'subtitle'=>'required',
-                'image'=>'required|mimetypes:video/mp4,video/mpeg,video/quicktime,image/jpeg,image/png,image/jpg,image/gif',
+                'image'=>'required|mimetypes:image/jpeg,image/png,image/jpg,image/gif',
                 'alt'=>'required',
             ]);
-            $slug = 'main-body';
+            $slug = 'about-body';
             if($request->hasFile('image'))
             {
                 $image = $request->file('image');
                 $imageName = $image->getClientOriginalName();
-                $formFields['image'] = $image->storeAs('hero_image',$imageName,'public');
+                $formFields['image'] = $image->storeAs('about',$imageName,'public');
             }
-            BodyContent::create($formFields+['position'=>'main-body','slug'=>$slug]);
-            return redirect()->route('mains')->with('message','Body contents added successfully');
+            BodyContent::create($formFields+['position'=>'about-body','slug'=>$slug]);
+            return redirect()->route('abouts')->with('message','About contents added successfully');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $slug)
-    {
-        $content = BodyContent::whereSlug($slug)->first();
-        return view('admin.body_contents.details',compact('content'));
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -75,7 +64,7 @@ class BodyContentController extends Controller
     public function edit(string $slug)
     {
         $content = BodyContent::whereSlug($slug)->first();
-        return view('admin.body_contents.edit',compact('content'));
+        return view('admin.about.contents.edit',compact('content'));
     }
 
     /**
@@ -86,9 +75,9 @@ class BodyContentController extends Controller
         try{
             $content = BodyContent::whereSlug($slug)->first();
             $formFields = $request->validate([
-                'title'=>'nullable',
+                'title'=>'required',
                 'subtitle'=>'required',
-                'image'=>'nullable|mimetypes:video/mp4,video/mpeg,video/quicktime,image/jpeg,image/png,image/jpg,image/gif',
+                'image'=>'nullable|mimetypes:image/jpeg,image/png,image/jpg,image/gif',
                 'alt'=>'required',
             ]);
             if($request->hasFile('image'))
@@ -103,10 +92,10 @@ class BodyContentController extends Controller
                 }
                 $uploadedFile = $request->file('image');
                 $fileName = $uploadedFile->getClientOriginalName();
-                $formFields['image'] = $uploadedFile->storeAs('hero_image',$fileName,'public');
+                $formFields['image'] = $uploadedFile->storeAs('about',$fileName,'public');
             }
             $content->update($formFields);
-            return redirect()->route('mains')->with('message','Body content updated successfully');
+            return redirect()->route('abouts')->with('message','About content updated successfully');
         } catch (\Exception $e) {
         return redirect()->back()->with('error', $e->getMessage());
       }
@@ -129,7 +118,7 @@ class BodyContentController extends Controller
                 }
             }
             $content->delete();
-            return redirect()->route('mains')->with('message','Body content deleted successfully');
+            return redirect()->route('mains')->with('message','About content deleted successfully');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }

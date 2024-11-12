@@ -24,13 +24,9 @@ class ContactDetailsStoreRequest extends FormRequest
         return [
             'phone' =>'required',
             'email' =>'required',
-            'location'=>'required',
-            'x_link'=>'nullable',
-            'youtube_link'=>'nullable',
             'insta_link'=>'required',
             'facebook_link'=>'required',
-            'whatsapp_link'=>'required',
-            'address'=>'required',
+            'whatsapp_link'=>'required'
         ];
     }
     public function messages()
@@ -38,11 +34,9 @@ class ContactDetailsStoreRequest extends FormRequest
         return [
             'phone.required' =>'Mobile number is required',
             'email.required'=>'Email is required',
-            'location.required'=>'Location is required',
             'insta_link.required'=>'Instagram link is required',
             'facebook_link.required'=>'Facebook link is required',
             'whatsapp_link.required'=>'Whatsapp link is required',
-            'address.required'=>'Map address is required',
         ];
     }
 }

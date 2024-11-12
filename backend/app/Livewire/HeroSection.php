@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\Location;
+use App\Models\BodyContent;
 
 class HeroSection extends Component
 {
@@ -34,6 +35,7 @@ class HeroSection extends Component
     {
         $locations = Location::latest()->select('id','name','slug')->get();
         $categories = Category::latest()->select('id','name','slug')->get();
-        return view('livewire.hero-section',compact('locations','categories'));
+        $content = BodyContent::where('position','main-body')->select('title','subtitle','image')->first();
+        return view('livewire.hero-section',compact('locations','categories','content'));
     }
 }

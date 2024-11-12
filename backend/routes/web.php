@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AboutContentController;
+use App\Http\Controllers\ContactDetailController;
 use App\Http\Controllers\OpenGraphController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\FaqController;
@@ -22,6 +24,7 @@ use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\AccommodationController;
 use App\Http\Controllers\RoomTypeController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\PageController;
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +85,39 @@ Route::prefix('/dashboard')->group(function () {
         Route::delete('/delete/{slug}', 'destroy')->name('location.destroy');
     });
     
+    Route::prefix('/content')->group(function(){
+        //Routes for footer contents
+        Route::prefix('/footer')->controller(FooterContentController::class)->group(function(){
+            Route::get('/','index')->name('footers');
+            Route::get('/create','create')->name('footer.create');
+            Route::post('/store','store')->name('footer.store');
+            Route::get('/{slug}','edit')->name('footer.edit');
+            Route::put('/update/{slug}','update')->name('footer.update');
+            Route::delete('/delete/{slug}','destroy')->name('footer.destroy');
+        });
+         //Routes for about body contents
+         Route::prefix('/about')->controller(AboutContentController::class)->group(function(){
+            Route::get('/','index')->name('abouts');
+            Route::get('/create','create')->name('about.create');
+            Route::post('/store','store')->name('about.store');
+            Route::get('/{slug}','edit')->name('about.edit');
+            Route::put('/update/{slug}','update')->name('about.update');
+            Route::delete('/delete/{slug}','destroy')->name('about.destroy');
+        });
+       
+         //Routes for main body contents
+         Route::prefix('/')->controller(BodyContentController::class)->group(function(){
+            Route::get('/','index')->name('mains');
+            Route::get('/create','create')->name('main.create');
+            Route::post('/store','store')->name('main.store');
+            Route::get('/{slug}','edit')->name('main.edit');
+            Route::put('/update/{slug}','update')->name('main.update');
+            Route::delete('/delete/{slug}','destroy')->name('main.destroy');
+        });
+        
+        
+    });
+
     //Routes for blog
     Route::prefix('/blogs')->controller(BlogController::class)->group(function () {
         Route::get('/', 'index')->name('blogs');
@@ -197,10 +233,34 @@ Route::prefix('/dashboard')->group(function () {
         Route::put('/update/{slug}', 'update')->name('faq.update');
         Route::delete('/destroy/{slug}', 'destroy')->name('faq.destroy');
     });
+     //Routes for contact details
+     Route::prefix('/contact-details')->controller(ContactDetailController::class)->group(function(){
+        Route::get('/','index')->name('contactDetails');
+        Route::get('/create','create')->name('contactDetail.create');
+        Route::post('/store','store')->name('contactDetail.store');
+        Route::get('/{id}','edit')->name('contactDetail.edit');
+        Route::put('/update/{id}','update')->name('contactDetail.update');
+        Route::delete('/delete/{id}','destroy')->name('contactDetail.destroy');
+    });
+    Route::prefix('/about')->group(function(){
+        //Routes for team
+         Route::prefix('/team')->controller(TeamController::class)->group(function(){
+            Route::get('/','index')->name('teams');
+            Route::get('/create','create')->name('team.create');
+            Route::post('/team-upload','uploadTeam')->name('team.upload');
+            Route::post('/store','store')->name('team.store');
+            Route::get('/{slug}','edit')->name('team.edit');
+            Route::put('/update/{slug}','update')->name('team.update');
+            Route::delete('/delete/{slug}','destroy')->name('team.destroy');
+        });
+       
+    });
 });
 Route::prefix('/')->controller(PageController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/faqs', 'faq')->name('faq');
     Route::get('/blogs', 'blogs')->name('blogs');
     Route::get('/blog/{slug}', 'blog')->name('blog');
+    Route::get('/about-us', 'about')->name('about');
+    Route::get('/contact', 'contact')->name('contact');
 });

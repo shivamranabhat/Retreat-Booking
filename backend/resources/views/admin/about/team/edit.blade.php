@@ -36,15 +36,26 @@
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
-                                <div class="form-outline mb-3">
-                                    <div class="image-area mb-3">
-                                        <img id="imageResult" src="{{ asset('storage/' . $team->image) }}" width="80">
+                                <div class="row align-items-end">
+                                    <div class="col-12 col-lg-6 form-outline mb-3">
+                                        <div class="image-area mb-3">
+                                            <img id="imageResult" src="{{ asset('storage/' . $team->image) }}" width="80">
+                                        </div>
+                                        <label class="form-label" for="image">Image</label>
+                                        <input class="form-control" type="file" id="image" name="image" />
+    
                                     </div>
-                                    <label class="form-label" for="image">Image</label>
-                                    <input class="form-control" type="file" id="image" name="image" />
-
+                                    <div class="col-12 col-lg-6 mb-3">
+                                        <label class="form-label" for="alt">Image Alt</label>
+                                        <input type="text" name="alt" id="alt"
+                                            class="form-control @error('alt') is-invalid @enderror {{ $errors->has('alt') ? 'error' : '' }}"
+                                            value="{{ $team->alt }}" />
+                                        @error('alt')
+                                        <span class="text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
                                 </div>
-                                <div class="form-outline mb-4">
+                                <div class="form-outline mb-3">
                                     <label class="form-label" for="role">Role</label>
                                     <input type="text" name="role" id="role"
                                         class="form-control @error('role') is-invalid @enderror {{ $errors->has('role') ? 'error' : '' }}"
@@ -52,17 +63,6 @@
                                     @error('role')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="experience">Experience</label>
-                                    <input type="text" name="experience" id="experience"
-                                        class="form-control @error('experience') is-invalid @enderror {{ $errors->has('experience') ? 'error' : '' }}"
-                                        value="{{ $team->experience }}" />
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="description">Description</label>
-                                    <textarea name="description" id="description"
-                                        class="form-control @error('description') is-invalid @enderror {{ $errors->has('description') ? 'error' : '' }}">{{ $team->description }}</textarea>
                                 </div>
                                 <button type="submit"
                                     class="btn btn-primary btn-block rounded-pill mb-3">Update</button>
@@ -73,100 +73,7 @@
             </div>
         </div>
         @push('scripts')
-        <script>
-            CKEDITOR.ClassicEditor.create(document.getElementById("description"), {
-                ckfinder:{
-                        uploadUrl:"{{route('team.upload',['_token'=>csrf_token()])}}",
-                    },
-                toolbar: {
-                            items: [
-                                'heading', '|',
-                                'bold', 'italic', 'strikethrough', 'underline', '|',
-                                'bulletedList', 'numberedList', 'todoList', '|',
-                                'outdent', 'indent', '|',
-                                'undo', 'redo',
-                                '-',
-                                'fontSize', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
-                                'alignment', '|',
-                                'link', 'uploadImage', 'blockQuote', 'htmlEmbed', 'insertTable', '|', 'horizontalLine'
-                            ],
-                            shouldNotGroupWhenFull: true
-                        },
-                list: {
-                    properties: {
-                        styles: true,
-                        startIndex: true,
-                        reversed: true
-                    }
-                },
-                heading: {
-                    options: [
-                        { model: 'paragraph', title: 'Paragraph' },
-                        { model: 'heading1', view: 'h1', title: 'Heading 1' },
-                        { model: 'heading2', view: 'h2', title: 'Heading 2'},
-                        { model: 'heading3', view: 'h3', title: 'Heading 3' },
-                        { model: 'heading4', view: 'h4', title: 'Heading 4' },
-                        { model: 'heading5', view: 'h5', title: 'Heading 5' },
-                        { model: 'heading6', view: 'h6', title: 'Heading 6' }
-                    ]
-                },
-                fontSize: {
-                    options: [ 10, 12, 14, 'default', 18, 20, 22 ],
-                    supportAllValues: true
-                },
-                htmlSupport: {
-                    allow: [
-                        {
-                            name: /.*/,
-                            attributes: true,
-                            classes: true,
-                            styles: true
-                        }
-                    ]
-                },
-                htmlEmbed: {
-                    showPreviews: true
-                },
-                link: {
-                    decorators: {
-                        addTargetToExternalLinks: true,
-                        defaultProtocol: 'https://',
-                        toggleDownloadable: {
-                            mode: 'manual',
-                            label: 'Downloadable',
-                            attributes: {
-                                download: 'file'
-                            }
-                        }
-                    }
-                },
-                removePlugins: [
-                    'AIAssistant',
-                    'CKBox',
-                    'CKFinder',
-                    'EasyImage',
-                    'MultiLevelList',
-                    'RealTimeCollaborativeComments',
-                    'RealTimeCollaborativeTrackChanges',
-                    'RealTimeCollaborativeRevisionHistory',
-                    'PresenceList',
-                    'Comments',
-                    'TrackChanges',
-                    'TrackChangesData',
-                    'RevisionHistory',
-                    'Pagination',
-                    'WProofreader',
-                    'MathType',
-                    'SlashCommand',
-                    'Template',
-                    'DocumentOutline',
-                    'FormatPainter',
-                    'TableOfContents',
-                    'PasteFromOfficeEnhanced',
-                    'CaseChange'
-                ]
-            });
-        </script>
+       
         <script src="{{ asset('assets/js/imagePreview.js?v=').time() }}"></script>
         @endpush
 </x-app-layout>

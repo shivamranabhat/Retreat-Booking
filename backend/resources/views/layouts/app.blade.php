@@ -129,7 +129,7 @@
                         <ul class="sub-nav collapse" id="sidebar-content" data-bs-parent="#sidebar-menu">
                             <li class="nav-item">
                                 <a class="nav-link {{request()->segment(2) == 'content' && request()->segment(3)== null ? 'text-primary' : ''}}"
-                                    href="">
+                                    href="{{route('mains')}}">
                                     <i class="icon">
                                         <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                             viewBox="0 0 24 24" fill="currentColor">
@@ -144,8 +144,23 @@
                             </li>
 
                             <li class="nav-item">
+                                <a class="nav-link {{request()->segment(2) == 'content' && request()->segment(3) == 'about' ? 'text-primary' : ''}}"
+                                    href="{{route('abouts')}}">
+                                    <i class="icon">
+                                        <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                            viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> About Body </i>
+                                    <span class="item-name">About Body</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link {{request()->segment(2) == 'content' && request()->segment(3) == 'footer' ? 'text-primary' : ''}}"
-                                    href="">
+                                    href="{{route('footers')}}">
                                     <i class="icon">
                                         <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                             viewBox="0 0 24 24" fill="currentColor">
@@ -421,38 +436,9 @@
                             </i>
                         </a>
                         <ul class="sub-nav collapse" id="sidebar-about" data-bs-parent="#sidebar-menu">
+                           
                             <li class="nav-item">
-                                <a class="nav-link {{request()->segment(3) == 'details' ? 'text-primary' : ''}}"
-                                    href="">
-                                    <i class="icon">
-                                        <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
-                                            viewBox="0 0 24 24" fill="currentColor">
-                                            <g>
-                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                            </g>
-                                        </svg>
-                                    </i>
-                                    <i class="sidenav-mini-icon"> Detail </i>
-                                    <span class="item-name">Details</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{request()->segment(3) == 'service' ? 'text-primary' : ''}}"
-                                    href="">
-                                    <i class="icon">
-                                        <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
-                                            viewBox="0 0 24 24" fill="currentColor">
-                                            <g>
-                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                            </g>
-                                        </svg>
-                                    </i>
-                                    <i class="sidenav-mini-icon"> Service </i>
-                                    <span class="item-name">Services</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{request()->segment(3) == 'team' ? 'text-primary' : ''}}" href="">
+                                <a class="nav-link {{request()->segment(3) == 'team' ? 'text-primary' : ''}}" href="{{route('teams')}}">
                                     <i class="icon">
                                         <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                             viewBox="0 0 24 24" fill="currentColor">
@@ -477,8 +463,8 @@
                                             </g>
                                         </svg>
                                     </i>
-                                    <i class="sidenav-mini-icon"> Partner </i>
-                                    <span class="item-name">Partner</span>
+                                    <i class="sidenav-mini-icon"> Why Us? </i>
+                                    <span class="item-name">Why Us?</span>
                                 </a>
                             </li>
                         </ul>
@@ -645,7 +631,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{request()->segment(2) == 'contact-details' ? 'active' : ''}}" href="">
+                        <a class="nav-link {{request()->segment(2) == 'contact-details' ? 'active' : ''}}" href="{{route('contactDetails')}}">
                             <i class="icon">
                                 <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -768,11 +754,11 @@
                                             <path d="M8.5 5L15.5 12L8.5 19" stroke="currentColor" stroke-width="1.5"
                                                 stroke-linecap="round" stroke-linejoin="round"></path>
                                         </svg>
-                                        @if (request()->segment(3)
+                                        @if (request()->segment(2)
                                         != '')
                                         {{str_replace('-',' ',request()->segment(2))}}
                                         @else
-                                        Main
+                                        Home
                                         @endif
                                         @if (request()->segment(3)
                                         != '')

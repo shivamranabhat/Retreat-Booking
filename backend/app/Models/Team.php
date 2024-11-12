@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
+
     use HasFactory;
     protected $fillable=[
-        'name','role','image','experience','description','slug'
+        'name','role','image','alt','slug'
     ];
     public function scopeFilter($query, array $filters)
     {

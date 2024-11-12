@@ -1,22 +1,28 @@
 <!-- hero section -->
 <section class="hero-section relative flex flex-col gap-y-16 items-center mt-18">
+    @if (
+        $content->image &&
+            (pathinfo($content->image, PATHINFO_EXTENSION) === 'mp4' ||
+                pathinfo($content->image, PATHINFO_EXTENSION) === 'webm'))
     <video autoplay="" muted="" loop="" playsinline="" class="object-cover h-screen md:h-[90vh] lg:h-[98vh] w-full"
         src="https://videos.pexels.com/video-files/7663449/7663449-uhd_2732_1440_24fps.mp4">
         <source src="https://videos.pexels.com/video-files/7663449/7663449-uhd_2732_1440_24fps.mp4"
             type="video/mp4">
     </video>
-    <!-- <img class="object-cover h-[70vh] lg:h-[60vh] xl:h-[98vh] w-full" src="https://images.unsplash.com/photo-1447452001602-7090c7ab2db3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""> -->
+    @else
+    <img class="object-cover h-screen md:h-[90vh] lg:h-[98vh] w-full" src="{{asset('storage/'.$content->image)}}" alt="{{$content->alt}}">
+    @endif
     <div
-        class="details absolute top-1/2 transform -translate-y-1/2 mt-20 md:mt-6 w-[90%] md:w-[80%] lg:w-[60%] flex flex-col gap-y-10 md:gap-y-20">
+        class="details absolute top-1/2 transform -translate-y-1/2 mt-20 md:mt-6 w-[90%] md:w-[80%] lg:w-[64%] flex flex-col gap-y-10 md:gap-y-20">
         <div class="left-container flex flex-col gap-y-4 justify-center md:pr-0 lg:pr-4">
             <h1
                 class="text-4xl text-white md:text-[2rem] lg:text-hero-title text-center font-bold lg:font-extrabold leading-tight lg:leading-normal">
-                Discover the best
+                {{$content->title ?? 'Discover the best
                 handpicked retreats
                 and trainings on the
-                planet
+                planet'}}
             </h1>
-            <h3 class="text-lg text-white md:text-xl text-center">Unplug. De-stress. Recharge.</h3>
+            <h3 class="text-lg text-white md:text-xl text-center">{{$content->subtitle ?? 'Unplug. De-stress. Recharge.'}}</h3>
         </div>
         <div
             class="search-bar bg-white p-4 md:p-0 w-full grid grid-cols-1 lg:grid-cols-3 gap-y-2 md:gap-0 box-shadow-i rounded-xl mx-auto">

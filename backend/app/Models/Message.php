@@ -5,18 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RoomType extends Model
+class Message extends Model
 {
 
     use HasFactory;
     protected $fillable=[
-        'name','image','description','price','slug'
+        'name','email','subject','message','slug'
     ];
     public function scopeFilter($query, array $filters)
     {
         if($filters['search'] ?? false)
         {
-            $query->where('name','like','%'.request('search').'%');
+            $query->where('name','like','%'.request('search').'%')->orWhere('email','like','%'.request('search').'%');
         }
     }
+
 }

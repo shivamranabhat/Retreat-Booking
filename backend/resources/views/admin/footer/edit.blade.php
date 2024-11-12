@@ -23,7 +23,11 @@
                                
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="title">Title</label>
-                                    <textarea class="form-control @error('title') is-invalid @enderror {{ $errors->has('title') ? 'error' : '' }}" id="title" name="title" rows="3">{{ $content->title }}</textarea>
+                                    <input class="form-control @error('title') is-invalid @enderror {{ $errors->has('title') ? 'error' : '' }}" id="title" name="title" value="{{ $content->title }}"/>
+                                </div>
+                                <div class="form-outline mb-3">
+                                    <label class="form-label" for="subtitle">Subtitle</label>
+                                    <textarea class="form-control @error('subtitle') is-invalid @enderror {{ $errors->has('subtitle') ? 'error' : '' }}" id="subtitle" name="subtitle" rows="1">{{old('subtitle', $content->subtitle)}}</textarea>
                                 </div>
                                
                                 <button type="submit" class="btn btn-primary btn-block rounded-pill mb-3">Update</button>

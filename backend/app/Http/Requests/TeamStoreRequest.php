@@ -24,9 +24,8 @@ class TeamStoreRequest extends FormRequest
         $rules =  [
             'name'=>'required|unique:teams,name',
             'role'=>'required',
-            'experience'=>'nullable',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp',
-            'description'=>'nullable'
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp',
+            'alt'=>'required'
         ];
         return $rules;
     }
