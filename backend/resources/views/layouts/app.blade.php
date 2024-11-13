@@ -58,20 +58,20 @@
             <a class="navbar-brand d-flex align-items-center gap-1">
                 {{-- <div class="logo-main">
                     <img src="{{asset('main/images/logo-2.jpg')}}" class="rounded-circle" width="40" alt="logo">
-                </div> --}}
-                <!--logo End-->
-                <h4 class="logo-title m-0">Retreat</h4>
-            </a>
-            <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
-                <i class="icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4.25 12.2744L19.25 12.2744" stroke="currentColor" stroke-width="1.5"
-                            stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path d="M10.2998 18.2988L4.2498 12.2748L10.2998 6.24976" stroke="currentColor"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </i>
-            </div>
+        </div> --}}
+        <!--logo End-->
+        <h4 class="logo-title m-0">Retreat</h4>
+        </a>
+        <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
+            <i class="icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.25 12.2744L19.25 12.2744" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M10.2998 18.2988L4.2498 12.2748L10.2998 6.24976" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </i>
+        </div>
         </div>
         <div class="sidebar-body pt-0 data-scrollbar">
             <div class="sidebar-list">
@@ -237,7 +237,7 @@
                                 <svg width="20" class="icon-20" fill="none" stroke="currentColor" viewBox="0 0 24 24" version="1.1" xml:space="preserve"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-                                  
+
                                     <g id="Layer_Grid" />
 
                                     <g id="Layer_2">
@@ -319,6 +319,24 @@
                             <span class="item-name">Locations</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{request()->segment(2) == 'testimonials' ? 'active' : ''}}"
+                            href="{{ route('testimonials') }}">
+                            <i class="icon">
+                                <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path d="M3 7C3 5.34315 4.34315 4 6 4H18C19.6569 4 21 5.34315 21 7V12C21 13.6569 19.6569 15 18 15H9L5 18V15H6C7.65685 15 9 13.6569 9 12V7C9 5.34315 7.65685 4 6 4H3C2.44772 4 2 4.44772 2 5V7C2 7.55228 2.44772 8 3 8H6C7.65685 8 9 9.34315 9 11V12H18V11C18 9.34315 19.3431 8 21 8C21.5523 8 22 7.55228 22 7V5C22 4.44772 21.5523 4 21 4H3C2.44772 4 2 4.44772 2 5V7H3Z"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </g>
+                                </svg>
+                            </i>
+                            <span class="item-name">Testimonials</span>
+                        </a>
+                    </li>
+
+
                     <li>
                         <hr class="hr-horizontal">
                     </li>
@@ -436,7 +454,7 @@
                             </i>
                         </a>
                         <ul class="sub-nav collapse" id="sidebar-about" data-bs-parent="#sidebar-menu">
-                           
+
                             <li class="nav-item">
                                 <a class="nav-link {{request()->segment(3) == 'team' ? 'text-primary' : ''}}" href="{{route('teams')}}">
                                     <i class="icon">

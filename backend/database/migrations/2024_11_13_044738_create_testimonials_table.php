@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedTinyInteger('rating');
             $table->text('description');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

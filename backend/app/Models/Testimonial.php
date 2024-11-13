@@ -14,7 +14,8 @@ class Testimonial extends Model
     protected $fillable = [
         'name',
         'rating',
-        'description'
+        'description',
+        'slug'
     ];
 
     public function scopeFilter($query, array $filters)
