@@ -320,6 +320,28 @@
                             <span class="item-name">Locations</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{request()->segment(2) == 'testimonials' ? 'active' : ''}}"
+                            href="{{ route('testimonials') }}">
+                            <i class="icon">
+                                <svg class="icon-20" width="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+
+                                    <rect x="0" fill="none" width="20" height="20" />
+
+                                    <g>
+
+                                        <path
+                                            d="M4 3h12c.55 0 1.02.2 1.41.59S18 4.45 18 5v7c0 .55-.2 1.02-.59 1.41S16.55 14 16 14h-1l-5 5v-5H4c-.55 0-1.02-.2-1.41-.59S2 12.55 2 12V5c0-.55.2-1.02.59-1.41S3.45 3 4 3zm11 2H4v1h11V5zm1 3H4v1h12V8zm-3 3H4v1h9v-1z" />
+
+                                    </g>
+
+                                </svg>
+                            </i>
+                            <span class="item-name">Testimonials</span>
+                        </a>
+                    </li>
+
+
                     <li>
                         <hr class="hr-horizontal">
                     </li>
@@ -414,8 +436,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{request()->segment(2) == 'banner' ? 'active' : ''}}" href="{{route('banners')}}"
-                            fill="currentColor">
+                        <a class="nav-link {{request()->segment(2) == 'banner' ? 'active' : ''}}"
+                            href="{{route('banners')}}" fill="currentColor">
                             <i class="icon">
                                 <svg width="20" class="icon-20" viewBox="0 -2 20 20" version="1.1"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -425,7 +447,8 @@
 
                                     </defs>
                                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                        <g id="Dribbble-Light-Preview" transform="translate(-340.000000, -3881.000000)" fill="currentColor">
+                                        <g id="Dribbble-Light-Preview" transform="translate(-340.000000, -3881.000000)"
+                                            fill="currentColor">
                                             <g id="icons" transform="translate(56.000000, 160.000000)">
                                                 <path
                                                     d="M296,3725.5 C296,3724.948 296.448,3724.5 297,3724.5 C297.552,3724.5 298,3724.948 298,3725.5 C298,3726.052 297.552,3726.5 297,3726.5 C296.448,3726.5 296,3726.052 296,3725.5 L296,3725.5 Z M296.75,3728.75 L300,3733 L288,3733 L292.518,3726.812 L295.354,3730.625 L296.75,3728.75 Z M302,3734 C302,3734.552 301.552,3735 301,3735 L287,3735 C286.448,3735 286,3734.552 286,3734 L286,3724 C286,3723.448 286.448,3723 287,3723 L301,3723 C301.552,3723 302,3723.448 302,3724 L302,3734 Z M302,3721 L286,3721 C284.896,3721 284,3721.895 284,3723 L284,3735 C284,3736.104 284.896,3737 286,3737 L302,3737 C303.105,3737 304,3736.104 304,3735 L304,3723 C304,3721.895 303.105,3721 302,3721 L302,3721 Z"
@@ -519,7 +542,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{request()->segment(2) == 'messages' ? 'active' : ''}}" href="">
+                        <a class="nav-link {{request()->segment(2) == 'messages' ? 'active' : ''}}"
+                            href="{{route('messages')}}">
                             <i class="icon">
                                 <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">

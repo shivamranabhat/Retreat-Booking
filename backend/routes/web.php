@@ -26,6 +26,7 @@ use App\Http\Controllers\AccommodationController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\WhyUsController;
 use App\Http\Controllers\BannerController;
 /*
@@ -86,39 +87,36 @@ Route::prefix('/dashboard')->group(function () {
         Route::put('/update/{slug}', 'update')->name('location.update');
         Route::delete('/delete/{slug}', 'destroy')->name('location.destroy');
     });
-  
     
     Route::prefix('/content')->group(function(){
         //Routes for footer contents
-        Route::prefix('/footer')->controller(FooterContentController::class)->group(function(){
-            Route::get('/','index')->name('footers');
-            Route::get('/create','create')->name('footer.create');
-            Route::post('/store','store')->name('footer.store');
-            Route::get('/{slug}','edit')->name('footer.edit');
-            Route::put('/update/{slug}','update')->name('footer.update');
-            Route::delete('/delete/{slug}','destroy')->name('footer.destroy');
+        Route::prefix('/footer')->controller(FooterContentController::class)->group(function () {
+            Route::get('/', 'index')->name('footers');
+            Route::get('/create', 'create')->name('footer.create');
+            Route::post('/store', 'store')->name('footer.store');
+            Route::get('/{slug}', 'edit')->name('footer.edit');
+            Route::put('/update/{slug}', 'update')->name('footer.update');
+            Route::delete('/delete/{slug}', 'destroy')->name('footer.destroy');
         });
-         //Routes for about body contents
-         Route::prefix('/about')->controller(AboutContentController::class)->group(function(){
-            Route::get('/','index')->name('abouts');
-            Route::get('/create','create')->name('about.create');
-            Route::post('/store','store')->name('about.store');
-            Route::get('/{slug}','edit')->name('about.edit');
-            Route::put('/update/{slug}','update')->name('about.update');
-            Route::delete('/delete/{slug}','destroy')->name('about.destroy');
+        //Routes for about body contents
+        Route::prefix('/about')->controller(AboutContentController::class)->group(function () {
+            Route::get('/', 'index')->name('abouts');
+            Route::get('/create', 'create')->name('about.create');
+            Route::post('/store', 'store')->name('about.store');
+            Route::get('/{slug}', 'edit')->name('about.edit');
+            Route::put('/update/{slug}', 'update')->name('about.update');
+            Route::delete('/delete/{slug}', 'destroy')->name('about.destroy');
         });
-       
-         //Routes for main body contents
-         Route::prefix('/')->controller(BodyContentController::class)->group(function(){
-            Route::get('/','index')->name('mains');
-            Route::get('/create','create')->name('main.create');
-            Route::post('/store','store')->name('main.store');
-            Route::get('/{slug}','edit')->name('main.edit');
-            Route::put('/update/{slug}','update')->name('main.update');
-            Route::delete('/delete/{slug}','destroy')->name('main.destroy');
+
+        //Routes for main body contents
+        Route::prefix('/')->controller(BodyContentController::class)->group(function () {
+            Route::get('/', 'index')->name('mains');
+            Route::get('/create', 'create')->name('main.create');
+            Route::post('/store', 'store')->name('main.store');
+            Route::get('/{slug}', 'edit')->name('main.edit');
+            Route::put('/update/{slug}', 'update')->name('main.update');
+            Route::delete('/delete/{slug}', 'destroy')->name('main.destroy');
         });
-        
-        
     });
 
     //Routes for blog
@@ -147,7 +145,6 @@ Route::prefix('/dashboard')->group(function () {
         Route::get('/{slug}', 'edit')->name('accommodation.edit');
         Route::put('/update/{slug}', 'update')->name('accommodation.update');
         Route::delete('/delete/{slug}', 'destroy')->name('accommodation.destroy');
-
     });
     Route::prefix('/room-types')->controller(RoomTypeController::class)->group(function () {
         Route::get('/', 'index')->name('roomTypes');
@@ -156,7 +153,6 @@ Route::prefix('/dashboard')->group(function () {
         Route::get('/{slug}', 'edit')->name('roomType.edit');
         Route::put('/update/{slug}', 'update')->name('roomType.update');
         Route::delete('/delete/{slug}', 'destroy')->name('roomType.destroy');
-
     });
     Route::prefix('/packages')->controller(PackageController::class)->group(function () {
         Route::get('/', 'index')->name('packages');
@@ -169,13 +165,22 @@ Route::prefix('/dashboard')->group(function () {
         Route::post('{slug}/change/Status/', 'updateStatus')->name('package.updateStatus');
     });
     Route::prefix('/categories')->controller(CategoryController::class)->group(function () {
-        Route::get('/', 'index')->name('categories'); 
+        Route::get('/', 'index')->name('categories');
         Route::get('/create', 'create')->name('category.create');
         Route::post('/store', 'store')->name('category.store');
         Route::get('/{slug}', 'edit')->name('category.edit');
         Route::put('/update/{slug}', 'update')->name('category.update');
         Route::delete('/delete/{slug}', 'destroy')->name('category.destroy');
     });
+    Route::prefix('/testimonials')->controller(TestimonialController::class)->group(function () {
+        Route::get('/', 'index')->name('testimonials');
+        Route::get('/create', 'create')->name('testimonial.create');
+        Route::post('/store', 'store')->name('testimonial.store');
+        Route::get('/{slug}', 'edit')->name('testimonial.edit');
+        Route::put('/update/{slug}', 'update')->name('testimonial.update');
+        Route::delete('/delete/{slug}', 'destroy')->name('testimonial.destroy');
+    });
+
     Route::prefix('/seo')->group(function () {
         //Routes for tags
         Route::prefix('/tags')->controller(TagController::class)->group(function () {
@@ -216,9 +221,9 @@ Route::prefix('/dashboard')->group(function () {
         });
     });
     //Route for subscribers
-    Route::prefix('/subscribers')->controller(SubscriberController::class)->group(function(){
-        Route::get('/','index')->name('subscribers');
-        Route::delete('/delete/{slug}','destroy')->name('subscriber.destroy');
+    Route::prefix('/subscribers')->controller(SubscriberController::class)->group(function () {
+        Route::get('/', 'index')->name('subscribers');
+        Route::delete('/delete/{slug}', 'destroy')->name('subscriber.destroy');
     });
     //Route for message sent by user
     Route::prefix('/messages')->controller(MessageController::class)->group(function () {
@@ -236,14 +241,27 @@ Route::prefix('/dashboard')->group(function () {
         Route::put('/update/{slug}', 'update')->name('faq.update');
         Route::delete('/destroy/{slug}', 'destroy')->name('faq.destroy');
     });
-     //Routes for contact details
-     Route::prefix('/contact-details')->controller(ContactDetailController::class)->group(function(){
-        Route::get('/','index')->name('contactDetails');
-        Route::get('/create','create')->name('contactDetail.create');
-        Route::post('/store','store')->name('contactDetail.store');
-        Route::get('/{id}','edit')->name('contactDetail.edit');
-        Route::put('/update/{id}','update')->name('contactDetail.update');
-        Route::delete('/delete/{id}','destroy')->name('contactDetail.destroy');
+    //Routes for contact details
+    Route::prefix('/contact-details')->controller(ContactDetailController::class)->group(function () {
+        Route::get('/', 'index')->name('contactDetails');
+        Route::get('/create', 'create')->name('contactDetail.create');
+        Route::post('/store', 'store')->name('contactDetail.store');
+        Route::get('/{id}', 'edit')->name('contactDetail.edit');
+        Route::put('/update/{id}', 'update')->name('contactDetail.update');
+        Route::delete('/delete/{id}', 'destroy')->name('contactDetail.destroy');
+    });
+    Route::prefix('/about')->group(function () {
+        //Routes for team
+        Route::prefix('/team')->controller(TeamController::class)->group(function () {
+            Route::get('/', 'index')->name('teams');
+            Route::get('/create', 'create')->name('team.create');
+            Route::post('/team-upload', 'uploadTeam')->name('team.upload');
+            Route::post('/store', 'store')->name('team.store');
+            Route::get('/{slug}', 'edit')->name('team.edit');
+            Route::put('/update/{slug}', 'update')->name('team.update');
+            Route::delete('/delete/{slug}', 'destroy')->name('team.destroy');
+        });
+       
     });
     Route::prefix('/about')->group(function(){
         //Routes for team
