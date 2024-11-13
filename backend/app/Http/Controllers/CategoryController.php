@@ -41,7 +41,7 @@ class CategoryController extends Controller
     {
         $category = Category::whereSlug($slug)->firstOrFail();
         $formFields = $request->validate([
-            'name' => 'required|string|max:255|unique:categories,name,' . $category->name,
+            'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
         ]);
         $slug = Str::slug($formFields['name']);
         $category->update($formFields+['slug'=>$slug]);

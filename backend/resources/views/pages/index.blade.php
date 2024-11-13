@@ -45,7 +45,7 @@
     <livewire:hero-section />
 
     <livewire:location-section />
-    <livewire:why-us />
+    <livewire:why-us-section />
     <livewire:blog-section />
     <livewire:newsletter />
     <livewire:testimonial-section />

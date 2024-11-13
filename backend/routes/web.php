@@ -26,6 +26,8 @@ use App\Http\Controllers\AccommodationController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\WhyUsController;
+use App\Http\Controllers\BannerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,6 +86,7 @@ Route::prefix('/dashboard')->group(function () {
         Route::put('/update/{slug}', 'update')->name('location.update');
         Route::delete('/delete/{slug}', 'destroy')->name('location.destroy');
     });
+  
     
     Route::prefix('/content')->group(function(){
         //Routes for footer contents
@@ -253,7 +256,25 @@ Route::prefix('/dashboard')->group(function () {
             Route::put('/update/{slug}','update')->name('team.update');
             Route::delete('/delete/{slug}','destroy')->name('team.destroy');
         });
+        //Routes for why us
+        Route::prefix('/why-us')->controller(WhyUsController::class)->group(function () {
+            Route::get('/', 'index')->name('whyUs');
+            Route::get('/create', 'create')->name('whyUs.create');
+            Route::post('/store', 'store')->name('whyUs.store');
+            Route::get('/{slug}', 'edit')->name('whyUs.edit');
+            Route::put('/update/{slug}', 'update')->name('whyUs.update');
+            Route::delete('/delete/{slug}', 'destroy')->name('whyUs.destroy');
+        });
        
+    });
+     //Routes for banner
+     Route::prefix('/banner')->controller(BannerController::class)->group(function () {
+        Route::get('/', 'index')->name('banners');
+        Route::get('/create', 'create')->name('banner.create');
+        Route::post('/store', 'store')->name('banner.store');
+        Route::get('/{slug}', 'edit')->name('banner.edit');
+        Route::put('/update/{slug}', 'update')->name('banner.update');
+        Route::delete('/delete/{slug}', 'destroy')->name('banner.destroy');
     });
 });
 Route::prefix('/')->controller(PageController::class)->group(function () {

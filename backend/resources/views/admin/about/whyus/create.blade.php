@@ -6,10 +6,10 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
-                                <h4 class="card-title">Details</h4>
+                                <h4 class="card-title">Why Us?</h4>
                             </div>
                             <div class="back">
-                                <a href="{{route('details')}}"
+                                <a href="{{route('whyUs')}}"
                                     class=" text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
                                     <i class="btn-inner">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 25 25"
@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="card-body mt-2">
-                            <form method="POST" action="{{ route('detail.store') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('whyUs.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="title">Title</label>
@@ -34,30 +34,11 @@
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
-                               
-                               
-                                <div class="form-outline mb-3">
-                                    <label class="form-label" for="customer_count">Customer Count</label>
-                                    <input type="text" name="customer_count" id="customer_count"
-                                        class="form-control @error('customer_count') is-invalid @enderror {{ $errors->has('customer_count') ? 'error' : '' }}"
-                                        value="{{ old('customer_count') }}" />
-                                    @error('customer_count')
-                                    <span class="text-danger">{{$message}}</span>
-                                    @enderror
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <div class="image-area"><img id="imageResult" src="" width="80"></div>
-                                    <label class="form-label" for="image">Customer Images</label>
-                                    <input class="form-control" type="file" id="image" name="image[]"
-                                        multiple />
-                                    @error('image')
-                                    <span class="text-danger">{{$message}}</span>
-                                    @enderror
-                                </div>
+
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="description">Description</label>
                                     <textarea name="description" id="description"
-                                        class="form-control @error('description') is-invalid @enderror {{ $errors->has('description') ? 'error' : '' }}">{{ old('description') }}</textarea>
+                                        class="form-control @error('description') is-invalid @enderror {{ $errors->has('description') ? 'error' : '' }}" rows="1">{{ old('description') }}</textarea>
                                     @error('description')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
@@ -71,8 +52,4 @@
                 </div>
             </div>
         </div>
-        @push('scripts')
-        <script src="{{ asset('assets/js/ckeditor.js') }}"></script>
-        <script src="{{ asset('assets/js/imagePreview.js') }}"></script>
-        @endpush
 </x-app-layout>

@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Details</h4>
+                            <h4 class="card-title">Banner</h4>
                         </div>
                     </div>
                     <div class="card-body">
@@ -15,7 +15,7 @@
                                     <x-search />
                                     <div class="col-12 col-md-6 col-lg-6 px-0">
                                         <div class="dataTables_length d-flex justify-content-end mt-3 mt-lg-0 mt-xl-0 px-0" id="datatable_length">
-                                            <a href="{{route('detail.create')}}" class=" text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
+                                            <a href="{{route('banner.create')}}" class=" text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
                                                 <i class="btn-inner">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -31,22 +31,30 @@
                                         <thead>
                                             <tr class="ligth">
                                                 <th>S.N.</th>
-                                                <th>Title</th>
+                                                <th>Image</th>
+                                                <th>Page</th>
                                                 <th>Published at</th>
                                                 <th style="min-width: 100px">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($details as $detail)
+                                            @forelse ($banners as $banner)
                                             <tr>
                                                 <th scope="row">{{ $loop->iteration }}</th>
-                                                <td>{{ $detail->title }}</td>
-                                                <td>{{ $detail->created_at }}</td>
+                                                <td>
+                                                    @if($banner->image)
+                                                    <img src="{{asset('storage/'.$banner->image)}}" width="50" class="rounded" alt="{{$banner->name}}">
+                                                    @else 
+                                                    No image
+                                                    @endif
+                                                </td>
+                                                <td>{{ $banner->page }}</td>
+                                                <td>{{ $banner->created_at }}</td>
                                                 <td>
                                                     <div class="flex align-items-center list-user-action">
                                                         <a class="btn btn-sm btn-icon btn-warning"
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            data-original-title="Edit" href="{{route('detail.edit',$detail->slug)}}" aria-label="Edit"
+                                                            data-original-title="Edit" href="{{route('banner.edit',$banner->slug)}}" aria-label="Edit"
                                                             data-bs-original-title="Edit">
                                                             <span class="btn-inner">
                                                                 <svg class="icon-20" width="20" viewBox="0 0 24 24"
@@ -68,7 +76,7 @@
                                                                 </svg>
                                                             </span>
                                                         </a>
-                                                        <a class="btn btn-sm btn-icon btn-danger" type="button" data-toggle="modal" data-target="#delete_{{ $detail->slug }}" data-bs-original-title="Delete">
+                                                        <a class="btn btn-sm btn-icon btn-danger" type="button" data-toggle="modal" data-target="#delete_{{ $banner->slug }}" data-bs-original-title="Delete">
                                                             <span class="btn-inner">
                                                                 <svg class="icon-20" width="20" viewBox="0 0 24 24"
                                                                     fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +98,7 @@
                                                             </span>
                                                         </a>
                                                         <!-- Modal -->
-                                                        <div class="modal fade" id="delete_{{ $detail->slug }}" tabindex="-1" role="dialog"
+                                                        <div class="modal fade" id="delete_{{ $banner->slug }}" tabindex="-1" role="dialog"
                                                             aria-labelledby="deleteTitle" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-centered"
                                                                 role="document">
@@ -114,7 +122,7 @@
                                                                             class="btn btn-secondary rounded-pill"
                                                                             data-dismiss="modal">Close</button>
                                                                         <form
-                                                                            action="{{ route('detail.destroy', $detail->slug) }}"
+                                                                            action="{{ route('banner.destroy', $banner->slug) }}"
                                                                             method="POST">
                                                                             @csrf
                                                                             @method('DELETE')
@@ -130,7 +138,7 @@
                                             </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="4" class="text-center py-5">
+                                                <td colspan="5" class="text-center py-5">
                                                     No data found
                                                 </td>
                                             </tr>
@@ -138,6 +146,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                {{ $banners->links('vendor.pagination.simple-tailwind') }}
                                 <div class="clear"></div>
                             </div>
                         </div>

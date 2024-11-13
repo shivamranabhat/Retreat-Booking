@@ -42,7 +42,7 @@
     @endslot
   
     <livewire:navbar />
-    <livewire:banner />
+    <x-banner-section />
     <livewire:blogs />
     <livewire:testimonial-section />
     <livewire:footer />
