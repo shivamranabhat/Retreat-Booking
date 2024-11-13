@@ -6,7 +6,7 @@
             <div class="about flex flex-col gap-2">
                 <h5 class="font-semibold text-base text-gray-500 uppercase">{{$content->title??'Who we are?'}}</h5>
                 <p class="text-gray-500 text-sm justify">
-                   {{$content->subtitle ?? 'We are a team of yogis who came together to put
+                    {{$content->subtitle ?? 'We are a team of yogis who came together to put
                     our energy into making the world a better place by
                     connecting you with life-changing yoga retreats.'}}
                 </p>
@@ -39,7 +39,7 @@
                                 d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
                         </svg>
                     </span>
-                    <a href="mailto:{{$details->email}}" class="text-base text-gray-500">{{$details->email}}</a>
+                    <a href="mailto:{{$details->email??''}}" class="text-base text-gray-500">{{$details->email??''}}</a>
                 </div>
 
             </div>

@@ -13,7 +13,7 @@ class RoomType extends Model
         'name','image','description','price','slug'
     ];
 
-    protected $table = 'roomtypes';
+    protected $table = 'room_types';
 
     public function scopeFilter($query, array $filters)
     {
