@@ -10,7 +10,7 @@
     color: var(--bs-gray-400) !important;
 }
 .nav-pills .nav-item a.active{
-    background-color: #033e41 !important;
+    background-color: #02B05C !important;
 }
 .nav-slider-thumb{
     display:none !important;
@@ -43,7 +43,7 @@
     transition: .3s ease-in;
 }
 .btn-primary:hover{
-    background-color: rgb(var(--bs-primary-rgb)) !important;
+    background-color: #04954F !important;
 }
 
 .product-card{
@@ -86,4 +86,3 @@
     margin-right: 5px;
     margin-bottom: 5px;
   }
-  

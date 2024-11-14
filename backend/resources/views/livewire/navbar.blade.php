@@ -6,8 +6,8 @@
             <div class="links">
                 <ul class="hidden lg:flex gap-x-10 items-center">
                     @forelse($categories as $category)
-                    <li><a href="retreat.html"
-                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-200 transition-all duration-200 ease-in-out">{{$category->name}}</a>
+                    <li><a href="{{route('retreats',['retreat'=>$category->slug])}}"
+                            class="text-sm px-3 py-2 rounded-3xl {{request()->segment(1) == $category->slug ? 'bg-gray-200' : ''}} hover:bg-gray-200 transition-all duration-200 ease-in-out">{{$category->name}}</a>
                     </li>
                    @empty 
                    @endforelse

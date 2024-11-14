@@ -11,6 +11,7 @@ class Package extends Model
 
     protected $fillable = [
         'title',
+        'main_image',
         'images',
         'summary',
         'features',
@@ -25,10 +26,10 @@ class Package extends Model
         'status',
         'start_date',
         'end_date',
-        'instructors_id',
-        'accommodations_id',
-        'locations_id',
-        'categories_id',
+        'instructor_id',
+        'accommodation_id',
+        'location_id',
+        'category_id',
         'slug'
     ];
 
@@ -43,6 +44,10 @@ class Package extends Model
         }
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
     public function instructor()
     {
         return $this->belongsTo(Instructor::class, 'instructor_id');

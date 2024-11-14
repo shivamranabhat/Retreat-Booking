@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Dashboard | PY</title>
+    <title>Dashboard | Yoga Holiday</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}" />
 
@@ -56,11 +56,10 @@
     <aside class="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all ">
         <div class="sidebar-header d-flex align-items-center justify-content-start">
             <a class="navbar-brand d-flex align-items-center gap-1">
-                {{-- <div class="logo-main">
-                    <img src="{{asset('main/images/logo-2.jpg')}}" class="rounded-circle" width="40" alt="logo">
-                </div> --}}
+                <div class="logo-main">
+                    <img src="{{asset('main/images/logo.svg')}}" class="rounded-circle" width="200" alt="logo">
+                </div>
                 <!--logo End-->
-                <h4 class="logo-title m-0">Retreat</h4>
             </a>
             <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
                 <i class="icon">

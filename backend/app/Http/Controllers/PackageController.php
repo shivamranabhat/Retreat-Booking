@@ -27,7 +27,7 @@ class PackageController extends Controller
     // Display a listing of the packages
     public function index(Request $request)
     {
-        $packages = Package::filter($request->all())->paginate(10);
+        $packages = Package::filter($request->all())->latest()->paginate(10);
         return view('admin.packages.index', compact('packages'));
     }
 
@@ -62,37 +62,41 @@ class PackageController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:100',
             'images.*' => 'nullable|file|mimes:jpg,jpeg,png,gif',
-            'summary' => 'nullable|string|max:1000',
-            'features' => 'nullable|string|max:1000',
-            'description' => 'nullable|string|max:1000',
-            'highlights' => 'nullable|string|max:1000',
-            'itinerary' => 'nullable|string|max:1000',
+            'summary' => 'nullable|string',
+            'features' => 'nullable|string',
+            'highlights' => 'nullable|string',
+            'itinerary' => 'nullable|string',
             'category' => 'nullable|string|max:100',
-            'terms_and_conditions' => 'nullable|string|max:1000',
+            'terms_and_conditions' => 'nullable|string',
             'days' => 'nullable|integer',
             'price' => 'nullable|numeric',
-            'included' => 'nullable|string|max:1000',
-            'not_included' => 'nullable|string|max:1000',
+            'included' => 'nullable|string',
+            'not_included' => 'nullable|string',
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date',
-            'instructors_id' => 'nullable|integer|exists:instructors,id',
-            'accommodations_id' => 'nullable|integer|exists:accommodations,id',
-            'locations_id' => 'nullable|integer|exists:locations,id',
-            'categories_id' => 'nullable|integer|exists:categories,id',
+            'instructor_id' => 'required|integer|exists:instructors,id',
+            'accommodation_id' => 'required|integer|exists:accommodations,id',
+            'location_id' => 'required|integer|exists:locations,id',
+            'category_id' => 'required|integer|exists:categories,id',
         ]);
+
+        if ($request->hasFile('main_image')) {
+            $image = $request->file('main_image');
+            $imageName = time() . '-' . $image->getClientOriginalName();
+            $validatedData['main_image'] = $image->storeAs('packages/main_images', $imageName, 'public');
+        }
 
         // Process multiple image uploads
         $imagePaths = [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $path = $image->store('packages/', 'public'); // Specify path for package images
+                $path = $image->store('packages/', 'public');
                 $imagePaths[] = $path;
             }
         }
 
         $validatedData['images'] = json_encode($imagePaths);
         $validatedData['slug'] = Str::slug($validatedData['title']);
-        $validatedData['status'] = 0;
         $package = Package::create($validatedData);
         if ($request->has('inclusions')) {
             foreach ($request->input('inclusions') as $inclusion) {
@@ -139,24 +143,24 @@ class PackageController extends Controller
 
         $validatedData = $request->validate([
             'title' => 'required|string|max:100',
+            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,webp',
             'images.*' => 'nullable|file|mimes:jpg,jpeg,png,gif',
-            'summary' => 'nullable|string|max:1000',
-            'features' => 'nullable|string|max:1000',
-            'description' => 'nullable|string|max:1000',
-            'highlights' => 'nullable|string|max:1000',
-            'itinerary' => 'nullable|string|max:1000',
+            'summary' => 'nullable|string',
+            'features' => 'nullable|string',
+            'highlights' => 'nullable|string',
+            'itinerary' => 'nullable|string',
             'category' => 'nullable|string|max:100',
-            'terms_and_conditions' => 'nullable|string|max:1000',
+            'terms_and_conditions' => 'nullable|string',
             'days' => 'nullable|integer',
             'price' => 'nullable|numeric',
-            'included' => 'nullable|string|max:1000',
-            'not_included' => 'nullable|string|max:1000',
+            'included' => 'nullable|string',
+            'not_included' => 'nullable|string',
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date',
             'instructor_id' => 'nullable|integer|exists:instructors,id',
             'accommodation_id' => 'nullable|integer|exists:accommodations,id',
             'location_id' => 'nullable|integer|exists:locations,id',
-            'categories_id' => 'nullable|integer|exists:categories,id',
+            'category_id' => 'nullable|integer|exists:categories,id',
         ]);
 
         // Process new images
@@ -174,9 +178,22 @@ class PackageController extends Controller
                 $newImagePaths[] = $path;
             }
         }
-
+       
         $validatedData['images'] = json_encode($newImagePaths ?? $imagePaths);
         $validatedData['slug'] = Str::slug($validatedData['title']);
+        if ($request->hasFile('main_image')) {
+            if (!empty($package->main_image)) {
+                $oldImagePath = public_path('storage/' . $package->main_image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+            $uploadedFile = $request->file('main_image');
+            $fileName = time() . '-' . $uploadedFile->getClientOriginalName();
+            $mainImagePath = $uploadedFile->storeAs('packages/main_images', $fileName, 'public');
+            $validatedData['main_image'] = $mainImagePath;
+        }
+
         $package->update($validatedData);
         if ($request->has('inclusions')) {
             foreach ($request->input('inclusions') as $inclusion) {

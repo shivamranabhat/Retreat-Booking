@@ -10,7 +10,8 @@ return new class extends Migration {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->json('images')->nullable();
+            $table->string('main_image')->nullable();
+            $table->string('images')->nullable();
             $table->text('summary');
             $table->text('features')->nullable();
             $table->text('description')->nullable();
@@ -21,13 +22,13 @@ return new class extends Migration {
             $table->text('not_included')->nullable();
             $table->integer('days');
             $table->decimal('price', 8, 2);
-            $table->boolean('status'); 
+            $table->boolean('status')->default(1); 
             $table->date('start_date')->nullable();
             $table->date('end_date');
-            $table->foreignId('instructors_id')->constrained('instructors')->onDelete('cascade');
-            $table->foreignId('accommodations_id')->constrained('accommodations')->onDelete('cascade');
-            $table->foreignId('locations_id')->constrained('locations')->onDelete('cascade');
-            $table->foreignId('categories_id')->constrained('categories')->onDelete('cascade');
+            $table->foreignId('instructor_id')->constrained('instructors')->onDelete('cascade');
+            $table->foreignId('accommodation_id')->constrained('accommodations')->onDelete('cascade');
+            $table->foreignId('location_id')->constrained('locations')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->string('slug')->unique();
             $table->timestamps();
         });

@@ -41,6 +41,14 @@
                                         value="{{ old('title') }}" required />
                                     @error('title') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
+                                <div class="form-outline mb-3">
+                                    <div class="image-area"><img id="mainImageResult" src="" width="80"></div>
+                                    <label class="form-label" for="main_image">Main Image</label>
+                                    <input class="form-control" type="file" id="main_image" name="main_image" onchange="previewImage(event)"/>
+                                    @error('main_image')
+                                    <span class="text-danger">{{$message}}</span>
+                                    @enderror
+                                </div>
                                 <div class="row" id="image-preview-container"></div>
                                 <div class="row align-items-end">
                                     <div class="form-outline mb-3">
@@ -52,9 +60,9 @@
                                     </div>
                                 </div>
                                 <div class="form-outline mb-3">
-                                    <label class="form-label" for="locations_id">Location</label>
-                                    <select name="locations_id" id="locations_id"
-                                        class="form-control @error('locations_id') is-invalid @enderror">
+                                    <label class="form-label" for="location_id">Location</label>
+                                    <select name="location_id" id="location_id"
+                                        class="form-control @error('location_id') is-invalid @enderror">
                                         <option value="">Select Location</option>
                                         @foreach($dropdownData['locations'] as $location)
                                         <option value="{{ $location->id }}">{{ $location->name }}</option>
@@ -63,15 +71,15 @@
                                     @error('location_id') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-outline mb-3">
-                                    <label class="form-label" for="categories_id">Category</label>
-                                    <select name="categories_id" id="categories_id"
-                                        class="form-control @error('categories_id') is-invalid @enderror">
+                                    <label class="form-label" for="category_id">Category</label>
+                                    <select name="category_id" id="category_id"
+                                        class="form-control @error('category_id') is-invalid @enderror">
                                         <option value="">Select Category</option>
                                         @foreach($dropdownData['categories'] as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('categories_id') <span class="text-danger">{{ $message }}</span> @enderror
+                                    @error('category_id') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col-12">
@@ -152,7 +160,6 @@
                                 @php
                                 $fields = ['summary',
                                 'features',
-                                'description',
                                 'highlights',
                                 'itinerary',
                                 'terms_and_conditions'];
@@ -161,9 +168,9 @@
 
 
                                 <div class="form-outline mb-3">
-                                    <label class="form-label" for="instructors_id">Instructor</label>
-                                    <select name="instructors_id" id="instructors_id"
-                                        class="form-control @error('instructors_id') is-invalid @enderror">
+                                    <label class="form-label" for="instructor_id">Instructor</label>
+                                    <select name="instructor_id" id="instructor_id"
+                                        class="form-control @error('instructor_id') is-invalid @enderror">
                                         <option value="">Select Instructor</option>
                                         @foreach($dropdownData['instructors'] as $instructor)
                                         <option value="{{ $instructor->id }}">{{ $instructor->name }}</option>
@@ -172,9 +179,9 @@
                                     @error('instructor_id') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-outline mb-3">
-                                    <label class="form-label" for="accommodations_id">Accommodation</label>
-                                    <select name="accommodations_id" id="accommodations_id"
-                                        class="form-control @error('accommodations_id') is-invalid @enderror">
+                                    <label class="form-label" for="accommodation_id">Accommodation</label>
+                                    <select name="accommodation_id" id="accommodation_id"
+                                        class="form-control @error('accommodation_id') is-invalid @enderror">
                                         <option value="">Select Accommodation</option>
                                         @foreach($dropdownData['accommodations'] as $accommodation)
                                         <option value="{{ $accommodation->id }}">{{ $accommodation->name }}</option>
@@ -210,73 +217,7 @@
                                         value="{{ old('price') }}" required />
                                     @error('price') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="d-flex flex-column flex-wrap align-items-start" style="gap: 3rem">
-                                            <div class="d-flex mt-3 flex-wrap align-items-center">
-                                                <div class="d-flex flex-wrap align-items-center mb-4 mb-sm-0">
-                                                    <h4 class="me-2 h4">Package</h4>
-                                                    <span> - In/Exclusion</span>
-                                                </div>
-                                            </div>
-                                            <ul class="d-flex nav nav-pills mb-5 profile-tab nav-slider gap-3"
-                                                data-toggle="slider-tab" id="profile-pills-tab" role="tablist">
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link text-decoration-none show active"
-                                                        data-bs-toggle="tab" href="#inclusions" role="tab"
-                                                        aria-selected="true">Inclusions </a>
-                                                </li>
-
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link text-decoration-none" data-bs-toggle="tab"
-                                                        href="#exclusions" role="tab" aria-selected="false">Exclusions</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="tab-content h-100">
-                                            <div id="inclusion" class="tab-pane h-100 fade active show" role="tabpanel">
-                                                <div class="row w-100 header-title d-flex justify-content-between">
-                                                    <h4 class="col-lg-8 card-title">Inclusion</h4>
-                                                    <p>List the inclusions</p>
-                                                </div>
-                                                <div class="body mt-2">
-                                                    <div class="form-outline mb-5">
-                                                        <label class="form-label" for="number_of_inclusions">Type the number of inclusions you want to create:</label>
-                                                        <div class="d-flex gap-3">
-                                                            <input class="form-control" type="number" id="number_of_inclusions" min="1">
-                                                            <button type="button" class="btn btn-sm btn-dark btn-block rounded-pill" id="generate-inclusions">Generate</button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-outline mb-4">
-                                                        <div id="inclusions"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div id="exclusion" class="tab-pane h-100 fade" role="tabpanel">
-                                                <div class="row w-100 header-title d-flex justify-content-between">
-                                                    <h4 class="col-lg-8 card-title">Exclusion</h4>
-                                                    <p>List the exclusions</p>
-                                                </div>
-                                                <div class="body mt-2">
-                                                    <div class="form-outline mb-5">
-                                                        <label class="form-label" for="number_of_exclusions">Type the number of exclusions you want to create:</label>
-                                                        <div class="d-flex gap-3">
-                                                            <input class="form-control" type="number" id="number_of_exclusions" min="1">
-                                                            <button type="button" class="btn btn-sm btn-dark btn-block rounded-pill" id="generate-exclusions">Generate</button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-outline mb-4">
-                                                        <div id="exclusions"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
+                               
                                 @foreach ($fields as $field)
                                 <div class="form-outline mb-3">
                                     <label class="form-label text-capitalize" for="{{ $field }}">{{
@@ -531,6 +472,13 @@
                     }
                 });
             });
+        </script>
+         <script>
+            function previewImage(event) {
+                const image = document.getElementById('mainImageResult');
+                image.src = URL.createObjectURL(event.target.files[0]);
+                image.style.display = 'block';
+            }
         </script>
         @endpush
     </div>

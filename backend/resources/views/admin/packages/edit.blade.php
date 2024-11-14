@@ -41,7 +41,16 @@
                                         value="{{ old('title', $package->title) }}" required />
                                     @error('title') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
-
+                                <div class="form-outline mb-3">
+                                    <div class="image-area"><img id="mainImageResult"
+                                            src="{{asset('storage/'.$package->main_image)}}" width="80"></div>
+                                    <label class="form-label" for="main_image">Main Image</label>
+                                    <input class="form-control" type="file" id="main_image" name="main_image"
+                                        onchange="previewImage(event)" />
+                                    @error('main_image')
+                                    <span class="text-danger">{{$message}}</span>
+                                    @enderror
+                                </div>
                                 <div class="row mb-3">
                                     <div class="d-flex flex-wrap" id="image-preview-area" style="gap: 10px;">
                                         @if (!empty($package->images))
@@ -66,29 +75,29 @@
                                 </div>
 
                                 <div class="form-outline mb-3">
-                                    <label class="form-label" for="locations_id">Location</label>
-                                    <select name="locations_id" id="locations_id"
-                                        class="form-control @error('locations_id') is-invalid @enderror">
+                                    <label class="form-label" for="location_id">Location</label>
+                                    <select name="locatios_id" id="locatios_id"
+                                        class="form-control @error('location_id') is-invalid @enderror">
                                         <option value="">Select Location</option>
                                         @foreach($dropdownData['locations'] as $location)
-                                        <option value="{{ $location->id }}" {{ $location->id == old('locations_id',
-                                            $package->locations_id) ? 'selected' : '' }}>{{ $location->name }}</option>
+                                        <option value="{{ $location->id }}" {{ $location->id == old('location_id',
+                                            $package->locatios_id) ? 'selected' : '' }}>{{ $location->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('locations_id') <span class="text-danger">{{ $message }}</span> @enderror
+                                    @error('location_id') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="form-outline mb-3">
-                                    <label class="form-label" for="categories_id">Category</label>
-                                    <select name="categories_id" id="categories_id"
-                                        class="form-control @error('categories_id') is-invalid @enderror">
+                                    <label class="form-label" for="category_id">Category</label>
+                                    <select name="category_id" id="category_id"
+                                        class="form-control @error('category_id') is-invalid @enderror">
                                         <option value="">Select Category</option>
                                         @foreach($dropdownData['categories'] as $category)
-                                        <option value="{{ $category->id }}" {{ $category->id == old('categories_id',
-                                            $package->categories_id) ? 'selected' : '' }}>{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}" {{ $category->id == old('category_id',
+                                            $package->category_id) ? 'selected' : '' }}>{{ $category->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('categories_id') <span class="text-danger">{{ $message }}</span> @enderror
+                                    @error('category_id') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
@@ -109,7 +118,8 @@
 
                                                 <li class="nav-item" role="presentation">
                                                     <a class="nav-link text-decoration-none" data-bs-toggle="tab"
-                                                        href="#exclusion" role="tab" aria-selected="false">Exclusions</a>
+                                                        href="#exclusion" role="tab"
+                                                        aria-selected="false">Exclusions</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -144,12 +154,14 @@
                                                                         for="inclusion_{{ $index }}">Inclusion {{
                                                                         $index + 1 }}</label>
                                                                     {{--
-                                                                    <livewire:admin.delete-activity :itinerary="$itinerary"
-                                                                        :activity="$activity" /> --}}
+                                                                    <livewire:admin.delete-activity
+                                                                        :itinerary="$itinerary" :activity="$activity" />
+                                                                    --}}
                                                                 </div>
                                                                 <input class="form-control" type="text"
                                                                     name="inclusions[{{ $index }}][title]"
-                                                                    id="title_{{ $index }}" value="{{ $inclusion->inclusion }}">
+                                                                    id="title_{{ $index }}"
+                                                                    value="{{ $inclusion->inclusion }}">
                                                                 <input type="hidden" name="inclusions[{{ $index }}][id]"
                                                                     value="{{ $inclusion->id }}">
                                                             </div>
@@ -159,7 +171,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-    
+
                                             <div id="exclusion" class="tab-pane fade" role="tabpanel">
                                                 <div class="row w-100 header-title d-flex justify-content-between">
                                                     <h4 class="col-lg-8 card-title">Exclusion</h4>
@@ -167,10 +179,14 @@
                                                 </div>
                                                 <div class="body mt-2">
                                                     <div class="form-outline mb-5">
-                                                        <label class="form-label" for="number_of_exclusions">Type the number of exclusions you want to create:</label>
+                                                        <label class="form-label" for="number_of_exclusions">Type the
+                                                            number of exclusions you want to create:</label>
                                                         <div class="d-flex gap-3">
-                                                            <input class="form-control" type="number" id="number_of_exclusions" min="1">
-                                                            <button type="button" class="btn btn-sm btn-dark btn-block rounded-pill" id="generate-exclusions">Generate</button>
+                                                            <input class="form-control" type="number"
+                                                                id="number_of_exclusions" min="1">
+                                                            <button type="button"
+                                                                class="btn btn-sm btn-dark btn-block rounded-pill"
+                                                                id="generate-exclusions">Generate</button>
                                                         </div>
                                                     </div>
                                                     <div class="form-outline mb-3">
@@ -184,12 +200,14 @@
                                                                         for="exclusion_{{ $index }}">Exclusion {{
                                                                         $index + 1 }}</label>
                                                                     {{--
-                                                                    <livewire:admin.delete-activity :itinerary="$itinerary"
-                                                                        :activity="$activity" /> --}}
+                                                                    <livewire:admin.delete-activity
+                                                                        :itinerary="$itinerary" :activity="$activity" />
+                                                                    --}}
                                                                 </div>
                                                                 <input class="form-control" type="text"
                                                                     name="exclusions[{{ $index }}][title]"
-                                                                    id="title_{{ $index }}" value="{{ $exclusion->exclusion }}">
+                                                                    id="title_{{ $index }}"
+                                                                    value="{{ $exclusion->exclusion }}">
                                                                 <input type="hidden" name="exclusions[{{ $index }}][id]"
                                                                     value="{{ $exclusion->id }}">
                                                             </div>
@@ -203,31 +221,31 @@
                                     </div>
                                 </div>
                                 <div class="form-outline mb-3">
-                                    <label class="form-label" for="instructors_id">Instructor</label>
-                                    <select name="instructors_id" id="instructors_id"
-                                        class="form-control @error('instructors_id') is-invalid @enderror">
+                                    <label class="form-label" for="instructor_id">Instructor</label>
+                                    <select name="instructor_id" id="instructor_id"
+                                        class="form-control @error('instructor_id') is-invalid @enderror">
                                         <option value="">Select Instructor</option>
                                         @foreach($dropdownData['instructors'] as $instructor)
                                         <option value="{{ $instructor->id }}" {{ $instructor->id ==
-                                            old('instructors_id', $package->instructors_id) ? 'selected' : '' }}>{{
+                                            old('instructor_id', $package->instructor_id) ? 'selected' : '' }}>{{
                                             $instructor->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('instructors_id') <span class="text-danger">{{ $message }}</span> @enderror
+                                    @error('instructor_id') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="form-outline mb-3">
-                                    <label class="form-label" for="accommodations_id">Accommodation</label>
-                                    <select name="accommodations_id" id="accommodations_id"
-                                        class="form-control @error('accommodations_id') is-invalid @enderror">
+                                    <label class="form-label" for="accommodation_id">Accommodation</label>
+                                    <select name="accommodation_id" id="accommodation_id"
+                                        class="form-control @error('accommodation_id') is-invalid @enderror">
                                         <option value="">Select Accommodation</option>
                                         @foreach($dropdownData['accommodations'] as $accommodation)
                                         <option value="{{ $accommodation->id }}" {{ $accommodation->id ==
-                                            old('accommodations_id', $package->accommodations_id) ? 'selected' : ''
+                                            old('accommodation_id', $package->accommodation_id) ? 'selected' : ''
                                             }}>{{ $accommodation->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('accommodations_id') <span class="text-danger">{{ $message }}</span>
+                                    @error('accommodation_id') <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-outline mb-3">
@@ -258,7 +276,7 @@
                                         value="{{ old('price', $package->price) }}" required />
                                     @error('price') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
-                                
+
                                 @php
                                 $fields = [
                                 'summary',
@@ -278,7 +296,7 @@
                                     @error($field) <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 @endforeach
-                               
+
                                 <button type="submit"
                                     class="btn btn-primary btn-block rounded-pill mb-3">Update</button>
                             </form>
@@ -378,7 +396,6 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const fieldsToInit = ['summary',
                     'features',
-                    'description',
                     'highlights',
                     'itinerary',
                     'terms_and_conditions',
@@ -513,6 +530,13 @@
                     }
                 });
             });
+        </script>
+        <script>
+            function previewImage(event) {
+                const image = document.getElementById('mainImageResult');
+                image.src = URL.createObjectURL(event.target.files[0]);
+                image.style.display = 'block';
+            }
         </script>
         @endpush
     </div>

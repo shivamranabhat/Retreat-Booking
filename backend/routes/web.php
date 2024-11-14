@@ -297,6 +297,8 @@ Route::prefix('/dashboard')->group(function () {
 });
 Route::prefix('/')->controller(PageController::class)->group(function () {
     Route::get('/', 'index')->name('index');
+    Route::get('/{retreat}', 'retreat')->name('retreats');
+    Route::get('/{retreat}/{slug}', 'retreatDetails')->name('retreat.details');
     Route::get('/faqs', 'faq')->name('faq');
     Route::get('/blogs', 'blogs')->name('blogs');
     Route::get('/blog/{slug}', 'blog')->name('blog');
