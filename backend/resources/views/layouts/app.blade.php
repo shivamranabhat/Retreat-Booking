@@ -56,21 +56,22 @@
     <aside class="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all ">
         <div class="sidebar-header d-flex align-items-center justify-content-start">
             <a class="navbar-brand d-flex align-items-center gap-1">
-                <div class="logo-main">
-                    <img src="{{asset('main/images/logo.svg')}}" class="rounded-circle" width="200" alt="logo">
-                </div>
-                <!--logo End-->
-            </a>
-            <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
-                <i class="icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4.25 12.2744L19.25 12.2744" stroke="currentColor" stroke-width="1.5"
-                            stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path d="M10.2998 18.2988L4.2498 12.2748L10.2998 6.24976" stroke="currentColor"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </i>
-            </div>
+             {{-- <div class="logo-main">
+                    <img src="{{asset('main/images/logo-2.jpg')}}" class="rounded-circle" width="40" alt="logo">
+        </div> --}}
+        <!--logo End-->
+        <h4 class="logo-title m-0">Retreat</h4>
+    </a>
+    <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
+        <i class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.25 12.2744L19.25 12.2744" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M10.2998 18.2988L4.2498 12.2748L10.2998 6.24976" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </i>
+    </div>
         </div>
         <div class="sidebar-body pt-0 data-scrollbar">
             <div class="sidebar-list">
@@ -282,6 +283,20 @@
                                 </svg>
                             </i>
                             <span class="item-name">Packages</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->segment(2) == 'featured_packages' ? 'active' : '' }}"
+                            href="{{ route('featured_packages') }}">
+                            <i class="icon">
+                                <!-- New Icon for Featured Packages -->
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-20">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM12 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-4c-1.1 0-2-.9-2-2V7h4v7c0 1.1-.9 2-2 2z"
+                                        fill="currentColor" />
+                                </svg>
+                            </i>
+                            <span class="item-name">Featured Packages</span>
                         </a>
                     </li>
 

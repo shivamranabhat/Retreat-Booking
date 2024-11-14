@@ -29,6 +29,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\WhyUsController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\FeaturedPackageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -180,7 +182,15 @@ Route::prefix('/dashboard')->group(function () {
         Route::put('/update/{slug}', 'update')->name('testimonial.update');
         Route::delete('/delete/{slug}', 'destroy')->name('testimonial.destroy');
     });
-
+    Route::prefix('/featured-packages')->controller(FeaturedPackageController::class)->group(function () {
+        Route::get('/', 'index')->name('featured_packages');
+        Route::get('/create', 'create')->name('featured_package.create');
+        Route::post('/store', 'store')->name('featured_package.store');
+        Route::get('/{slug}', 'edit')->name('featured_package.edit');
+        Route::put('/update/{slug}', 'update')->name('featured_package.update');
+        Route::delete('/delete/{slug}', 'destroy')->name('featured_package.destroy');
+    });
+    
     Route::prefix('/seo')->group(function () {
         //Routes for tags
         Route::prefix('/tags')->controller(TagController::class)->group(function () {
