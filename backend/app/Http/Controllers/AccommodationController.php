@@ -21,9 +21,8 @@ class AccommodationController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search'); // Get the search input
-
-        $accommodations = Accommodation::filter(request(['search']))->paginate(10); // Use paginate instead of get
+        $search = $request->input('search');
+        $accommodations = Accommodation::filter(request(['search']))->latest()->paginate(10);
 
         return view('admin.accommodations.index', compact('accommodations', 'search'));
     }
@@ -119,7 +118,7 @@ class AccommodationController extends Controller
             'location' => 'nullable|string',
             'contact' => 'nullable|string',
             'room_types' => 'nullable|array',
-            'room_types.*' => 'exists:roomtypes,id'
+            'room_types.*' => 'exists:room_types,id'
         ]);
 
         $accommodation = Accommodation::where('slug', $slug)->firstOrFail();

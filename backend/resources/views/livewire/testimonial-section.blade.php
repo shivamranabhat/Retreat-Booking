@@ -39,7 +39,6 @@
             </div>
             @empty
             @endforelse
-
         </div>
         <div class="slider-buttons flex items-center gap-4">
             <div

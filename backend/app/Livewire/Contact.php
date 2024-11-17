@@ -22,7 +22,6 @@ class Contact extends Component
     public function send()
     {
         $validated = $this->validate();
-        sleep(1);
         $slug = Str::slug($validated['name'].'-'.now());
         sleep(1);
         Message::create($validated+['slug'=>$slug]);

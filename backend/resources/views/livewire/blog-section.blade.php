@@ -32,8 +32,8 @@
            @endforelse
         </div>
         <div class="browse">
-            <a href="{{route('blogs')}}"
-                class="cursor-pointer text-sm bg-main hover:bg-[#08A788] hover:ease-in duration-200 transition-all rounded-full px-4 py-3 text-white">
+            <a href="{{route('home.blogs')}}"
+                class="cursor-pointer text-sm bg-main hover:bg-[#03914D] hover:ease-in duration-200 transition-all rounded-full px-4 py-3 text-white">
                 Browse All
             </a>
 

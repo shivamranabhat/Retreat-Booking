@@ -5,15 +5,13 @@
 
         <div class="slider-wrapper owl-carousel owl-theme location-carousel">
             @forelse($locations as $location)
-            <div class="item mb-1">
-                <a href="#" class="card flex flex-col box-shadow-iii border border-gray-200 rounded-xl">
-                    <img src="{{asset('storage/'.$location->image)}}"
-                        class="rounded-tl-lg rounded-tr-lg w-full h-56 lg:h-48 object-cover" alt="{{$location->image_alt}}">
-                    <div class="details p-4 rounded-lg flex flex-col">
-                        <h5 class="text-gray-800 text-lg font-lead-bold">{{$location->name}}</h5>
-                        <span class="text-gray-400 text-sm">{{$location->description}}</span>
-                    </div>
-                </a>
+            <div class="card mb-1 flex flex-col box-shadow-iii border border-gray-200 rounded-xl">
+                <img src="{{asset('storage/'.$location->image)}}"
+                    class="rounded-tl-lg rounded-tr-lg w-full h-56 lg:h-48 object-cover" alt="{{$location->image_alt}}">
+                <div class="details p-4 rounded-lg flex flex-col">
+                    <h5 class="text-gray-800 text-lg font-lead-bold">{{$location->name}}</h5>
+                    <span class="text-gray-400 text-sm">{{$location->description}}</span>
+                </div>
             </div>
             @empty
             @endforelse

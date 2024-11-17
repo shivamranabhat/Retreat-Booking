@@ -81,7 +81,7 @@
                                         <option value="">Select Location</option>
                                         @foreach($dropdownData['locations'] as $location)
                                         <option value="{{ $location->id }}" {{ $location->id == old('location_id',
-                                            $package->locatios_id) ? 'selected' : '' }}>{{ $location->name }}</option>
+                                            $package->location_id) ? 'selected' : '' }}>{{ $location->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('location_id') <span class="text-danger">{{ $message }}</span> @enderror

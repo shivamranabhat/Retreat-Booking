@@ -18,8 +18,8 @@
                     stroke="currentColor" class="size-3">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
                 </svg>
-                <p class="text-sm text-gray-500">
-                    {{$location}}
+                <p class="text-sm text-gray-500 capitalize" wire:ignore>
+                    {{Str::replace('-',' ',request()->segment(2))}}
                 </p>
                 @endif
             </div>
@@ -39,15 +39,23 @@
                 </div>
                 <div class="absolute right-0 z-10 p-1 w-56 rounded-lg origin-top-right border border-200 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden group-hover:block"
                     role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-                    <div role="none">
-                        <a class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200"
-                            role="menuitem" tabindex="-1" id="menu-item-0">Price Low to High</a>
-                        <a class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200"
-                            role="menuitem" tabindex="-1" id="menu-item-1">Price High to Low</a>
-                        <a class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200"
-                            role="menuitem" tabindex="-1" id="menu-item-2">Latest</a>
-                        <a class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200"
-                            role="menuitem" tabindex="-1" id="menu-item-2">Oldest</a>
+                    <div role="none" class="flex flex-col gap-y-2">
+                        <a class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200 {{ $sortFilter === 'price-low-to-high' ? 'bg-gray-200' : '' }}"
+                            role="menuitem" tabindex="-1" wire:click="applySortFilter('price-low-to-high')">
+                            Price Low to High
+                        </a>
+                        <a class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200 {{ $sortFilter === 'price-high-to-low' ? 'bg-gray-200' : '' }}"
+                            role="menuitem" tabindex="-1" wire:click="applySortFilter('price-high-to-low')">
+                            Price High to Low
+                        </a>
+                        <a class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200 {{ $sortFilter === 'latest' ? 'bg-gray-200' : '' }}"
+                            role="menuitem" tabindex="-1" wire:click="applySortFilter('latest')">
+                            Latest
+                        </a>
+                        <a class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200 {{ $sortFilter === 'oldest' ? 'bg-gray-200' : '' }}"
+                            role="menuitem" tabindex="-1" wire:click="applySortFilter('oldest')">
+                            Oldest
+                        </a>
                     </div>
                 </div>
             </div>
@@ -59,45 +67,58 @@
             <div class="h-px w-full bg-gray-200"></div>
             <div class="option flex flex-col gap-y-2">
                 <h5 class="text-gray-600 text-base font-medium">Price</h5>
+
                 <div class="inputs flex justify-between">
-                    <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                        <input type="radio" name="price" class=" border border-gray-600 rounded-sm accent-[#02BF64]"
-                            id="">
+                    <label class="text-sm w-full flex gap-x-2 items-center">
+                        <input type="radio" name="price"
+                            class="w-4 h-4 focus:accent-gray-800 accent-gray-800 cursor-pointer"
+                            wire:click="applyPriceFilter('all')">
                         All
                     </label>
-                    <span class="text-gray-500 text-sm">{{$packages ? $packages->count() : '0'}}</span>
+                    <span class="text-gray-500 text-sm">{{ $allPackages->count() }}</span>
                 </div>
+
                 <div class="inputs flex justify-between">
-                    <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                        <input type="radio" name="price" class=" border border-gray-600 rounded-sm accent-[#02BF64]"
-                            id="">
+                    <label class="text-sm w-full flex gap-x-2 items-center">
+                        <input type="radio" name="price"
+                            class="w-4 h-4 focus:accent-gray-800 accent-gray-800 cursor-pointer"
+                            wire:click="applyPriceFilter('100-200')">
                         $100-$200
                     </label>
-                    <span class="text-gray-500 text-sm">30</span>
+                    <span class="text-gray-500 text-sm">{{ $allPackages->whereBetween('price', [100, 200])->count()
+                        }}</span>
                 </div>
+
                 <div class="inputs flex justify-between">
-                    <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                        <input type="radio" name="price" class=" border border-gray-600 rounded-sm accent-[#02BF64]"
-                            id="">
+                    <label class="text-sm w-full flex gap-x-2 items-center">
+                        <input type="radio" name="price"
+                            class="w-4 h-4 focus:accent-gray-800 accent-gray-800 cursor-pointer"
+                            wire:click="applyPriceFilter('200-400')">
                         $200-$400
                     </label>
-                    <span class="text-gray-500 text-sm">30</span>
+                    <span class="text-gray-500 text-sm">{{ $allPackages->whereBetween('price', [200, 400])->count()
+                        }}</span>
                 </div>
+
                 <div class="inputs flex justify-between">
-                    <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                        <input type="radio" name="price" class=" border border-gray-600 rounded-sm accent-[#02BF64]"
-                            id="">
+                    <label class="text-sm w-full flex gap-x-2 items-center">
+                        <input type="radio" name="price"
+                            class="w-4 h-4 focus:accent-gray-800 accent-gray-800 cursor-pointer"
+                            wire:click="applyPriceFilter('400-600')">
                         $400-$600
                     </label>
-                    <span class="text-gray-500 text-sm">30</span>
+                    <span class="text-gray-500 text-sm">{{ $allPackages->whereBetween('price', [400, 600])->count()
+                        }}</span>
                 </div>
+
                 <div class="inputs flex justify-between">
-                    <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                        <input type="radio" name="price" class=" border border-gray-600 rounded-sm accent-[#02BF64]"
-                            id="">
+                    <label class="text-sm w-full flex gap-x-2 items-center">
+                        <input type="radio" name="price"
+                            class="w-4 h-4 focus:accent-gray-800 accent-gray-800 cursor-pointer"
+                            wire:click="applyPriceFilter('600+')">
                         $600+
                     </label>
-                    <span class="text-gray-500 text-sm">30</span>
+                    <span class="text-gray-500 text-sm">{{ $allPackages->where('price', '>=', 600)->count() }}</span>
                 </div>
             </div>
 
@@ -105,25 +126,31 @@
             <div class="option flex flex-col gap-y-2">
                 <h5 class="text-gray-600 text-base font-medium">Locations</h5>
                 <div class="inputs flex justify-between">
-                    <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                        <input type="radio" name="location" class=" border border-gray-600 rounded-sm accent-[#02BF64]"
-                            id="">
+                    <label class="text-sm w-full flex gap-x-2 items-center">
+                        <input type="radio" name="location"
+                            class="w-4 h-4 focus:accent-gray-800 accent-gray-800 cursor-pointer"
+                            wire:click="applyLocationFilter('all')">
                         All
                     </label>
-                    <span class="text-gray-500 text-sm">{{$packages ? $packages->count() : '0'}}</span>
+                    <span class="text-gray-500 text-sm">{{ $allPackages->count() }}</span>
                 </div>
                 @forelse($locations as $location)
                 <div class="inputs flex justify-between">
-                    <label for="{{$location->name}}" class="text-sm w-full flex gap-x-2 items-center">
-                        <input type="radio" name="location" class=" border border-gray-600 rounded-sm accent-[#02BF64]">
-                        {{$location->name}}
+                    <label class="text-sm w-full flex gap-x-2 items-center">
+                        <input type="radio" name="location"
+                            class="w-4 h-4 focus:accent-gray-800 accent-gray-800 cursor-pointer"
+                            wire:click="applyLocationFilter({{ $location->id }})" {{ $locationFilter == $location->id ? 'checked' : '' }}>
+                        {{ $location->name }}
                     </label>
-                    <span class="text-gray-500 text-sm">10</span>
+                    <span class="text-gray-500 text-sm">
+                        {{ $allPackages->where('location_id', $location->id)->count() }}
+                    </span>
                 </div>
                 @empty
                 <div class="inputs flex justify-between">
-                    <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                        <input type="radio" name="location" class=" border border-gray-600 rounded-sm accent-[#02BF64]">
+                    <label class="text-sm w-full flex gap-x-2 items-center">
+                        <input type="radio" name="location"
+                            class="w-4 h-4 focus:accent-gray-800 accent-gray-800 cursor-pointer">
                         No Location
                     </label>
                     <span class="text-gray-500 text-sm">0</span>
@@ -133,57 +160,75 @@
             <div class="h-px w-full bg-gray-200"></div>
             <div class="option flex flex-col gap-y-2">
                 <h5 class="text-gray-600 text-base font-medium">Room Type</h5>
+                @foreach($rooms as $room)
                 <div class="inputs flex justify-between">
-                    <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                        <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF64]" name=""
-                            id="">
-                        Private
+                    <label for="room-{{ $room->id }}" class="text-sm w-full flex gap-x-2 items-center">
+                        <input type="checkbox" id="room-{{ $room->id }}"
+                            class="w-4 h-4 focus:accent-gray-800 accent-gray-800 cursor-pointer"
+                            wire:click="toggleRoomFilter({{ $room->id }})" {{ in_array($room->id, $roomFilter) ?
+                        'checked' : '' }}>
+                        {{ $room->name }}
                     </label>
-                    <span class="text-gray-500 text-sm">10</span>
+                    <span class="text-gray-500 text-sm" wire:ignore>{{ $roomPackageCount[$room->id] ?? 0 }}</span>
                 </div>
-                <div class="inputs flex justify-between">
-                    <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                        <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF64]" name=""
-                            id="">
-                        Shared
-                    </label>
-                    <span class="text-gray-500 text-sm">20</span>
-                </div>
+                @endforeach
             </div>
-
             <div class="h-px w-full bg-gray-200"></div>
             <div class="option flex flex-col gap-y-2">
                 <h5 class="text-gray-600 text-base font-medium">Days</h5>
                 <div class="inputs flex justify-between">
-                    <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                        <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF64]" name=""
-                            id="">
+                    <label class="text-sm w-full flex gap-x-2 items-center">
+                        <input type="radio" name="days"
+                            class="w-4 h-4 focus:accent-gray-800 accent-gray-800 cursor-pointer"
+                            wire:click="applyDayFilter('all')">
+                        All
+                    </label>
+                    <span class="text-gray-500 text-sm">{{ $allPackages->count() }}</span>
+                </div>
+
+                <div class="inputs flex justify-between">
+                    <label class="text-sm w-full flex gap-x-2 items-center">
+                        <input type="radio" name="days"
+                            class="w-4 h-4 focus:accent-gray-800 accent-gray-800 cursor-pointer"
+                            wire:click="applyDayFilter('1-2')" {{ $dayFilter==='1-2' ? 'checked' : '' }}>
                         1-2 Days
                     </label>
-                    <span class="text-gray-500 text-sm">10</span>
+                    <span class="text-gray-500 text-sm">
+                        {{ $allPackages->whereBetween('days', [1, 2])->count() }}
+                    </span>
                 </div>
+
                 <div class="inputs flex justify-between">
-                    <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                        <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF64]" name=""
-                            id="">
-                        2-4 Days
+                    <label class="text-sm w-full flex gap-x-2 items-center">
+                        <input type="radio" name="days"
+                            class="w-4 h-4 focus:accent-gray-800 accent-gray-800 cursor-pointer"
+                            wire:click="applyDayFilter('3-4')" {{ $dayFilter==='3-4' ? 'checked' : '' }}>
+                        3-4 Days
                     </label>
-                    <span class="text-gray-500 text-sm">20</span>
+                    <span class="text-gray-500 text-sm">
+                        {{ $allPackages->whereBetween('days', [3, 4])->count() }}
+                    </span>
                 </div>
+
                 <div class="inputs flex justify-between">
-                    <label for="" class="text-sm w-full flex gap-x-2 items-center">
-                        <input type="checkbox" class=" border border-gray-600 rounded-sm accent-[#02BF64]" name=""
-                            id="">
-                        5+ Days
+                    <label class="text-sm w-full flex gap-x-2 items-center">
+                        <input type="radio" name="days"
+                            class="w-4 h-4 focus:accent-gray-800 accent-gray-800 cursor-pointer"
+                            wire:click="applyDayFilter('4+')" {{ $dayFilter==='4+' ? 'checked' : '' }}>
+                        4+ Days
                     </label>
-                    <span class="text-gray-500 text-sm">20</span>
+                    <span class="text-gray-500 text-sm">
+                        {{ $allPackages->where('days', '>', 4)->count() }}
+                    </span>
                 </div>
             </div>
+
+
         </div>
         <div class="card-group col-span-4 lg:col-span-3 flex flex-col gap-6">
             @forelse($packages as $package)
-            <div
-                class="card grid grid-cols-2 xl:grid-cols-3 gap-4 rounded-xl border border-gray-200 box-shadow-iii p-3 cursor-pointer" wire:click="redirectToDetails('{{$package->slug}}')">
+            <div class="card grid grid-cols-2 xl:grid-cols-3 gap-4 rounded-xl border border-gray-200 box-shadow-iii p-3 cursor-pointer"
+                wire:click="redirectToDetails('{{$package->slug}}')">
                 <img class="w-full xl:w-80 col-span-2 xl:col-span-1 h-44 md:h-80 xl:h-full object-cover rounded-xl"
                     src="{{$package->main_image ? asset('storage/'.$package->main_image) : asset('main/images/image-placeholder.png') }}"
                     alt="{{$package->title}}">
@@ -212,11 +257,15 @@
 
                         </p>
                         <p class="italic text-sm text-gray-500">
-                            <span class="hidden xl:block">{!! Str::words(strip_tags($package->summary), 15) !!} <a href="{{route('retreat.details',['retreat'=>$retreat,'slug'=>$package->slug])}}" class="text-main">Read
-                                More...</a></span>
+                            <span class="hidden xl:block">{!! Str::words(strip_tags($package->summary), 15) !!} <a
+                                    href="{{route('retreat.details',['retreat'=>$retreat,'slug'=>$package->slug])}}"
+                                    class="text-main">Read
+                                    More...</a></span>
 
-                            <span class="block xl:hidden">{!! Str::words(strip_tags($package->summary), 25) !!} <a href="{{route('retreat.details',['retreat'=>$retreat,'slug'=>$package->slug])}}" class="text-main">Read
-                            More...</a></span>
+                            <span class="block xl:hidden">{!! Str::words(strip_tags($package->summary), 25) !!} <a
+                                    href="{{route('retreat.details',['retreat'=>$retreat,'slug'=>$package->slug])}}"
+                                    class="text-main">Read
+                                    More...</a></span>
                         </p>
                     </div>
                     <div class="book-btn col-span-5 md:col-span-2 flex flex-col gap-y-4">
@@ -248,16 +297,15 @@
                         <div class="btns flex flex-col gap-y-2">
                             <a href="{{route('retreat.details',['retreat'=>$retreat,'slug'=>$package->slug])}}"
                                 class="border border-2 text-sm text-center text-gray-500 text-main font-semibold rounded-3xl p-2 border-main hover:bg-main hover:text-white hover:ease-in-out duration-300 transition-all">Details</a>
-                            <a href="#"
-                                class="text-sm text-center text-white p-2 rounded-3xl hover:ease-in-out duration-300 transition-all {{$package->status == 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-main hover:bg-[#03914D]'}}" >Book
+                            <a href="{{route('retreat.inquiry',['slug'=>$package->slug])}}"
+                                class="text-sm text-center text-white p-2 rounded-3xl hover:ease-in-out duration-300 transition-all {{$package->status == 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-main hover:bg-[#03914D]'}}">Book
                                 Now</a>
                         </div>
                     </div>
                 </div>
             </div>
             @empty
-            <div
-                class="card rounded-xl border border-gray-200 box-shadow-iii p-5">
+            <div class="card rounded-xl border border-gray-200 box-shadow-iii p-5">
                 <h5 class="text-center">No package found.</h5>
             </div>
             @endforelse

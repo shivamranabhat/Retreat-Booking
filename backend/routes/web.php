@@ -156,16 +156,27 @@ Route::prefix('/dashboard')->group(function () {
         Route::put('/update/{slug}', 'update')->name('roomType.update');
         Route::delete('/delete/{slug}', 'destroy')->name('roomType.destroy');
     });
-    Route::prefix('/packages')->controller(PackageController::class)->group(function () {
-        Route::get('/', 'index')->name('packages');
-        Route::get('/create', 'create')->name('package.create');
-        Route::post('/store', 'store')->name('package.store');
-        Route::get('/{slug}', 'edit')->name('package.edit');
-        Route::post('/upload-package-img', 'uploadPackageImage')->name('package.upload');
-        Route::put('/update/{slug}', 'update')->name('package.update');
-        Route::delete('/delete/{slug}', 'destroy')->name('package.destroy');
-        Route::post('{slug}/change/Status/', 'updateStatus')->name('package.updateStatus');
+    Route::prefix('/packages')->group(function(){
+        Route::prefix('/featured')->controller(FeaturedPackageController::class)->group(function () {
+            Route::get('/', 'index')->name('features');
+            Route::get('/create', 'create')->name('feature.create');
+            Route::post('/store', 'store')->name('feature.store');
+            Route::get('/{slug}', 'edit')->name('feature.edit');
+            Route::put('/update/{slug}', 'update')->name('feature.update');
+            Route::delete('/delete/{slug}', 'destroy')->name('feature.destroy');
+        });
+        Route::prefix('/')->controller(PackageController::class)->group(function () {
+            Route::get('/', 'index')->name('packages');
+            Route::get('/create', 'create')->name('package.create');
+            Route::post('/store', 'store')->name('package.store');
+            Route::get('/{slug}', 'edit')->name('package.edit');
+            Route::post('/upload-package-img', 'uploadPackageImage')->name('package.upload');
+            Route::put('/update/{slug}', 'update')->name('package.update');
+            Route::delete('/delete/{slug}', 'destroy')->name('package.destroy');
+            Route::post('{slug}/change/Status/', 'updateStatus')->name('package.updateStatus');
+        });
     });
+   
     Route::prefix('/categories')->controller(CategoryController::class)->group(function () {
         Route::get('/', 'index')->name('categories');
         Route::get('/create', 'create')->name('category.create');
@@ -182,14 +193,7 @@ Route::prefix('/dashboard')->group(function () {
         Route::put('/update/{slug}', 'update')->name('testimonial.update');
         Route::delete('/delete/{slug}', 'destroy')->name('testimonial.destroy');
     });
-    Route::prefix('/featured-packages')->controller(FeaturedPackageController::class)->group(function () {
-        Route::get('/', 'index')->name('featured_packages');
-        Route::get('/create', 'create')->name('featured_package.create');
-        Route::post('/store', 'store')->name('featured_package.store');
-        Route::get('/{slug}', 'edit')->name('featured_package.edit');
-        Route::put('/update/{slug}', 'update')->name('featured_package.update');
-        Route::delete('/delete/{slug}', 'destroy')->name('featured_package.destroy');
-    });
+    
     
     Route::prefix('/seo')->group(function () {
         //Routes for tags
@@ -307,11 +311,12 @@ Route::prefix('/dashboard')->group(function () {
 });
 Route::prefix('/')->controller(PageController::class)->group(function () {
     Route::get('/', 'index')->name('index');
-    Route::get('/{retreat}', 'retreat')->name('retreats');
-    Route::get('/{retreat}/{slug}', 'retreatDetails')->name('retreat.details');
-    Route::get('/faqs', 'faq')->name('faq');
-    Route::get('/blogs', 'blogs')->name('blogs');
+    Route::get('/faqs', 'faq')->name('home.faqs');
+    Route::get('/blogs', 'blogs')->name('home.blogs');
     Route::get('/blog/{slug}', 'blog')->name('blog');
     Route::get('/about-us', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact');
+    Route::get('/{retreat}', 'retreat')->name('retreats');
+    Route::get('/{slug}/inquiry', 'inquiry')->name('retreat.inquiry');
+    Route::get('/{retreat}/{slug}', 'retreatDetails')->name('retreat.details');
 });

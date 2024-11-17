@@ -42,7 +42,7 @@ class FeaturedPackageController extends Controller
 
         // If the slug already exists, return a message and redirect
         if ($existingSlug) {
-            return redirect()->route('featured_package.create')->with('error', 'This Featured Package already exists.');
+            return redirect()->route('feature.create')->with('error', 'This Featured Package already exists.');
         }
 
         // Create the featured package with the unique slug
@@ -51,7 +51,7 @@ class FeaturedPackageController extends Controller
             'slug' => $slug,
         ]);
 
-        return redirect()->route('featured_packages')->with('success', 'Featured package created successfully.');
+        return redirect()->route('features')->with('success', 'Featured package created successfully.');
     }
 
 
@@ -95,7 +95,7 @@ class FeaturedPackageController extends Controller
             'slug' => $newSlug,
         ]);
 
-        return redirect()->route('featured_packages')->with('success', 'Featured package updated successfully.');
+        return redirect()->route('features')->with('success', 'Featured package updated successfully.');
     }
 
 
@@ -103,7 +103,6 @@ class FeaturedPackageController extends Controller
     {
         $featuredPackage = FeaturedPackage::where('slug', $slug)->firstOrFail();
         $featuredPackage->delete();
-
-        return redirect()->route('featured_packages')->with('success', 'Featured package deleted successfully.');
+        return redirect()->route('features')->with('success', 'Featured package deleted successfully.');
     }
 }

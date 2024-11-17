@@ -22,4 +22,9 @@ class RoomType extends Model
             $query->where('name','like','%'.request('search').'%');
         }
     }
+    public function inquiries()
+    {
+        return ($this->hasMany(Inquiry::class));
+    }
+   
 }

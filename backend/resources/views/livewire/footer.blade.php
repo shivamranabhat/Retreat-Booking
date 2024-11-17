@@ -50,10 +50,9 @@
                     <div
                         class="facebook bg-main p-3 rounded-full group cursor-pointer hover:bg-gray-300 hover:ease-in-out transition-all duration-400">
                         <a href="{{$details->facebook_link ?? ''}}" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                class="fill-white w-6 group-hover:fill-gray-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" class="fill-white w-6 group-hover:fill-gray-600">
                                 <path
-                                    d="M16.403,9H14V7c0-1.032,0.084-1.682,1.563-1.682h0.868c0.552,0,1-0.448,1-1V3.064c0-0.523-0.401-0.97-0.923-1.005 C15.904,2.018,15.299,1.999,14.693,2C11.98,2,10,3.657,10,6.699V9H8c-0.552,0-1,0.448-1,1v2c0,0.552,0.448,1,1,1l2-0.001V21 c0,0.552,0.448,1,1,1h2c0.552,0,1-0.448,1-1v-8.003l2.174-0.001c0.508,0,0.935-0.381,0.993-0.886l0.229-1.996 C17.465,9.521,17.001,9,16.403,9z" />
+                                    d="M15,3C8.373,3,3,8.373,3,15c0,6.016,4.432,10.984,10.206,11.852V18.18h-2.969v-3.154h2.969v-2.099c0-3.475,1.693-5,4.581-5 c1.383,0,2.115,0.103,2.461,0.149v2.753h-1.97c-1.226,0-1.654,1.163-1.654,2.473v1.724h3.593L19.73,18.18h-3.106v8.697 C22.481,26.083,27,21.075,27,15C27,8.373,21.627,3,15,3z" />
                             </svg>
                         </a>
                     </div>
@@ -86,13 +85,13 @@
                 <div class="links flex flex-col gap-4">
                     <a href="/"
                         class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm {{request()->segment(1) == '' ? 'text-black' : 'text-gray-500'}}">Home</a>
-                    <a href="{{route('blogs')}}"
+                    <a href="{{route('home.blogs')}}"
                         class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm {{request()->segment(1) == 'blogs' ? 'text-black' : 'text-gray-500'}}">Blogs</a>
                     <a href="{{route('about')}}"
                         class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm {{request()->segment(1) == 'about-us' ? 'text-black' : 'text-gray-500'}}">About</a>
                     <a href="{{route('contact')}}"
                         class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm {{request()->segment(1) == 'contact' ? 'text-black' : 'text-gray-500'}}">Contact</a>
-                    <a href="{{route('faq')}}"
+                    <a href="{{route('home.faqs')}}"
                         class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm {{request()->segment(1) == 'faqs' ? 'text-black' : 'text-gray-500'}}">FAQs</a>
                 </div>
 
@@ -102,36 +101,26 @@
             <div class="upper-col flex flex-col gap-4">
                 <h5 class="font-semibold text-base text-gray-500 uppercase">Featured listing</h5>
                 <div class="featured flex flex-col gap-6">
-                    <div class="list flex gap-2">
-                        <img src="{{asset('main/images/footer.png')}}" class="w-24 rounded-xl object-cover" alt="">
+                    @forelse($featured as $feature)
+                    <a href="{{ route('retreat.details', ['retreat' => $feature->package->category->slug, 'slug' => $feature->package->slug]) }}"
+                        class="list cursor-pointer flex gap-2">
+                        <img src="{{ asset('storage/'.$feature->package->main_image) }}" class="w-24 rounded-xl object-cover"
+                            alt="{{ $feature->package->title }}">
                         <div class="details flex flex-col gap-1">
                             <h5 class="text-gray-600 text-sm font-semibold">
-                                Grant beach reatreat center
+                                {{ $feature->package->title }}
                             </h5>
+                            {{-- <p class="text-gray-500 text-sm">
+                                Location: {{ $feature->package->location->name }}
+                            </p> --}}
                             <p class="text-gray-500 text-sm">
-                                Location: Pokhara
+                                From {{ number_format($feature->package->price,0) }}$
                             </p>
-                            <p class="text-gray-500 text-sm">
-                                From 120$
-                            </p>
-
                         </div>
-                    </div>
-                    <div class="list flex gap-2">
-                        <img src="{{asset('main/images/footer.png')}}" class="w-24 rounded-xl object-cover" alt="">
-                        <div class="details flex flex-col gap-1">
-                            <h5 class="text-gray-600 text-sm font-semibold">
-                                Grant beach reatreat center
-                            </h5>
-                            <p class="text-gray-500 text-sm">
-                                Location: Pokhara
-                            </p>
-                            <p class="text-gray-500 text-sm">
-                                From 120$
-                            </p>
-
-                        </div>
-                    </div>
+                    </a>
+                    @empty
+                    <h5>No similar retreats found.</h5>
+                    @endforelse
                 </div>
 
 

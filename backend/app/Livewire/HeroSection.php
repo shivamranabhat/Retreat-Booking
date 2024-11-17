@@ -9,27 +9,46 @@ use App\Models\BodyContent;
 
 class HeroSection extends Component
 {
+    public $category;
+    public $location;
+    public $date;
     public $selectedLocation;
     public $selectedCategory;
     public $selectedDate;
 
     public function getLocation($id)
     {
-        $location = Location::find($id);
-        $this->selectedLocation = $location->name;
+        $this->location = Location::find($id);
+        $this->selectedLocation = $this->location ? $this->location->name : null;
     }
 
     public function getCategory($id)
     {
-        $category = Category::find($id);
-        $this->selectedCategory = $category->name;
+        $this->category = Category::find($id);
+        $this->selectedCategory = $this->category ? $this->category->name : null;
     }
 
     public function getDate($value)
     {
-        $this->selectedDate = $value;
-        dd($this->selectedDate);
+        $this->date = $value;
     }
+
+    public function redirectToRetreat()
+    {
+        return redirect()->route('retreats', [
+            'retreat' => $this->category ? $this->category->slug : null
+        ])->with([
+            'category' => $this->category ? $this->category->slug : null,
+            'location' => $this->location ? $this->location->slug : null,
+            'date' => $this->date ? $this->date : null
+        ]);
+        session([
+            'category' => $this->category ? $this->category->slug : null,
+            'location' => $this->location ? $this->location->slug : null,
+            'date' => $this->date ? $this->date : null
+        ]);
+    }
+
 
     public function render()
     {

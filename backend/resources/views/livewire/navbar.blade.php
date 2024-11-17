@@ -46,8 +46,8 @@
                         class="dropdown absolute z-10 left-0 top-8 mt-1 rounded-xl p-1 w-48 bg-white border border-gray-200 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity">
                         <ul class="flex flex-col gap-y-2">
                             <li class="px-4 py-3 text-sm {{request()->segment(1) == 'about-us' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="{{route('about')}}">About</a></li>
-                            <li class="px-4 py-3 text-sm {{request()->segment(1) == 'faqs' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="{{route('faq')}}">FAQs</a></li>
-                            <li class="px-4 py-3 text-sm {{request()->segment(1) == 'blogs' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="{{route('blogs')}}">Blogs</a></li>
+                            <li class="px-4 py-3 text-sm {{request()->segment(1) == 'faqs' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="{{route('home.faqs')}}">FAQs</a></li>
+                            <li class="px-4 py-3 text-sm {{request()->segment(1) == 'blogs' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="{{route('home.blogs')}}">Blogs</a></li>
                             <li class="px-4 py-3 text-sm {{request()->segment(1) == 'contact' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="{{route('contact')}}">Contact</a></li>
                         </ul>
                     </div>
@@ -64,28 +64,20 @@
         <div class="ham-menu hidden w-screen h-screen bg-white z-10 border-t-2 py-10">
             <div class="links">
                 <ul class="flex flex-col gap-10">
-                    <li><a href="about.html"
-                            class="text-xl font-semibold px-3 py-2 {{request()->segment(1) == 'courses' ? 'text-black' : 'text-gray-500'}} rounded-3xl hover:text-black transition-all duration-200 ease-in-out">Course</a>
+                    @forelse($categories as $category)
+                    <li><a href="{{route('retreats',$category->slug)}}"
+                            class="text-xl font-semibold px-3 py-2 {{request()->segment(1) == $category->slug ? 'text-black' : 'text-gray-500'}} rounded-3xl hover:text-black transition-all duration-200 ease-in-out">{{$category->name}}</a>
                     </li>
-                    <li><a href="about.html"
-                            class="text-xl font-semibold px-3 py-2 {{request()->segment(1) == 'yoga-retreat' ? 'text-black' : 'text-gray-500'}} rounded-3xl hover:text-black transition-all duration-200 ease-in-out">Yoga
-                            Retreat</a>
-                    </li>
-                    <li><a href="about.html"
-                            class="text-xl font-semibold px-3 py-2 {{request()->segment(1) == 'spiritual-tour' ? 'text-black' : 'text-gray-500'}} rounded-3xl hover:text-black transition-all duration-200 ease-in-out">Spiritual
-                            Tour</a>
-                    </li>
-                    <li><a href="{{route('about')}}"
-                            class="text-xl font-semibold px-3 py-2 {{request()->segment(1) == 'welness-tour' ? 'text-black' : 'text-gray-500'}} rounded-3xl hover:text-black transition-all duration-200 ease-in-out">Welness
-                            Tour</a>
-                    </li>
+                    @empty
+                    @endforelse
+                   
                     <li><a href="{{route('about')}}"
                             class="text-xl font-semibold px-3 py-2 {{request()->segment(1) == 'about-us' ? 'text-black' : 'text-gray-500'}} rounded-3xl hover:text-black transition-all duration-200 ease-in-out">About</a>
                     </li>
-                    <li><a href="{{route('faq')}}"
+                    <li><a href="{{route('home.faqs')}}"
                             class="text-xl font-semibold px-3 py-2 {{request()->segment(1) == 'faqs' ? 'text-black' : 'text-gray-500'}} rounded-3xl hover:text-black transition-all duration-200 ease-in-out">FAQs</a>
                     </li>
-                    <li><a href="{{route('blogs')}}"
+                    <li><a href="{{route('home.blogs')}}"
                             class="text-xl font-semibold px-3 py-2 {{request()->segment(1) == 'blogs' ? 'text-black' : 'text-gray-500'}} rounded-3xl hover:text-black transition-all duration-200 ease-in-out">Blogs</a>
                     </li>
                     <li><a href="{{route('contact')}}"

@@ -66,12 +66,14 @@ html,body{
     transform: translateY(0);
 }
 
-.summary p,.summary h1, .summary h2,.summary h3,.summary h4,.summary h5,.summary h6,.summary span, .summary ul ,.summary li, .summary ol{
+.package-details p,.package-details span, .package-details ul ,.package-details li, .package-details ol{
     color:#4b5563 !important;
+    font-size: 1rem !important;
     background-color: transparent !important;
 }
-.summary ol,.summary ul{
+.package-details ol,.package-details ul{
     padding: 0 1rem !important;
+    list-style-type: decimal;
 }
 
 .glightbox-clean .gclose, .glightbox-clean .gnext, .glightbox-clean .gprev {

@@ -6,7 +6,7 @@
     <meta name="description" content="{!! $meta_tags->meta_description !!}">
     <link rel="canonical" href="{!! $meta_tags->canonical_tag ?? '' !!}">
     @else
-    <title>{{$package->category->name}}  {!! $package->title !!}</title>
+    <title>{!! $package->title !!} | Inquiry</title>
     @endif
   
     @if (empty($openGraph))
@@ -43,10 +43,11 @@
     @endslot
   
     <livewire:navbar />
-    <livewire:retreat-details :retreat="$retreat" :slug="$slug"/>
+    <livewire:inquiry-section :slug="$slug"/>
+    <livewire:newsletter />
+    <livewire:testimonial-section />
     <livewire:footer />
     @slot('footerSeo')
-    <script src="{{asset('main/js/gallery.js')}}"></script>
     @if (empty($scriptFooter))
     @else
         @foreach ($scriptFooter as $footer)

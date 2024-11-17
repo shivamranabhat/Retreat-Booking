@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Dashboard | Yoga Holiday</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}" />
+    <link rel="shortcut icon" href="{{asset('main/images/favicon.png')}}" />
 
     <!-- Library / Plugin Css Build -->
     <link rel="stylesheet" href="{{asset('assets/css/core/libs.min.css')}}" />
@@ -56,22 +56,21 @@
     <aside class="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all ">
         <div class="sidebar-header d-flex align-items-center justify-content-start">
             <a class="navbar-brand d-flex align-items-center gap-1">
-             {{-- <div class="logo-main">
-                    <img src="{{asset('main/images/logo-2.jpg')}}" class="rounded-circle" width="40" alt="logo">
-        </div> --}}
-        <!--logo End-->
-        <h4 class="logo-title m-0">Retreat</h4>
-    </a>
-    <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
-        <i class="icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4.25 12.2744L19.25 12.2744" stroke="currentColor" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M10.2998 18.2988L4.2498 12.2748L10.2998 6.24976" stroke="currentColor"
-                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-        </i>
-    </div>
+                <div class="logo-main">
+                    <img src="{{asset('main/images/logo.svg')}}" width="200" alt="logo">
+                </div>
+                <!--logo End-->
+            </a>
+            <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
+                <i class="icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.25 12.2744L19.25 12.2744" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M10.2998 18.2988L4.2498 12.2748L10.2998 6.24976" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </i>
+            </div>
         </div>
         <div class="sidebar-body pt-0 data-scrollbar">
             <div class="sidebar-list">
@@ -176,8 +175,6 @@
                         </ul>
                     </li>
 
-
-
                     <li class="nav-item">
                         <a class="nav-link {{request()->segment(2) == 'blogs'? 'active' : ''}}"
                             href="{{route('blogs')}}">
@@ -270,9 +267,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-
-                        <a class="nav-link {{ request()->segment(2) == 'packages' ? 'active' : '' }}"
-                            href="{{ route('packages') }}">
+                        <a class="nav-link {{request()->segment(2) == 'packages' ? 'active' : ''}}"
+                            data-bs-toggle="collapse" href="#sidebar-package" role="button" aria-expanded="false"
+                            aria-controls="sidebar-package">
                             <i class="icon">
                                 <!-- New Icon for Packages -->
                                 <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -283,33 +280,56 @@
                                 </svg>
                             </i>
                             <span class="item-name">Packages</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->segment(2) == 'featured_packages' ? 'active' : '' }}"
-                            href="{{ route('featured_packages') }}">
-                            <i class="icon">
-                                <!-- New Icon for Featured Packages -->
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-20">
-                                    <path
-                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM12 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-4c-1.1 0-2-.9-2-2V7h4v7c0 1.1-.9 2-2 2z"
-                                        fill="currentColor" />
+                            <i class="right-icon">
+                                <svg class="icon-18" xmlns="http://www.w3.org/2000/svg" width="18" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
                                 </svg>
                             </i>
-                            <span class="item-name">Featured Packages</span>
                         </a>
+                        <ul class="sub-nav collapse" id="sidebar-package" data-bs-parent="#sidebar-menu">
+                            
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->segment(2) == 'packages' && request()->segment(3) !== 'featured' ? 'text-primary' : ''}}"
+                                    href="{{route('packages')}}">
+                                    <i class="icon">
+                                        <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                            viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> Lists </i>
+                                    <span class="item-name">Lists</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->segment(2) == 'packages' && request()->segment(3) == 'featured' ? 'text-primary' : ''}}"
+                                    href="{{route('features')}}">
+                                    <i class="icon">
+                                        <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                            viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> Featured </i>
+                                    <span class="item-name">Featured</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link {{ request()->segment(1) == 'categories' ? 'active' : '' }}"
                             href="{{ route('categories') }}">
                             <i class="icon">
                                 <!-- New Icon for Categories -->
-                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                    class="icon-20">
-                                    <path d="M3 4h18v2H3V4zm0 6h18v2H3v-2zm0 6h18v2H3v-2z" fill="currentColor" />
-                                </svg>
-
+                                <svg width="20" class="icon-20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.75 4.5L4.5 3.75H10.5L11.25 4.5V10.5L10.5 11.25H4.5L3.75 10.5V4.5ZM5.25 5.25V9.75H9.75V5.25H5.25ZM13.5 3.75L12.75 4.5V10.5L13.5 11.25H19.5L20.25 10.5V4.5L19.5 3.75H13.5ZM14.25 9.75V5.25H18.75V9.75H14.25ZM17.25 20.25H15.75V17.25H12.75V15.75H15.75V12.75H17.25V15.75H20.25V17.25H17.25V20.25ZM4.5 12.75L3.75 13.5V19.5L4.5 20.25H10.5L11.25 19.5V13.5L10.5 12.75H4.5ZM5.25 18.75V14.25H9.75V18.75H5.25Z" fill="currentColor"/>
+                                    </svg>
                             </i>
                             <span class="item-name">Categories</span>
                         </a>
@@ -338,7 +358,8 @@
                         <a class="nav-link {{request()->segment(2) == 'testimonials' ? 'active' : ''}}"
                             href="{{ route('testimonials') }}">
                             <i class="icon">
-                                <svg class="icon-20" width="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="icon-20" width="20" viewBox="0 0 20 20" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
 
                                     <rect x="0" fill="none" width="20" height="20" />
 
@@ -751,7 +772,7 @@
                         <!--Logo start-->
                         <div class="logo-main">
                             <div class="logo-normal">
-                                <img src="{{asset('assets/images/logo.svg')}}" class="rounded-circle" width="50"
+                                <img src="{{asset('main/images/logo.svg')}}" class="rounded-circle" width="100"
                                     alt="Logo">
                             </div>
                         </div>
@@ -782,7 +803,7 @@
                                 <a class="py-0 nav-link d-flex align-items-center" href="#" id="navbarDropdown"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="rounded-circle bg-primary p-2">
-                                        <img src="{{asset('main/images/logo.png')}}" alt="User-Profile"
+                                        <img src="{{asset('main/images/logo.svg')}}" alt="User-Profile"
                                             class="img-fluid avatar avatar-35">
                                     </span>
                                     <div class="caption ms-3 d-none d-md-block ">

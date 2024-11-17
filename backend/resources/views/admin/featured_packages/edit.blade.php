@@ -9,7 +9,7 @@
                                 <h4 class="card-title">Edit Featured Package</h4>
                             </div>
                             <div class="back">
-                                <a href="{{ route('featured_packages') }}"
+                                <a href="{{ route('features') }}"
                                     class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
                                     <i class="btn-inner">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 25 25"
@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <div class="card-body mt-2">
-                            <form method="POST" action="{{ route('featured_package.update', $featuredPackage->slug) }}">
+                            <form method="POST" action="{{ route('feature.update', $featuredPackage->slug) }}">
                                 @csrf
                                 @method('PUT')
 

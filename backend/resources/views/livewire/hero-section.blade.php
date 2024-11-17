@@ -1,5 +1,5 @@
 <!-- hero section -->
-<section class="hero-section relative flex flex-col gap-y-16 items-center mt-18">
+<section class="hero-section relative flex flex-col gap-y-16 items-center mt-18 z-0">
     @if (
         $content->image &&
             (pathinfo($content->image, PATHINFO_EXTENSION) === 'mp4' ||
@@ -103,12 +103,12 @@
                             stroke="#00BF63" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                     <div class="content flex flex-col gap-y-1">
-                        <input class="font-lead-bold text-gray-600 border-none outline-none cursor-pointer" id="date" value="Date"/>
+                        <input class="font-lead-bold text-gray-600 placeholder:text-gray-600 border-none outline-none cursor-pointer" id="date" wire:change='getDate($event.target.value)' placeholder="Date"/>
                         <span class="text-gray-500 text-sm">When you want to go?</span>
                     </div>
                 </div>
                 <button
-                    class="bg-main hidden md:flex items-center justify-center hover:bg-gray-300 hover:ease-in-out duration-200 p-4 group rounded-full">
+                    class="hidden md:flex items-center justify-center hover:bg-gray-300 hover:ease-in-out duration-200 p-4 rounded-full {{!$selectedCategory ? 'cursor-not-allowed bg-gray-300' : 'bg-main group'}}" wire:click="redirectToRetreat">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
                         stroke="currentColor"
                         class="stroke-white size-5 transition-all duration-200 ease-in-out group-hover:stroke-gray-600">
@@ -118,7 +118,7 @@
                 </button>
             </div>
             <button
-                    class="bg-main flex md:hidden items-center justify-center hover:bg-gray-300 hover:ease-in-out duration-200 py-2 px-4 group rounded-full">
+                    class="flex md:hidden items-center justify-center hover:bg-gray-300 hover:ease-in-out duration-200 py-2 px-4 rounded-full {{!$selectedCategory ? 'cursor-not-allowed bg-gray-300' : 'bg-main group'}}" wire:click="redirectToRetreat">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
                         stroke="currentColor"
                         class="stroke-white size-5 transition-all duration-200 ease-in-out group-hover:stroke-gray-600">

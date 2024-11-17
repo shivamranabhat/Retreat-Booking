@@ -6,10 +6,10 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
                             <div class="header-title">
-                                <h4 class="card-title">Create Featured Package</h4>
+                                <h4 class="card-title">Featured Package</h4>
                             </div>
                             <div class="back">
-                                <a href="{{ route('featured_packages') }}"
+                                <a href="{{ route('features') }}"
                                    class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
                                     <i class="btn-inner">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 25 25"
@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <div class="card-body mt-2">
-                            <form method="POST" action="{{ route('featured_package.store') }}">
+                            <form method="POST" action="{{ route('feature.store') }}">
                                 @csrf
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="package_id">Package</label>

@@ -17,12 +17,17 @@ class PageController extends Controller
     public function retreat($retreat)
     {
         $category = Category::whereSlug($retreat)->select('name')->first();
-        return view('pages.retreat',compact('retreat','category'));
+        return view('pages.retreat',compact('category','retreat'));
     }
     public function retreatDetails($retreat,$slug)
     {
         $package = Package::whereSlug($slug)->select('title','category_id')->first();
         return view('pages.retreat-details',compact('retreat','slug','package'));
+    }
+    public function inquiry($slug)
+    {
+        $package = Package::whereSlug($slug)->select('title','category_id')->first();
+        return view('pages.inquiry',compact('slug','package'));
     }
     public function faq()
     {
