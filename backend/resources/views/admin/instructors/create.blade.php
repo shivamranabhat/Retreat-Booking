@@ -38,22 +38,22 @@
                                     </div>
                                     <div class="col-6 form-outline mb-3">
                                         <label class="form-label" for="image">Image</label>
-                                        <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)" />
+                                        <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror" onchange="previewImage(event)" required>
+                                        @error('image')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="col-6 form-outline mb-3">
                                         <label class="form-label" for="image_alt">Image Alt</label>
                                         <input type="text" name="image_alt" id="image_alt"
-                                            class="form-control @error('image_alt') is-invalid @enderror {{ $errors->has('image_alt') ? 'error' : '' }}"
+                                            class="form-control @error('image_alt') is-invalid @enderror"
                                             value="{{ old('image_alt') }}" />
-                                        @error('img_alt')
-                                        <span class="text-danger">{{$message}}</span>
+                                        @error('image_alt')
+                                        <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    @error('image')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </div>
-                               
+
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="experience">Experience</label>
                                     <input type="number" name="experience" id="experience"

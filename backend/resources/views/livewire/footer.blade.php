@@ -102,7 +102,7 @@
                 <h5 class="font-semibold text-base text-gray-500 uppercase">Featured listing</h5>
                 <div class="featured flex flex-col gap-6">
                     @forelse($featured as $feature)
-                    <a href="{{ route('retreat.details', ['retreat' => $feature->package->category->slug, 'slug' => $feature->package->slug]) }}"
+                    <a href="{{ route('retreat.details', ['retreat' => $feature->slug, 'slug' => $feature->package->slug]) }}"
                         class="list cursor-pointer flex gap-2">
                         <img src="{{ asset('storage/'.$feature->package->main_image) }}" class="w-24 rounded-xl object-cover"
                             alt="{{ $feature->package->title }}">
