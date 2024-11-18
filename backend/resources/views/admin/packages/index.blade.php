@@ -65,8 +65,8 @@
 
                                                         <a class="btn btn-sm btn-icon {{ $package->status == 1 ? 'btn-success' : 'btn-danger' }}"
                                                             data-bs-toggle="tooltip"
-                                                            data-bs-placement="top"
-                                                            title="Change Status"
+                                                            data-bs-placement="top"                                                            
+                                                            title="{{ $package->status == 1 ? 'Active' : 'Inactive' }}"
                                                             href="{{ route('package.updateStatus', $package->slug) }}"
                                                             onclick="event.preventDefault(); document.getElementById('update-status-form-{{ $package->slug }}').submit();">
                                                             <span class="btn-inner">

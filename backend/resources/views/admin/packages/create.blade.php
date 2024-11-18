@@ -190,10 +190,17 @@
                                     @error('accommodation_id') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-outline mb-3">
+                                    <label class="form-label" for="days">Days</label>
+                                    <input type="number" name="days" id="days" class="form-control @error('days') is-invalid @enderror"
+                                        value="{{ old('days') }}" required />
+                                    @error('days') <span class="text-danger">{{ $message }}</span> @enderror
+                                
+                                </div>
+                                <div class="form-outline mb-3">
                                     <label class="form-label" for="start_date">Start Date</label>
                                     <input type="date" name="start_date" id="start_date"
                                         class="form-control @error('start_date') is-invalid @enderror"
-                                        value="{{ old('start_date') }}" required />
+                                        value="{{ old('start_date') }}" />
                                     @error('start_date') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
@@ -201,14 +208,10 @@
                                     <label class="form-label" for="end_date">End Date</label>
                                     <input type="date" name="end_date" id="end_date"
                                         class="form-control @error('end_date') is-invalid @enderror"
-                                        value="{{ old('end_date') }}" required />
+                                        value="{{ old('end_date') }}" />
                                     @error('end_date') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
-                                <div class="form-outline mb-3">
-                                    <label class="form-label" for="days">Days</label>
-                                    <input type="number" name="days" id="days" class="form-control" readonly />
-                                </div>
 
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="price">Package Price</label>
@@ -272,26 +275,28 @@
                 }
             });
            
+            
             document.addEventListener('DOMContentLoaded', function() {
                 const startDateInput = document.getElementById('start_date');
                 const endDateInput = document.getElementById('end_date');
                 const daysInput = document.getElementById('days');
 
-                function calculateDays() {
+                function calculateEndDate() {
                     const startDate = new Date(startDateInput.value);
-                    const endDate = new Date(endDateInput.value);
+                    const days = parseInt(daysInput.value, 10);
 
-                    if (startDate && endDate && endDate >= startDate) {
-                        const differenceInTime = endDate - startDate;
-                        const differenceInDays = differenceInTime / (1000 * 3600 * 24) + 1; // Adding 1 to include both start and end date
-                        daysInput.value = differenceInDays;
+                    if (startDate && days > 0) {
+                        const endDate = new Date(startDate);
+                        endDate.setDate(startDate.getDate() + days - 1); // Adjust to include start date
+                        endDateInput.value = endDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
                     } else {
-                        daysInput.value = 0;
+                        endDateInput.value = ''; // Clear end date if input is invalid
                     }
                 }
 
-                startDateInput.addEventListener('change', calculateDays);
-                endDateInput.addEventListener('change', calculateDays);
+                // Event listeners
+                startDateInput.addEventListener('change', calculateEndDate);
+                daysInput.addEventListener('input', calculateEndDate);
             });
 
 
