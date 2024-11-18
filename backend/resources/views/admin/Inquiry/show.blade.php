@@ -31,45 +31,67 @@
                                         <path d="M24 12.001H2.914l5.294-5.295-.707-.707L1 12.501l6.5 6.5.707-.707-5.293-5.293H24v-1z" data-name="Left" />
                                     </svg>
                                 </i>
-                            </a>                           
+                            </a>
                             @endif
                         </div>
                     </div>
                     <div class="card-body">
-                        <form>
-                            <div class="form-outline mb-3">
-                                <label class="form-label" for="name">Name</label>
-                                <input type="text" id="name" class="form-control" value="{{ $inquiry->name }}" readonly>
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">Name</label>
+                                <p>{{ $inquiry->name }}</p>
                             </div>
-                            <div class="form-outline mb-3">
-                                <label class="form-label" for="email">Email</label>
-                                <input type="email" id="email" class="form-control" value="{{ $inquiry->email }}" readonly>
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">Email</label>
+                                <p>{{ $inquiry->email }}</p>
                             </div>
-                            <div class="form-outline mb-3">
-                                <label class="form-label" for="people">People</label>
-                                <input type="number" id="people" class="form-control" value="{{ $inquiry->people }}" readonly>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">Room Type</label>
+                                <p>{{ $inquiry->roomType->name ?? 'N/A' }}</p>
                             </div>
-                            <div class="form-outline mb-3">
-                                <label class="form-label" for="start_date">Start Date</label>
-                                <input type="date" id="start_date" class="form-control" value="{{ $inquiry->start_date }}" readonly>
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">People</label>
+                                <p>{{ $inquiry->people }}</p>
                             </div>
-                            <div class="form-outline mb-3">
-                                <label class="form-label" for="end_date">End Date</label>
-                                <input type="date" id="end_date" class="form-control" value="{{ $inquiry->end_date }}" readonly>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">Start Date</label>
+                                <p>{{ $inquiry->start_date }}</p>
                             </div>
-                            <div class="form-outline mb-3">
-                                <label class="form-label" for="room_type">Room Type</label>
-                                <input type="text" id="room_type" class="form-control" value="{{ $inquiry->roomType->name ?? 'N/A' }}" readonly>
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">End Date</label>
+                                <p>{{ $inquiry->end_date }}</p>
                             </div>
-                            <div class="form-outline mb-3">
-                                <label class="form-label" for="package">Package</label>
-                                <input type="text" id="package" class="form-control" value="{{ $inquiry->package->title ?? 'N/A' }}" readonly>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">Package</label>
+                                <p>{{ $inquiry->package->title ?? 'N/A' }}</p>
                             </div>
-                            <div class="form-outline mb-3">
-                                <label class="form-label" for="message">Message</label>
-                                <textarea id="message" class="form-control" rows="3" readonly>{{ $inquiry->message }}</textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-2">
+                                <label class="form-label">Message</label>
+                                <p>{{ $inquiry->message }}</p>
                             </div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-center">
+                        @if($inquiry->status == 'Pending')
+                        <form action="{{ route('inquiry.changeStatus', ['inquiry' => $inquiry->id, 'status' => 'Accepted']) }}" method="POST" class="me-2">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="btn btn-success">Accept</button>
                         </form>
+                        <form action="{{ route('inquiry.changeStatus', ['inquiry' => $inquiry->id, 'status' => 'Declined']) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="btn btn-danger">Decline</button>
+                        </form>
+                        @endif
                     </div>
                 </div>
             </div>

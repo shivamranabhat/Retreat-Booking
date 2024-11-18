@@ -32,4 +32,25 @@ class InquiryController extends Controller
         $inquiry = Inquiry::with(['roomType', 'package'])->where('slug', $slug)->firstOrFail();
         return view('admin.inquiry.show', compact('inquiry'));
     }
+
+    public function changeStatus(Request $request, Inquiry $inquiry, $status)
+{
+    // Validate status
+    $validStatuses = ['Accepted', 'Declined'];
+
+    if (!in_array($status, $validStatuses)) {
+        return redirect()->route('inquiry.index')->with('error', 'Invalid status');
+    }
+
+    // Update the inquiry status
+    $inquiry->status = $status;
+    $inquiry->save();
+
+    // Redirect to the appropriate view based on the new status
+    if ($status == 'Accepted') {
+        return redirect()->route('inquiry.accepted')->with('success', 'Inquiry accepted');
+    } elseif ($status == 'Declined') {
+        return redirect()->route('inquiry.declined')->with('success', 'Inquiry declined');
+    }
+}
 }
