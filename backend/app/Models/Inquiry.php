@@ -10,7 +10,10 @@ class Inquiry extends Model
 
     use HasFactory;
     protected $fillable=[
-        'name','email','people','start_date','end_date','message','room_type_id','package_id','slug'
+        'name','email','people','start_date','end_date','message','room_type_id','package_id','status','slug'
+    ];
+    protected $attributes = [
+        'status' => 'Pending', 
     ];
     public function roomType()
     {

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreign('room_type_id')->references('id')->on('room_types')->onDelete('cascade');
             $table->unsignedBigInteger('package_id');
             $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
+            $table->string('status')->default('Pending');
             $table->string('slug');
             $table->timestamps();
         });

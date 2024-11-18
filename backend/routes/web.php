@@ -30,6 +30,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\WhyUsController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FeaturedPackageController;
+use App\Http\Controllers\InquiryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -176,7 +177,14 @@ Route::prefix('/dashboard')->group(function () {
             Route::post('{slug}/change/Status/', 'updateStatus')->name('package.updateStatus');
         });
     });
-   
+
+    Route::prefix('/inquiries')->controller(InquiryController::class)->group(function () {
+        Route::get('/pending', 'pending')->name('inquiry.pending');
+        Route::get('/accepted', 'accepted')->name('inquiry.accepted');
+        Route::get('/declined', 'declined')->name('inquiry.declined');
+        Route::get('/{slug}', 'show')->name('inquiry.show');
+    });
+    
     Route::prefix('/categories')->controller(CategoryController::class)->group(function () {
         Route::get('/', 'index')->name('categories');
         Route::get('/create', 'create')->name('category.create');
