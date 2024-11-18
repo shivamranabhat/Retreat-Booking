@@ -139,7 +139,8 @@
                     <label class="text-sm w-full flex gap-x-2 items-center">
                         <input type="radio" name="location"
                             class="w-4 h-4 focus:accent-gray-800 accent-gray-800 cursor-pointer"
-                            wire:click="applyLocationFilter({{ $location->id }})" {{ $locationFilter == $location->id ? 'checked' : '' }}>
+                            wire:click="applyLocationFilter({{ $location->id }})" {{ $locationFilter==$location->id ?
+                        'checked' : '' }}>
                         {{ $location->name }}
                     </label>
                     <span class="text-gray-500 text-sm">
@@ -229,7 +230,7 @@
             @forelse($packages as $package)
             <div class="card grid grid-cols-2 xl:grid-cols-3 gap-4 rounded-xl border border-gray-200 box-shadow-iii p-3 cursor-pointer"
                 wire:click="redirectToDetails('{{$package->slug}}')">
-                <img class="w-full xl:w-80 col-span-2 xl:col-span-1 h-44 md:h-80 xl:h-full object-cover rounded-xl"
+                <img class="w-full xl:w-80 col-span-2 xl:col-span-1 h-60 md:h-80 xl:h-full object-cover rounded-xl"
                     src="{{$package->main_image ? asset('storage/'.$package->main_image) : asset('main/images/image-placeholder.png') }}"
                     alt="{{$package->title}}">
                 <div class="right-col grid grid-cols-5 gap-4 col-span-2">
@@ -253,8 +254,9 @@
                                     d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z">
                                 </path>
                             </svg>
-                            {{ \Carbon\Carbon::parse($package->start_date)->format('M jS Y') }}
-
+                            {{\Carbon\Carbon::parse($package->start_date)->format('M
+                            jS')}} to {{\Carbon\Carbon::parse($package->end_date)->format('M
+                            jS')}}, {{\Carbon\Carbon::parse($package->start_date)->format('Y')}}
                         </p>
                         <p class="italic text-sm text-gray-500">
                             <span class="hidden xl:block">{!! Str::words(strip_tags($package->summary), 15) !!} <a

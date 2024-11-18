@@ -52,11 +52,9 @@ class ExtrapageController extends Controller
     {
         $formFields = $request->validate([
                 'name'=>'required|unique:extrapages,name',
-                'sequence'=>'required|unique:extrapages,sequence',
                 'description'=>'required'
             ],
             ['name.unique'=>'Page with this name already exists',
-            'sequence.unique'=>'Page already reserved for this order'
             ]
         );
         $slug = Str::slug($formFields['name']);
@@ -87,11 +85,9 @@ class ExtrapageController extends Controller
         $existingPage = Page::where('slug',$slug)->first();
         $formFields = $request->validate([
             'name' => 'required|unique:extrapages,name,' . $page->id,
-            'sequence' => 'required',
             'description' => 'required'
         ], [
             'name.unique' => 'A page with this name already exists.',
-            'sequence.unique' => 'This sequence number is already reserved for another page.'
         ]);
         
         $slug = Str::slug($formFields['name']);

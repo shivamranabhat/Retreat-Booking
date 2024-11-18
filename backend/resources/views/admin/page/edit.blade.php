@@ -28,14 +28,7 @@
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
-                                <div class="form-outline mb-3">
-                                    <label class="form-label" for="sequence">Order (Eg:1,2,3)</label>
-                                    <input type="number" name="sequence" id="sequence" class="form-control @error('sequence') is-invalid @enderror {{ $errors->has('sequence') ? 'error' : '' }}"
-                                        value="{{ $page->sequence }}" min="1" />
-                                    @error('sequence')
-                                    <span class="text-danger">{{$message}}</span>
-                                    @enderror
-                                </div>
+                                
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="description">Description</label>
                                     <textarea name="description" id="description"

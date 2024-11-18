@@ -61,7 +61,11 @@ class PackageController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:100',
-            'images.*' => 'nullable|file|mimes:jpg,jpeg,png,gif',
+            'images' => ['required', 'array', function ($attribute, $value, $fail) {
+                if (count($value) < 4) {
+                    $fail('Please upload atleast 4 images for galleries');
+                }
+            }],
             'summary' => 'nullable|string',
             'features' => 'nullable|string',
             'highlights' => 'nullable|string',
@@ -144,7 +148,11 @@ class PackageController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:100',
             'main_image' => 'nullable|image|mimes:jpeg,png,jpg,webp',
-            'images.*' => 'nullable|file|mimes:jpg,jpeg,png,gif',
+            'images' => ['nullable', 'array', function ($attribute, $value, $fail) {
+                if (count($value) < 4) {
+                    $fail('Please upload atleast 4 images for gallery');
+                }
+            }],
             'summary' => 'nullable|string',
             'features' => 'nullable|string',
             'highlights' => 'nullable|string',

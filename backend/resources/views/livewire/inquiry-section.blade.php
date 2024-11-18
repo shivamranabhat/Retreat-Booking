@@ -25,26 +25,11 @@
                 <img class="rounded-xl"
                     src="{{$package->main_image ? asset('storage/'.$package->main_image) : asset('main/images/image-placeholder.png') }}"
                     alt="{{$package->title}}">
-                <h5 class="text-lg font-semibold">{{$package->title}}
+                <h5 class="text-lg font-semibold">{{$package->title}} <span
+                    class="text-xs mt-1 {{$package->status == 0 ? 'text-red-400' : 'text-main'}}">({{$package->status ==
+                    0 ? 'Closed' : 'Available'}})</span>
                 </h5>
                 <div class="flex gap-x-4 items-center">
-                    <p class="text-sm flex gap-x-1 items-center {{$package->status == 1 ? 'text-gray-500' : 'text-red-500'}}">
-                        @if($package->status == 1)
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="#02BF64" class="size-5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                        Available
-                        @else
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="#B21313" class="size-5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                        Unavailable
-                        @endif
-                    </p>
                     <p class="text-sm flex gap-x-1 items-center text-gray-500">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="#00BF63" class="size-5 mb-[0.1rem]">
@@ -56,7 +41,26 @@
 
                         {{$package->location->name}}
                     </p>
+                    <p class="text-sm flex gap-x-1 items-center text-gray-500">
+                        <svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" fill="none">
+                            <path d="M3.5957 8.72873H19.1917" stroke="#00BF63" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M15.2764 12.146H15.2844" stroke="#00BF63" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M11.3936 12.146H11.4017" stroke="#00BF63" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M7.50293 12.146H7.51103" stroke="#00BF63" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M15.2764 15.5467H15.2844" stroke="#00BF63" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M11.3936 15.5467H11.4017" stroke="#00BF63" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M7.50293 15.5467H7.51103" stroke="#00BF63" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M14.9277 2.25V5.12943" stroke="#00BF63" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M7.85938 2.25V5.12943" stroke="#00BF63" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0982 3.63181H7.68924C5.11963 3.63181 3.51465 5.06325 3.51465 7.69446V15.6129C3.51465 18.2854 5.11963 19.75 7.68924 19.75H15.09C17.6678 19.75 19.2646 18.3103 19.2646 15.6791V7.69446C19.2727 5.06325 17.6758 3.63181 15.0982 3.63181Z" stroke="#00BF63" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+    
+                        {{\Carbon\Carbon::parse($package->start_date)->format('M
+                        jS')}} to {{\Carbon\Carbon::parse($package->end_date)->format('M
+                        jS')}}, {{\Carbon\Carbon::parse($package->start_date)->format('Y')}}
+                    </p>
                 </div>
+                
                 <div class="h-px bg-gray-200 my-6">
                 </div>
                 <div class="details flex flex-col gap-4">
@@ -86,8 +90,8 @@
                             </path>
                         </svg>
                         <div class="content flex justify-between w-full">
-                            <p class="text-gray-600 flatpickr-input" id="date" readonly="readonly">Start Date</p>
-                            <span class="text-gray-800">{{\Carbon\Carbon::parse($start_date)->format('M jS Y') ??
+                            <p class="text-gray-600 flatpickr-input" id="date" readonly="readonly">Arrival Date</p>
+                            <span class="text-gray-800">{{\Carbon\Carbon::parse($arrival_date)->format('M jS Y') ??
                                 \Carbon\Carbon::now()->format('M jS Y')}}</span>
                         </div>
                     </div>
@@ -110,7 +114,7 @@
                 </div>
             </div>
             <div class="col-span-2 xl:col-span-3 flex flex-col gap-6">
-                <h5 class="text-xl font-semibold">Check availability and plan your dream trip!</h5>
+                <h5 class="text-xl font-semibold">Check availability and send an inquiry!</h5>
                 <form class="col-span-2 flex flex-col gap-6" wire:submit='send'>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <div class="input-field">
@@ -147,20 +151,12 @@
                                 placeholder="Number of people{{ $errors->has('people') ? ' *' : '' }}">
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        <div class="input-field">
-                            <input
-                                class="p-4 w-full @error('start_date') border border-red-500 placeholder:text-red-400 @enderror placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out flatpickr-input"
-                                type="text" wire:change="updateDate" id="start-date" wire:model="start_date"
-                                placeholder="Start date{{ $errors->has('start_date') ? ' *' : '' }}"
-                                readonly="readonly">
-                        </div>
-                        <div class="input-field">
-                            <input
-                                class="p-4 w-full @error('end_date') border border-red-500 placeholder:text-red-400 @enderror placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out flatpickr-input"
-                                type="text" id="end-date" wire:model="end_date"
-                                placeholder="End date{{ $errors->has('end_date') ? ' *' : '' }}" readonly="readonly">
-                        </div>
+                    <div class="input-field">
+                        <input
+                            class="p-4 w-full @error('arrival_date') border border-red-500 placeholder:text-red-400 @enderror placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out flatpickr-input"
+                            type="text" wire:change="updateDate" id="arrival-date" wire:model="arrival_date"
+                            placeholder="Arrival date{{ $errors->has('arrival_date') ? ' *' : '' }}"
+                            readonly="readonly">
                     </div>
                     <div class="text-area">
                         <textarea

@@ -22,9 +22,7 @@ class InquirySection extends Component
     #[Validate('required')]
     public $people;
     #[Validate('required')]
-    public $start_date;
-    #[Validate('required')]
-    public $end_date;
+    public $arrival_date;
     #[Validate('required')]
     public $message;
     public $price;

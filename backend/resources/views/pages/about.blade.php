@@ -46,7 +46,7 @@
     <livewire:about />
     <livewire:team-section />
     <livewire:why-us-section />
-    <livewire:gallery />
+    <livewire:gallery-section />
     <livewire:testimonial-section />
     <livewire:footer />
     @slot('footerSeo')

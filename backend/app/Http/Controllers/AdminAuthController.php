@@ -14,6 +14,19 @@ class AdminAuthController extends Controller
     {
         return view('admin.auth.login');
     }
+    public function signup()
+    {
+        return view('admin.auth.signup');
+    }
+    public function register(Request $request)
+    {
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        return redirect()->route('admin.login')->with('message','Account created successfully');
+    }
     public function authenticate(Request $request)
     {
         $formFields = $request->validate([
@@ -22,16 +35,9 @@ class AdminAuthController extends Controller
         ]);
         $remember = $request->filled('remember');
         if (auth()->attempt($formFields, $remember)) {
-            if (auth()->user()->role == 1) {
-                $request->session()->regenerate();
-                return redirect()->route('dashboard');
-            } else {
-                auth()->logout();
-                return back()->with('error', 'You do not have permission to access this page.');
-            }
+            return redirect()->route('dashboard');
         }
         return back()->with('error','Invalid email or password.')->onlyInput('email');
-
     }
     public function logout(Request $request)
     {

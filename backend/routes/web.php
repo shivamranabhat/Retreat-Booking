@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ExtraPageController;
 use App\Http\Controllers\AboutContentController;
 use App\Http\Controllers\ContactDetailController;
 use App\Http\Controllers\OpenGraphController;
@@ -28,6 +29,7 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\WhyUsController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FeaturedPackageController;
 
@@ -47,6 +49,8 @@ Route::fallback(function () {
 });
 Route::prefix('/dashboard')->controller(AdminAuthController::class)->group(function () {
     Route::get('/login', 'login')->name('admin.login');
+    Route::get('/signup', 'signup')->name('admin.signup');
+    Route::post('/register', 'register')->name('admin.register');
     Route::post('/auth', 'authenticate')->name('admin.authenticate');
     Route::post('/logout', 'logout')->name('admin.logout');
 });
@@ -60,7 +64,7 @@ Route::prefix('/dashboard')->controller(AdminPasswordResetController::class)->gr
     Route::post('/update-password/{email}', 'updatePassword')->name('admin.password.update');
 });
 
-Route::prefix('/dashboard')->group(function () {
+Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     })->name('dashboard');
@@ -89,6 +93,7 @@ Route::prefix('/dashboard')->group(function () {
         Route::put('/update/{slug}', 'update')->name('location.update');
         Route::delete('/delete/{slug}', 'destroy')->name('location.destroy');
     });
+    
     
     Route::prefix('/content')->group(function(){
         //Routes for footer contents
@@ -264,18 +269,15 @@ Route::prefix('/dashboard')->group(function () {
         Route::put('/update/{id}', 'update')->name('contactDetail.update');
         Route::delete('/delete/{id}', 'destroy')->name('contactDetail.destroy');
     });
-    Route::prefix('/about')->group(function () {
-        //Routes for team
-        Route::prefix('/team')->controller(TeamController::class)->group(function () {
-            Route::get('/', 'index')->name('teams');
-            Route::get('/create', 'create')->name('team.create');
-            Route::post('/team-upload', 'uploadTeam')->name('team.upload');
-            Route::post('/store', 'store')->name('team.store');
-            Route::get('/{slug}', 'edit')->name('team.edit');
-            Route::put('/update/{slug}', 'update')->name('team.update');
-            Route::delete('/delete/{slug}', 'destroy')->name('team.destroy');
-        });
-       
+     //Routes for extra pages
+     Route::prefix('/page')->controller(ExtrapageController::class)->group(function(){
+        Route::get('/','index')->name('pages');
+        Route::get('/create','create')->name('page.create');
+        Route::post('/upload-description','uploadDescription')->name('pageDescription.upload');
+        Route::post('/store','store')->name('page.store');
+        Route::get('/{slug}','edit')->name('page.edit');
+        Route::put('/update/{slug}','update')->name('page.update');
+        Route::delete('/delete/{slug}','destroy')->name('page.destroy');
     });
     Route::prefix('/about')->group(function(){
         //Routes for team
@@ -296,6 +298,16 @@ Route::prefix('/dashboard')->group(function () {
             Route::get('/{slug}', 'edit')->name('whyUs.edit');
             Route::put('/update/{slug}', 'update')->name('whyUs.update');
             Route::delete('/delete/{slug}', 'destroy')->name('whyUs.destroy');
+        });
+        //Routes for gallery
+        Route::prefix('/galleries')->controller(GalleryController::class)->group(function(){
+            Route::get('/','index')->name('galleries');
+            Route::get('/create','create')->name('gallery.create');
+            Route::post('/store','store')->name('gallery.store');
+            Route::get('/{slug}','show')->name('gallery.show');
+            Route::get('/edit/{slug}','edit')->name('gallery.edit');
+            Route::put('/update/{slug}','update')->name('gallery.update');
+            Route::delete('/delete/{slug}','destroy')->name('gallery.destroy');
         });
        
     });

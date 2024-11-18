@@ -54,7 +54,7 @@
                                     <div class="form-outline mb-3">
                                         <label class="form-label" for="images">Gallery Images</label>
                                         <input type="file" name="images[]" id="images"
-                                            class="form-control @error('images') is-invalid @enderror" accept="image/*"
+                                            class="form-control @error('images') is-invalid @enderror"
                                             multiple required />
                                         @error('images') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>

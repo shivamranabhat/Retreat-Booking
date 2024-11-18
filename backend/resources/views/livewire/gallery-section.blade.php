@@ -7,31 +7,39 @@
         </div>
     </div>
     <div class="owl-carousel gallery-carousel flex gap-4">
+        @forelse($galleries as $gallery)
         <div class="card h-72 md:h-60">
             <img class="rounded-lg w-full h-full object-cover"
-                src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/images/about/connect-slide-1.jpeg"
+                src="{{asset('storage/'.$gallery->image)}}"
                 alt="">
+        </div>
+        @empty
+        <div class="card h-72 md:h-60">
+            <img class="rounded-lg w-full h-full object-cover"
+                src="{{asset('main/images/image-placeholder.png')}}"
+                alt="placeholder">
         </div>
         <div class="card h-72 md:h-60">
             <img class="rounded-lg w-full h-full object-cover"
-                src="https://mapmygenome.in/cdn/shop/articles/The_Benefits_of_Yoga_for_Mind_and_Body_-_Enhancing_Health_and_Wellness.webp?v=1718860676&width=1780"
-                alt="">
+                src="{{asset('main/images/image-placeholder.png')}}"
+                alt="placeholder">
         </div>
         <div class="card h-72 md:h-60">
             <img class="rounded-lg w-full h-full object-cover"
-                src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/images/about/connect-slide-1.jpeg"
-                alt="">
+                src="{{asset('main/images/image-placeholder.png')}}"
+                alt="placeholder">
         </div>
         <div class="card h-72 md:h-60">
             <img class="rounded-lg w-full h-full object-cover"
-                src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/images/about/connect-slide-1.jpeg"
-                alt="">
+                src="{{asset('main/images/image-placeholder.png')}}"
+                alt="placeholder">
         </div>
         <div class="card h-72 md:h-60">
             <img class="rounded-lg w-full h-full object-cover"
-                src="https://mapmygenome.in/cdn/shop/articles/The_Benefits_of_Yoga_for_Mind_and_Body_-_Enhancing_Health_and_Wellness.webp?v=1718860676&width=1780"
-                alt="">
+                src="{{asset('main/images/image-placeholder.png')}}"
+                alt="placeholder">
         </div>
+        @endforelse
     </div>
     <div class="slider-buttons flex items-center gap-4">
         <div

@@ -22,7 +22,6 @@
 
     <!-- Dark Css -->
     <link rel="stylesheet" href="{{asset('assets/css/dark.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('assets/css/colorpicker.css')}}" />
 
     <!-- Flash message Css -->
     <link rel="stylesheet" href="{{asset('assets/css/flash.css')}}" />
@@ -427,7 +426,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{request()->segment(2) == 'page' ? 'active' : ''}}" href="">
+                        <a class="nav-link {{request()->segment(2) == 'page' ? 'active' : ''}}" href="{{route('pages')}}">
                             <i class="icon">
                                 <svg version="1.1" id="PAGE" xmlns="http://www.w3.org/2000/svg" width="20"
                                     class="icon-20" fill="currentColor" stroke="currentColor"
@@ -552,6 +551,21 @@
                                     </i>
                                     <i class="sidenav-mini-icon"> Why Us? </i>
                                     <span class="item-name">Why Us?</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->segment(3) == 'galleries' ? 'text-primary' : ''}}"
+                                    href="{{route('galleries')}}">
+                                    <i class="icon">
+                                        <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                            viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> Gallery </i>
+                                    <span class="item-name">Gallery</span>
                                 </a>
                             </li>
                         </ul>
@@ -802,11 +816,11 @@
                                 @if(auth()->user())
                                 <a class="py-0 nav-link d-flex align-items-center" href="#" id="navbarDropdown"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="rounded-circle bg-primary p-2">
+                                    <span class="rounded-circle" style="border:1px solid #2eff74">
                                         <img src="{{asset('main/images/logo.svg')}}" alt="User-Profile"
-                                            class="img-fluid avatar avatar-35">
+                                            class="img-fluid avatar avatar-70">
                                     </span>
-                                    <div class="caption ms-3 d-none d-md-block ">
+                                    <div class="caption ms-1 d-none d-md-block ">
                                         <h6 class="mb-0 caption-title text-dark">{{auth()->user()->name}}</h6>
                                         <p class="mb-0 caption-sub-title">{{auth()->user()->email}}</p>
                                     </div>
@@ -882,6 +896,28 @@
             <!--Nav End-->
         </div>
         {{$slot}}
+        @if(session()->has('success'))
+        <div class="success flash p-3 p-md-4 p-lg-3 p-xl-3 position-fixed bg-white rounded" id="flash-success">
+            <div class="d-flex flex-row align-item-center gap-3">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <path opacity="0.5"
+                            d="M44 24C44 35.0457 35.0457 44 24 44C12.9543 44 4 35.0457 4 24C4 12.9543 12.9543 4 24 4C35.0457 4 44 12.9543 44 24Z"
+                            fill="#92BCAE" />
+                        <path
+                            d="M32.0607 17.9393C32.6464 18.5251 32.6464 19.4749 32.0607 20.0607L22.0607 30.0607C21.4749 30.6464 20.5251 30.6464 19.9393 30.0607L15.9393 26.0607C15.3536 25.4749 15.3536 24.5251 15.9393 23.9393C16.5251 23.3536 17.4749 23.3536 18.0607 23.9393L21 26.8787L25.4697 22.409L29.9393 17.9393C30.5251 17.3536 31.4749 17.3536 32.0607 17.9393Z"
+                            fill="#081C15" />
+                    </svg>
+                </div>
+                <div class="message d-flex flex-column flex-start justify-content-center">
+                    <h5>
+                        Successfull
+                    </h5>
+                    <p class="mb-0"> {{session('success')}}</p>
+                </div>
+            </div>
+        </div>
+        @endif
         @if(session()->has('message'))
         <div class="success flash p-3 p-md-4 p-lg-3 p-xl-3 position-fixed bg-white rounded" id="flash-success">
             <div class="d-flex flex-row align-item-center gap-3">
@@ -1216,7 +1252,6 @@
     <!-- Include Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script src="{{asset('assets/js/jquery.colorpicker.js')}}"></script>
     <script src="{{asset('assets/js/core/libs.min.js')}}"></script>
 
     <!-- External Library Bundle Script -->
