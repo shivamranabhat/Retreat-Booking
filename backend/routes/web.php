@@ -32,6 +32,7 @@ use App\Http\Controllers\WhyUsController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FeaturedPackageController;
+use App\Http\Controllers\InquiryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,7 +94,6 @@ Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
         Route::put('/update/{slug}', 'update')->name('location.update');
         Route::delete('/delete/{slug}', 'destroy')->name('location.destroy');
     });
-    
     
     Route::prefix('/content')->group(function(){
         //Routes for footer contents
@@ -161,7 +161,7 @@ Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
         Route::put('/update/{slug}', 'update')->name('roomType.update');
         Route::delete('/delete/{slug}', 'destroy')->name('roomType.destroy');
     });
-    Route::prefix('/packages')->group(function(){
+    Route::prefix('/packages')->group(function () {
         Route::prefix('/featured')->controller(FeaturedPackageController::class)->group(function () {
             Route::get('/', 'index')->name('features');
             Route::get('/create', 'create')->name('feature.create');
@@ -181,7 +181,15 @@ Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
             Route::post('{slug}/change/Status/', 'updateStatus')->name('package.updateStatus');
         });
     });
-   
+
+    Route::prefix('/inquiries')->controller(InquiryController::class)->group(function () {
+        Route::get('/pending', 'pending')->name('inquiry.pending');
+        Route::get('/accepted', 'accepted')->name('inquiry.accepted');
+        Route::get('/declined', 'declined')->name('inquiry.declined');
+        Route::get('/{slug}', 'show')->name('inquiry.show');
+        Route::patch('/inquiry/{inquiry}/status/{status}', 'changeStatus')->name('inquiry.changeStatus');
+    });
+
     Route::prefix('/categories')->controller(CategoryController::class)->group(function () {
         Route::get('/', 'index')->name('categories');
         Route::get('/create', 'create')->name('category.create');
@@ -198,8 +206,8 @@ Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
         Route::put('/update/{slug}', 'update')->name('testimonial.update');
         Route::delete('/delete/{slug}', 'destroy')->name('testimonial.destroy');
     });
-    
-    
+
+
     Route::prefix('/seo')->group(function () {
         //Routes for tags
         Route::prefix('/tags')->controller(TagController::class)->group(function () {
@@ -279,16 +287,17 @@ Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
         Route::put('/update/{slug}','update')->name('page.update');
         Route::delete('/delete/{slug}','destroy')->name('page.destroy');
     });
-    Route::prefix('/about')->group(function(){
+    
+    Route::prefix('/about')->group(function () {
         //Routes for team
-         Route::prefix('/team')->controller(TeamController::class)->group(function(){
-            Route::get('/','index')->name('teams');
-            Route::get('/create','create')->name('team.create');
-            Route::post('/team-upload','uploadTeam')->name('team.upload');
-            Route::post('/store','store')->name('team.store');
-            Route::get('/{slug}','edit')->name('team.edit');
-            Route::put('/update/{slug}','update')->name('team.update');
-            Route::delete('/delete/{slug}','destroy')->name('team.destroy');
+        Route::prefix('/team')->controller(TeamController::class)->group(function () {
+            Route::get('/', 'index')->name('teams');
+            Route::get('/create', 'create')->name('team.create');
+            Route::post('/team-upload', 'uploadTeam')->name('team.upload');
+            Route::post('/store', 'store')->name('team.store');
+            Route::get('/{slug}', 'edit')->name('team.edit');
+            Route::put('/update/{slug}', 'update')->name('team.update');
+            Route::delete('/delete/{slug}', 'destroy')->name('team.destroy');
         });
         //Routes for why us
         Route::prefix('/why-us')->controller(WhyUsController::class)->group(function () {
@@ -299,7 +308,6 @@ Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
             Route::put('/update/{slug}', 'update')->name('whyUs.update');
             Route::delete('/delete/{slug}', 'destroy')->name('whyUs.destroy');
         });
-        //Routes for gallery
         Route::prefix('/galleries')->controller(GalleryController::class)->group(function(){
             Route::get('/','index')->name('galleries');
             Route::get('/create','create')->name('gallery.create');
@@ -311,8 +319,8 @@ Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
         });
        
     });
-     //Routes for banner
-     Route::prefix('/banner')->controller(BannerController::class)->group(function () {
+    //Routes for banner
+    Route::prefix('/banner')->controller(BannerController::class)->group(function () {
         Route::get('/', 'index')->name('banners');
         Route::get('/create', 'create')->name('banner.create');
         Route::post('/store', 'store')->name('banner.store');

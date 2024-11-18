@@ -19,7 +19,7 @@ class InstructorController extends Controller
             ->paginate(10);
         return view('admin.instructors.index', compact('instructors'));
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -38,10 +38,10 @@ class InstructorController extends Controller
             $formFields = $request->validate([
                 'name' => 'required',
                 'phone_number' => 'required',
-                'experience' => 'required',
+                'experience' => 'required|numeric',
                 'description' => 'required',
                 'address' => 'required',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,webp',
                 'image_alt' => 'required'
             ]);
 
@@ -53,15 +53,17 @@ class InstructorController extends Controller
             }
 
             // Generate slug from name
-            $slug = Str::slug($formFields['name']);
-            // Create instructor with the form fields and slug
-            Instructor::create($formFields + ['slug' => $slug]);
+            $formFields['slug'] = Str::slug($formFields['name']);
+
+            // Create instructor
+            Instructor::create($formFields);
 
             return redirect()->route('instructors')->with('message', 'Instructor added successfully');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Please fill the required fields.');
         }
     }
+
 
     /**
      * Show the form for editing the specified resource.
