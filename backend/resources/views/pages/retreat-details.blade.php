@@ -6,7 +6,7 @@
     <meta name="description" content="{!! $meta_tags->meta_description !!}">
     <link rel="canonical" href="{!! $meta_tags->canonical_tag ?? '' !!}">
     @else
-    <title>{{$package->category->name}}  {!! $package->title !!}</title>
+    <title>{!! $package->title !!}</title>
     @endif
   
     @if (empty($openGraph))
@@ -47,6 +47,8 @@
     <livewire:footer />
     @slot('footerSeo')
     <script src="{{asset('main/js/gallery.js')}}"></script>
+    <script src="{{asset('main/js/detailsScroll.js')}}"></script>
+    
     @if (empty($scriptFooter))
     @else
         @foreach ($scriptFooter as $footer)

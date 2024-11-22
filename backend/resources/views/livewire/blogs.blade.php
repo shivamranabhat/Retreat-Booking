@@ -1,5 +1,5 @@
 <!-- blog section -->
-<section class="blogs py-14 md:py-20 px-6 md:px-28 lg:px-48 xl:px-56">
+<section class="blogs py-14 md:py-20 px-6 md:px-28 lg:px-48">
     <div class="container flex flex-col items-center gap-12 mx-auto">
         <div class="title relative">
             <h3 class="text-2xl lg:text-[31.25px] font-extrabold">Latest from <span class="text-main">Our
@@ -23,8 +23,8 @@
                                 strtoupper($word[0]))->join('') }}
                             </div>
                             <div class="flex flex-col">
-                                <p class="text-main">{{$blog->author}}</p>
-                                <span class="text-sm text-gray-400">{{
+                                <p class="font-semibold">{{$blog->author}}</p>
+                                <span class="text-sm text-gray-600">{{
                                     \Carbon\Carbon::parse($blog->created_at)->format('jS M Y') }}</span>
                             </div>
                         </div>

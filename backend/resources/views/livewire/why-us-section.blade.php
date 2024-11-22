@@ -1,5 +1,5 @@
  <!-- section why us -->
- <section class="whyus-section py-14 md:py-20 px-6 md:px-28 lg:px-48 xl:px-56 bg-gray-50">
+ <section class="whyus-section py-14 md:py-20 px-6 md:px-28 lg:px-48 bg-gray-50">
     <div class="container flex flex-col items-center gap-12 mx-auto">
         <div class="title relative">
             <h3 class="text-2xl lg:text-[31.25px] font-extrabold">Why Use <span class="text-main">Pokhara

@@ -26,6 +26,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'profile_photo_url',
+        'email_verified_at',
+        'google_id'
     ];
     public function scopeFilter($query, array $filters)
     {
@@ -34,6 +36,11 @@ class User extends Authenticatable implements MustVerifyEmail
             $query->where('email','like','%'.request('search').'%')->orWhere('name','like','%'.request('search').'%');
         }
     }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+   
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -64,10 +71,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmailWithOTP($this->otp));
-    }
-    public function carts()
-    {
-        return $this->hasMany(Cart::class);
     }
     
 }

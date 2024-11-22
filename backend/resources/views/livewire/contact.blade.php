@@ -1,5 +1,5 @@
  <!-- contact section -->
- <section class="contact flex flex-col gap-y-36 mt-16 px-6 md:px-28 lg:px-48 xl:px-56 py-14 md:py-20">
+ <section class="contact flex flex-col gap-y-36 mt-16 px-6 md:px-28 lg:px-48 py-14 md:py-20">
     <div class="container mx-auto flex flex-col gap-y-6">
         <h2 class="mb-16 text-center text-4xl leading-10 font-bold lg:leading-[50px] lg:text-5xl">Get in
             touch with our 24/7 customer <br> support team</h2>
@@ -61,7 +61,7 @@
                 </div>
 
                 <button type="submit"
-                    class="font-semibold rounded-3xl flex items-center justify-center bg-main text-white px-6 py-3 hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all"><x-home.spinner/><span wire:loading.delay>Sending...</span><span class="ml-4" wire:loading.remove>Send</span><span class="text-transparent">Send</span>
+                    class="font-semibold rounded-3xl flex items-center justify-center bg-main text-white px-6 py-3 hover:bg-[#03914D] hover:ease-in-out duration-300 transition-all"><x-home.spinner/><span wire:loading.delay>Sending...</span><span class="ml-4" wire:loading.remove>Send</span><span class="text-transparent">Send</span>
                 </button>
             </form>
         </div>

@@ -380,13 +380,13 @@
                         <hr class="hr-horizontal">
                     </li>
                     <li class="nav-item static-item">
-                        <a class="nav-link static-item disabled" tabindex="-1">
-                            <span class="default-icon">Bookings</span>
+                        <a class="nav-link static-item " tabindex="-1">
+                            <span class="default-icon">Inquiries</span>
                             <span class="mini-icon">-</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->segment(2) == 'inquiries' && request()->segment(3) == 'pending' ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->segment(2) == 'inquiries' ? 'active' : '' }}"
                             data-bs-toggle="collapse" href="#sidebar-inquiry" role="button" aria-expanded="false"
                             aria-controls="sidebar-inquiry">
                             <i class="icon">
@@ -411,7 +411,7 @@
                                     </g>
                                 </svg>
                             </i>
-                            <span class="item-name">Bookings</span>
+                            <span class="item-name">Inquiries</span>
                             <i class="right-icon">
                                 <svg class="icon-18" xmlns="http://www.w3.org/2000/svg" width="18" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">

@@ -40,7 +40,7 @@
                 </div>
                 <div
                     class="dropdown absolute z-10 left-0 top-20 mt-1 rounded-xl p-1 w-48 bg-white border border-gray-200 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity">
-                    <ul>
+                    <ul class="flex flex-col gap-y-1">
                         @forelse($categories as $category)
                         <li class="px-4 py-3 {{$selectedCategory == $category->name ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer" wire:click='getCategory({{$category->id}})'>{{$category->name}}</li>
                         @empty 
@@ -66,7 +66,7 @@
                 <!-- Dropdown content -->
                 <div
                     class="dropdown absolute z-10 left-0 top-20 mt-1 rounded-xl p-1 w-48 bg-white border border-gray-200 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity">
-                    <ul>
+                    <ul class="flex flex-col gap-y-1">
                         @forelse($locations as $location)
                         <li class="px-4 py-3 {{$selectedLocation == $location->name ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer" wire:click='getLocation({{$location->id}})'>{{$location->name}}</li>
                         @empty 
@@ -103,7 +103,7 @@
                             stroke="#00BF63" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                     <div class="content flex flex-col gap-y-1">
-                        <input class="font-lead-bold text-gray-600 placeholder:text-gray-600 border-none outline-none cursor-pointer" id="date" wire:change='getDate($event.target.value)' placeholder="Date"/>
+                        <input class="font-lead-bold bg-white text-gray-600 placeholder:text-gray-600 border-none outline-none cursor-pointer" id="date" wire:change='getDate($event.target.value)' placeholder="Date"/>
                         <span class="text-gray-500 text-sm">When you want to go?</span>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-<section class="listing py-14 md:py-20 px-6 md:px-28 lg:px-48 xl:px-56 flex flex-col gap-y-4">
+<section class="listing py-14 md:py-20 px-6 md:px-28 lg:px-48 flex flex-col gap-y-4">
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-10">
         <div class=""></div>
         <div class="col-span-4 lg:col-span-3 flex justify-between items-center">
@@ -24,22 +24,20 @@
                 @endif
             </div>
             <div class="relative inline-block text-left group">
-                <div>
-                    <button type="button"
-                        class="inline-flex w-full justify-center gap-x-1.5 rounded-xl bg-white px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm border-2 border-gray-200 box-shadow-iii hover:bg-gray-50"
-                        id="menu-button" aria-expanded="true" aria-haspopup="true">
-                        Sort
-                        <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"
-                            aria-hidden="true" data-slot="icon">
-                            <path fill-rule="evenodd"
-                                d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="absolute right-0 z-10 p-1 w-56 rounded-lg origin-top-right border border-200 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden group-hover:block"
+                <button type="button"
+                    class="inline-flex w-full justify-center gap-x-1.5 rounded-3xl bg-white px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm border-2 border-gray-200 box-shadow-iii hover:bg-gray-50"
+                    id="menu-button" aria-expanded="true" aria-haspopup="true">
+                    Sort By
+                    <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                        data-slot="icon">
+                        <path fill-rule="evenodd"
+                            d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <div class="absolute mt-1 right-0 z-10 p-1 w-56 rounded-lg origin-top-right border border-200 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden group-hover:block"
                     role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-                    <div role="none" class="flex flex-col gap-y-2">
+                    <div role="none" class="flex flex-col gap-y-1">
                         <a class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200 {{ $sortFilter === 'price-low-to-high' ? 'bg-gray-200' : '' }}"
                             role="menuitem" tabindex="-1" wire:click="applySortFilter('price-low-to-high')">
                             Price Low to High
@@ -253,10 +251,13 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z">
                                 </path>
-                            </svg>
+                            </svg>@if($package->start_date && $package->end_date !==null)
                             {{\Carbon\Carbon::parse($package->start_date)->format('M
                             jS')}} to {{\Carbon\Carbon::parse($package->end_date)->format('M
                             jS')}}, {{\Carbon\Carbon::parse($package->start_date)->format('Y')}}
+                            @else
+                            Available all days in a year
+                            @endif
                         </p>
                         <p class="italic text-sm text-gray-500">
                             <span class="hidden xl:block">{!! Str::words(strip_tags($package->summary), 15) !!} <a
@@ -278,7 +279,7 @@
                                 </p>
                                 <h5 class="font-semibold text-gray-700">USD ${{number_format($package->price,0)}}</h5>
                             </div>
-                            <span class="flex gap-1 items-center text-sm text-gray-500">
+                            {{-- <span class="flex gap-1 items-center text-sm text-gray-500">
                                 @if($package->status == 1)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="#02BF64" class="size-5">
@@ -294,6 +295,14 @@
                                 </svg>
                                 Unavailable
                                 @endif
+                            </span> --}}
+                            <span class="flex gap-1 text-sm text-gray-500">4.5 <svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="#02BF64" class="size-5">
+                                    <path fill-rule="evenodd"
+                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                (50 reviews)
                             </span>
                         </div>
                         <div class="btns flex flex-col gap-y-2">

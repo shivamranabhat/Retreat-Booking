@@ -1,5 +1,5 @@
 <!-- section testimonials -->
-<section class="testimonial-section py-14 md:py-20 px-6 md:px-28 lg:px-48 xl:px-56">
+<section class="testimonial-section py-14 md:py-20 px-6 md:px-28 lg:px-48">
     <div class="container flex flex-col items-center gap-12 mx-auto">
         <div class="title relative">
             <div class="absolute left-[-2.7rem] top-[-1rem]">

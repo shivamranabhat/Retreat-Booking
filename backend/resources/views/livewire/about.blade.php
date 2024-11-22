@@ -1,5 +1,5 @@
 <!-- about section -->
-<section class="about py-14 md:py-20 px-6 md:px-28 lg:px-48 xl:px-56">
+<section class="about py-14 md:py-20 px-6 md:px-28 lg:px-48">
     <div class="container flex flex-col items-center gap-12 mx-auto">
         <div class="grid grid-cols-2 gap-6">
             <div class="left-col col-span-2 lg:col-span-1 flex flex-col gap-6 justify-center">

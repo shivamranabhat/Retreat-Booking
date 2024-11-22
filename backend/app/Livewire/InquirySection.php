@@ -20,7 +20,7 @@ class InquirySection extends Component
     #[Validate('required')]
     public $room_type_id;
     #[Validate('required')]
-    public $people;
+    public $people=1;
     #[Validate('required')]
     public $arrival_date;
     #[Validate('required')]
@@ -73,6 +73,17 @@ class InquirySection extends Component
         sleep(1);
         session()->flash('success','Inquiry sent successfully');
         $this->reset('name','email','start_date','end_date','people','message','room_type_id');
+    }
+    public function increasePeople()
+    {
+        $this->people +=1;
+    }
+    public function decreasePeople()
+    {
+        if($this->people >1)
+        {
+            $this->people -=1;
+        }
     }
 
     public function render()

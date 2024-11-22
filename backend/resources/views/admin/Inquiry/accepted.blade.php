@@ -24,7 +24,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($acceptedInquiries as $inquiry)
+                                    @forelse ($acceptedInquiries as $inquiry)
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $inquiry->name }}</td>
@@ -37,7 +37,11 @@
                                             <a href="{{ route('inquiry.show', $inquiry->slug) }}" class="btn btn-primary btn-sm">View</a>
                                         </td>
                                     </tr>
-                                    @endforeach
+                                    @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center">No inquiry found.</td>
+                                    </tr>
+                                @endforelse
                                 </tbody>
                             </table>
                         </div>

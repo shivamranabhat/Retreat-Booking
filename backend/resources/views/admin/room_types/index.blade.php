@@ -33,7 +33,6 @@
                                             <tr class="light">
                                                 <th>S.N.</th>
                                                 <th>Name</th>
-                                                <th>Description</th>
                                                 <th>Price</th>
                                                 <th style="min-width: 100px">Action</th>
                                             </tr>
@@ -43,8 +42,7 @@
                                                 <tr>
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td>{{ $roomType->name }}</td>
-                                                    <td>{{ $roomType->description }}</td>
-                                                    <td>${{ number_format($roomType->price, 2) }}</td>
+                                                    <td>${{ number_format($roomType->price,0) }}</td>
                                                     <td>
                                                         <div class="flex align-items-center list-user-action">
                                                             <a class="btn btn-sm btn-icon btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" href="{{ route('roomType.edit', $roomType->slug) }}">

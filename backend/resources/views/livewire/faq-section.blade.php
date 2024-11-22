@@ -1,5 +1,5 @@
   <!-- faq section -->
-  <section class="faq mt-16 px-6 md:px-28 lg:px-48 xl:px-56 py-14 md:py-20 bg-gray-50">
+  <section class="faq mt-16 px-6 md:px-28 lg:px-48 py-14 md:py-20 bg-gray-50">
     <div class="container mx-auto flex flex-col gap-y-12">
         <div class="title flex flex-col items-center">
             <h5 class="font-semibold">FAQs</h5>

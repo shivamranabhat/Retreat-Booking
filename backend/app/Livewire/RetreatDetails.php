@@ -17,8 +17,6 @@ class RetreatDetails extends Component
     public $category;
     public $package;
     public $showFullSummary = false;
-    public $showAllInclusions = false;
-    public $showAllExclusions = false;
     public $showFullFeatures = false;
     public $showFullHighlights = false;
     public $showFullItineraries = false;
@@ -49,14 +47,7 @@ class RetreatDetails extends Component
     
     }
 
-    public function toggleInclusions()
-    {
-        $this->showAllInclusions = !$this->showAllInclusions;
-    }
-    public function toggleExclusions()
-    {
-        $this->showAllExclusions = !$this->showAllExclusions;
-    }
+  
     public function updateDate()
     {
         $this->arrival_date = $this->arrival_date;
@@ -67,12 +58,7 @@ class RetreatDetails extends Component
     {
         $testimonials = Testimonial::get();
         return view('livewire.retreat-details', [
-            'inclusions' => $this->showAllInclusions 
-                ? $this->package->inclusions 
-                : $this->package->inclusions->take(2),
-            'exclusions' => $this->showAllExclusions 
-                ? $this->package->exclusions 
-                : $this->package->exclusions->take(2),
+           
                 'testimonials'=>$testimonials,
                 'roomDetails' => $this->roomDetails,
         ]);

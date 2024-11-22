@@ -1,5 +1,5 @@
  <!-- section newsletter -->
- <section class="newsletter py-14 md:py-20 px-6 md:px-28 lg:px-48 xl:px-56 bg-[#EBF8F3]">
+ <section class="newsletter py-14 md:py-20 px-6 md:px-28 lg:px-48 bg-[#EBF8F3]">
     <div class="grid grid-cols-2 gap-12 lg:gap-28">
         <div class="col-span-2 lg:col-span-1 left-col">
             <div class="flex flex-col lg:flex-row items-center gap-6">

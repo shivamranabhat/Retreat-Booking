@@ -33,6 +33,9 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FeaturedPackageController;
 use App\Http\Controllers\InquiryController;
+use App\Http\Controllers\Auth\VerifyController;
+use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -329,14 +332,34 @@ Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
         Route::delete('/delete/{slug}', 'destroy')->name('banner.destroy');
     });
 });
+Route::controller(VerifyController::class)->group(function(){
+    Route::get('/verify-account','index')->name('otp.verify');
+    Route::get('/verify/email={email}','verifyOtp')->name('account.verify');
+});
+
+Route::controller(ResetPasswordController::class)->group(function(){
+    Route::get('/forgot-password','index')->name('forgot.password');
+    Route::get('/send-reset-otp/email={email}','getResetOtp')->name('get.verifyOtp');
+    Route::get('/reset-password/email={email}/otp={otp}', 'resetPassword')->name('reset.password');
+    Route::post('/update-password/{email}','updatePassword')->name('password.update');
+});
+
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
 Route::prefix('/')->controller(PageController::class)->group(function () {
     Route::get('/', 'index')->name('index');
+    Route::get('/signup','register')->name('signup');
+    Route::get('/login','login')->name('login');
     Route::get('/faqs', 'faq')->name('home.faqs');
+    Route::get('/profile', 'profile')->name('home.profile');
     Route::get('/blogs', 'blogs')->name('home.blogs');
     Route::get('/blog/{slug}', 'blog')->name('blog');
     Route::get('/about-us', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact');
+    // Route::get('/{slug}','addedPage')->name('addedPage');
     Route::get('/{retreat}', 'retreat')->name('retreats');
     Route::get('/{slug}/inquiry', 'inquiry')->name('retreat.inquiry');
+    Route::get('/{slug}/review', 'writeReview')->name('retreat.review');
     Route::get('/{retreat}/{slug}', 'retreatDetails')->name('retreat.details');
 });

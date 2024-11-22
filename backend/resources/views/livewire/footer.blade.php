@@ -1,11 +1,11 @@
 <!-- section footer -->
-<footer class="footer-section bg-[#EBF8F3] pt-10 pb-6 px-6 md:px-28 lg:px-48 xl:px-56" wire:ingnore>
+<footer class="footer-section bg-[#EBF8F3] pt-10 pb-6 px-6 md:px-28 lg:px-48" wire:ingnore>
     <div class="container grid grid-cols-1 lg:grid-cols-4 xl:grid-cols-7 gap-10">
         <div class="flex flex-col gap-6 col-span-1 lg:col-span-2 xl:col-span-2">
             <img src="{{asset('main/images/logo.svg')}}" class="w-[15rem]" alt="logo">
             <div class="about flex flex-col gap-2">
-                <h5 class="font-semibold text-base text-gray-500 uppercase">{{$content->title??'Who we are?'}}</h5>
-                <p class="text-gray-500 text-sm justify">
+                <h5 class="font-semibold text-base text-gray-600 uppercase">{{$content->title??'Who we are?'}}</h5>
+                <p class="text-gray-600 text-sm justify">
                     {{$content->subtitle ?? 'We are a team of yogis who came together to put
                     our energy into making the world a better place by
                     connecting you with life-changing yoga retreats.'}}
@@ -14,7 +14,7 @@
         </div>
         <div class="flex flex-col gap-4 col-span-1 lg:col-span-2 xl:col-span-2">
             <div class="upper-col flex flex-col gap-4">
-                <h5 class="font-semibold text-base text-gray-500 uppercase">Contact</h5>
+                <h5 class="font-semibold text-base text-gray-600 uppercase">Contact</h5>
                 <div class="phone flex items-center gap-2">
                     <span
                         class="bg-main rounded-full p-2 group cursor-pointer hover:bg-gray-300 hover:ease-in-out transition-all duration-400">
@@ -25,7 +25,7 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </span>
-                    <a href="tel:{{$details->phone ?? ''}}" class="text-base text-gray-500">{{$details->phone ??
+                    <a href="tel:{{$details->phone ?? ''}}" class="text-base text-gray-600">{{$details->phone ??
                         ''}}</a>
                 </div>
                 <div class="phone flex items-center gap-2">
@@ -39,18 +39,19 @@
                                 d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
                         </svg>
                     </span>
-                    <a href="mailto:{{$details->email??''}}" class="text-base text-gray-500">{{$details->email??''}}</a>
+                    <a href="mailto:{{$details->email??''}}" class="text-base text-gray-600">{{$details->email??''}}</a>
                 </div>
 
             </div>
             <div class="lower-col flex flex-col gap-4">
-                <h5 class="font-semibold text-base text-gray-500 uppercase">Social Links</h5>
+                <h5 class="font-semibold text-base text-gray-600 uppercase">Social Links</h5>
                 <div class="links flex gap-4 items-start">
 
                     <div
                         class="facebook bg-main p-3 rounded-full group cursor-pointer hover:bg-gray-300 hover:ease-in-out transition-all duration-400">
                         <a href="{{$details->facebook_link ?? ''}}" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" class="fill-white w-6 group-hover:fill-gray-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"
+                                class="fill-white w-6 group-hover:fill-gray-600">
                                 <path
                                     d="M15,3C8.373,3,3,8.373,3,15c0,6.016,4.432,10.984,10.206,11.852V18.18h-2.969v-3.154h2.969v-2.099c0-3.475,1.693-5,4.581-5 c1.383,0,2.115,0.103,2.461,0.149v2.753h-1.97c-1.226,0-1.654,1.163-1.654,2.473v1.724h3.593L19.73,18.18h-3.106v8.697 C22.481,26.083,27,21.075,27,15C27,8.373,21.627,3,15,3z" />
                             </svg>
@@ -81,39 +82,39 @@
         </div>
         <div class="flex flex-col gap-4 col-span-1 lg:col-span-2 xl:col-span-1">
             <div class="upper-col flex flex-col gap-4">
-                <h5 class="font-semibold text-base text-gray-500 uppercase">Quick Links</h5>
+                <h5 class="font-semibold text-base text-gray-600 uppercase">Quick Links</h5>
                 <div class="links flex flex-col gap-4">
                     <a href="/"
-                        class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm {{request()->segment(1) == '' ? 'text-black' : 'text-gray-500'}}">Home</a>
+                        class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm {{request()->segment(1) == '' ? 'text-black' : 'text-gray-600'}}">Home</a>
                     <a href="{{route('home.blogs')}}"
-                        class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm {{request()->segment(1) == 'blogs' ? 'text-black' : 'text-gray-500'}}">Blogs</a>
+                        class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm {{request()->segment(1) == 'blogs' ? 'text-black' : 'text-gray-600'}}">Blogs</a>
                     <a href="{{route('about')}}"
-                        class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm {{request()->segment(1) == 'about-us' ? 'text-black' : 'text-gray-500'}}">About</a>
+                        class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm {{request()->segment(1) == 'about-us' ? 'text-black' : 'text-gray-600'}}">About</a>
                     <a href="{{route('contact')}}"
-                        class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm {{request()->segment(1) == 'contact' ? 'text-black' : 'text-gray-500'}}">Contact</a>
+                        class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm {{request()->segment(1) == 'contact' ? 'text-black' : 'text-gray-600'}}">Contact</a>
                     <a href="{{route('home.faqs')}}"
-                        class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm {{request()->segment(1) == 'faqs' ? 'text-black' : 'text-gray-500'}}">FAQs</a>
+                        class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm {{request()->segment(1) == 'faqs' ? 'text-black' : 'text-gray-600'}}">FAQs</a>
                 </div>
 
             </div>
         </div>
         <div class="flex flex-col gap-4 col-span-1 lg:col-span-2 xl:col-span-2">
             <div class="upper-col flex flex-col gap-4">
-                <h5 class="font-semibold text-base text-gray-500 uppercase">Featured listing</h5>
+                <h5 class="font-semibold text-base text-gray-600 uppercase">Featured listing</h5>
                 <div class="featured flex flex-col gap-6">
                     @forelse($featured as $feature)
                     <a href="{{ route('retreat.details', ['retreat' => $feature->slug, 'slug' => $feature->package->slug]) }}"
                         class="list cursor-pointer flex gap-2">
-                        <img src="{{ asset('storage/'.$feature->package->main_image) }}" class="w-24 rounded-xl object-cover"
-                            alt="{{ $feature->package->title }}">
+                        <img src="{{ asset('storage/'.$feature->package->main_image) }}"
+                            class="w-24 rounded-xl object-cover" alt="{{ $feature->package->title }}">
                         <div class="details flex flex-col gap-1">
                             <h5 class="text-gray-600 text-sm font-semibold">
                                 {{ $feature->package->title }}
                             </h5>
-                            {{-- <p class="text-gray-500 text-sm">
+                            {{-- <p class="text-gray-600 text-sm">
                                 Location: {{ $feature->package->location->name }}
                             </p> --}}
-                            <p class="text-gray-500 text-sm">
+                            <p class="text-gray-600 text-sm">
                                 From {{ number_format($feature->package->price,0) }}$
                             </p>
                         </div>
@@ -130,10 +131,13 @@
     </div>
     <div class="bg-gray-300 h-px w-full mt-14 mb-10"></div>
     <div class="lower-footer flex flex-col md:flex-row  justify-between items-center gap-y-4 md:gap-y-0">
-        <p class="text-gray-400">© pokharayoga.com 2024</p>
+        <p class="text-gray-600">© yogaholiday.com 2024</p>
         <div class="right flex gap-14">
-            <a href="#" class="text-gray-400 hover:text-black hover:ease-in-out transition-all duration-400 text-sm">Terms and Conditions</a>
-            <a href="#" class="text-gray-400 hover:text-black hover:ease-in-out transition-all duration-400 text-sm">Privacy Policy</a>
+            @forelse($pages as $page)
+            <a href="#"
+                class="text-gray-600 hover:text-black hover:ease-in-out transition-all duration-400 text-sm">{{$page->name}}</a>
+            @empty
+            @endforelse
         </div>
     </div>
 </footer>

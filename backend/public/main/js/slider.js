@@ -39,7 +39,7 @@ $(document).ready(function(){
     });
 
     // Initialize testimonial carousel
-    var detailsTestimonialCarousel = $('.details-testimonial-carousel').owlCarousel({
+    var accommodationCarousel = $('.accommodation-carousel').owlCarousel({
         loop: true,
         margin: 20,
         nav: false,
@@ -77,5 +77,7 @@ $(document).ready(function(){
     $('.next-gallery').click(function() {
         galleryCarousel.trigger('next.owl.carousel');
     });
+
+
 
 });

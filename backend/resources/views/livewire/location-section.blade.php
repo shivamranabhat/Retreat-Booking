@@ -1,5 +1,5 @@
  <!-- section locations -->
- <section class="location-section py-14 md:py-20 px-6 md:px-28 lg:px-48 xl:px-56">
+ <section class="location-section py-14 md:py-20 px-6 md:px-28 lg:px-48">
     <div class="container flex flex-col items-center gap-12 mx-auto">
         <h3 class="text-2xl font-bold">We've retreats in more than {{$locations?$locations->count() : '0'}} places in Nepal. See for yourself:</h3>
 

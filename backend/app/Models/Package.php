@@ -51,6 +51,10 @@ class Package extends Model
     {
         return ($this->hasOne(FeaturedPackage::class));
     }
+    public function reviews()
+    {
+        return ($this->hasMany(Review::class));
+    }
     
     public function category()
     {

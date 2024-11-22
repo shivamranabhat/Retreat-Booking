@@ -49,7 +49,7 @@
                                             <h6>Existing Image:</h6>
                                             @if ($roomType->image)
                                             <div class="col-3">
-                                                <img src="{{ asset('storage/' . $roomType->image) }}" class="img-fluid rounded" style="width: 100px;" alt="Existing Image">
+                                                <img src="{{ asset('storage/' . $roomType->image) }}" class="rounded" style="width: 150px;" alt="Existing Image">
                                             </div>
                                             @else
                                             <p>No image available</p>
@@ -109,8 +109,8 @@
 
                     const img = document.createElement('img');
                     img.src = e.target.result;
-                    img.style.width = '100px';
-                    img.classList.add('img-fluid', 'rounded'); // Bootstrap classes for responsiveness and rounding
+                    img.style.width = '150px';
+                    img.classList.add('rounded'); // Bootstrap classes for responsiveness and rounding
 
                     imgContainer.appendChild(img); // Append image to the container
                     previewArea.appendChild(imgContainer); // Append the container to the preview area

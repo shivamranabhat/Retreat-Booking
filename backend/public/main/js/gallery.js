@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const lightbox = GLightbox({
+        selector: '.glightbox'
+    });
     function openGallery(type) {
         GLightbox({
             selector: `a[data-gallery="${type}"]`,

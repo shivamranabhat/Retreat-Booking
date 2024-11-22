@@ -33,9 +33,9 @@ html,body{
     border-color: #02BF64 !important
 }
 
-.flatpickr-mobile
+.flatpickr-mobile::placeholder
 {
-    display: none;
+    display: none !important;
 }
 
 .ham-btn .line {
@@ -89,4 +89,61 @@ html,body{
 .glightbox-clean .gprev, .glightbox-clean .gnext{
     width: 2.5rem !important;
     height: 2.5rem !important;
+}
+iframe{
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0.75rem !important;
+}
+.tab-button p {
+    position: relative;
+    display: inline-block;
+}
+
+.tab-button p::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-top: 2px;
+    border-radius: 1rem;
+    width: 0;
+    height: 3px; 
+    background-color: #48bb78;
+    transition: width 0.3s ease;
+}
+
+.tab-button p.active::before {
+    width: 100%; 
+}
+
+.tab-button p:hover::before {
+    width: 100%;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #d1d5db; 
+    border-radius: 0.5rem;
+  }
+
+  progress::-webkit-progress-value {
+    background-color: #00bf63;
+    border-radius: 0.5rem; 
+  }
+
+  progress::-moz-progress-bar {
+    background-color: #00bf63;
+    border-radius: 0.5rem; 
+  }
+
+.sidebar.open {
+    right: 0; 
+}
+
+#show-more-btn {
+    cursor: pointer;
+}
+
+#right-sticky-col {
+    position: relative;
 }

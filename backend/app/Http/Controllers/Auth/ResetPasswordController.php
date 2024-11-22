@@ -69,7 +69,7 @@ class ResetPasswordController extends Controller
     }
     public function index()
     {
-        return view('pages.auth.forgot',$this->getSeo());
+        return view('pages.auth.forgot');
     }
     public function getResetOtp($email)
     {
