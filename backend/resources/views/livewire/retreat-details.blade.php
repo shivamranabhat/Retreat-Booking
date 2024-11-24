@@ -230,23 +230,48 @@
                             @if($package->start_date && $package->end_date !==null)
                             {{\Carbon\Carbon::parse($package->start_date)->format('M
                             jS Y')}} ({{$package->days}} Days)
-                            @else 
+                            @else
                             Available all days in a year ({{$package->days}} Days)
                             @endif
-                            </p>
+                        </p>
                         <p class="text-sm text-gray-600">From: US${{number_format($package->price,0)}}</p>
-                        <div class="date flex gap-x-2 items-center bg-gray-200 p-4 rounded-xl">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="size-6 stroke-gray-600">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z">
-                                </path>
-                            </svg>
-                            <input type="text"
-                                class="border-none outline-none bg-transparent focus:outline-none placeholder:text-gray-600 focus:ring-0 flatpickr-input"
-                                id="arrival-date" wire:model='arrival_date' wire:change='updateDate'
-                                placeholder="Select Arrival Date" readonly="readonly">
+
+                        <div
+                            class="date flex flex-wrap md:flex-nowrap gap-4 md:gap-2 md:gap-0 justify-between items-center bg-gray-200 p-4 rounded-xl">
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-5 stroke-gray-600"
+                                        wire:ignore>
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z">
+                                        </path>
+                                    </svg>
+                                    <p class="text-sm text-gray-600">Start Date</p>
+                                </div>
+                                <input type="text"
+                                    class="border-none text-sm outline-none bg-transparent focus:outline-none placeholder:text-gray-600 focus:ring-0 flatpickr-input"
+                                    id='{{$package->start_date ? '' : 'start-date'}}' wire:model='start_date' wire:change='updateDate' placeholder="Select a start date" readonly>
+                            </div>
+                            @if($end_date)
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-5 stroke-gray-600"
+                                        wire:ignore>
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z">
+                                        </path>
+                                    </svg>
+                                    <p class="text-sm text-gray-600">End Date</p>
+                                </div>
+                                <input type="text"
+                                    class="border-none text-sm outline-none bg-transparent focus:outline-none placeholder:text-gray-600 focus:ring-0 flatpickr-input"
+                                    wire:model='end_date' readonly>
+                            </div>
+                            @endif
                         </div>
+
                         <a href="{{route('retreat.inquiry',$package->slug)}}"
                             class="bg-main text-center font-semibold text-white  px-2 py-3 mt-3 rounded-3xl hover:bg-[#03914D] hover:ease-in-out duration-300 transition-all">Send
                             Inquiry</a>
@@ -332,7 +357,7 @@
                                 class="text-main">Read More</button>
                         </p>
 
-                        <button
+                        <button wire:click='selectRoom({{$room->id}})'
                             class="mt-4 text-sm text-center text-white px-3 py-2 rounded-3xl hover:ease-in-out duration-300 transition-all bg-main hover:bg-[#03914D]">Book
                             Now</button>
                     </div>
@@ -343,34 +368,38 @@
         </div>
         <div class="reviews flex flex-col gap-6 py-4">
             <h5 class="font-semibold text-2xl">Guest Impressions</h5>
-           
             <div class="grid grid-cols-1 xl:grid-cols-5 gap-16">
                 <div class="col-span-2">
                     <div class="bg-white" id="review-count">
                         <div class="flex items-center space-x-2 mb-2">
                             <span class="text-3xl font-bold">5.0</span>
                             <div class="flex space-x-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64" class="size-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64"
+                                    class="size-5">
                                     <path fill-rule="evenodd"
                                         d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64" class="size-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64"
+                                    class="size-5">
                                     <path fill-rule="evenodd"
                                         d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64" class="size-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64"
+                                    class="size-5">
                                     <path fill-rule="evenodd"
                                         d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64" class="size-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64"
+                                    class="size-5">
                                     <path fill-rule="evenodd"
                                         d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64" class="size-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64"
+                                    class="size-5">
                                     <path fill-rule="evenodd"
                                         d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                         clip-rule="evenodd"></path>
@@ -399,7 +428,7 @@
                                 <progress class="flex-1 h-3" value="97" max="400"></progress>
                                 <span class="w-8 text-right">97</span>
                             </div>
-    
+
                         </div>
                     </div>
                 </div>
@@ -421,7 +450,7 @@
                                 role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                                 <div role="none" class="flex flex-col gap-y-1">
                                     <a class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200"
-                                        role="menuitem" tabindex="-1" >
+                                        role="menuitem" tabindex="-1">
                                         Price Low to High
                                     </a>
                                     <a class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200"
@@ -439,7 +468,9 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{route('retreat.review',$package->slug)}}" class="text-sm text-center text-white px-3 py-2 rounded-3xl hover:ease-in-out duration-300 transition-all bg-main hover:bg-[#03914D]">Write a Review</a>
+                        <a href="{{route('retreat.review',$package->slug)}}"
+                            class="text-sm text-center text-white px-3 py-2 rounded-3xl hover:ease-in-out duration-300 transition-all bg-main hover:bg-[#03914D]">Write
+                            a Review</a>
                     </div>
                     <div class="card flex flex-col gap-2 box-shadow-iii rounded-xl p-4">
                         <div class="flex justify-between">
@@ -626,17 +657,18 @@
             <div class="grid grid-cols-1 xl:grid-cols-5">
                 <div class="col-span-2"></div>
                 <div class="col-span-3 load flex justify-center mt-4">
-                    <button class="text-main text-sm flex gap-1 items-center hover:text-[#08A788] transition-all duration-300">Show More
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke-width="1.5" stroke="currentColor" class="size-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                    </svg>
+                    <button
+                        class="text-main text-sm flex gap-1 items-center hover:text-[#08A788] transition-all duration-300">Show
+                        More
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                        </svg>
                     </button>
-        
+
                 </div>
             </div>
         </div>
-       
     </div>
 
 </section>

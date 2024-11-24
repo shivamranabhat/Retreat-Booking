@@ -11,7 +11,7 @@
             <div class="input-field flex flex-col gap-2">
                 <label for="email" class="text-sm">Email </label>
                 <input
-                    class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out @error('email') border border-red-500 placeholder:text-red-400 @enderror"
+                    class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out @error('email') border border-red-500 @enderror"
                     type="email" wire:model="email" placeholder="{{ $errors->has('email') ? ' Email*' : 'someone@gmail.com' }}">
             </div>
 

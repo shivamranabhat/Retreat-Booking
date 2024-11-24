@@ -44,6 +44,7 @@
   
     <livewire:navbar />
     <livewire:retreat-details :retreat="$retreat" :slug="$slug"/>
+    <x-error />
     <livewire:footer />
     @slot('footerSeo')
     <script src="{{asset('main/js/gallery.js')}}"></script>

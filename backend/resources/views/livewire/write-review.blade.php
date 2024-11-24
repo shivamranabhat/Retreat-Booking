@@ -21,7 +21,7 @@
         </div>
         <h2 class="text-4xl font-bold">Share your experience!</h2>
         <div class="grid grid-cols-2 xl:grid-cols-5 gap-10">
-            <div class="col-span-2 border h-fit border-gray-300 p-4 rounded-xl flex flex-col gap-2">
+            <div class="col-span-2 border border-gray-300 p-4 rounded-xl flex flex-col gap-2">
                 <img class="rounded-xl"
                     src="{{$package->main_image ? asset('storage/'.$package->main_image) : asset('main/images/image-placeholder.png') }}"
                     alt="{{$package->title}}">

@@ -98,14 +98,14 @@ class RetreatSection extends Component
                 case '100-200':
                     $filteredPackages = $filteredPackages->whereBetween('price', [100, 200]);
                     break;
-                case '200-400':
-                    $filteredPackages = $filteredPackages->whereBetween('price', [200, 400]);
+                case '200-300':
+                    $filteredPackages = $filteredPackages->where('price', '>', 200)->where('price', '<=', 300);
                     break;
-                case '400-600':
-                    $filteredPackages = $filteredPackages->whereBetween('price', [400, 600]);
+                case '300-400':
+                    $filteredPackages = $filteredPackages->where('price', '>', 300)->where('price', '<=', 400);
                     break;
-                case '600+':
-                    $filteredPackages = $filteredPackages->where('price', '>=', 600);
+                case '400+':
+                    $filteredPackages = $filteredPackages->where('price', '>=', 400);
                     break;
             }
         }

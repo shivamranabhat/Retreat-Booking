@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontSize: {
+                        'hero-title': '42px',
+                    },
+                    fontWeight: {
+                        'lead-bold': '500',
+                    },
+                    colors: {
+                        'main': '#02BF9B'
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body>
+     <!-- nav section -->
+     <section class="navbar-section box-shadow-i fixed top-0 w-full bg-white z-10">
+        <div class="container mx-auto py-4 px-6 md:px-28 lg:px-48 xl:px-56 flex justify-between items-center">
+            <a href="index.html" class="logo">
+                <img src="./assets/images/logo.svg" class="w-44" alt="logo">
+            </a>
+            <div class="links">
+                <ul class="hidden lg:flex gap-x-10 items-center">
+                    <li><a href="retreat.html"
+                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-200 transition-all duration-200 ease-in-out">Course</a>
+                    </li>
+                    <li><a href="retreat.html"
+                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-200 transition-all duration-200 ease-in-out">Yoga
+                            Retreat</a>
+                    </li>
+                    <li><a href="retreat.html"
+                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-200 transition-all duration-200 ease-in-out">Spiritual
+                            Tour</a>
+                    </li>
+                    <li><a href="retreat.html"
+                            class="text-sm px-3 py-2 rounded-3xl hover:bg-gray-200 transition-all duration-200 ease-in-out">Welness
+                            Tour</a>
+                    </li>
+                    <div
+                        class="extra-list relative group flex gap-x-2 items-center bg-main rounded-2xl px-2 py-[0.4rem] cursor-pointer">
+                        <svg class="w-5 h-5" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" fill="#ffff"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+                            <g>
+                                <path class="st0" d="M482.752,435.574c-6.928-8.1-23.127-40.492-23.127-40.492s2.676-3.448,0-15.051
+                           c-3.48-15.035-18.514-13.886-21.978-17.349c-3.479-3.472-33.549-58.424-35.863-64.792c-2.314-6.369-27.772-78.662-27.772-78.662
+                           c-8.549-37.604-24.308-53.221-45.121-57.85c-20.64-4.581-31.817-3.471-41.075-11.571c-5.778-5.054-5.573-8.809-5.573-24.056
+                           c0,0,6.235-5.927,10.784-14.122c5.195-9.375,7.746-22.907,7.746-22.907c5.211-2.086,5.274-4.684,7.525-12.965
+                           c3.118-11.461,2.897-19.317-5.431-19.317C304.836,19.066,286.085,0,256,0c-30.07,0-48.821,19.066-46.853,56.441
+                           c-8.328,0-8.564,7.856-5.432,19.317c2.251,8.281,2.314,10.879,7.51,12.965c0,0,2.55,13.532,7.762,22.907
+                           c4.55,8.194,10.784,14.122,10.784,14.122c0,15.247,0.189,19.002-5.589,24.056c-9.242,8.1-20.435,6.99-41.059,11.571
+                           c-20.828,4.628-36.572,20.246-45.12,57.85c0,0-25.457,72.294-27.771,78.662c-2.314,6.368-32.401,61.32-35.864,64.792
+                           c-3.464,3.463-18.514,2.314-21.978,17.349c-2.676,11.603,0,15.051,0,15.051s-16.2,32.392-23.143,40.492
+                           c-6.942,8.092,5.794,13.878,13.886,3.464c0.944,1.409,4.156,2.424,7.793,2.912c-28.228,31.251-12.138,71.964,31.55,69.98
+                           C118.291,510.3,256,485.316,256,485.316S393.707,510.3,429.54,511.93c43.688,1.984,59.778-38.729,31.534-69.98
+                           c3.652-0.488,6.864-1.503,7.808-2.912C476.974,449.452,489.695,443.666,482.752,435.574z M183.123,383.849
+                           c0,0-59.274,17.626-96.192,34.234c7.604-14.154,16.357-33.423,16.357-33.423l37.029-53.212l29.504-64.218
+                           c0,0,9.257,34.714,12.138,39.917C184.855,312.35,183.123,383.849,183.123,383.849z M328.891,383.849c0,0-1.732-71.498,1.149-76.702
+                           c2.897-5.203,12.154-39.917,12.154-39.917l29.504,64.218l37.013,53.212c0,0,8.769,19.27,16.373,33.423
+                           C388.165,401.474,328.891,383.849,328.891,383.849z" />
+                            </g>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fff"
+                            version="1.1" id="Capa_1" class="w-3 h-3 mt-1" viewBox="0 0 96.154 96.154"
+                            xml:space="preserve">
+                            <g>
+                                <path
+                                    d="M0.561,20.971l45.951,57.605c0.76,0.951,2.367,0.951,3.127,0l45.956-57.609c0.547-0.689,0.709-1.716,0.414-2.61   c-0.061-0.187-0.129-0.33-0.186-0.437c-0.351-0.65-1.025-1.056-1.765-1.056H2.093c-0.736,0-1.414,0.405-1.762,1.056   c-0.059,0.109-0.127,0.253-0.184,0.426C-0.15,19.251,0.011,20.28,0.561,20.971z" />
+                            </g>
+                        </svg>
+                        <div
+                        class="dropdown absolute z-10 left-0 top-8 mt-1 rounded-xl p-1 w-48 bg-white border border-gray-200 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity">
+                        <ul>
+                            <li class="px-4 py-3 text-sm hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="about.html">About</a></li>
+                            <li class="px-4 py-3 text-sm hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="faq.html">FAQs</a></li>
+                            <li class="px-4 py-3 text-sm hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="blogs.html">Blogs</a></li>
+                            <li class="px-4 py-3 text-sm hover:bg-gray-200 rounded-xl cursor-pointer"> <a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    </div>
+                  
+                </ul>
+            </div>
+            <div class="ham-btn lg:hidden flex flex-col gap-2">
+                <div class="line h-[0.2rem] w-8 bg-main rounded-xl"></div>
+                <div class="line h-[0.2rem] w-5 bg-main rounded-xl"></div>
+                <div class="line h-[0.2rem] w-8 bg-main rounded-xl"></div>
+            </div>
+        </div>
+        <div class="ham-menu hidden w-screen h-screen bg-white z-10 border-t-2 py-10">
+            <div class="links">
+                <ul class="flex flex-col gap-10">
+                    <li><a href="about.html"
+                            class="text-xl font-semibold text-main px-3 py-2 rounded-3xl hover:text-main transition-all duration-200 ease-in-out">Course</a>
+                    </li>
+                    <li><a href="about.html"
+                            class="text-xl font-semibold px-3 py-2 rounded-3xl hover:text-main transition-all duration-200 ease-in-out">Yoga
+                            Retreat</a>
+                    </li>
+                    <li><a href="about.html"
+                            class="text-xl font-semibold px-3 py-2 rounded-3xl hover:text-main transition-all duration-200 ease-in-out">Spiritual
+                            Tour</a>
+                    </li>
+                    <li><a href="about.html"
+                            class="text-xl font-semibold px-3 py-2 rounded-3xl hover:text-main transition-all duration-200 ease-in-out">Welness
+                            Tour</a>
+                    </li>
+                    <li><a href="faq.html"
+                            class="text-xl font-semibold px-3 py-2 rounded-3xl hover:text-main transition-all duration-200 ease-in-out">FAQs</a>
+                    </li>
+                    <li><a href="blogs.html"
+                            class="text-xl font-semibold px-3 py-2 rounded-3xl hover:text-main transition-all duration-200 ease-in-out">Blogs</a>
+                    </li>
+                    <li><a href="contact.html"
+                            class="text-xl font-semibold px-3 py-2 rounded-3xl hover:text-main transition-all duration-200 ease-in-out">Contact</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- nav section -->
+    <!-- reset section -->
+    <section class="reset flex flex-col gap-y-36 mt-16 px-6 md:px-28 lg:px-48 xl:px-56 py-14 md:py-20 h-screen justify-center">
+        <div class="container mx-auto flex flex-col gap-y-8 w-1/4 lg:w-[70%]">
+            <div class="title flex flex-col gap-y-2">
+                <h2 class="text-4xl font-bold">Reset</h2>
+                <p class="text-gray-700">Enter your new password to reset.</p>
+            </div>
+            <div class="h-px bg-gray-200 mb-4"></div>
+            <form class="col-span-2 flex flex-col gap-6">
+               
+                <div class="input-field">
+                    <input
+                        class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out"
+                        type="password" wire:model="password" placeholder="Password">
+                </div>
+                <div class="input-field">
+                    <input
+                        class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out"
+                        type="password" wire:model="password_confirmation" placeholder="Re Password">
+                </div>
+               
+                <button type="submit"
+                    class="font-semibold rounded-3xl flex items-center justify-center bg-main text-white px-6 py-3 hover:bg-[#08A788] hover:ease-in-out duration-300 transition-all">Submit
+                </button>
+            </form>
+            <a href="login.html" class="text-sm">Already have an account? <span class="text-indigo-400 underline">Login</span></a>
+        </div>
+    </section>
+    <!-- reset section -->
+    <!-- section footer -->
+    <footer class="footer-section bg-[#EBF8F3] pt-10 pb-6 px-6 md:px-28 lg:px-48 xl:px-56">
+        <div class="container grid grid-cols-1 lg:grid-cols-4 xl:grid-cols-7 gap-10">
+            <div class="flex flex-col gap-6 col-span-1 lg:col-span-2 xl:col-span-2">
+                <img src="./assets/images/logo.svg" class="w-[15rem]" alt="logo">
+                <div class="about flex flex-col gap-2">
+                    <h5 class="font-semibold text-base text-gray-500 uppercase">Who we are?</h5>
+                    <p class="text-gray-500 text-sm justify">
+                        We are a team of yogis who came together to put
+                        our energy into making the world a better place by
+                        connecting you with life-changing yoga retreats,
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4 col-span-1 lg:col-span-2 xl:col-span-2">
+                <div class="upper-col flex flex-col gap-4">
+                    <h5 class="font-semibold text-base text-gray-500 uppercase">Contact</h5>
+                    <div class="phone flex items-center gap-2">
+                        <span
+                            class="bg-main rounded-full p-2 group cursor-pointer hover:bg-gray-300 hover:ease-in-out transition-all duration-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff"
+                                class="size-4 group-hover:fill-gray-600">
+                                <path fill-rule="evenodd"
+                                    d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        <p class="text-base text-gray-500">info@retreatvenues.com</p>
+                    </div>
+                    <div class="phone flex items-center gap-2">
+                        <span
+                            class="bg-main rounded-full p-2 group cursor-pointer hover:bg-gray-300 hover:ease-in-out transition-all duration-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff"
+                                class="size-4 group-hover:fill-gray-600">
+                                <path
+                                    d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
+                                <path
+                                    d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
+                            </svg>
+                        </span>
+                        <p class="text-base text-gray-500">info@retreatvenues.com</p>
+                    </div>
+
+                </div>
+                <div class="lower-col flex flex-col gap-4">
+                    <h5 class="font-semibold text-base text-gray-500 uppercase">Social Links</h5>
+                    <div class="links flex gap-4 items-center">
+                        <div
+                            class="facebook bg-main px-3 py-2 rounded-full group cursor-pointer hover:bg-gray-300 hover:ease-in-out transition-all duration-400">
+                            <a href="#" class="px-1">
+                                <i class="fa-brands fa-facebook-f text-white text-xl group-hover:text-gray-600"></i>
+                            </a>
+                        </div>
+                        <div
+                            class="instagram bg-main px-3 py-2 rounded-full group cursor-pointer hover:bg-gray-300 hover:ease-in-out transition-all duration-400">
+                            <a href="#">
+                                <i class="fa-brands fa-instagram text-white text-xl group-hover:text-gray-600"></i>
+                            </a>
+                        </div>
+                        <div
+                            class="whatsapp bg-main px-3 py-2 rounded-full group cursor-pointer hover:bg-gray-300 hover:ease-in-out transition-all duration-400">
+                            <a href="#">
+                                <i class="fa-brands fa-whatsapp text-white text-xl group-hover:text-gray-600"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4 col-span-1 lg:col-span-2 xl:col-span-1">
+                <div class="upper-col flex flex-col gap-4">
+                    <h5 class="font-semibold text-base text-gray-500 uppercase">Quick Links</h5>
+                    <div class="links flex flex-col gap-4">
+                        <a href="#"
+                            class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm text-gray-500">Home</a>
+                        <a href="#"
+                            class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm text-gray-500">Blogs</a>
+                        <a href="#"
+                            class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm text-gray-500">Contact</a>
+                        <a href="#"
+                            class="hover:text-black hover:ease-in-out transition-all duration-400 text-sm text-gray-500">FAQs</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="flex flex-col gap-4 col-span-1 lg:col-span-2 xl:col-span-2">
+                <div class="upper-col flex flex-col gap-4">
+                    <h5 class="font-semibold text-base text-gray-500 uppercase">Featured listing</h5>
+                    <div class="featured flex flex-col gap-6">
+                        <div class="list flex gap-2">
+                            <img src="./assets/images/footer.png" class="w-24 rounded-xl object-cover" alt="">
+                            <div class="details flex flex-col gap-1">
+                                <h5 class="text-gray-600 text-sm font-semibold">
+                                    Grant beach reatreat center
+                                </h5>
+                                <p class="text-gray-500 text-sm">
+                                    Location: Pokhara
+                                </p>
+                                <p class="text-gray-500 text-sm">
+                                    From 120$
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="list flex gap-2">
+                            <img src="./assets/images/footer.png" class="w-24 rounded-xl object-cover" alt="">
+                            <div class="details flex flex-col gap-1">
+                                <h5 class="text-gray-600 text-sm font-semibold">
+                                    Grant beach reatreat center
+                                </h5>
+                                <p class="text-gray-500 text-sm">
+                                    Location: Pokhara
+                                </p>
+                                <p class="text-gray-500 text-sm">
+                                    From 120$
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="bg-gray-300 h-px w-full mt-14 mb-10"></div>
+        <div class="lower-footer flex flex-col md:flex-row  justify-between items-center gap-y-4 md:gap-y-0">
+            <p class="text-gray-400">© BookRetreats.com 2024</p>
+            <div class="right flex gap-14">
+                <a href="#" class="text-gray-400 text-sm">Terms and Conditions</a>
+                <a href="#" class="text-gray-400 text-sm">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+    <!-- section footer -->
+    <script src="./node_modules/preline/dist/preline.js"></script>
+    <script src="./assets/js/ham.js"></script>
+    <script src="./assets/js/date.js"></script>
+
+</body>
+
+</html>

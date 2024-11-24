@@ -11,7 +11,7 @@
             <div class="input-fieldflex flex-col gap-2">
                 <label for="otp" class="text-sm">OTP</label>
                 <input
-                    class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out"
+                    class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border @error('token') border-red-500 @enderror border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out"
                     type="text" wire:model="token" id="token"
                     placeholder="{{ $errors->has('token') ? ' Enter your otp*' : 'Eg: 123456' }}">
             </div>

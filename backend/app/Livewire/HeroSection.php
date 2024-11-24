@@ -28,10 +28,6 @@ class HeroSection extends Component
         $this->selectedCategory = $this->category ? $this->category->name : null;
     }
 
-    public function getDate($value)
-    {
-        $this->date = $value;
-    }
 
     public function redirectToRetreat()
     {

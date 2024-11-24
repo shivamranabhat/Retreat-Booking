@@ -1,5 +1,5 @@
-<section class="navbar-section box-shadow-i fixed top-0 w-full bg-white z-10 py-4 px-6 md:px-28 lg:px-48">
-    <div class="container mx-auto flex justify-between items-center">
+<section class="navbar-section box-shadow-i fixed top-0 w-full bg-white z-10">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6 md:px-28 lg:px-48">
         <a href="/" class="logo">
             <img src="{{asset('main/images/logo.svg')}}" class="w-44" alt="logo">
         </a>

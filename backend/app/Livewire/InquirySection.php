@@ -7,28 +7,40 @@ use App\Models\Inquiry;
 use App\Models\Accommodation;
 use App\Models\RoomType;
 use App\Models\Package;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\InquiryNotification;
 
 class InquirySection extends Component
 {
     public $slug;
-    #[Validate('required|string')]
-    public $name;
-    #[Validate('required|email')]
     public $email;
-    #[Validate('required')]
     public $room_type_id;
-    #[Validate('required')]
     public $people=1;
-    #[Validate('required')]
-    public $arrival_date;
-    #[Validate('required')]
+    public $start_date;
     public $message;
     public $price;
     public $room;
     public $package;
     public $roomDetails;
+    public $end_date;
+    public $room_id;
+    public $name = [];
+
+   protected $rules = [
+
+        'email' => 'required|email',
+        'room_type_id' => 'required',
+        'people' => 'required|integer|min:1',
+        'start_date' => 'required',
+        'message' => 'required',
+        'name.*' => 'required', 
+    ];
+
+
+    protected $listeners = ['roomSelected'];
 
     public function mount()
     {
@@ -36,24 +48,45 @@ class InquirySection extends Component
         $accommodation = Accommodation::find($this->package->accommodation_id);
         $roomTypes = json_decode($accommodation->room_types);  
         $this->roomDetails = RoomType::whereIn('id', $roomTypes)->get();
-        if (session()->has('arrival_date')) {
-            $this->start_date = session()->get('arrival_date');
+        $this->email = auth()->user() ? auth()->user()->email : '';
+        if (session()->has('start_date')) {
+            $this->start_date = session()->get('start_date');
+            $this->end_date = Carbon::parse($this->start_date)
+            ->addDays($this->package->days)
+            ->format('M jS Y');
+        }
+        
+        if ($this->package->start_date) 
+        {
+            $this->start_date = Carbon::parse($this->package->start_date)->format('M jS') 
+                                . ' to ' 
+                                . Carbon::parse($this->package->end_date)->format('M jS Y');
+        }
+        
+        if (session()->has('room_id')) {
+            $this->room_id = session()->get('room_id');
+            $this->room_type_id = $this->room_id;
+            $this->room = RoomType::find($this->room_type_id);
+            $this->price = $this->room->price;
         }
     }
+    public function roomSelected($id)
+    {
+        $this->room_id = $id;
+    }
+
+    public function updatedPeople($value)
+    {
+        $this->name = array_fill(0, $value, '');
+    }    
+
+
     public function updateDate()
     {
         $this->start_date = $this->start_date;
-    }
-    public function updatePeople()
-    {
-        $this->people = $this->people;
-        if($this->room)
-        {
-            $this->price = (int)$this->people * (int)$this->room->price;
-        }
-        else{
-            $this->price = '';
-        }
+        $this->end_date = Carbon::parse($this->start_date)
+        ->addDays($this->package->days)
+        ->format('M jS Y');
     }
 
     public function roomType($id)
@@ -64,25 +97,61 @@ class InquirySection extends Component
 
     public function send()
     {
-        $validated = $this->validate();
-        $slug = Str::slug($this->name.'-'.now());
-        Inquiry::create($validated+[
-            'package_id'=>$this->package->id,
-            'slug'=>$this->slug
+        $this->validate();
+        $firstName = [];
+        foreach ($this->name as $firstOne) {
+            $nameParts = explode(' ', $firstOne);
+            $firstName[] = $nameParts[0]; 
+        }
+        Inquiry::create([
+            'package_id' => $this->package->id,
+            'slug' => Str::slug($firstName[0]. '-' . now()),
+            'email' => $this->email,
+            'room_type_id' => $this->room_type_id,
+            'people' => $this->people,
+            'start_date' => $this->start_date,
+            'message' => $this->message,
+            'name' => json_encode($this->name),
         ]);
         sleep(1);
         session()->flash('success','Inquiry sent successfully');
-        $this->reset('name','email','start_date','end_date','people','message','room_type_id');
+        $name = $firstName[0];
+        $category_name = $this->package->category->name;
+        $start_date = $this->start_date ? $this->start_date : $this->package->start_date;
+        $end_date = $this->end_date ? $this->end_date : $this->package->end_date;
+        $package_name = $this->package->title;
+        $location_name = $this->package->location->name;
+        $room_name = $this->room->name;
+        Mail::to($this->email)->send(new InquiryNotification($name,$category_name,$package_name,$start_date,$end_date,$location_name,$this->people,$room_name));
+        if(!$this->package->start_date)
+        {
+            $this->reset('start_date','end_date');
+        }
+        $this->reset('name','email','people','message','room_type_id');
     }
     public function increasePeople()
     {
         $this->people +=1;
+        if($this->room_type_id)
+        {
+            $this->price = (int)$this->people * (int)$this->room->price;
+        }
+        else{
+            $this->price = '';
+        }
     }
     public function decreasePeople()
     {
         if($this->people >1)
         {
             $this->people -=1;
+        }
+        if($this->room_type_id)
+        {
+            $this->price = (int)$this->people * (int)$this->room->price;
+        }
+        else{
+            $this->price = '';
         }
     }
 

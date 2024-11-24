@@ -21,8 +21,8 @@ return new class extends Migration {
             $table->integer('days');
             $table->decimal('price', 8, 2);
             $table->boolean('status')->default(1); 
-            $table->date('start_date')->nullable();
-            $table->date('end_date')->nullable();
+            $table->string('start_date')->nullable();
+            $table->string('end_date')->nullable();
             $table->foreignId('instructor_id')->constrained('instructors')->onDelete('cascade');
             $table->foreignId('accommodation_id')->constrained('accommodations')->onDelete('cascade');
             $table->foreignId('location_id')->constrained('locations')->onDelete('cascade');

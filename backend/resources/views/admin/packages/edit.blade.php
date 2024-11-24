@@ -249,15 +249,10 @@
                                     @enderror
                                 </div>
 
-                                <div class="form-outline mb-3">
-                                    <label class="form-label" for="days">Days</label>
-                                    <input type="number" name="days" id="days"class="form-control @error('days') is-invalid @enderror"
-                                    value="{{ old('days', $package->days) }}" />
-                                    @error('days') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
+                               
 
                                 <div class="form-outline mb-3">
-                                    <label class="form-label" for="start_date">Starting Date</label>
+                                    <label class="form-label" for="start_date">Start Date</label>
                                     <input type="date" name="start_date" id="start_date"
                                         class="form-control @error('start_date') is-invalid @enderror"
                                         value="{{ old('start_date', $package->start_date) }}" required />
@@ -272,7 +267,12 @@
                                     @error('end_date') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
-
+                                <div class="form-outline mb-3">
+                                    <label class="form-label" for="days">Days</label>
+                                    <input type="number" name="days" id="days"class="form-control @error('days') is-invalid @enderror"
+                                    value="{{ old('days', $package->days) }}" />
+                                    @error('days') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="price">Package Price</label>
                                     <input type="number" name="price" id="price"

@@ -10,13 +10,13 @@
             <div class="input-field flex flex-col gap-2">
                 <label for="password" class="text-sm">Password </label>
                 <input
-                    class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out @error('password') border border-red-500 placeholder:text-red-400 @enderror"
+                    class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out @error('password') border border-red-500 @enderror"
                     type="password" wire:model.lazy="password" id="password" value="{{ old('password') }}" placeholder="******">
             </div>
             <div class="input-field flex flex-col gap-2">
                 <label for="password_confirmation" class="text-sm">Confirm Password </label>
                 <input
-                    class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out @error('password_confirmation') border border-red-500 placeholder:text-red-400 @enderror"
+                    class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out @error('password_confirmation') border border-red-500 @enderror"
                     type="password" wire:model.lazy="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="******">
             </div>
             @error('password_confirmation') <span class="text-red-500">{{ $message }}</span> @enderror

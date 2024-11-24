@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Package;
 use App\Models\ExtraPage;
+use App\Models\Inquiry;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -46,13 +47,20 @@ class PageController extends Controller
     }
     public function writeReview($slug)
     {
-        if(auth()->user() && auth()->user()->is_verified===1)
+        $booking = Inquiry::where('email',auth()->user()->email)->where('status','Approved')->first();
+        if($booking)
         {
-            $package = Package::whereSlug($slug)->select('title','category_id')->first();
-            return view('pages.review',compact('slug','package'));
+            if(auth()->user() && auth()->user()->is_verified===1)
+            {
+                $package = Package::whereSlug($slug)->select('title','category_id')->first();
+                return view('pages.review',compact('slug','package'));
+            }
+            else{
+                return redirect()->route('login');
+            }
         }
         else{
-            return redirect()->route('login');
+            return redirect()->back()->with('error','Book first to write a review.');
         }
     }
 

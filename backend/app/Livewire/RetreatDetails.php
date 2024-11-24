@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Testimonial;
 use App\Models\RoomType;
 use App\Models\FeaturedPackage;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 
 class RetreatDetails extends Component
@@ -21,9 +22,9 @@ class RetreatDetails extends Component
     public $showFullHighlights = false;
     public $showFullItineraries = false;
     public $showFullTerms = false;
-    public $arrival_date;
+    public $start_date;
+    public $end_date;
     public $roomDetails;
-    public $featured;
 
     public function mount()
     {
@@ -34,24 +35,35 @@ class RetreatDetails extends Component
             $roomTypeIds = json_decode($accommodation->room_types); 
             $this->roomDetails = RoomType::whereIn('id', $roomTypeIds)->get();
         }
-        if (session()->has('arrival_date')) {
-            $this->arrival_date = session()->get('arrival_date');
+        if($this->package->start_date !==null && $this->package->end_date !==null)
+        {
+            $this->start_date = Carbon::parse($this->package->start_date)->format('M d Y');
+            $this->end_date = Carbon::parse($this->package->end_date)->format('M d Y');
         }
-        $this->featured = FeaturedPackage::whereHas('package', function ($query) {
-            $query->where('category_id', $this->category->id)
-                  ->where('id', '<>', $this->package->id);
-        })
-        ->latest()
-        ->take(4)
-        ->get();
-    
+        else{
+            if (session()->has('start_date')) {
+                $this->start_date = session()->get('start_date');
+                $this->end_date = session()->get('end_date');
+            }
+        }
     }
 
   
     public function updateDate()
     {
-        $this->arrival_date = $this->arrival_date;
-        session(['arrival_date' => $this->arrival_date]);
+        if ($this->start_date && $this->package->start_date == null) {
+            $start = Carbon::parse($this->start_date);
+            $this->end_date = $start->addDays($this->package->days)->format('M d Y');
+            session(['start_date' => $this->start_date,'end_date'=>$this->end_date]);
+        }
+        else{
+            $this->start_date = $this->package->start_date;
+            $this->end_date = $this->package->end_date;
+        }
+    }
+    public function selectRoom($id)
+    {
+        return redirect()->route('retreat.inquiry',$this->package->slug)->with('room_id',$id);
     }
  
     public function render()
