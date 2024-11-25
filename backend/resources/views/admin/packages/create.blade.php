@@ -189,73 +189,21 @@
                                     </select>
                                     @error('accommodation_id') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
-                                <div class="row mb-4">
-                                    <div class="col-12">
-                                        <div class="d-flex flex-column flex-wrap align-items-start" style="gap: 3rem">
-                                            <div class="d-flex mt-3 flex-wrap align-items-center">
-                                                <div class="d-flex flex-wrap align-items-center mb-4 mb-sm-0">
-                                                    <h4 class="me-2 h4">Dates</h4>
-                                                </div>
-                                            </div>
-                                            <ul class="d-flex nav nav-pills mb-5 profile-tab nav-slider gap-3"
-                                                data-toggle="slider-tab" id="profile-pills-tab" role="tablist">
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link text-decoration-none show active"
-                                                        data-bs-toggle="tab" href="#specificDate" role="tab"
-                                                        aria-selected="true">Specific Date </a>
-                                                </li>
-
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link text-decoration-none" data-bs-toggle="tab"
-                                                        href="#specificMonth" role="tab" aria-selected="false">Specific Month</a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="tab-content h-100">
-                                            <div id="specificDate" class="tab-pane h-100 fade active show" role="tabpanel">
-                                                <div class="form-outline mb-3">
-                                                    <label class="form-label" for="start_date">Start Date</label>
-                                                    <input type="date" name="start_date" id="specific_start_date"
-                                                        class="form-control @error('start_date') is-invalid @enderror"
-                                                        value="{{ old('start_date') }}" />
-                                                    @error('start_date') <span class="text-danger">{{ $message }}</span> @enderror
-                                                </div>
-                
-                                                <div class="form-outline mb-3">
-                                                    <label class="form-label" for="end_date">End Date</label>
-                                                    <input type="date" name="end_date" id="specific_end_date"
-                                                        class="form-control @error('end_date') is-invalid @enderror"
-                                                        value="{{ old('end_date') }}" />
-                                                    @error('end_date') <span class="text-danger">{{ $message }}</span> @enderror
-                                                </div>
-                
-                                            </div>
-                                            <div id="specificMonth" class="tab-pane h-100 fade" role="tabpanel">
-                                                <div class="form-outline mb-3">
-                                                    <label class="form-label" for="start_date">Start Date</label>
-                                                    <input type="date" name="start_date" id="start_date"
-                                                        class="form-control @error('start_date') is-invalid @enderror"
-                                                        value="{{ old('start_date') }}" />
-                                                    @error('start_date') <span class="text-danger">{{ $message }}</span> @enderror
-                                                </div>
-                
-                                                <div class="form-outline mb-3">
-                                                    <label class="form-label" for="end_date">End Date</label>
-                                                    <input type="date" name="end_date" id="end_date"
-                                                        class="form-control @error('end_date') is-invalid @enderror"
-                                                        value="{{ old('end_date') }}" />
-                                                    @error('end_date') <span class="text-danger">{{ $message }}</span> @enderror
-                                                </div>
-                
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="form-outline mb-3">
+                                    <label class="form-label" for="start_date">Start Date</label>
+                                    <input type="date" name="start_date" id="start_date"
+                                        class="form-control @error('start_date') is-invalid @enderror"
+                                        value="{{ old('start_date') }}" />
+                                    @error('start_date') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
-                               
+                                <div class="form-outline mb-3">
+                                    <label class="form-label" for="end_date">End Date</label>
+                                    <input type="date" name="end_date" id="end_date"
+                                        class="form-control @error('end_date') is-invalid @enderror"
+                                        value="{{ old('end_date') }}" />
+                                    @error('end_date') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
                                 <div class="form-outline mb-3">
                                     <label class="form-label" for="days">Days</label>
                                     <input type="number" name="days" id="days" class="form-control @error('days') is-invalid @enderror"

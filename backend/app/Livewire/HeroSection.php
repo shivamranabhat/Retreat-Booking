@@ -14,7 +14,6 @@ class HeroSection extends Component
     public $date;
     public $selectedLocation;
     public $selectedCategory;
-    public $selectedDate;
 
     public function getLocation($id)
     {
@@ -27,22 +26,21 @@ class HeroSection extends Component
         $this->category = Category::find($id);
         $this->selectedCategory = $this->category ? $this->category->name : null;
     }
+   
 
 
     public function redirectToRetreat()
     {
+        $formattedDate = $this->date ? \Carbon\Carbon::parse($this->date)->format('Y-m-d') : null;
+
         return redirect()->route('retreats', [
             'retreat' => $this->category ? $this->category->slug : null
         ])->with([
             'category' => $this->category ? $this->category->slug : null,
             'location' => $this->location ? $this->location->slug : null,
-            'date' => $this->date ? $this->date : null
+            'date' => $formattedDate
         ]);
-        session([
-            'category' => $this->category ? $this->category->slug : null,
-            'location' => $this->location ? $this->location->slug : null,
-            'date' => $this->date ? $this->date : null
-        ]);
+        
     }
 
 

@@ -4,13 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\User;
-use App\Models\MtbTourBooking;
-use App\Models\TrekBooking;
-use App\Models\ActivityBooking;
-use App\Models\ProductOrder;
-use App\Models\BikeTourBooking;
-use App\Models\Rent;
-use App\Models\Currency;
+use App\Models\Inquiry;
 use Livewire\WithFileUploads;
 
 class ProfileSection extends Component
@@ -22,6 +16,7 @@ class ProfileSection extends Component
     public $user;
     public $password;
     public $profile_photo_url;
+    public $inquiries;
 
     public function mount()
     {
@@ -30,7 +25,7 @@ class ProfileSection extends Component
         $this->name = $this->user->name;
         $this->email = $this->user->email;
         $this->profile_photo_url = $this->user->profile_photo_url;
-
+        $this->inquiries = Inquiry::where('email',$this->user->email)->latest()->get();
     }
 
     public function updateProfile()

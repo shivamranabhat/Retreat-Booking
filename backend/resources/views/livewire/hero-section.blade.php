@@ -108,14 +108,15 @@
                             d="M15.0982 3.63181H7.68924C5.11963 3.63181 3.51465 5.06325 3.51465 7.69446V15.6129C3.51465 18.2854 5.11963 19.75 7.68924 19.75H15.09C17.6678 19.75 19.2646 18.3103 19.2646 15.6791V7.69446C19.2727 5.06325 17.6758 3.63181 15.0982 3.63181Z"
                             stroke="#00BF63" stroke-width="1.3125" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    <div class="content flex flex-col gap-y-1">
+                    <div class="content flex flex-col gap-y-1" wire:ignore>
                         <input
                             class="font-lead-bold bg-white text-gray-600 placeholder:text-gray-600 border-none outline-none cursor-pointer"
-                            id="date" wire:model='date' placeholder="Date" readonly />
+                            id="date" placeholder="Date" readonly/>
+                        <input wire:model='date' type="hidden" id="selectedDate" readonly />
                         <span class="text-gray-500 text-sm">When you want to go?</span>
                     </div>
                 </div>
-                <div id="calendarDropdown" class="hidden absolute top-20 left-0 bg-white border shadow-lg rounded-lg">
+                <div id="calendarDropdown" class="hidden absolute top-20 left-0 bg-white border shadow-lg rounded-lg" wire:ignore>
                     <div class="tabs flex justify-around border-b p-2">
                         <button id="specificDateTab" class="tab-btn active text-gray-600">Specific Date</button>
                         <button id="specificMonthTab" class="tab-btn text-gray-600">Specific Month</button>
@@ -146,5 +147,109 @@
             </button>
         </div>
     </div>
+    <script>
+        function initializeDatePicker() {
+            flatpickr("#specificDatePicker", {
+                inline: true,
+                dateFormat: "d M Y",
+                minDate: "today",
+                onChange: function (selectedDates, dateStr) {
+                    // Set the value of the input field for date
+                    document.getElementById("date").value = dateStr;
+
+                    // Update the Livewire model 'date' via JavaScript
+                    @this.set('date', dateStr);
+
+                    // Log the selected date to the console (optional)
+                    console.log("Selected Date:", dateStr);
+
+                    // Close the dropdown
+                    closeDropdown();
+                },
+            });
+        }
+
+        function initializeMonthPicker() {
+            flatpickr("#specificMonthPicker", {
+                inline: true,
+                plugins: [
+                    new monthSelectPlugin({
+                        shorthand: true,
+                        dateFormat: "M Y",
+                        altFormat: "M Y",
+                        theme: "material_blue",
+                    }),
+                ],
+                minDate: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+                onChange: function (selectedDates, dateStr) {
+                    // Set the value of the input field for month
+                    document.getElementById("date").value = dateStr;
+
+                    // Log the selected month to the console (optional)
+                    console.log("Selected Month:", dateStr);
+
+                    // Update the Livewire model 'date' via JavaScript
+                    @this.set('date', dateStr);
+
+                    // Close the dropdown
+                    closeDropdown();
+                },
+            });
+        }
+
+        // Tab Functionality
+        const specificDateTab = document.getElementById("specificDateTab");
+        const specificMonthTab = document.getElementById("specificMonthTab");
+        const specificDatePicker = document.getElementById("specificDatePicker");
+        const specificMonthPicker = document.getElementById("specificMonthPicker");
+
+        if (specificDateTab) {
+            specificDateTab.addEventListener("click", () => {
+                specificDateTab.classList.add("active");
+                specificMonthTab.classList.remove("active");
+
+                specificDatePicker.classList.add("active");
+                specificMonthPicker.classList.remove("active");
+
+                initializeDatePicker();
+                if (specificMonthPicker._flatpickr) {
+                    specificMonthPicker._flatpickr.destroy();
+                }
+            });
+        }
+
+        if (specificMonthTab) {
+            specificMonthTab.addEventListener("click", () => {
+                specificMonthTab.classList.add("active");
+                specificDateTab.classList.remove("active");
+
+                specificMonthPicker.classList.add("active");
+                specificDatePicker.classList.remove("active");
+
+                // Initialize the month picker only when tab is selected
+                initializeMonthPicker();
+
+                // Destroy date picker if already initialized
+                if (specificDatePicker._flatpickr) {
+                    specificDatePicker._flatpickr.destroy();
+                }
+            });
+        }
+
+        const dateInput = document.getElementById("date");
+        const calendarDropdown = document.getElementById("calendarDropdown");
+
+        if (dateInput) {
+            dateInput.addEventListener("click", () => {
+                calendarDropdown.classList.toggle("hidden");
+            });
+        }
+
+        function closeDropdown() {
+            calendarDropdown.classList.add("hidden");
+        }
+
+        initializeDatePicker();
+    </script>
 </section>
 <!-- hero section -->

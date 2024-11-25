@@ -14,11 +14,8 @@
                                 <thead>
                                     <tr class="light">
                                         <th>S.N.</th>
-                                        <th>Name</th>
                                         <th>Email</th>
-                                        <th>People</th>
-                                        <th>Start Date</th>
-                                        <th>Room Type</th>
+                                        <th>No.of Guests</th>
                                         <th>Package</th>
                                         <th>Action</th>
                                     </tr>
@@ -27,11 +24,8 @@
                                     @forelse ($declinedInquiries as $inquiry)
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $inquiry->name }}</td>
                                         <td>{{ $inquiry->email }}</td>
                                         <td>{{ $inquiry->people }}</td>
-                                        <td>{{ $inquiry->start_date }}</td>
-                                        <td>{{ $inquiry->roomType->name ?? 'N/A' }}</td>
                                         <td>{{ $inquiry->package->title ?? 'N/A' }}</td>
                                         <td>
                                             <a href="{{ route('inquiry.show', $inquiry->slug) }}"
@@ -40,7 +34,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="8" class="text-center">No inquiry found.</td>
+                                        <td colspan="5" class="text-center">No inquiry found.</td>
                                     </tr>
                                     @endforelse
                                 </tbody>

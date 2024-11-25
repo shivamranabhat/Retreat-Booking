@@ -32,7 +32,7 @@
                                             <tr class="ligth">
                                                 <th>S.N.</th>
                                                 <th>Package Title</th>
-                                                <th>Create Date</th>
+                                                <th>Published At</th>
                                                 <th style="min-width: 100px">Action</th>
                                             </tr>
                                         </thead>

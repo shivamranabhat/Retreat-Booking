@@ -63,7 +63,7 @@
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label class="form-label">End Date</label>
-                                <p>{{ $inquiry->end_date }}</p>
+                                <p>{{ $inquiry->end_date ?? 'N/A' }}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer d-flex justify-content-center">
+                    <div class="card-footer d-flex">
                         @if($inquiry->status == 'Pending')
                         <form action="{{ route('inquiry.changeStatus', ['inquiry' => $inquiry->id, 'status' => 'Accepted']) }}" method="POST" class="me-2">
                             @csrf

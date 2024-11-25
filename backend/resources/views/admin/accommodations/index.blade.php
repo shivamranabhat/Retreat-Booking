@@ -34,7 +34,6 @@
                                                 <th>S.N.</th>
                                                 <th>Name</th>
                                                 <th>Image</th>
-                                                <th>Location</th>
                                                 <th>Contact</th>
                                                 <th style="min-width: 100px">Action</th>
                                             </tr>
@@ -57,7 +56,6 @@
                                                     <p>No image</p>
                                                     @endif
                                                 </td>
-                                                <td>{{ $accommodation->location }}</td>
                                                 <td>{{ $accommodation->contact }}</td>
                                                 <td>
                                                     <div class="flex align-items-center list-user-action">
@@ -120,7 +118,7 @@
                                             </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="7" class="text-center">No accommodations found.</td>
+                                                <td colspan="5" class="text-center">No accommodations found.</td>
                                             </tr>
                                             @endforelse
                                         </tbody>

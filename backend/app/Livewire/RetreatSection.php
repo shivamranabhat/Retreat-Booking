@@ -109,11 +109,38 @@ class RetreatSection extends Component
                     break;
             }
         }
-
+        //If user selects date from hero section
         if (session()->has('date')) {
-            $sessionDate = session()->get('date');
-            $parsedDate = Carbon::createFromFormat('M d Y', $sessionDate);
-            $filteredPackages = $filteredPackages->where('start_date', '>', $parsedDate);
+            $sessionDate = session()->get('date'); 
+            $query = Package::query();
+            $parsedDate = Carbon::createFromFormat('Y-m-d', $sessionDate);
+        
+            if ($parsedDate && $parsedDate->format('Y-m-d') === $sessionDate) 
+            {
+                $query->whereDate('start_date', '=', $parsedDate->format('Y-m-d'));
+
+            } 
+            else 
+            {
+                try {
+                    $parsedMonth = Carbon::createFromFormat('Y-m', substr($sessionDate, 0, 7));
+        
+                    if ($parsedMonth) {
+                        $parsedMonthStart = $parsedMonth->startOfMonth();
+                        $startOfMonth = $parsedMonthStart->format('Y-m-d');
+                        $endOfMonth = $parsedMonthStart->endOfMonth()->format('Y-m-d');
+                        $query->whereBetween('start_date', [$startOfMonth, $endOfMonth]);
+                    }
+                } catch (\Exception $e) {
+                    \Log::error('Invalid date format in session: ' . $sessionDate);
+                }
+            }
+        
+            $filteredPackages = $query->get();
+            if ($filteredPackages->isEmpty()) {
+                $allYearAvailablePackages = Package::whereNull('start_date')->where('category_id',$this->category->id)->get();
+                $filteredPackages = $filteredPackages->merge($allYearAvailablePackages);
+            }
         }
 
         // Apply location filter

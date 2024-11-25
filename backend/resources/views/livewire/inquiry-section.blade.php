@@ -195,7 +195,7 @@
                             <span class="text-gray-800">{{$people ?? '0'}}</span>
                         </div>
                     </div>
-                    <div class="guest flex items-center gap-2">
+                    <div class="accommodation flex items-center gap-2">
                         <svg class="w-8 h-8" viewBox="0 0 70.866 70.866" enable-background="new 0 0 70.866 70.866"
                             id="圖層_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink">

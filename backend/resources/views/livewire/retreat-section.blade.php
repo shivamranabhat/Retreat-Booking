@@ -256,7 +256,7 @@
                             </svg>@if($package->start_date && $package->end_date !==null)
                             {{\Carbon\Carbon::parse($package->start_date)->format('M
                             jS')}} to {{\Carbon\Carbon::parse($package->end_date)->format('M
-                            jS')}}, {{\Carbon\Carbon::parse($package->start_date)->format('Y')}}
+                            jS, Y')}}
                             @else
                             Available all days in a year
                             @endif

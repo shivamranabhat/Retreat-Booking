@@ -47,7 +47,7 @@ class PageController extends Controller
     }
     public function writeReview($slug)
     {
-        $booking = Inquiry::where('email',auth()->user()->email)->where('status','Approved')->first();
+        $booking = Inquiry::where('email',auth()->user()->email)->where('status','Accepted')->first();
         if($booking)
         {
             if(auth()->user() && auth()->user()->is_verified===1)
