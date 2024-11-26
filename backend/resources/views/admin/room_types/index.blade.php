@@ -33,7 +33,7 @@
                                             <tr class="light">
                                                 <th>S.N.</th>
                                                 <th>Name</th>
-                                                <th>Price</th>
+                                                <th>Percentage</th>
                                                 <th style="min-width: 100px">Action</th>
                                             </tr>
                                         </thead>

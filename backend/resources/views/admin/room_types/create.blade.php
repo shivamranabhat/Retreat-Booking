@@ -46,8 +46,8 @@
                                
 
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="price">Price</label>
-                                    <input type="number" name="price" id="price"
+                                    <label class="form-label" for="price">Percentage</label>
+                                    <input type="number" name="Percentage" id="price"
                                         class="form-control @error('price') is-invalid @enderror"
                                         value="{{ old('price') }}" required />
                                     @error('price')
