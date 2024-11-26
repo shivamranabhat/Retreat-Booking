@@ -30,7 +30,7 @@
         </div>
         <div
             class="search-bar bg-white p-4 md:p-0 w-full grid grid-cols-1 lg:grid-cols-3 gap-y-2 md:gap-0 box-shadow-i rounded-xl mx-auto">
-            <div class="category cursor-pointer flex gap-2 col-span-1 p-4 relative group">
+            <div id="category-container" class="category cursor-pointer flex gap-2 col-span-1 p-4 relative group">
                 <svg class="mt-[0.1rem]" width="22" height="22" stroke="#00BF63" viewBox="0 0 24 24" fill="none">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
@@ -40,8 +40,8 @@
                     <p class="font-lead-bold text-gray-600">{{$selectedCategory ? $selectedCategory : 'Catgeory' }}</p>
                     <span class="text-gray-500 text-sm">Which retreat you want?</span>
                 </div>
-                <div
-                    class="dropdown absolute z-10 left-0 top-20 mt-1 rounded-xl p-1 w-48 bg-white border border-gray-200 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity">
+                <div id="category-dropdown"
+                    class="dropdown absolute z-10 left-0 top-20 mt-1 rounded-xl p-1 w-48 bg-white border border-gray-200 shadow-lg opacity-0 invisible transition-opacity">
                     <ul class="flex flex-col gap-y-1">
                         @forelse($categories as $category)
                         <li class="px-4 py-3 {{$selectedCategory == $category->name ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer"
@@ -53,9 +53,8 @@
                 </div>
             </div>
             <div class="bg-gray-200 h-px w-full flex md:hidden"></div>
-            <div class="location cursor-pointer flex gap-2 col-span-1 p-4 relative group">
-                <svg class="mt-[0.1rem]" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
-                    fill="none">
+            <div id="location-container" class="location cursor-pointer flex gap-2 col-span-1 p-4 relative">
+                <svg class="mt-[0.1rem]" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
                     <path
                         d="M15.7497 15.0749L12.0371 18.7875C11.8747 18.95 11.6819 19.0789 11.4697 19.1669C11.2575 19.2549 11.03 19.3002 10.8002 19.3002C10.5705 19.3002 10.343 19.2549 10.1308 19.1669C9.9186 19.0789 9.7258 18.95 9.56343 18.7875L5.84993 15.0749C4.871 14.0959 4.20435 12.8486 3.93428 11.4907C3.66422 10.1329 3.80286 8.72544 4.33269 7.44638C4.86251 6.16732 5.75972 5.07409 6.91085 4.30493C8.06199 3.53578 9.41535 3.12524 10.7998 3.12524C12.1843 3.12524 13.5376 3.53578 14.6888 4.30493C15.8399 5.07409 16.7371 6.16732 17.2669 7.44638C17.7968 8.72544 17.9354 10.1329 17.6653 11.4907C17.3953 12.8486 16.7286 14.0959 15.7497 15.0749Z"
                         stroke="#00BF63" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
@@ -67,9 +66,7 @@
                     <p class="font-lead-bold text-gray-600">{{$selectedLocation ? $selectedLocation : 'Locations' }}</p>
                     <span class="text-gray-500 text-sm">Where you want to go?</span>
                 </div>
-                <!-- Dropdown content -->
-                <div
-                    class="dropdown absolute z-10 left-0 top-20 mt-1 rounded-xl p-1 w-48 bg-white border border-gray-200 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity">
+                <div id="location-dropdown" class="dropdown absolute z-10 left-0 top-20 mt-1 rounded-xl p-1 w-48 bg-white border border-gray-200 shadow-lg opacity-0 invisible transition-opacity">
                     <ul class="flex flex-col gap-y-1">
                         @forelse($locations as $location)
                         <li class="px-4 py-3 {{$selectedLocation == $location->name ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer"
@@ -80,6 +77,7 @@
                     </ul>
                 </div>
             </div>
+            
 
             <div class="bg-gray-200 h-px w-full flex md:hidden"></div>
             <div class="end relative flex justify-between items-center p-4">
@@ -116,7 +114,7 @@
                         <span class="text-gray-500 text-sm">When you want to go?</span>
                     </div>
                 </div>
-                <div id="calendarDropdown" class="hidden absolute top-20 left-0 bg-white border shadow-lg rounded-lg" wire:ignore>
+                <div id="calendarDropdown" class="hidden absolute top-20 mt-1 left-0 bg-white border shadow-lg rounded-lg" wire:ignore>
                     <div class="tabs flex justify-around border-b p-2">
                         <button id="specificDateTab" class="tab-btn active text-gray-600">Specific Date</button>
                         <button id="specificMonthTab" class="tab-btn text-gray-600">Specific Month</button>

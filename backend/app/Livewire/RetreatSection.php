@@ -8,9 +8,11 @@ use App\Models\Package;
 use App\Models\Location;
 use App\Models\RoomType;
 use Carbon\Carbon;
+use Livewire\WithPagination;
 
 class RetreatSection extends Component
 {
+    use WithPagination;
     public $retreat;
     public $category;
     public $locations;
@@ -73,7 +75,7 @@ class RetreatSection extends Component
 
     public function render()
     {
-        $allPackages = Package::where('category_id', $this->category->id)->get();
+        $allPackages = Package::where('category_id', $this->category->id)->paginate(4);
         $filteredPackages = $allPackages;
         
         // Sorting logic

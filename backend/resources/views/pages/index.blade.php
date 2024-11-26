@@ -51,6 +51,7 @@
     <livewire:testimonial-section />
     <livewire:footer />
     @slot('footerSeo')
+    <script src="{{asset('main/js/dropdown.js')}}"></script>
     @if (empty($scriptFooter))
     @else
     @foreach ($scriptFooter as $footer)

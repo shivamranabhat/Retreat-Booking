@@ -46,6 +46,15 @@ class Package extends Model
     {
         return ($this->hasMany(Inquiry::class));
     }
+    
+    public function roundedAverageReview(): float
+    {
+        $average = $this->reviews->avg('rating');
+        if (!$average) {
+            return 0; 
+        }
+        return round($average * 2) / 2;
+    }
 
     public function featured()
     {

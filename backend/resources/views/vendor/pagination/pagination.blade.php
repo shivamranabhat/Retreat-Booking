@@ -1,36 +1,43 @@
+
+
 @if ($paginator->lastPage() > 1)
-<div class="row flex justify-between items-center">
-    <div class="pagination flex">
-        @if ($paginator->onFirstPage())
-        <button disabled
-            class="flex items-center justify-center h-10 w-10 text-stone-500 hover:border hover:border-brand-600 hover:bg-brand-600 hover:text-white transition-colors">
-            <i class="fa-solid fa-chevron-left"></i>
+<div class="pagination flex justify-center mt-10">
+    <ul class="flex gap-4 items-center">
+        {{-- @if ($paginator->onFirstPage())
+        <button disabled class="cursor-not-allowed flex gap-2 border-2 border-main text-main items-center px-2 rounded-xl h-full">Prev
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              </svg>              
         </button>
         @else
-        <a wire:click.prevent="prevPage"
-            class="flex items-center justify-center cursor-pointer h-10 w-10 text-stone-500 border hover:border-brand-600 hover:bg-brand-600 hover:text-white transition-colors">
-            <i class="fa-solid fa-chevron-left"></i>
-        </a>
-        @endif
+        <button wire:click.prevent="prevPage" class="cursor-pointer flex gap-2 bg-main text-white items-center px-2 rounded-xl h-full">Prev
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              </svg>
+              
+        </button>
+        @endif --}}
 
         @for ($i = 1; $i <= $paginator->lastPage(); $i++)
-        <a wire:click.prevent="gotoPage({{ $i }})" 
-            class="flex items-center justify-center cursor-pointer h-10 w-10 text-stone-500 border hover:border-brand-600 hover:bg-brand-600 hover:text-white transition-colors {{ $paginator->currentPage() == $i ? 'text-white border-brand-600 bg-brand-600' : '' }}">
+        <li class="cursor-pointer border border-2 border-main {{$paginator->currentPage() == $i ? 'bg-main text-white' : 'text-main'}} rounded-full py-2 px-4" wire:click.prevent="gotoPage({{ $i }})">
             {{ $i }}
-        </a>
+        </li>
         @endfor
-
-        @if ($paginator->hasMorePages())
-        <a wire:click.prevent="nextPage"
-            class="flex items-center justify-center cursor-pointer h-10 w-10 text-stone-500 border hover:border-brand-600 hover:bg-brand-600 hover:text-white transition-colors">
-            <i class="fa-solid fa-chevron-right"></i>
-        </a>
-        @else
-        <button disabled
-            class="flex items-center justify-center h-10 w-10 text-stone-500 border hover:border-brand-600 hover:bg-brand-600 hover:text-white transition-colors">
-            <i class="fa-solid fa-chevron-right"></i>
+        {{-- @if ($paginator->hasMorePages())
+        <button wire:click.prevent="nextPage" class="cursor-pointer flex gap-2 bg-main text-white items-center px-2 rounded-xl h-full">Next
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="size-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+            </svg>
         </button>
-        @endif
-    </div>
+        @else 
+        <button disabled class="cursor-not-allowed  flex gap-2 border-2 border-main text-main items-center px-2 rounded-xl h-full">Next
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="size-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+            </svg>
+        </button>
+        @endif --}}
+    </ul>
 </div>
 @endif

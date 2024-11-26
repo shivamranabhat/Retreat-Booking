@@ -25,13 +25,21 @@
                     0 ? 'Closed' : 'Available'}})</span>
             </h1>
             <div class="flex gap-x-4 items-center">
-                <p class="text-sm flex gap-x-1 items-center text-gray-500">5.00 <svg xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24" fill="#00bf63" class="size-5">
+                <p class="text-sm flex gap-x-1 items-center text-gray-500">
+                    @php
+                    $averageRating = $package->reviews->avg('rating') ?? 0;
+                    $reviewCount = $package->reviews->count();
+                    $filledStars = floor($averageRating);
+                    $halfStar = ($averageRating - $filledStars >= 0.5) ? 1 : 0;
+                    $emptyStars = 5 - ($filledStars + $halfStar);
+                    @endphp
+                    {{number_format($averageRating,1)}} <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                        fill="#00bf63" class="size-5">
                         <path fill-rule="evenodd"
                             d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                             clip-rule="evenodd"></path>
                     </svg>
-                    <span class="text-xs mt-1">(20 reviews)</span>
+                    <span class="text-xs mt-1">({{$reviewCount}} reviews)</span>
                 </p>
                 <p class="text-sm flex gap-x-1 items-center text-gray-500">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -251,7 +259,8 @@
                                 </div>
                                 <input type="text"
                                     class="border-none text-sm outline-none bg-transparent focus:outline-none placeholder:text-gray-600 focus:ring-0 flatpickr-input"
-                                    id='{{$package->start_date ? '' : 'start-date'}}' wire:model='start_date' wire:change='updateDate' placeholder="Select a start date" readonly>
+                                    id='{{$package->start_date ? '' : ' start-date'}}' wire:model='start_date'
+                                    wire:change='updateDate' placeholder="Select a start date" readonly>
                             </div>
                             @if($end_date)
                             <div class="flex flex-col gap-2">
@@ -370,63 +379,57 @@
             <h5 class="font-semibold text-2xl">Guest Impressions</h5>
             <div class="grid grid-cols-1 xl:grid-cols-5 gap-16">
                 <div class="col-span-2">
-                    <div class="bg-white" id="review-count">
+                    <div class="bg-white" id="{{$total>0 ? 'review-count' : ''}}">
                         <div class="flex items-center space-x-2 mb-2">
-                            <span class="text-3xl font-bold">5.0</span>
+                            <span class="text-3xl font-bold">{{number_format($averageRating,1)}}</span>
                             <div class="flex space-x-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64"
-                                    class="size-5">
+                                @for ($i = 0; $i < $filledStars; $i++) <svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="#02BF64" class="size-5">
                                     <path fill-rule="evenodd"
                                         d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                         clip-rule="evenodd"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64"
-                                    class="size-5">
-                                    <path fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64"
-                                    class="size-5">
-                                    <path fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64"
-                                    class="size-5">
-                                    <path fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64"
-                                    class="size-5">
-                                    <path fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
+                                    </svg>
+                                    @endfor
+                                    @if ($halfStar)
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64"
+                                        class="size-5">
+                                        <path fill-rule="evenodd"
+                                            d="M12 2c.448 0 .896.26 1.082.665l2.058 4.947 5.42.435c.513.041.767.675.374 1.033l-4.163 3.567 1.293 5.427c.138.583-.519 1.042-1.024.735L12 16.968l-4.94 3.381c-.505.307-1.162-.152-1.024-.735l1.293-5.427L3.166 9.08c-.393-.358-.14-.992.374-1.033l5.42-.435L11.418 2.665C11.604 2.26 12 2 12 2zM10.79 4.078c.176-.423.758-.423.933 0l1.765 4.236 4.589.368c.215.017.338.284.166.435L15.345 10.99l.875 3.674c.066.277-.247.497-.455.352L12 13.3l-3.765 2.717c-.208.145-.521-.075-.455-.352l.875-3.674-3.069-2.873c-.172-.151-.048-.418.166-.435l4.59-.368 1.765-4.236z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    @endif
+
+                                    @for ($i = 0; $i < $emptyStars; $i++) <svg xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24" fill="none" stroke-width="1.5" class="size-5 stroke-main">
+                                        <path fill-rule="evenodd"
+                                            d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                        @endfor
+
                             </div>
-                            <span class="text-gray-600">385 reviews</span>
+                            <span class="text-gray-600">{{$reviewCount}} reviews</span>
                         </div>
                         <div class="space-y-2">
                             <div class="flex items-center gap-4">
                                 <span class="w-24">Excellent</span>
-                                <progress class="flex-1 h-3" value="250" max="400"></progress>
-                                <span class="w-8 text-right">250</span>
+                                <progress class="flex-1 h-3" value="{{$excellent ?? ''}}" max="{{$total ?? ''}}"></progress>
+                                <span class="w-8 text-right">{{$excellent ?? ''}}</span>
                             </div>
                             <div class="flex items-center gap-4">
                                 <span class="w-24">Very good</span>
-                                <progress class="flex-1 h-3" value="200" max="400"></progress>
-                                <span class="w-8 text-right">200</span>
+                                <progress class="flex-1 h-3" value="{{$good ?? ''}}" max="{{$total ?? ''}}"></progress>
+                                <span class="w-8 text-right">{{$good ?? ''}}</span>
                             </div>
                             <div class="flex items-center gap-4">
                                 <span class="w-24">Average</span>
-                                <progress class="flex-1 h-3" value="104" max="400"></progress>
-                                <span class="w-8 text-right">104</span>
+                                <progress class="flex-1 h-3" value="{{$average ?? ''}}" max="{{$total ?? ''}}"></progress>
+                                <span class="w-8 text-right">{{$average ?? ''}}</span>
                             </div>
                             <div class="flex items-center gap-4">
                                 <span class="w-24">Poor</span>
-                                <progress class="flex-1 h-3" value="97" max="400"></progress>
-                                <span class="w-8 text-right">97</span>
+                                <progress class="flex-1 h-3" value="{{$poor ?? ''}}" max="{{$total ?? ''}}"></progress>
+                                <span class="w-8 text-right">{{$poor ?? ''}}</span>
                             </div>
 
                         </div>
@@ -449,19 +452,23 @@
                             <div class="absolute right-0 mt-1 z-10 p-1 w-56 rounded-lg origin-top-right border border-200 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden group-hover:block"
                                 role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                                 <div role="none" class="flex flex-col gap-y-1">
-                                    <a class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200"
+                                    <a wire:click="applySortFilter('highest')"
+                                        class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200 {{ $sortFilter === 'highest' ? 'bg-gray-200' : '' }}"
                                         role="menuitem" tabindex="-1">
-                                        Price Low to High
+                                        Highest Rating
                                     </a>
-                                    <a class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200"
+                                    <a wire:click="applySortFilter('lowest')"
+                                        class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200 {{ $sortFilter === 'lowest' ? 'bg-gray-200' : '' }}"
                                         role="menuitem" tabindex="-1">
-                                        Price High to Low
+                                        Lowest Rating
                                     </a>
-                                    <a class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200"
+                                    <a wire:click="applySortFilter('latest')"
+                                        class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200 {{ $sortFilter === 'latest' ? 'bg-gray-200' : '' }}"
                                         role="menuitem" tabindex="-1">
                                         Latest
                                     </a>
-                                    <a class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200"
+                                    <a wire:click="applySortFilter('oldest')"
+                                        class="cursor-pointer rounded-lg block px-4 py-3 text-sm text-gray-700 duration-200 transition-all hover:bg-gray-200 {{ $sortFilter === 'oldest' ? 'bg-gray-200' : '' }}"
                                         role="menuitem" tabindex="-1">
                                         Oldest
                                     </a>
@@ -472,15 +479,27 @@
                             class="text-sm text-center text-white px-3 py-2 rounded-3xl hover:ease-in-out duration-300 transition-all bg-main hover:bg-[#03914D]">Write
                             a Review</a>
                     </div>
+                    @forelse($reviews as $review)
                     <div class="card flex flex-col gap-2 box-shadow-iii rounded-xl p-4">
                         <div class="flex justify-between">
                             <div class="flex gap-2">
+                                @if($review->user->profile_photo_url)
+                                <img class="rounded-full w-10 h-10" src="{{ $review->user->google_id !== null 
+                                            ? $review->user->profile_photo_url 
+                                            : (file_exists(public_path('storage/' . $review->user->profile_photo_url)) 
+                                                ? asset('storage/'.$review->user->profile_photo_url) 
+                                                : asset('main/images/user-profile.jpg')) }}" alt="Profile Image">
+                                @else
                                 <div class="bg-gray-600 px-3 py-2 text-white rounded-full font-semibold">
-                                    SR
+                                    {{ collect(explode(' ', $review->user->name))->map(fn($word) =>
+                                    strtoupper($word[0]))->join('') }}
                                 </div>
+                                @endif
                                 <div class="flex flex-col">
-                                    <p class="font-semibold">Shivam Ranabhat</p>
-                                    <span class="text-sm text-gray-600">11th Nov 2024</span>
+                                    <p class="font-semibold">{{$review->user->name}}</p>
+                                    <span
+                                        class="text-sm text-gray-600">{{\Carbon\Carbon::parse($review->created_at)->format('M
+                                        jS Y')}}</span>
                                 </div>
                             </div>
                             <div class="stars flex">
@@ -517,147 +536,25 @@
                             </div>
                         </div>
                         <div class="description flex flex-col gap-2">
-                            <h5 class="font-semibold text-base">My retreat was one of the best experiences in Nepal.
+                            <h5 class="font-semibold text-base">{{$review->title}}
                             </h5>
-                            <p class="text-base text-gray-700 leading-[1.6rem]">I wanted to recover from the trekking
-                                and also take a break from my daily routines.
-
-                                I felt stressed out from daily life.
-
-                                A retreat can you time to relax and get some space in your mind and reset yourself from
-                                daily life problems.
-
-                                My body feels healthy and my mind is clear. Now I am ready for my daily challenges.
-                                <button class="text-main">Read More</button>
+                            <p class="text-base text-gray-700 leading-[1.6rem]">
+                                {!! nl2br($review->description) !!}
                             </p>
                         </div>
                     </div>
-                    <div class="card flex flex-col gap-2 box-shadow-iii rounded-xl p-4">
-                        <div class="flex justify-between">
-                            <div class="flex gap-2">
-                                <div class="bg-gray-600 px-3 py-2 text-white rounded-full font-semibold">
-                                    SR
-                                </div>
-                                <div class="flex flex-col">
-                                    <p class="font-semibold">Shivam Ranabhat</p>
-                                    <span class="text-sm text-gray-600">11th Nov 2024</span>
-                                </div>
-                            </div>
-                            <div class="stars flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                    class="size-5 fill-main">
-                                    <path fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                    class="size-5 fill-main">
-                                    <path fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                    class="size-5 fill-main">
-                                    <path fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                    class="size-5 fill-main">
-                                    <path fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="size-5 text-gray-400">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z">
-                                    </path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="description flex flex-col gap-2">
-                            <h5 class="font-semibold text-base">My retreat was one of the best experiences in Nepal.
-                            </h5>
-                            <p class="text-base text-gray-700 leading-[1.6rem]">I wanted to recover from the trekking
-                                and also take a break from my daily routines.
-
-                                I felt stressed out from daily life.
-
-                                A retreat can you time to relax and get some space in your mind and reset yourself from
-                                daily life problems.
-
-                                My body feels healthy and my mind is clear. Now I am ready for my daily challenges.
-                                <button class="text-main">Read More</button>
-                            </p>
-                        </div>
+                    @empty
+                    <div class="card flex justify-center box-shadow-iii rounded-xl p-6 lg:p-10">
+                        <h5>No review found.</h5>
                     </div>
-                    <div class="card flex flex-col gap-2 box-shadow-iii rounded-xl p-4">
-                        <div class="flex justify-between">
-                            <div class="flex gap-2">
-                                <div class="bg-gray-600 px-3 py-2 text-white rounded-full font-semibold">
-                                    SR
-                                </div>
-                                <div class="flex flex-col">
-                                    <p class="font-semibold">Shivam Ranabhat</p>
-                                    <span class="text-sm text-gray-600">11th Nov 2024</span>
-                                </div>
-                            </div>
-                            <div class="stars flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                    class="size-5 fill-main">
-                                    <path fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                    class="size-5 fill-main">
-                                    <path fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                    class="size-5 fill-main">
-                                    <path fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                    class="size-5 fill-main">
-                                    <path fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="size-5 text-gray-400">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z">
-                                    </path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="description flex flex-col gap-2">
-                            <h5 class="font-semibold text-base">My retreat was one of the best experiences in Nepal.
-                            </h5>
-                            <p class="text-base text-gray-700 leading-[1.6rem]">I wanted to recover from the trekking
-                                and also take a break from my daily routines.
-
-                                I felt stressed out from daily life.
-
-                                A retreat can you time to relax and get some space in your mind and reset yourself from
-                                daily life problems.
-
-                                My body feels healthy and my mind is clear. Now I am ready for my daily challenges.
-                                <button class="text-main">Read More</button>
-                            </p>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
+            @if($total >0)
             <div class="grid grid-cols-1 xl:grid-cols-5">
                 <div class="col-span-2"></div>
                 <div class="col-span-3 load flex justify-center mt-4">
-                    <button
+                    <button wire:click='loadMore'
                         class="text-main text-sm flex gap-1 items-center hover:text-[#08A788] transition-all duration-300">Show
                         More
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -668,6 +565,7 @@
 
                 </div>
             </div>
+            @endif
         </div>
     </div>
 

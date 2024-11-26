@@ -33,7 +33,7 @@
                 @empty
                 @endforelse
             </div>
-            <div class="pagination flex justify-center mt-10">
+            {{-- <div class="pagination flex justify-center mt-10">
                 <ul class="flex gap-4 items-center">
                     <li class="border border-2 border-main bg-main rounded-full py-2 px-4 text-white"><a href="#">1</a>
                     </li>
@@ -45,7 +45,8 @@
                         </svg>
                     </button>
                 </ul>
-            </div>
+            </div> --}}
+            {{$blogs->links('vendor.pagination.pagination')}}
         </div>
 
     </div>

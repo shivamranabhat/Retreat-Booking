@@ -43,13 +43,17 @@
 
                         {{$package->location->name}}
                     </p>
-                    <span class="flex gap-1 text-sm text-gray-500">4.5 <svg xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24" fill="#02BF64" class="size-5">
+                    <span class="flex gap-1 text-sm text-gray-500">
+                        @php
+                        $averageRating = $package->reviews->avg('rating') ?? 0;
+                        $reviewCount = $package->reviews->count();
+                        @endphp
+                        {{number_format($averageRating,1)}} <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64" class="size-5">
                             <path fill-rule="evenodd"
                                 d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                 clip-rule="evenodd"></path>
                         </svg>
-                        (50 reviews)
+                        ({{$reviewCount}} reviews)
                     </span>
                 </div>
 
@@ -94,7 +98,7 @@
                             class="text-main">Read
                             More...</a></span>
                 </p>
-                
+
             </div>
             <div class="col-span-2 xl:col-span-3 flex flex-col gap-6">
                 <h5 class="text-xl font-semibold">How would you rate your experience?
@@ -112,15 +116,15 @@
                             </svg>
                             @endfor
                             <input type="hidden" wire:model="rating">
-                        </div>
-                        @error('rating') <span class="text-sm text-red-500">How would you rate us? Tap a star.</span> @enderror
+                    </div>
+                    @error('rating') <span class="text-sm text-red-500">How would you rate us? Tap a star.</span>
+                    @enderror
                     <div class="input-field flex flex-col gap-2">
                         <label for="title" class="text-xl font-semibold">Title your review
                         </label>
                         <input
                             class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out @error('title') border border-red-500 @enderror"
-                            type="text" wire:model="title"
-                            placeholder="A gist of your experience.">
+                            type="text" wire:model="title" placeholder="A gist of your experience.">
                     </div>
 
                     <div class="input-field flex flex-col gap-2">
@@ -128,8 +132,7 @@
                         </label>
                         <textarea
                             class="p-4 w-full @error('description') border border-red-500 @enderror placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out h-32 lg:h-44"
-                            wire:model="description"
-                            placeholder="It was a great experience. I loved it."></textarea>
+                            wire:model="description" placeholder="It was a great experience. I loved it."></textarea>
                     </div>
 
                     <button type="submit"
@@ -141,5 +144,5 @@
             </div>
         </div>
     </div>
-    <x-home.success />
+    <x-success />
 </section>

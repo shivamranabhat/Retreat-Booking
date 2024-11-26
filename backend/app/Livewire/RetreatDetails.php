@@ -7,12 +7,15 @@ use App\Models\Package;
 use App\Models\Category;
 use App\Models\Testimonial;
 use App\Models\RoomType;
+use App\Models\Review;
 use App\Models\FeaturedPackage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+use Livewire\WithPagination;
 
 class RetreatDetails extends Component
 {
+    use WithPagination;
     public $retreat;
     public $slug;
     public $category;
@@ -25,6 +28,8 @@ class RetreatDetails extends Component
     public $start_date;
     public $end_date;
     public $roomDetails;
+    public $sortFilter;
+    public $limit = 4;
 
     public function mount()
     {
@@ -65,13 +70,46 @@ class RetreatDetails extends Component
     {
         return redirect()->route('retreat.inquiry',$this->package->slug)->with('room_id',$id);
     }
+
+    public function loadMore()
+    {
+        $this->limit += 4;
+    }
+    public function applySortFilter($sortOption)
+    {
+        $this->sortFilter = $sortOption;
+    }
+
  
     public function render()
-    {
-        $testimonials = Testimonial::get();
+    {  
+        $reviews = Review::where('package_id',$this->package->id)->paginate($this->limit);
+        switch ($this->sortFilter) {
+            case 'highest':
+                $reviews = $reviews->sortByDesc('rating');
+                break;
+            case 'lowest':
+                $reviews = $reviews->sortBy('rating');
+                break;
+            case 'latest':
+                $reviews = $reviews->sortByDesc('created_at');
+                break;
+            case 'oldest':
+                $reviews = $reviews->sortBy('created_at');
+                break;
+        }
+        $total = Review::where('package_id',$this->package->id)->get()->count();
+        $excellent = Review::where('package_id',$this->package->id)->where('rating',5)->get()->count();
+        $good = Review::where('package_id',$this->package->id)->where('rating',4)->get()->count();
+        $average = Review::where('package_id',$this->package->id)->where('rating',3)->get()->count();
+        $poor = Review::where('package_id',$this->package->id)->where('rating',2)->get()->count();
         return view('livewire.retreat-details', [
-           
-                'testimonials'=>$testimonials,
+                'reviews' => $reviews,
+                'total'=>$total,
+                'excellent'=>$excellent,
+                'good'=>$good,
+                'average'=>$average,
+                'poor'=>$poor,
                 'roomDetails' => $this->roomDetails,
         ]);
     }

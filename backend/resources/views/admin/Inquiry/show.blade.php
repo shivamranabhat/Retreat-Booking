@@ -58,12 +58,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-2">
-                                <label class="form-label">Start Date</label>
+                                <label class="form-label">Date</label>
                                 <p>{{ $inquiry->start_date }}</p>
                             </div>
                             <div class="col-md-6 mb-2">
-                                <label class="form-label">End Date</label>
-                                <p>{{ $inquiry->end_date ?? 'N/A' }}</p>
                             </div>
                         </div>
                         <div class="row">
