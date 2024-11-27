@@ -36,6 +36,7 @@ use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\Auth\VerifyController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Models\Visit;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +71,8 @@ Route::prefix('/dashboard')->controller(AdminPasswordResetController::class)->gr
 
 Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
     Route::get('/', function () {
-        return view('admin.dashboard');
+        $totalVisits = Visit::sum('hit_count');
+        return view('admin.dashboard', compact('totalVisits'));
     })->name('dashboard');
     Route::prefix('/dashboard')->controller(AdminAuthController::class)->group(function () {
         Route::get('/profile', 'edit')->name('admin.profile');
