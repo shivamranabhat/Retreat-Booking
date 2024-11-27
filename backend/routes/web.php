@@ -100,8 +100,8 @@ Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
         Route::put('/update/{slug}', 'update')->name('location.update');
         Route::delete('/delete/{slug}', 'destroy')->name('location.destroy');
     });
-    
-    Route::prefix('/content')->group(function(){
+
+    Route::prefix('/content')->group(function () {
         //Routes for footer contents
         Route::prefix('/footer')->controller(FooterContentController::class)->group(function () {
             Route::get('/', 'index')->name('footers');
@@ -136,7 +136,7 @@ Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
         Route::get('/{id}', 'show')->name('review.show');
         Route::delete('/delete/{slug}', 'destroy')->name('review.destroy');
     });
-    
+
     //Routes for blog
     Route::prefix('/blogs')->controller(BlogController::class)->group(function () {
         Route::get('/', 'index')->name('blogs');
@@ -194,11 +194,11 @@ Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
     });
 
     Route::prefix('/inquiries')->controller(InquiryController::class)->group(function () {
-        Route::get('/pending', 'pending')->name('inquiry.pending');
-        Route::get('/accepted', 'accepted')->name('inquiry.accepted');
-        Route::get('/declined', 'declined')->name('inquiry.declined');
-        Route::get('/{slug}', 'show')->name('inquiry.show');
-        Route::patch('/inquiry/{inquiry}/status/{status}', 'changeStatus')->name('inquiry.changeStatus');
+        Route::get('/pending', 'pending')->name('Inquiry.pending');
+        Route::get('/accepted', 'accepted')->name('Inquiry.accepted');
+        Route::get('/declined', 'declined')->name('Inquiry.declined');
+        Route::get('/{slug}', 'show')->name('Inquiry.show');
+        Route::patch('/inquiry/{inquiry}/status/{status}', 'changeStatus')->name('Inquiry.changeStatus');
     });
 
     Route::prefix('/categories')->controller(CategoryController::class)->group(function () {
@@ -288,17 +288,17 @@ Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
         Route::put('/update/{id}', 'update')->name('contactDetail.update');
         Route::delete('/delete/{id}', 'destroy')->name('contactDetail.destroy');
     });
-     //Routes for extra pages
-     Route::prefix('/page')->controller(ExtrapageController::class)->group(function(){
-        Route::get('/','index')->name('pages');
-        Route::get('/create','create')->name('page.create');
-        Route::post('/upload-description','uploadDescription')->name('pageDescription.upload');
-        Route::post('/store','store')->name('page.store');
-        Route::get('/{slug}','edit')->name('page.edit');
-        Route::put('/update/{slug}','update')->name('page.update');
-        Route::delete('/delete/{slug}','destroy')->name('page.destroy');
+    //Routes for extra pages
+    Route::prefix('/page')->controller(ExtrapageController::class)->group(function () {
+        Route::get('/', 'index')->name('pages');
+        Route::get('/create', 'create')->name('page.create');
+        Route::post('/upload-description', 'uploadDescription')->name('pageDescription.upload');
+        Route::post('/store', 'store')->name('page.store');
+        Route::get('/{slug}', 'edit')->name('page.edit');
+        Route::put('/update/{slug}', 'update')->name('page.update');
+        Route::delete('/delete/{slug}', 'destroy')->name('page.destroy');
     });
-    
+
     Route::prefix('/about')->group(function () {
         //Routes for team
         Route::prefix('/team')->controller(TeamController::class)->group(function () {
@@ -319,16 +319,15 @@ Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
             Route::put('/update/{slug}', 'update')->name('whyUs.update');
             Route::delete('/delete/{slug}', 'destroy')->name('whyUs.destroy');
         });
-        Route::prefix('/galleries')->controller(GalleryController::class)->group(function(){
-            Route::get('/','index')->name('galleries');
-            Route::get('/create','create')->name('gallery.create');
-            Route::post('/store','store')->name('gallery.store');
-            Route::get('/{slug}','show')->name('gallery.show');
-            Route::get('/edit/{slug}','edit')->name('gallery.edit');
-            Route::put('/update/{slug}','update')->name('gallery.update');
-            Route::delete('/delete/{slug}','destroy')->name('gallery.destroy');
+        Route::prefix('/galleries')->controller(GalleryController::class)->group(function () {
+            Route::get('/', 'index')->name('galleries');
+            Route::get('/create', 'create')->name('gallery.create');
+            Route::post('/store', 'store')->name('gallery.store');
+            Route::get('/{slug}', 'show')->name('gallery.show');
+            Route::get('/edit/{slug}', 'edit')->name('gallery.edit');
+            Route::put('/update/{slug}', 'update')->name('gallery.update');
+            Route::delete('/delete/{slug}', 'destroy')->name('gallery.destroy');
         });
-       
     });
     //Routes for banner
     Route::prefix('/banner')->controller(BannerController::class)->group(function () {
@@ -340,16 +339,16 @@ Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
         Route::delete('/delete/{slug}', 'destroy')->name('banner.destroy');
     });
 });
-Route::controller(VerifyController::class)->group(function(){
-    Route::get('/verify-account','index')->name('otp.verify');
-    Route::get('/verify/email={email}','verifyOtp')->name('account.verify');
+Route::controller(VerifyController::class)->group(function () {
+    Route::get('/verify-account', 'index')->name('otp.verify');
+    Route::get('/verify/email={email}', 'verifyOtp')->name('account.verify');
 });
 
-Route::controller(ResetPasswordController::class)->group(function(){
-    Route::get('/forgot-password','index')->name('forgot.password');
-    Route::get('/send-reset-otp/email={email}','getResetOtp')->name('get.verifyOtp');
+Route::controller(ResetPasswordController::class)->group(function () {
+    Route::get('/forgot-password', 'index')->name('forgot.password');
+    Route::get('/send-reset-otp/email={email}', 'getResetOtp')->name('get.verifyOtp');
     Route::get('/reset-password/email={email}/otp={otp}', 'resetPassword')->name('reset.password');
-    Route::post('/update-password/{email}','updatePassword')->name('password.update');
+    Route::post('/update-password/{email}', 'updatePassword')->name('password.update');
 });
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
@@ -357,8 +356,8 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 
 Route::prefix('/')->controller(PageController::class)->group(function () {
     Route::get('/', 'index')->name('index');
-    Route::get('/signup','register')->name('signup');
-    Route::get('/login','login')->name('login');
+    Route::get('/signup', 'register')->name('signup');
+    Route::get('/login', 'login')->name('login');
     Route::get('/faqs', 'faq')->name('home.faqs');
     Route::get('/profile', 'profile')->name('home.profile');
     Route::get('/blogs', 'blogs')->name('home.blogs');
