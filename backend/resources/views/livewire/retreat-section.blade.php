@@ -332,7 +332,7 @@
                 <h5 class="text-center">No package found.</h5>
             </div>
             @endforelse
-            {{$packages->links('vendor.pagination.pagination')}}
+            {{$allPackages->links('vendor.pagination.pagination')}}
         </div>
     </div>
 </section>

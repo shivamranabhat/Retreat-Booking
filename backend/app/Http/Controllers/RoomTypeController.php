@@ -15,7 +15,7 @@ class RoomTypeController extends Controller
     {
         $roomTypes = RoomType::filter(request(['search']))
             ->latest()
-            ->select('id', 'image', 'name', 'description', 'price', 'slug', 'created_at')
+            ->select('id', 'image', 'name', 'description', 'percentage', 'slug', 'created_at')
             ->paginate(10);
         return view('admin.room_types.index', compact('roomTypes'));
     }
@@ -37,7 +37,7 @@ class RoomTypeController extends Controller
             $formFields = $request->validate([
                 'name' => 'required',
                 'description' => 'nullable',
-                'price' => 'required|numeric',
+                'percentage' => 'required|numeric',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
             ]);
 
@@ -75,7 +75,7 @@ class RoomTypeController extends Controller
         $formFields = $request->validate([
             'name' => 'required',
             'description' => 'nullable',
-            'price' => 'required|numeric',
+            'percentage' => 'required|numeric',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
@@ -93,7 +93,6 @@ class RoomTypeController extends Controller
 
         $formFields['slug'] = Str::slug($formFields['name']);
         $roomType->update($formFields);
-
         return redirect()->route('roomTypes')->with('message', 'Room type updated successfully');
     }
 

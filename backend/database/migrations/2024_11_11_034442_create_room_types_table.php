@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('image')->nullable();
             $table->text('description')->nullable();
-            $table->decimal('price', 10, 2);
+            $table->integer('percentage');
             $table->string('slug')->unique();
             $table->timestamps();
         });
