@@ -33,9 +33,9 @@
                 </div>
             </div>
 
-            <div class="col-sm-12 mb-4">
+            <div class="col-sm-12 col-md-6 mb-4">
                 <div class="card">
-                    <div class="card-body text-center">
+                    <div class="card-body text-center" style="width: 400px; height: 450px; margin: 0 auto;">
                         <h4 class="card-title">Booking Status</h4>
                         <canvas id="bookingChart"></canvas>
                     </div>
