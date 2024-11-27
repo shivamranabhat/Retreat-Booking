@@ -36,6 +36,7 @@ use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\Auth\VerifyController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\ReviewController;
 use App\Models\Visit;
 
 /*
@@ -130,7 +131,12 @@ Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
             Route::delete('/delete/{slug}', 'destroy')->name('main.destroy');
         });
     });
-
+    Route::prefix('/reviews')->controller(ReviewController::class)->group(function () {
+        Route::get('/', 'index')->name('reviews');
+        Route::get('/{id}', 'show')->name('review.show');
+        Route::delete('/delete/{slug}', 'destroy')->name('review.destroy');
+    });
+    
     //Routes for blog
     Route::prefix('/blogs')->controller(BlogController::class)->group(function () {
         Route::get('/', 'index')->name('blogs');
