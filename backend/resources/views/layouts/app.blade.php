@@ -47,7 +47,7 @@
     <!-- CK editor -->
     <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/super-build/ckeditor.js"></script>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Styles -->
     @livewireStyles
 </head>

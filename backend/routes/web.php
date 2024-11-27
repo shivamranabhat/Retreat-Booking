@@ -24,6 +24,7 @@ use App\Http\Middleware\AdminAuth;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\AccommodationController;
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\PageController;
@@ -71,10 +72,7 @@ Route::prefix('/dashboard')->controller(AdminPasswordResetController::class)->gr
 });
 
 Route::prefix('/dashboard')->middleware(AdminAuth::class)->group(function () {
-    Route::get('/', function () {
-        $totalVisits = Visit::sum('hit_count');
-        return view('admin.dashboard', compact('totalVisits'));
-    })->name('dashboard');
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::prefix('/dashboard')->controller(AdminAuthController::class)->group(function () {
         Route::get('/profile', 'edit')->name('admin.profile');
         Route::put('/update-profile', 'update')->name('adminProfile.update');
