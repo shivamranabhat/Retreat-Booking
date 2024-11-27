@@ -313,7 +313,6 @@
                                 @forelse($roomDetails as $room)
                                 <option value="{{$room->id}}" {{$room->id == $room_id ? 'selected' : ''}}>{{ $room->name
                                     }}
-                                    : ${{ number_format($room->price,0) }}
                                 </option>
                                 @empty
                                 <option value="">No rooms available</option>

@@ -30,6 +30,7 @@ class RetreatDetails extends Component
     public $roomDetails;
     public $sortFilter;
     public $limit = 4;
+    public $disable= false;
 
     public function mount()
     {
@@ -44,6 +45,7 @@ class RetreatDetails extends Component
         {
             $this->start_date = Carbon::parse($this->package->start_date)->format('M d Y');
             $this->end_date = Carbon::parse($this->package->end_date)->format('M d Y');
+            $this->disable = true;
         }
         else{
             if (session()->has('start_date')) {

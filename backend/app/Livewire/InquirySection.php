@@ -67,7 +67,10 @@ class InquirySection extends Component
             $this->room_id = session()->get('room_id');
             $this->room_type_id = $this->room_id;
             $this->room = RoomType::find($this->room_type_id);
-            $this->price = $this->room->price;
+            $this->price = number_format($this->package->price + ($this->room->percentage/100) * ($this->package->price),0);
+        }
+        else{
+            $this->price = number_format($this->package->price,0);
         }
     }
     public function roomSelected($id)
@@ -92,7 +95,7 @@ class InquirySection extends Component
     public function roomType($id)
     {
         $this->room = RoomType::find($id);
-        $this->price = (int)$this->people * (int)$this->room->price;
+        $this->price =  ((int)$this->package->price + ($this->room->percentage/100) * ($this->package->price)) * (int)$this->people;
     }
 
     public function send()
@@ -134,10 +137,10 @@ class InquirySection extends Component
         $this->people +=1;
         if($this->room_type_id)
         {
-            $this->price = (int)$this->people * (int)$this->room->price;
+            $this->price = ((int)$this->package->price + ($this->room->percentage/100) * ($this->package->price)) * (int)$this->people;
         }
         else{
-            $this->price = '';
+            $this->price = ((int)(number_format($this->package->price,0)))*$this->people;
         }
     }
     public function decreasePeople()
@@ -148,10 +151,10 @@ class InquirySection extends Component
         }
         if($this->room_type_id)
         {
-            $this->price = (int)$this->people * (int)$this->room->price;
+            $this->price = ((int)$this->package->price + ($this->room->percentage/100) * ($this->package->price)) * (int)$this->people;
         }
         else{
-            $this->price = '';
+            $this->price =  ((int)(number_format($this->package->price,0)))*(int)$this->people;
         }
     }
 

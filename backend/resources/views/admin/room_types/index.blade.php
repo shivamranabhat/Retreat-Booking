@@ -42,7 +42,7 @@
                                                 <tr>
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td>{{ $roomType->name }}</td>
-                                                    <td>${{ number_format($roomType->price,0) }}</td>
+                                                    <td>{{ $roomType->percentage }}%</td>
                                                     <td>
                                                         <div class="flex align-items-center list-user-action">
                                                             <a class="btn btn-sm btn-icon btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" href="{{ route('roomType.edit', $roomType->slug) }}">
