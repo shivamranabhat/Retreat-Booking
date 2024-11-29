@@ -352,7 +352,7 @@ Route::controller(ResetPasswordController::class)->group(function () {
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
-Route::prefix('/')->controller(PageController::class)->group(function () {
+Route::prefix('/')->middleware(\App\Http\Middleware\TrackVisits::class)->controller(PageController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/signup', 'register')->name('signup');
     Route::get('/login', 'login')->name('login');
