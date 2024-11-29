@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Inquiry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\BookingNotification;
 
 class InquiryController extends Controller
 {
@@ -34,23 +36,39 @@ class InquiryController extends Controller
     }
 
     public function changeStatus(Request $request, Inquiry $inquiry, $status)
-{
-    // Validate status
-    $validStatuses = ['Accepted', 'Declined'];
+    {
+        // Validate status
+        $validStatuses = ['Accepted', 'Declined'];
 
-    if (!in_array($status, $validStatuses)) {
-        return redirect()->route('inquiry.index')->with('error', 'Invalid status');
+        if (!in_array($status, $validStatuses)) {
+            return redirect()->route('inquiry.index')->with('error', 'Invalid status');
+        }
+
+        // Update the inquiry status
+        $inquiry->status = $status;
+        $inquiry->save();
+        $firstName = [];
+        if (is_string($inquiry->name)) {
+            $inquiry->name = json_decode($inquiry->name, true);
+        }        
+        foreach ($inquiry->name as $firstOne) {
+            $nameParts = explode(' ', $firstOne);
+            $firstName[] = $nameParts[0]; 
+        }
+        // Redirect to the appropriate view based on the new status
+        $name = $firstName[0];
+        $category_name = $inquiry->package->category->name;
+        $start_date = $inquiry->start_date ? $inquiry->start_date : $inquiry->package->start_date;
+        $end_date = $inquiry->end_date ? $inquiry->end_date : $inquiry->package->end_date;
+        $package_name = $inquiry->package->title;
+        $people = $inquiry->people;
+        $location_name = $inquiry->package->location->name;
+        $room_name = $inquiry->roomType->name; 
+        Mail::to($inquiry->email)->send(new BookingNotification($name,$status,$category_name,$package_name,$start_date,$end_date,$location_name,$people,$room_name));
+        if ($status == 'Accepted') {
+            return redirect()->route('inquiry.accepted')->with('success', 'Inquiry accepted successfully.');
+        } elseif ($status == 'Declined') {
+            return redirect()->route('inquiry.declined')->with('success', 'Inquiry declined successfully.');
+        }
     }
-
-    // Update the inquiry status
-    $inquiry->status = $status;
-    $inquiry->save();
-
-    // Redirect to the appropriate view based on the new status
-    if ($status == 'Accepted') {
-        return redirect()->route('inquiry.accepted')->with('success', 'Inquiry accepted');
-    } elseif ($status == 'Declined') {
-        return redirect()->route('inquiry.declined')->with('success', 'Inquiry declined');
-    }
-}
 }

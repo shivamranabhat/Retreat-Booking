@@ -31,8 +31,19 @@ class HeroSection extends Component
 
     public function redirectToRetreat()
     {
-        $formattedDate = $this->date ? \Carbon\Carbon::parse($this->date)->format('Y-m-d') : null;
-
+        if ($this->date) {
+            // Check for a specific pattern to determine the date format
+            if (preg_match('/^\d{1,2} \w+ \d{4}$/', $this->date)) {
+                // If the date is in the format '28 Nov 2024'
+                $formattedDate = \Carbon\Carbon::createFromFormat('d M Y', $this->date)->format('Y-m-d');
+            } elseif (preg_match('/^\w+ \d{4}$/', $this->date)) {
+                // If the date is in the format 'Nov 2024'
+                $formattedDate = \Carbon\Carbon::createFromFormat('M Y', $this->date)->format('Y-m');
+            } else {
+                // Handle other formats or invalid inputs if necessary
+                $formattedDate = null;
+            }
+        }
         return redirect()->route('retreats', [
             'retreat' => $this->category ? $this->category->slug : null
         ])->with([

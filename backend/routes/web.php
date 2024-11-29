@@ -349,12 +349,16 @@ Route::controller(ResetPasswordController::class)->group(function(){
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
+Route::controller(PageController::class)->middleware('auth')->group(function(){
+    Route::get('/profile','profile')->name('home.profile');
+    Route::get('/{slug}/review', 'writeReview')->name('retreat.review');
+});
+
 Route::prefix('/')->controller(PageController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/signup','register')->name('signup');
     Route::get('/login','login')->name('login');
     Route::get('/faqs', 'faq')->name('home.faqs');
-    Route::get('/profile', 'profile')->name('home.profile');
     Route::get('/blogs', 'blogs')->name('home.blogs');
     Route::get('/blog/{slug}', 'blog')->name('blog');
     Route::get('/about-us', 'about')->name('about');
@@ -362,6 +366,5 @@ Route::prefix('/')->controller(PageController::class)->group(function () {
     // Route::get('/{slug}','addedPage')->name('addedPage');
     Route::get('/{retreat}', 'retreat')->name('retreats');
     Route::get('/{slug}/inquiry', 'inquiry')->name('retreat.inquiry');
-    Route::get('/{slug}/review', 'writeReview')->name('retreat.review');
     Route::get('/{retreat}/{slug}', 'retreatDetails')->name('retreat.details');
 });

@@ -14,26 +14,30 @@ class BookingNotification extends Mailable
     use Queueable, SerializesModels;
 
     public $name;
-    public $phone;
-    public $email;
-    public $tour;
+    public $status;
+    public $category_name;
+    public $package_name;
     public $start_date;
-    public $companion;
-    public $package;
-    public $method;
+    public $end_date;
+    public $location_name;
+    public $people;
+    public $room_name;
+
+
     /**
      * Create a new message instance.
      */
-    public function __construct($name,$phone,$email,$tour,$start_date,$companion,$package,$method)
+    public function __construct($name,$status,$category_name,$package_name,$start_date,$end_date,$location_name,$people,$room_name)
     {
         $this->name = $name;
-        $this->phone = $phone;
-        $this->email = $email;
-        $this->tour = $tour;
+        $this->status = $status;
+        $this->category_name = $category_name;
+        $this->package_name = $package_name;
         $this->start_date = $start_date;
-        $this->companion = $companion;
-        $this->package = $package;
-        $this->method = $method;
+        $this->end_date = $end_date;
+        $this->location_name = $location_name;
+        $this->people = $people;
+        $this->room_name = $room_name;
     }
 
     /**
@@ -42,7 +46,7 @@ class BookingNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Booking Alert: Have a look for new booking!!',
+            subject: 'Booking Alert: Have a look of your booking!!',
         );
     }
 

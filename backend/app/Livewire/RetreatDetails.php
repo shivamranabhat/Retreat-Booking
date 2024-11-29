@@ -58,6 +58,7 @@ class RetreatDetails extends Component
   
     public function updateDate()
     {
+        $this->start_date = $this->start_date;
         if ($this->start_date && $this->package->start_date == null) {
             $start = Carbon::parse($this->start_date);
             $this->end_date = $start->addDays($this->package->days)->format('M d Y');

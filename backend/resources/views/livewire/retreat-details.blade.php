@@ -242,7 +242,7 @@
                                 <input type="text"
                                     class="border-none text-sm outline-none bg-transparent focus:outline-none placeholder:text-gray-600 focus:ring-0 flatpickr-input"
                                     id='start-date' wire:model='start_date'
-                                    wire:change='updateDate' placeholder="Select a start date" readonly {{$disable==true ? 'disabled' : ''}}>
+                                    wire:change='updateDate' placeholder="Select a start date" readonly {{$disable==true ? 'disabled' : ''}} >
                             </div>
                             @if($end_date)
                             <div class="flex flex-col gap-2">

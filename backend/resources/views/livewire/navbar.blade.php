@@ -49,44 +49,46 @@
                     </svg>
                     <div
                         class="dropdown absolute z-10 left-0 top-9 rounded-xl p-1 w-48 bg-white border border-gray-200 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity">
-                        <ul class="flex flex-col gap-y-1">
+                        <div class="flex flex-col gap-y-1">
                             @if(auth()->user())
-                            <li
+                            <a href="{{route('home.profile')}}"
                                 class="px-4 py-3 text-sm {{request()->segment(1) == 'profile' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer">
-                                <a href="{{route('home.profile')}}">Profile</a>
-                            </li>
+                                Profile
+                            </a>
                             @else
-                            <li
+                            <a href="{{route('login')}}"
                                 class="px-4 py-3 text-sm {{request()->segment(1) == 'login' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer">
-                                <a href="{{route('login')}}">Login</a>
-                            </li>
-                            <li
+                                Login
+                            </a>
+                            <a href="{{route('signup')}}"
                                 class="px-4 py-3 text-sm {{request()->segment(1) == 'signup' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer">
-                                <a href="{{route('signup')}}">Signup</a>
-                            </li>
+                                Signup
+                            </a>
                             @endif
-                            <li
+                            <a href="{{route('about')}}"
                                 class="px-4 py-3 text-sm {{request()->segment(1) == 'about-us' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer">
-                                <a href="{{route('about')}}">About</a>
-                            </li>
-                            <li
+                                About
+                            </a>
+                            <a href="{{route('home.faqs')}}"
                                 class="px-4 py-3 text-sm {{request()->segment(1) == 'faqs' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer">
-                                <a href="{{route('home.faqs')}}">FAQs</a>
-                            </li>
-                            <li
+                                FAQs
+                            </a>
+                            <a href="{{route('home.blogs')}}"
                                 class="px-4 py-3 text-sm {{request()->segment(1) == 'blogs' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer">
-                                <a href="{{route('home.blogs')}}">Blogs</a>
-                            </li>
-                            <li
+                                Blogs
+                            </a>
+                            <a href="{{route('contact')}}"
                                 class="px-4 py-3 text-sm {{request()->segment(1) == 'contact' ? 'bg-gray-200' : ''}} hover:bg-gray-200 rounded-xl cursor-pointer">
-                                <a href="{{route('contact')}}">Contact</a>
-                            </li>
+                                Contact
+                            </a>
                             @if(auth()->user())
-                            <li class="px-4 py-3 text-sm hover:bg-gray-200 rounded-xl cursor-pointer"> <a
-                                    wire:click='logout'>Logout</a></li>
+                            <a class="px-4 py-3 text-sm hover:bg-gray-200 rounded-xl cursor-pointer"
+                                wire:click='logout'>
+                                Logout
+                            </a>
                             @else
                             @endif
-                        </ul>
+                        </div>
                     </div>
                 </div>
 

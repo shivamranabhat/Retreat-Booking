@@ -166,11 +166,7 @@
                                                                                                 <tr>
                                                                                                     <td align="center"
                                                                                                         style="font-size:11px;font-family:LucidaGrande,tahoma,verdana,arial,sans-serif;width:100% padding-top;padding-bottom:6px">
-                                                                                                        Meta Platforms,
-                                                                                                        Inc., Attention:
-                                                                                                        Community Support, 1
-                                                                                                        Meta Way, Menlo
-                                                                                                        Park, CA 94025</td>
+                                                                                                       The Yoga Holiday</td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td align="center"
@@ -200,26 +196,7 @@
                                                                     <td width="15" style="display:block;width:15px">
                                                                         &nbsp;&nbsp;&nbsp;</td>
                                                                     <td>
-                                                                        <table border="0" width="100%" cellspacing="0"
-                                                                            cellpadding="0"
-                                                                            style="border-collapse:collapse">
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td
-                                                                                        style="color:#84878b;text-align:center;font-size:12px;font-weight:400;font-family:Roboto-Regular,Roboto,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Lucida Grande,tahoma,verdana,arial,sans-serif">
-                                                                                        <span
-                                                                                            class="m_5799493568231143593mb_text"
-                                                                                            style="font-family:Helvetica Neue,Helvetica,Lucida Grande,tahoma,verdana,arial,sans-serif;font-size:16px;line-height:21px;color:#141823;color:#84878b;text-align:center;font-size:12px;font-weight:400;font-family:Roboto-Regular,Roboto,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Lucida Grande,tahoma,verdana,arial,sans-serif">To
-                                                                                            help keep your account secure,
-                                                                                            please don't forward this email.
-                                                                                            <a style="color:#0FBC69;text-decoration:none"
-                                                                                                href="https://www.facebook.com/email_forward_notice/?mid=6273ba54b65e6G5b07f98ee991G6273beee168b8G142"
-                                                                                                target="_blank"
-                                                                                                data-saferedirecturl="https://www.google.com/url?q=https://www.facebook.com/email_forward_notice/?mid%3D6273ba54b65e6G5b07f98ee991G6273beee168b8G142&amp;source=gmail&amp;ust=1732074644172000&amp;usg=AOvVaw2pU8VqjH_lIzhXh1TTHhug">Learn
-                                                                                                more</a></span></td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
+                                                                        
                                                                     </td>
                                                                     <td width="15" style="display:block;width:15px">
                                                                         &nbsp;&nbsp;&nbsp;</td>

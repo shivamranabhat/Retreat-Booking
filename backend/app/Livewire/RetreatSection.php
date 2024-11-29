@@ -112,39 +112,71 @@ class RetreatSection extends Component
             }
         }
         //If user selects date from hero section
+        // if (session()->has('date')) {
+        //     $sessionDate = session()->get('date'); 
+        //     $query = Package::query();
+        //     $parsedDate = Carbon::createFromFormat('Y-m-d', $sessionDate);
+        //     if ($parsedDate && $parsedDate->format('Y-m-d') === $sessionDate) 
+        //     {
+        //         $query->whereDate('start_date', '=', $parsedDate->format('Y-m-d'));
+        //     } 
+        //     else 
+        //     {
+        //         try {
+        //             $parsedMonth = Carbon::createFromFormat('Y-m', substr($sessionDate, 0, 7));
+        //             if ($parsedMonth) {
+        //                 $parsedMonthStart = $parsedMonth->startOfMonth();
+        //                 $startOfMonth = $parsedMonthStart->format('Y-m-d');
+        //                 $endOfMonth = $parsedMonthStart->endOfMonth()->format('Y-m-d');
+        //                 $query->whereBetween('start_date', [$startOfMonth, $endOfMonth]);
+        //             }
+        //         } catch (\Exception $e) {
+        //             \Log::error('Invalid date format in session: ' . $sessionDate);
+        //         }
+        //     }
+        
+        //     $filteredPackages = $query->get();
+        //     if ($filteredPackages->isEmpty()) {
+        //         $allYearAvailablePackages = Package::whereNull('start_date')->where('category_id',$this->category->id)->get();
+        //         $filteredPackages = $filteredPackages->merge($allYearAvailablePackages);
+        //     }
+        // }
         if (session()->has('date')) {
             $sessionDate = session()->get('date'); 
             $query = Package::query();
-            $parsedDate = Carbon::createFromFormat('Y-m-d', $sessionDate);
         
-            if ($parsedDate && $parsedDate->format('Y-m-d') === $sessionDate) 
-            {
-                $query->whereDate('start_date', '=', $parsedDate->format('Y-m-d'));
-
-            } 
-            else 
-            {
-                try {
-                    $parsedMonth = Carbon::createFromFormat('Y-m', substr($sessionDate, 0, 7));
-        
-                    if ($parsedMonth) {
-                        $parsedMonthStart = $parsedMonth->startOfMonth();
-                        $startOfMonth = $parsedMonthStart->format('Y-m-d');
-                        $endOfMonth = $parsedMonthStart->endOfMonth()->format('Y-m-d');
-                        $query->whereBetween('start_date', [$startOfMonth, $endOfMonth]);
-                    }
-                } catch (\Exception $e) {
-                    \Log::error('Invalid date format in session: ' . $sessionDate);
+            try {
+                if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $sessionDate)) {
+                    // Parse and filter as 'Y-m-d'
+                    $parsedDate = Carbon::createFromFormat('Y-m-d', $sessionDate);
+                    $query->whereDate('start_date', '=', $parsedDate->format('Y-m-d'));
+                } elseif (preg_match('/^\d{4}-\d{2}$/', $sessionDate)) {
+                    // Parse and filter as 'Y-m'
+                    $parsedMonth = Carbon::createFromFormat('Y-m', $sessionDate);
+                    $startOfMonth = $parsedMonth->startOfMonth()->format('Y-m-d');
+                    $endOfMonth = $parsedMonth->endOfMonth()->format('Y-m-d');
+                    $query->whereBetween('start_date', [$startOfMonth, $endOfMonth]);
+                } else {
+                    throw new \Exception('Invalid date format');
                 }
+                $query->where('category_id', $this->category->id);
+            } catch (\Exception $e) {
+                \Log::error('Invalid date format in session: ' . $sessionDate);
             }
         
+            // Fetch filtered packages
             $filteredPackages = $query->get();
+        
+            // Handle cases where no packages are found
             if ($filteredPackages->isEmpty()) {
-                $allYearAvailablePackages = Package::whereNull('start_date')->where('category_id',$this->category->id)->get();
+                $allYearAvailablePackages = Package::whereNull('start_date')
+                    ->where('category_id', $this->category->id)
+                    ->get();
+        
                 $filteredPackages = $filteredPackages->merge($allYearAvailablePackages);
             }
         }
-
+        
         // Apply location filter
         if ($this->locationFilter !== 'all') {
             $filteredPackages = $filteredPackages->where('location_id', $this->locationFilter);
