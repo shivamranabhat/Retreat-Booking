@@ -8,5 +8,5 @@ class Visit extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['url', 'hit_count'];
+    protected $fillable = ['ip_address', 'hit_count'];
 }

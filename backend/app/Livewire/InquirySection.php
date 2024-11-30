@@ -95,7 +95,15 @@ class InquirySection extends Component
     public function roomType($id)
     {
         $this->room = RoomType::find($id);
-        $this->price =  ((int)$this->package->price + ($this->room->percentage/100) * ($this->package->price)) * (int)$this->people;
+        if (!$this->room) {
+            $this->price = (int)$this->package->price * (int)$this->people;
+            return;
+        }
+        if(!$this->room->percentage){
+            $this->price =  (int)$this->package->price * (int)$this->people;
+        }else{
+            $this->price =  ((int)$this->package->price + ($this->room->percentage/100) * ($this->package->price)) * (int)$this->people;
+        }
     }
 
     public function send()

@@ -352,12 +352,16 @@ Route::controller(ResetPasswordController::class)->group(function () {
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
+<<<<<<< HEAD
 Route::controller(PageController::class)->middleware('auth')->group(function(){
     Route::get('/profile','profile')->name('home.profile');
     Route::get('/{slug}/review', 'writeReview')->name('retreat.review');
 });
 
 Route::prefix('/')->controller(PageController::class)->group(function () {
+=======
+Route::prefix('/')->middleware(\App\Http\Middleware\TrackVisits::class)->controller(PageController::class)->group(function () {
+>>>>>>> 090c8898266666c58fb098c8833bcb910201b64c
     Route::get('/', 'index')->name('index');
     Route::get('/signup', 'register')->name('signup');
     Route::get('/login', 'login')->name('login');
