@@ -10,7 +10,7 @@ class CreateVisitsTable extends Migration
     {
         Schema::create('visits', function (Blueprint $table) {
             $table->id();
-            $table->string('url')->unique();
+            $table->string('ip_address')->unique();
             $table->unsignedBigInteger('hit_count')->default(0);
             $table->timestamps();
         });

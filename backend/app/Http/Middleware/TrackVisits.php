@@ -12,10 +12,9 @@ class TrackVisits
 {
     public function handle(Request $request, Closure $next)
     {
-        
         // Increment visit count
         $visit = Visit::firstOrCreate(
-            ['url' => $request->url()],
+            ['ip_address' => $request->ip()],
             ['hit_count' => 0]
         );
         Log::info('Request Details:', [
