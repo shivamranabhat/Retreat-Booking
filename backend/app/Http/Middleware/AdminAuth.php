@@ -21,11 +21,10 @@ class AdminAuth
         }
 
         $user = $request->user();
-
+        
         if ($user && $user->role == 1) {
             return $next($request);
         }
-
         return redirect()->route('admin.login')->with('error', 'Unauthorized access.');
     }
 }

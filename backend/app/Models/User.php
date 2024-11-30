@@ -27,7 +27,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'profile_photo_url',
         'email_verified_at',
-        'google_id'
+        'google_id',
+        'role'
     ];
     public function scopeFilter($query, array $filters)
     {

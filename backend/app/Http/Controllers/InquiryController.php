@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Inquiry;
@@ -12,27 +13,27 @@ class InquiryController extends Controller
     public function pending()
     {
         $pendingInquiries = Inquiry::with(['roomType', 'package'])->where('status', 'Pending')->get();
-        return view('admin.inquiry.pending', compact('pendingInquiries'));
+        return view('admin.Inquiry.pending', compact('pendingInquiries'));
     }
 
     // For Declined Inquiries
     public function declined()
     {
         $declinedInquiries = Inquiry::with(['roomType', 'package'])->where('status', 'Declined')->get();
-        return view('admin.inquiry.declined', compact('declinedInquiries'));
+        return view('admin.Inquiry.declined', compact('declinedInquiries'));
     }
 
     // For Accepted Inquiries
     public function accepted()
     {
         $acceptedInquiries = Inquiry::with(['roomType', 'package'])->where('status', 'Accepted')->get();
-        return view('admin.inquiry.accepted', compact('acceptedInquiries'));
+        return view('admin.Inquiry.accepted', compact('acceptedInquiries'));
     }
 
     public function show(string $slug)
     {
         $inquiry = Inquiry::with(['roomType', 'package'])->where('slug', $slug)->firstOrFail();
-        return view('admin.inquiry.show', compact('inquiry'));
+        return view('admin.Inquiry.show', compact('inquiry'));
     }
 
     public function changeStatus(Request $request, Inquiry $inquiry, $status)
@@ -41,12 +42,17 @@ class InquiryController extends Controller
         $validStatuses = ['Accepted', 'Declined'];
 
         if (!in_array($status, $validStatuses)) {
+<<<<<<< HEAD
             return redirect()->route('inquiry.index')->with('error', 'Invalid status');
+=======
+            return redirect()->route('Inquiry.index')->with('error', 'Invalid status');
+>>>>>>> 13390ba4bba46f44ded7a5afa9ac2debb8af4f80
         }
 
         // Update the inquiry status
         $inquiry->status = $status;
         $inquiry->save();
+<<<<<<< HEAD
         $firstName = [];
         if (is_string($inquiry->name)) {
             $inquiry->name = json_decode($inquiry->name, true);
@@ -69,6 +75,14 @@ class InquiryController extends Controller
             return redirect()->route('inquiry.accepted')->with('success', 'Inquiry accepted successfully.');
         } elseif ($status == 'Declined') {
             return redirect()->route('inquiry.declined')->with('success', 'Inquiry declined successfully.');
+=======
+
+        // Redirect to the appropriate view based on the new status
+        if ($status == 'Accepted') {
+            return redirect()->route('Inquiry.accepted')->with('success', 'Inquiry accepted');
+        } elseif ($status == 'Declined') {
+            return redirect()->route('Inquiry.declined')->with('success', 'Inquiry declined');
+>>>>>>> 13390ba4bba46f44ded7a5afa9ac2debb8af4f80
         }
     }
 }

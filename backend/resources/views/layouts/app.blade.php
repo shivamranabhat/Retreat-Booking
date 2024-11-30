@@ -47,7 +47,7 @@
     <!-- CK editor -->
     <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/super-build/ckeditor.js"></script>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Styles -->
     @livewireStyles
 </head>
@@ -384,6 +384,18 @@
                             <span class="item-name">Testimonials</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{request()->segment(2) == 'reviews' ? 'active' : ''}}"
+                            href="{{ route('reviews') }}">
+                            <i class="icon">
+                                <svg class="icon-20" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2C6.48 2 2 5.48 2 10c0 1.74.62 3.32 1.65 4.56L2 20l5.44-1.65C8.68 19.38 10.26 20 12 20c5.52 0 10-3.48 10-8s-4.48-8-10-8zm0 14l-1.74-1.74 2.27-1.06c.19-.09.39-.15.59-.15s.4.06.59.15l2.27 1.06L12 16zM12 8.5l-1.74 1.74-2.27-1.06c-.19-.09-.39-.15-.59-.15s-.4.06-.59.15l-2.27 1.06L12 8.5zM12 13.5l-1.74 1.74-2.27-1.06c-.19-.09-.39-.15-.59-.15s-.4.06-.59.15l-2.27 1.06L12 13.5z"
+                                        stroke="currentColor" stroke-width="1.5" fill="none" />
+                                </svg>
+                            </i>
+                            <span class="item-name">Reviews</span>
+                        </a>
+                    </li>
 
 
                     <li>
@@ -433,7 +445,7 @@
                         <ul class="sub-nav collapse" id="sidebar-inquiry" data-bs-parent="#sidebar-menu">
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->segment(3) == 'pending' ? 'text-primary' : '' }}"
-                                    href="{{ route('inquiry.pending') }}">
+                                    href="{{ route('Inquiry.pending') }}">
                                     <i class="icon">
                                         <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                             viewBox="0 0 24 24" fill="currentColor">
@@ -448,7 +460,7 @@
 
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->segment(3) == 'accepted' ? 'text-primary' : '' }}"
-                                    href="{{ route('inquiry.accepted') }}">
+                                    href="{{ route('Inquiry.accepted') }}">
                                     <i class="icon">
                                         <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                             viewBox="0 0 24 24" fill="currentColor">
@@ -463,7 +475,7 @@
 
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->segment(3) == 'declined' ? 'text-primary' : '' }}"
-                                    href="{{ route('inquiry.declined') }}">
+                                    href="{{ route('Inquiry.declined') }}">
                                     <i class="icon">
                                         <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                             viewBox="0 0 24 24" fill="currentColor">
