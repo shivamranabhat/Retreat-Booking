@@ -1,38 +1,52 @@
 <section class="listing py-14 md:py-20 px-6 md:px-28 lg:px-48 flex flex-col gap-y-4">
     <div class="grid grid-cols-2 lg:grid-cols-4">
-        <div class="col-span-1">
+        <!-- Filters header -->
+        <div class="col-span-1 lg:block hidden">
             <h5 class="text-gray-800 text-lg font-medium">Filters</h5>
         </div>
+        <div class="lg:hidden">
+            <!-- Button to toggle the filter modal -->
+            <button id="filterButton" class="border-2  border-gray-300 box-shadow-iii hover:bg-gray-50 text-black bg-white rounded-3xl px-3 py-2 mb-6 flex items-center space-x-2">
+                <span class="text-sm">Filters</span>
+                <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                    <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+
+
+
+
         <div class="col-span-2 lg:col-span-3 flex justify-between items-center">
-           
-            <div class="flex gap-3 items-center ml-4" wire:ignore>
-                <div class="shadow-sm cursor-pointer border-2 border-gray-300 box-shadow-iii text-sm rounded-3xl px-3 py-1 capitalize">
+
+            <div class="flex gap-3 items-center ml-0 lg:ml-4" wire:ignore>
+                <div class="shadow-sm cursor-pointer border-2 border-gray-300 box-shadow-iii text-sm rounded-3xl px-4 py-2 capitalize">
                     {{Str::replace('-',' ',request()->segment(1))}}
                 </div>
-                 @if(request()->segment(2))
-                <div class="shadow-sm cursor-pointer border-2 border-gray-300 box-shadow-iii text-sm rounded-3xl px-3 py-1 capitalize">
+                @if(request()->segment(2))
+                <div class="shadow-sm cursor-pointer border-2 border-gray-300 box-shadow-iii text-sm rounded-3xl px-4 py-2 capitalize">
                     {{Str::replace('-',' ',request()->segment(2))}}
                 </div>
                 @endif
-               @php 
-                    $sessionDate = Session::get('date');
-                    $parsedDate = null;
+                @php
+                $sessionDate = Session::get('date');
+                $parsedDate = null;
 
-                    try {
-                        if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $sessionDate)) {
-                            // Format for Y-m-d to M jS Y
-                            $parsedDate = \Carbon\Carbon::createFromFormat('Y-m-d', $sessionDate)->format('M jS Y');
-                        } elseif (preg_match('/^\d{4}-\d{2}$/', $sessionDate)) {
-                            // Format for Y-m to M Y
-                            $parsedDate = \Carbon\Carbon::createFromFormat('Y-m', $sessionDate)->format('M Y');
-                        }
-                    } catch (\Exception $e) {
-                        $parsedDate = "Invalid date format";
-                    }
+                try {
+                if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $sessionDate)) {
+                // Format for Y-m-d to M jS Y
+                $parsedDate = \Carbon\Carbon::createFromFormat('Y-m-d', $sessionDate)->format('M jS Y');
+                } elseif (preg_match('/^\d{4}-\d{2}$/', $sessionDate)) {
+                // Format for Y-m to M Y
+                $parsedDate = \Carbon\Carbon::createFromFormat('Y-m', $sessionDate)->format('M Y');
+                }
+                } catch (\Exception $e) {
+                $parsedDate = "Invalid date format";
+                }
                 @endphp
 
                 @if(session()->has('date'))
-                <div class="shadow-sm cursor-pointer border-2 border-gray-300 box-shadow-iii text-sm rounded-3xl px-3 py-1 capitalize">
+                <div class="shadow-sm cursor-pointer border-2 border-gray-300 box-shadow-iii text-sm rounded-3xl px-4 py-2 capitalize">
                     {{ $parsedDate }}
                 </div>
                 @endif
@@ -74,12 +88,20 @@
             </div>
         </div>
     </div>
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-14">
+
+
+
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-14">
         <div class="col-span-1">
-            <div class="filter-options bg-white hidden lg:flex flex-col gap-y-6">
-                {{-- <h5 class="text-gray-800 text-lg font-medium">Filters</h5>
-                <div class="h-px w-full bg-gray-200"></div> --}}
-                <div class="option flex flex-col gap-y-2">
+            <div id="filterMenu"
+                class="fixed inset-0 bg-white z-50 p-8 lg:p-0 overflow-y-auto hidden lg:static lg:flex lg:flex-col gap-y-6">
+                <button id="closeFilter" class="lg:hidden absolute top-4 right-4 px-4 py-2 bg-white text-black rounded-lg text-2xl">
+                    ✕
+                </button>
+                <h5 class="text-gray-800 text-lg font-medium flex lg:hidden mb-5 lg:mb-0">Filters</h5>
+                <div class="h-px w-full bg-gray-200 mb-5 lg:mb-0"></div>
+                <div class="option flex flex-col gap-y-2 mb-5 lg:mb-0">
                     <h5 class="text-gray-600 text-base font-medium">Price</h5>
 
                     <div class="inputs flex justify-between">
@@ -141,8 +163,8 @@
                     </div>
                 </div>
 
-                <div class="h-px w-full bg-gray-200"></div>
-                <div class="option flex flex-col gap-y-2">
+                <div class="h-px w-full bg-gray-200 mb-5 lg:mb-0"></div>
+                <div class="option flex flex-col gap-y-2 mb-5 lg:mb-0">
                     <h5 class="text-gray-600 text-base font-medium">Locations</h5>
                     <div class="inputs flex justify-between">
                         <label class="text-sm w-full flex gap-x-2 items-center">
@@ -181,8 +203,8 @@
                     </div>
                     @endforelse
                 </div>
-                <div class="h-px w-full bg-gray-200"></div>
-                <div class="option flex flex-col gap-y-2">
+                <div class="h-px w-full bg-gray-200 mb-5 lg:mb-0"></div>
+                <div class="option flex flex-col gap-y-2 mb-5 lg:mb-0">
                     <h5 class="text-gray-600 text-base font-medium">Room Type</h5>
                     @foreach($rooms as $room)
                     <div class="inputs flex justify-between">
@@ -197,7 +219,7 @@
                     </div>
                     @endforeach
                 </div>
-                <div class="h-px w-full bg-gray-200"></div>
+                <div class="h-px w-full bg-gray-200 mb-5 lg:mb-0"></div>
                 <div class="option flex flex-col gap-y-2">
                     <h5 class="text-gray-600 text-base font-medium">Days</h5>
                     <div class="inputs flex justify-between">
@@ -353,3 +375,37 @@
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const filterButton = document.getElementById("filterButton");
+        const filterMenu = document.getElementById("filterMenu");
+        const closeFilter = document.getElementById("closeFilter");
+
+        // Open filter menu
+        filterButton.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent triggering the close event
+            filterMenu.classList.remove("hidden");
+        });
+
+        // Close filter menu
+        closeFilter.addEventListener("click", () => {
+            filterMenu.classList.add("hidden");
+        });
+
+        // Close filter when clicking outside
+        document.addEventListener("click", (event) => {
+            if (!filterMenu.contains(event.target) && !filterButton.contains(event.target)) {
+                filterMenu.classList.add("hidden");
+            }
+        });
+
+        // Handle filter selection
+        const filterInputs = filterMenu.querySelectorAll("input[type='radio']");
+        filterInputs.forEach((input) => {
+            input.addEventListener("click", () => {
+                applyFilter();
+            });
+        });
+    });
+</script>
