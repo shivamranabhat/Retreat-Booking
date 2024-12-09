@@ -39,7 +39,10 @@
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <label class="form-label">Name</label>
-                                <p>{{ $inquiry->name }}</p>
+                                <ol>
+                                    <li>{{ implode(' ', json_decode($inquiry->name)) }}</li>
+                                    
+                                </ol>
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label class="form-label">Email</label>

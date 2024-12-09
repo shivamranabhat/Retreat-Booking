@@ -2,14 +2,14 @@
  <section class="location-section py-14 md:py-20 px-6 md:px-28 lg:px-48">
     <div class="container flex flex-col items-center gap-12 mx-auto">
         <h3 class="text-2xl font-bold">We've retreats in more than {{$locations?$locations->count() : '0'}} places in Nepal. See for yourself:</h3>
-        <div class="slider-wrapper owl-carousel owl-theme location-carousel z-[-1]">
+        <div class="slider-wrapper owl-carousel owl-theme location-carousel">
             @forelse($locations as $location)
-            <div class="card mb-1 flex flex-col box-shadow-iii border border-gray-200 rounded-xl">
+            <div class="card cursor-pointer mb-1 flex flex-col box-shadow-iii border border-gray-200 rounded-xl" wire:click='redirectToLocation({{$location->id}})'>
                 <img src="{{asset('storage/'.$location->image)}}"
                     class="rounded-tl-lg rounded-tr-lg w-full h-56 lg:h-48 object-cover" alt="{{$location->image_alt}}">
                 <div class="details p-4 rounded-lg flex flex-col">
                     <h5 class="text-gray-800 text-lg font-lead-bold">{{$location->name}}</h5>
-                    <span class="text-gray-400 text-sm">{{$location->description}}</span>
+                    <span class="text-gray-400 text-sm">{!! Str::words(strip_tags($location->description), 10,'. ') !!} <a href="{{route('home.location',$location->slug)}}" class="text-main">Read More</a></span>
                 </div>
             </div>
             @empty

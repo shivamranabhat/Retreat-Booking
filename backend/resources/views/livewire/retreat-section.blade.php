@@ -4,30 +4,43 @@
             <h5 class="text-gray-800 text-lg font-medium">Filters</h5>
         </div>
         <div class="col-span-2 lg:col-span-3 flex justify-between items-center">
-            <div class="bread-crumb flex items-center gap-1" wire:ignore>
-                <p class="text-sm text-gray-500">
-                    Home
-                </p>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="size-3">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
-                </svg>
-                <p class="text-sm text-gray-500 capitalize">
+           
+            <div class="flex gap-3 items-center ml-4" wire:ignore>
+                <div class="shadow-sm cursor-pointer border-2 border-gray-300 box-shadow-iii text-sm rounded-3xl px-3 py-1 capitalize">
                     {{Str::replace('-',' ',request()->segment(1))}}
-                </p>
-                @if(!empty(request()->segment(2)))
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="size-3">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
-                </svg>
-                <p class="text-sm text-gray-500 capitalize" wire:ignore>
+                </div>
+                 @if(request()->segment(2))
+                <div class="shadow-sm cursor-pointer border-2 border-gray-300 box-shadow-iii text-sm rounded-3xl px-3 py-1 capitalize">
                     {{Str::replace('-',' ',request()->segment(2))}}
-                </p>
+                </div>
                 @endif
+               @php 
+                    $sessionDate = Session::get('date');
+                    $parsedDate = null;
+
+                    try {
+                        if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $sessionDate)) {
+                            // Format for Y-m-d to M jS Y
+                            $parsedDate = \Carbon\Carbon::createFromFormat('Y-m-d', $sessionDate)->format('M jS Y');
+                        } elseif (preg_match('/^\d{4}-\d{2}$/', $sessionDate)) {
+                            // Format for Y-m to M Y
+                            $parsedDate = \Carbon\Carbon::createFromFormat('Y-m', $sessionDate)->format('M Y');
+                        }
+                    } catch (\Exception $e) {
+                        $parsedDate = "Invalid date format";
+                    }
+                @endphp
+
+                @if(session()->has('date'))
+                <div class="shadow-sm cursor-pointer border-2 border-gray-300 box-shadow-iii text-sm rounded-3xl px-3 py-1 capitalize">
+                    {{ $parsedDate }}
+                </div>
+                @endif
+
             </div>
             <div class="relative inline-block text-left group">
                 <button type="button"
-                    class="inline-flex w-full justify-center gap-x-1.5 rounded-3xl bg-white px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm border-2 border-gray-200 box-shadow-iii hover:bg-gray-50"
+                    class="inline-flex w-full justify-center gap-x-1.5 rounded-3xl bg-white px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm border-2 border-gray-300 box-shadow-iii hover:bg-gray-50"
                     id="menu-button" aria-expanded="true" aria-haspopup="true">
                     Sort By
                     <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
@@ -99,7 +112,8 @@
                         </label>
                         <span class="text-gray-500 text-sm">{{ $allPackages->where('price', '>', 200)->where('price', '
                             <=', 300)->count()
-                                }}</span>
+                                }}
+                        </span>
                     </div>
 
                     <div class="inputs flex justify-between">
@@ -111,7 +125,8 @@
                         </label>
                         <span class="text-gray-500 text-sm">{{ $allPackages->where('price', '>', 300)->where('price', '
                             <=', 400)->count()
-                                }}</span>
+                                }}
+                        </span>
                     </div>
 
                     <div class="inputs flex justify-between">
@@ -133,23 +148,26 @@
                         <label class="text-sm w-full flex gap-x-2 items-center">
                             <input type="radio" name="location"
                                 class="w-4 h-4 focus:accent-gray-800 accent-gray-800 cursor-pointer"
-                                wire:click="applyLocationFilter('all')">
+                                wire:click="applyLocationFilter('all')" {{ request()->segment(2) == 'all'
+                            ?
+                            'checked' : '' }}>
                             All
                         </label>
                         <span class="text-gray-500 text-sm">{{ $allPackages->count() }}</span>
                     </div>
-                    @forelse($locations as $location)
+                    @forelse($locations as $alllocation)
                     <div class="inputs flex justify-between">
                         <label class="text-sm w-full flex gap-x-2 items-center">
                             <input type="radio" name="location"
                                 class="w-4 h-4 focus:accent-gray-800 accent-gray-800 cursor-pointer"
-                                wire:click="applyLocationFilter({{ $location->id }})" {{ $locationFilter==$location->id
+                                wire:click="applyLocationFilter({{ $alllocation->id }})" {{
+                                $locationFilter==$alllocation->id || request()->segment(2) == $alllocation->slug
                             ?
                             'checked' : '' }}>
-                            {{ $location->name }}
+                            {{ $alllocation->name }}
                         </label>
                         <span class="text-gray-500 text-sm">
-                            {{ $allPackages->where('location_id', $location->id)->count() }}
+                            {{ $allPackages->where('location_id', $alllocation->id)->count() }}
                         </span>
                     </div>
                     @empty
@@ -234,7 +252,7 @@
             @forelse($packages as $package)
             <div class="card grid grid-cols-2 xl:grid-cols-3 gap-4 rounded-xl border border-gray-200 box-shadow-iii p-3 cursor-pointer"
                 wire:click="redirectToDetails('{{$package->slug}}')">
-                <img class="w-full xl:w-80 col-span-2 xl:col-span-1 h-60 md:h-80 xl:h-full object-cover rounded-xl"
+                <img class="w-full xl:w-80 col-span-2 xl:col-span-1 h-60 md:h-80 xl:h-44 object-cover rounded-xl"
                     src="{{$package->main_image ? asset('storage/'.$package->main_image) : asset('main/images/image-placeholder.png') }}"
                     alt="{{$package->title}}">
                 <div class="right-col grid grid-cols-5 gap-4 col-span-2">
@@ -307,9 +325,8 @@
                                 $averageRating = $package->reviews->avg('rating') ?? 0;
                                 $reviewCount = $package->reviews->count();
                                 @endphp
-                                {{ number_format($averageRating, 1) }} <svg
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#02BF64"
-                                    class="size-5">
+                                {{ number_format($averageRating, 1) }} <svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="#02BF64" class="size-5">
                                     <path fill-rule="evenodd"
                                         d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                                         clip-rule="evenodd"></path>
@@ -318,9 +335,9 @@
                             </span>
                         </div>
                         <div class="btns flex flex-col gap-y-2">
-                            <a href="{{route('retreat.details',['retreat'=>$retreat,'slug'=>$package->slug])}}"
+                            <a href="{{route('retreat.details',['retreat'=>$retreat,'location'=>$package->location->slug,'slug'=>$package->slug])}}"
                                 class="border border-2 text-sm text-center text-gray-500 text-main font-semibold rounded-3xl p-2 border-main hover:bg-main hover:text-white hover:ease-in-out duration-300 transition-all">Details</a>
-                            <a href="{{route('retreat.inquiry',['slug'=>$package->slug])}}"
+                            <a href="{{route('retreat.inquiry',['retreat'=>$retreat,'location'=>$package->location->slug,'slug'=>$package->slug])}}"
                                 class="text-sm text-center text-white p-2 rounded-3xl hover:ease-in-out duration-300 transition-all {{$package->status == 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-main hover:bg-[#03914D]'}}">Book
                                 Now</a>
                         </div>

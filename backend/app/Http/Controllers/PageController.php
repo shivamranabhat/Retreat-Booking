@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Package;
 use App\Models\ExtraPage;
 use App\Models\Inquiry;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -30,20 +31,30 @@ class PageController extends Controller
         //      return abort(404);
         //  }
     }
-    public function retreat($retreat)
+    public function location($location)
+    {
+        // try{
+            $details = Location::whereSlug($location)->first();
+            return view('pages.location',compact('location','details'));
+        //  }
+        //  catch (\Exception $e) {
+        //      return abort(404);
+        //  }
+    }
+    public function retreat($retreat,$location=null)
     {
         $category = Category::whereSlug($retreat)->select('name')->first();
-        return view('pages.retreat',compact('category','retreat'));
+        return view('pages.retreat',compact('category','retreat','location'));
     }
-    public function retreatDetails($retreat,$slug)
+    public function retreatDetails($retreat,$location=null,$slug)
     {
         $package = Package::whereSlug($slug)->select('title','category_id')->first();
-        return view('pages.retreat-details',compact('retreat','slug','package'));
+        return view('pages.retreat-details',compact('retreat','location','slug','package'));
     }
-    public function inquiry($slug)
+    public function inquiry($retreat,$location=null,$slug)
     {
         $package = Package::whereSlug($slug)->select('title','category_id')->first();
-        return view('pages.inquiry',compact('slug','package'));
+        return view('pages.inquiry',compact('retreat','slug','location','package'));
     }
     public function writeReview($slug)
     {

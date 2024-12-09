@@ -63,7 +63,7 @@
             @foreach($images as $key => $image)
             @php
             $class = match($key) {
-            0 => 'w-full h-full lg:h-[35rem] col-span-2 lg:col-span-3 row-span-2 lg:row-span-3',
+            0 => 'w-full h-full col-span-2 lg:col-span-3 row-span-2 lg:row-span-3',
             1 => 'w-full h-full col-span-2 lg:col-span-2 row-span-2 lg:row-span-2',
             2 => 'w-full h-full row-span-2 lg:row-span-1 col-span-2 lg:col-span-1',
             3 => 'w-full h-full relative row-span-2 lg:row-span-1 col-span-2 lg:col-span-1',
@@ -263,7 +263,7 @@
                             @endif
                         </div>
 
-                        <a href="{{route('retreat.inquiry',$package->slug)}}"
+                        <a href="{{route('retreat.inquiry',['retreat'=>$retreat,'location'=>$package->location->slug,'slug'=>$package->slug])}}"
                             class="bg-main text-center font-semibold text-white  px-2 py-3 mt-3 rounded-3xl hover:bg-[#03914D] hover:ease-in-out duration-300 transition-all">Send
                             Inquiry</a>
                     </div>

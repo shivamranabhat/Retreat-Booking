@@ -49,7 +49,7 @@
                             <!-- Description Input -->
                             <div class="form-outline mb-3">
                                 <label for="description">Description</label>
-                                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" required>{{ old('description') }}</textarea>
+                                <textarea name="description" id="descriptions" class="form-control @error('description') is-invalid @enderror" required>{{ old('description') }}</textarea>
                                 @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -64,8 +64,8 @@
         </div>
     </div>
 
-    <!-- JavaScript to Preview Image -->
     @push('scripts')
+    <script src="{{ asset('assets/js/ckeditor.js?v=').time() }}"></script>
     <script>
         function previewImage(event) {
             const image = document.getElementById('imageResult');

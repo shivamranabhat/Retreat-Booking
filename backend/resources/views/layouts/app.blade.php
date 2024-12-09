@@ -445,7 +445,7 @@
                         <ul class="sub-nav collapse" id="sidebar-inquiry" data-bs-parent="#sidebar-menu">
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->segment(3) == 'pending' ? 'text-primary' : '' }}"
-                                    href="{{ route('Inquiry.pending') }}">
+                                    href="{{ route('inquiry.pending') }}">
                                     <i class="icon">
                                         <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                             viewBox="0 0 24 24" fill="currentColor">
@@ -460,7 +460,7 @@
 
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->segment(3) == 'accepted' ? 'text-primary' : '' }}"
-                                    href="{{ route('Inquiry.accepted') }}">
+                                    href="{{ route('inquiry.accepted') }}">
                                     <i class="icon">
                                         <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                             viewBox="0 0 24 24" fill="currentColor">
@@ -475,7 +475,7 @@
 
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->segment(3) == 'declined' ? 'text-primary' : '' }}"
-                                    href="{{ route('Inquiry.declined') }}">
+                                    href="{{ route('inquiry.declined') }}">
                                     <i class="icon">
                                         <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                             viewBox="0 0 24 24" fill="currentColor">

@@ -29,15 +29,23 @@ class InquirySection extends Component
     public $room_id;
     public $name = [];
 
-   protected $rules = [
+    protected function rules()
+    {
+        $rules = [
+            'email' => 'required|email',
+            'room_type_id' => 'required',
+            'people' => 'required|integer|min:1',
+            'start_date' => 'required',
+            'message' => 'required',
+        ];
 
-        'email' => 'required|email',
-        'room_type_id' => 'required',
-        'people' => 'required|integer|min:1',
-        'start_date' => 'required',
-        'message' => 'required',
-        'name.*' => 'required', 
-    ];
+        if ($this->people > 0) {
+            for ($i = 0; $i < $this->people; $i++) {
+                $rules['name.' . $i] = 'required'; 
+            }
+        }
+        return $rules;
+    }
 
 
     protected $listeners = ['roomSelected'];
@@ -108,37 +116,44 @@ class InquirySection extends Component
 
     public function send()
     {
+        if ($this->people > count($this->name)) {
+            $this->updatedPeople($this->people);
+        }
         $this->validate();
         $firstName = [];
         foreach ($this->name as $firstOne) {
             $nameParts = explode(' ', $firstOne);
             $firstName[] = $nameParts[0]; 
         }
-        Inquiry::create([
-            'package_id' => $this->package->id,
-            'slug' => Str::slug($firstName[0]. '-' . now()),
-            'email' => $this->email,
-            'room_type_id' => $this->room_type_id,
-            'people' => $this->people,
-            'start_date' => $this->start_date,
-            'message' => $this->message,
-            'name' => json_encode($this->name),
-        ]);
-        sleep(1);
-        session()->flash('success','Inquiry sent successfully');
-        $name = $firstName[0];
-        $category_name = $this->package->category->name;
-        $start_date = $this->start_date ? $this->start_date : $this->package->start_date;
-        $end_date = $this->end_date ? $this->end_date : $this->package->end_date;
-        $package_name = $this->package->title;
-        $location_name = $this->package->location->name;
-        $room_name = $this->room->name;
-        Mail::to($this->email)->send(new InquiryNotification($name,$category_name,$package_name,$start_date,$end_date,$location_name,$this->people,$room_name));
-        if(!$this->package->start_date)
+        if($this->name !== null)
         {
-            $this->reset('start_date','end_date');
+            Inquiry::create([
+                'package_id' => $this->package->id,
+                'slug' => Str::slug($firstName[0]. '-' . now()),
+                'email' => $this->email,
+                'room_type_id' => $this->room_type_id,
+                'people' => $this->people,
+                'start_date' => $this->start_date,
+                'message' => $this->message,
+                'name' => json_encode($this->name),
+            ]);
+            sleep(1);
+            session()->flash('success','Inquiry sent successfully');
+            $name = $firstName[0];
+            $category_name = $this->package->category->name;
+            $start_date = $this->start_date ? $this->start_date : $this->package->start_date;
+            $end_date = $this->end_date ? $this->end_date : $this->package->end_date;
+            $package_name = $this->package->title;
+            $location_name = $this->package->location->name;
+            $room_name = $this->room->name;
+            Mail::to($this->email)->send(new InquiryNotification($name,$category_name,$package_name,$start_date,$end_date,$location_name,$this->people,$room_name));
+            if(!$this->package->start_date)
+            {
+                $this->reset('start_date','end_date');
+            }
+            $this->reset('name','email','people','message','room_type_id');
         }
-        $this->reset('name','email','people','message','room_type_id');
+       
     }
     public function increasePeople()
     {

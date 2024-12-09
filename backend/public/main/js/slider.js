@@ -3,7 +3,7 @@ $(document).ready(function(){
     var locationCarousel = $('.location-carousel').owlCarousel({
         loop: true,
         margin: 20,
-        nav: false,
+        nav: true,
         autoplay: false,
         responsive: {
             0: { items: 1 },

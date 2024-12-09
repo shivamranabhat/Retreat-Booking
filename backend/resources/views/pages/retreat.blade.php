@@ -44,7 +44,7 @@
   
     <livewire:navbar />
     <x-banner-section />
-    <livewire:retreat-section :retreat="$retreat"/>
+    <livewire:retreat-section :retreat="$retreat" :location="$location"/>
     <livewire:why-us-section />
     <livewire:testimonial-section />
     <livewire:footer />

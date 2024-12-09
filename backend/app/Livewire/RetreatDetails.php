@@ -20,6 +20,7 @@ class RetreatDetails extends Component
     public $slug;
     public $category;
     public $package;
+    public $location;
     public $showFullSummary = false;
     public $showFullFeatures = false;
     public $showFullHighlights = false;
@@ -71,7 +72,7 @@ class RetreatDetails extends Component
     }
     public function selectRoom($id)
     {
-        return redirect()->route('retreat.inquiry',$this->package->slug)->with('room_id',$id);
+        return redirect()->route('retreat.inquiry',['retreat'=>$this->retreat,'location'=>$this->location,'slug'=>$this->package->slug])->with('room_id',$id);
     }
 
     public function loadMore()

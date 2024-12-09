@@ -28,10 +28,10 @@ class RetreatSection extends Component
     public function mount()
     {
         $this->category = Category::whereSlug($this->retreat)->first();
-        $this->locations = Location::latest()->select('id','name')->get();
+        $this->locations = Location::latest()->select('id','name','slug')->get();
         $this->rooms = RoomType::latest()->select('id','name')->get();
-        if (session()->has('location')) {
-            $selectedLocation = session()->get('location');
+        if (request()->segment(2) !=='') {
+            $selectedLocation = request()->segment(2);
             $this->location = Location::where('slug', $selectedLocation)->first();
             $this->locationFilter = $this->location ? $this->location->id : 'all';
         }
@@ -50,6 +50,17 @@ class RetreatSection extends Component
     public function applyLocationFilter($locationId)
     {
         $this->locationFilter = $locationId;
+        $locationSlug = 'all';
+        if ($locationId !== 'all') {
+            $location = Location::find($locationId);
+            $locationSlug = $location ? $location->slug : 'all';
+        }
+        if (request()->segment(2) !=='') {
+            $this->redirect(route('retreats', [
+                'retreat' => $this->retreat,
+                'location' => $locationSlug,
+            ]));
+        }
     }
 
     public function toggleRoomFilter($roomId)
@@ -112,35 +123,6 @@ class RetreatSection extends Component
             }
         }
         //If user selects date from hero section
-        // if (session()->has('date')) {
-        //     $sessionDate = session()->get('date'); 
-        //     $query = Package::query();
-        //     $parsedDate = Carbon::createFromFormat('Y-m-d', $sessionDate);
-        //     if ($parsedDate && $parsedDate->format('Y-m-d') === $sessionDate) 
-        //     {
-        //         $query->whereDate('start_date', '=', $parsedDate->format('Y-m-d'));
-        //     } 
-        //     else 
-        //     {
-        //         try {
-        //             $parsedMonth = Carbon::createFromFormat('Y-m', substr($sessionDate, 0, 7));
-        //             if ($parsedMonth) {
-        //                 $parsedMonthStart = $parsedMonth->startOfMonth();
-        //                 $startOfMonth = $parsedMonthStart->format('Y-m-d');
-        //                 $endOfMonth = $parsedMonthStart->endOfMonth()->format('Y-m-d');
-        //                 $query->whereBetween('start_date', [$startOfMonth, $endOfMonth]);
-        //             }
-        //         } catch (\Exception $e) {
-        //             \Log::error('Invalid date format in session: ' . $sessionDate);
-        //         }
-        //     }
-        
-        //     $filteredPackages = $query->get();
-        //     if ($filteredPackages->isEmpty()) {
-        //         $allYearAvailablePackages = Package::whereNull('start_date')->where('category_id',$this->category->id)->get();
-        //         $filteredPackages = $filteredPackages->merge($allYearAvailablePackages);
-        //     }
-        // }
         if (session()->has('date')) {
             $sessionDate = session()->get('date'); 
             $query = Package::query();
@@ -167,15 +149,15 @@ class RetreatSection extends Component
             // Fetch filtered packages
             $filteredPackages = $query->get();
         
-            // Handle cases where no packages are found
-            if ($filteredPackages->isEmpty()) {
-                $allYearAvailablePackages = Package::whereNull('start_date')
-                    ->where('category_id', $this->category->id)
-                    ->get();
+            // Fetch all-year available packages
+            $allYearAvailablePackages = Package::whereNull('start_date')
+                ->where('category_id', $this->category->id)
+                ->get();
         
-                $filteredPackages = $filteredPackages->merge($allYearAvailablePackages);
-            }
+            // Merge filtered packages with all-year available packages
+            $filteredPackages = $filteredPackages->merge($allYearAvailablePackages);
         }
+        
         
         // Apply location filter
         if ($this->locationFilter !== 'all') {

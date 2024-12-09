@@ -55,7 +55,7 @@
                                  </div>
                                  <div class="form-outline mb-4">
                                     <label class="form-label" for="description">Description</label>
-                                    <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" required>{{ old('description', $location->description) }}</textarea>
+                                    <textarea name="description" id="descriptions" class="form-control @error('description') is-invalid @enderror" required>{{ old('description', $location->description) }}</textarea>
                                     @error('description')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -69,6 +69,7 @@
             </div>
         </div>
         @push('scripts')
+        <script src="{{ asset('assets/js/ckeditor.js?v=').time() }}"></script>
         <script src="{{ asset('assets/js/imagePreview.js?v=').time() }}"></script>
         @endpush
 </x-app-layout>

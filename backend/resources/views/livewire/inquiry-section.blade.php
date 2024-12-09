@@ -22,7 +22,7 @@
         <h2 class="text-4xl font-bold">Your Inquiry</h2>
         <div class="grid grid-cols-2 xl:grid-cols-5 gap-10">
             <div class="col-span-2 h-fit border bg-white border-gray-300 p-4 rounded-xl flex flex-col gap-2">
-                <img class="rounded-xl"
+                <img class="rounded-xl h-56 md:h-80 xl:h-60 object-cover"
                     src="{{$package->main_image ? asset('storage/'.$package->main_image) : asset('main/images/image-placeholder.png') }}"
                     alt="{{$package->title}}">
                 <h5 class="text-lg font-semibold">{{$package->title}} <span
@@ -322,17 +322,31 @@
 
                     </div>
 
+                    {{-- <div class="grid grid-cols-1 gap-6">
+                        @for ($i = 0; $i < $people; $i++)
+                            <div class="input-field flex flex-col gap-2">
+                                <label for="name-{{ $i }}" class="text-sm">Guest Name</label>
+                                <input class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out" 
+                                type="text" 
+                                id="name-{{ $i }}" 
+                                wire:model="name.{{ $i }}" 
+                                placeholder="Name" required>
+                    
+                            </div>
+                        @endfor
+                    </div> --}}
                     <div class="grid grid-cols-1 gap-6">
                         @for ($i = 0; $i < $people; $i++)
                             <div class="input-field flex flex-col gap-2">
                                 <label for="name-{{ $i }}" class="text-sm">Guest Name</label>
-                                <input class="p-4 w-full placeholder:text-stone-500 @error('names.' . $i) border border-red-500 placeholder:text-red-400 @enderror rounded-xl placeholder:text-sm border border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out" 
-                                type="text" 
-                                id="name-{{ $i }}" 
-                                wire:model="name.{{ $i }}" 
-                                placeholder="Name{{ $errors->has('names.' . $i) ? ' *' : '' }}" required>
-                    
-                                <span class="error-message text-red-500 text-sm hidden">This field is required.</span>
+                                <input 
+                                    class="p-4 w-full placeholder:text-stone-500 rounded-xl placeholder:text-sm border 
+                                    @error('name.' . $i) border-red-500 @enderror 
+                                    border-gray-300 outline-none focus:outline-none focus:ring-0 focus:border-gray-400 focus:ease-in-out" 
+                                    type="text" 
+                                    id="name-{{ $i }}" 
+                                    wire:model="name.{{ $i }}" 
+                                    placeholder="Name" required>
                             </div>
                         @endfor
                     </div>
@@ -354,5 +368,6 @@
         </div>
     </div>
     </div>
+    <x-home.error />
     <x-home.success />
 </section>
